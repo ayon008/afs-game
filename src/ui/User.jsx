@@ -8,29 +8,20 @@ import { FaChevronDown } from 'react-icons/fa';
 
 
 const User = () => {
-
-    const [uid, setUid] = useState(null);
-
-    useEffect(() => {
-        const uid = JSON.parse(localStorage.getItem('uid'));
-        setUid(uid);
-    }, [uid])
-
     const userInfo = useAuth();
-
     const { user, logOut } = userInfo;
-
+    const uid = JSON.parse(localStorage.getItem('uid'));
     return (
         uid ?
             <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="m-1 flex items-center gap-2">
-                    <Image src={image} alt='profile-picture' className='h-[24px] w-[24px] rounded-[50%]' />
+                    <Image src={image} alt='profile-picture' className='h-[20px] w-[20px] rounded-[50%]' />
                     <div className='flex items-center gap-1'>
                         <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{user?.displayName}</p>
                         <FaChevronDown className='mt-1' color='red' size={'0.8rem'} />
                     </div>
                 </div>
-                <ul tabIndex={0} className="dropdown-content menu rounded-box z-[1] w-52 p-4 shadow mt-5 bg-[#111]">
+                <ul tabIndex={0} className="dropdown-content menu rounded-box z-[1] w-52 p-2 shadow mt-5 bg-[#111]">
                     <li>
                         <Link href={'/profile'} className='uppercase 2xl:text-base lg:text-xs font-semibold'>Profile</Link>
                     </li>
