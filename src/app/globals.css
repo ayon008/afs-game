@@ -16,3 +16,7 @@ li:focus {
 .menu li a:focus {
     @apply text-white !important;
 }
+
+.points {
+    background: linear-gradient(86deg, #1F1F1F 0.71%, #000 99.72%) !important;
+}

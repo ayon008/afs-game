@@ -9,7 +9,6 @@ const AuthProvider = ({ children }) => {
 
     const [loader, setLoader] = useState(true);
     const [user, setUser] = useState(null);
-    const [uid, setUid] = useState(null);
     const auth = getAuth(app)
     const googleProvider = new GoogleAuthProvider();
 
@@ -49,13 +48,12 @@ const AuthProvider = ({ children }) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser) {
                 setUser(currentUser);
-                setUid(localStorage.setItem('uid', JSON.stringify(currentUser?.uid)))
+                localStorage.setItem('uid', JSON.stringify(currentUser?.uid))
                 setLoader(false)
                 console.log(currentUser);
             }
             else {
                 localStorage.removeItem('uid');
-                setUid(null);
                 setUser(null);
                 setLoader(null)
             }

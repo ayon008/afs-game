@@ -12,6 +12,16 @@ const allianceNo2 = localfont(
         weight: '400',
         style: 'normal',
       },
+      {
+        path: '../../../public/fonts/Alliance No.2 Bold.otf',
+        weight: '600',
+        style: 'normal',
+      },
+      {
+        path: '../../../public/fonts/Alliance No.2 Bold.otf',
+        weight: '700',
+        style: 'normal',
+      },
     ]
   }
 );
