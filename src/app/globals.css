@@ -20,3 +20,21 @@ li:focus {
 .points {
     background: linear-gradient(86deg, #1F1F1F 0.71%, #000 99.72%) !important;
 }
+
+.custom-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 2fr !important;
+}
+
+.first {
+    background: linear-gradient(90deg, #FFEFB0 0%, rgba(255, 239, 176, 0.00) 100%) !important;
+    border-radius: 10px !important;
+}
+.second {
+    background: linear-gradient(90deg, #E4E4E5 0%, rgba(228, 228, 229, 0.00) 100%) !important;
+    border-radius: 10px !important;
+}
+.third {
+    background: linear-gradient(90deg, #E5CEB8 0%, rgba(229, 206, 184, 0.00) 100%) !important;
+    border-radius: 10px !important;
+}

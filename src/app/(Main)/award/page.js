@@ -3,6 +3,7 @@ import image from '../../../../public/DSC08000.png'
 import Image from 'next/image';
 import Sponsor from '@/Shared/Sponsor';
 import Join from '@/Shared/Join';
+import TopAchiver from '@/Components/TopAchiver';
 
 const page = () => {
     return (
@@ -58,11 +59,27 @@ const page = () => {
                     <h2 className="text-center font-bold xl:text-4xl 2xl:mb-10 xl:mb-6 text-black 2xl:text-5xl xl:mt-2 2xl:mt-5">
                         Tous les prix dans les <br /> autres nominations
                     </h2>
-                    
+
+                    <div className='custom-grid border-t-2 border-black'>
+                        <h5 className='2xl:text-lg xl:text-sm font-semibold 2xl:mt-[18px] xl:mt-3 uppercase'>Temps passé à l’eau sur la durée de l’événement</h5>
+                        <div>
+                            <TopAchiver />
+                            <TopAchiver />
+                        </div>
+                    </div>
+                    <div className='custom-grid border-t-2 border-black'>
+                        <h5 className='2xl:text-lg xl:text-sm font-semibold uppercase 2xl:mt-[18px] xl:mt-3'>Distance totale parcourue surla <br /> durée de l’événement</h5>
+                        <div>
+                            <TopAchiver />
+                            <TopAchiver />
+                        </div>
+                    </div>
                 </div>
             </div>
-            <Join />
-        </div>
+            <div className='2xl:mt-40 xl:mt-28'>
+                <Join />
+            </div>
+        </div >
     );
 };
 

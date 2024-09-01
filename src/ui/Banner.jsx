@@ -36,14 +36,14 @@ const Banner = () => {
                     <p className='xl:text-xs'>Les AFS GAMES sont un événement exclusif, réservé uniquement aux clients équipés de matériel AFS*. Cet événement unique met en avant plusieurs disciplines de foil, offrant une expérience inédite et immersive aux participants. La particularité des AFS GAMES, c’est qu’ils se déroulent en ligne !</p>
 
                     <div className='flex items-center 2xl:gap-10 xl:gap-5 mt-5'>
-                        <Link href={'subscribe'}>
+                        <Link href={'/register'}>
                             <button className='bg-black text-white flex items-center font-semibold 2xl:text-base xl:text-xs rounded xl:py-2 xl:px-4 uppercase gap-1'>
                                 <span>S’inscrire</span>
                                 <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} />
                             </button>
                         </Link>
                         <span className='2xl:text-base xl:text-xs font-semibold'>ou</span>
-                        <Link href={'subscribe'}>
+                        <Link href={'/login'}>
                             <button className='bg-red-600 text-white flex items-center font-semibold 2xl:text-base xl:text-xs rounded xl:py-2 xl:px-4 uppercase gap-1'>
                                 <span>M'inscrire</span>
                                 <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} />
