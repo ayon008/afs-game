@@ -38,3 +38,7 @@ li:focus {
     background: linear-gradient(90deg, #E5CEB8 0%, rgba(229, 206, 184, 0.00) 100%) !important;
     border-radius: 10px !important;
 }
+
+.upload {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+}
