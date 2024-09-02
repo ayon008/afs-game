@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 const UserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const userInfo = useAuth();
-    const { createAccount, updateProfile } = userInfo;
+    const { createAccount, updatedProfile } = userInfo;
     const router = useRouter();
 
     const onSubmit = async (data) => {
@@ -23,7 +23,7 @@ const UserForm = () => {
             const result = await createAccount(email, password);
             const user = result.user;
 
-            await updateProfile(user, { displayName: name });
+            await updatedProfile(user, { displayName: name });
             localStorage.removeItem('password');
             localStorage.removeItem('email');
 

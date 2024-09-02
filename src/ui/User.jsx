@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +16,7 @@ const User = () => {
         uid ?
             <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="m-1 flex items-center gap-2">
-                    <Image src={image} alt='profile-picture' className='h-[20px] w-[20px] rounded-[50%]' />
+                    <img src={user?.photoURL} alt='profile-picture' className='h-[20px] w-[20px] rounded-[50%]' />
                     <div className='flex items-center gap-1'>
                         <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{user?.displayName}</p>
                         <FaChevronDown className='mt-1' color='red' size={'0.8rem'} />

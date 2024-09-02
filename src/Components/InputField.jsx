@@ -16,8 +16,9 @@ const InputField = ({ label, name, placeholder, type = 'text', register, errors,
                 {...register(name, { required: `${label} is required` })}
                 className={`input input-bordered border-2 ${errors[name] ? 'border-red-500' : 'border-[#666]'} bg-[#F0F0F0] text-black Alliance`}
             />
+            {errors[name] && <span className="text-red-500 text-sm mt-1">{errors[name].message}</span>}
         </div>
-        {errors[name] && <span className="text-red-500 text-sm mt-1">{errors[name].message}</span>}
+
     </>
 );
 

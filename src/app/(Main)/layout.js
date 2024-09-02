@@ -3,6 +3,7 @@ import "../globals.css";
 import Navbar from "@/Shared/Navbar";
 import Footer from "@/Shared/Footer";
 import AuthProvider from "@/Provider/AuthProvider";
+import QueryProvider from "@/Provider/QueryProvider";
 
 const allianceNo2 = localfont(
   {
@@ -36,11 +37,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={allianceNo2.className}>
         <main className="pt-[10px] bg-[#FFFFF8]">
-          <AuthProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </AuthProvider>
+          <QueryProvider>
+            <AuthProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </AuthProvider>
+          </QueryProvider>
         </main>
       </body>
     </html>

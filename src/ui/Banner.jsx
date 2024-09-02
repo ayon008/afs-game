@@ -13,7 +13,7 @@ import Join from '@/Shared/Join';
 
 const steps = [
     <>
-        Cliquez sur le lien d'inscription <span className='text-red-600'>ici.</span>
+        Cliquez sur le lien d'inscription <Link href={'/register'} className='text-red-600'>ici.</Link>
     </>,
     "Remplissez le formulaire avec vos informations.",
     "Confirmez votre inscription et recevez votre confirmation par email."

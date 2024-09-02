@@ -3,21 +3,16 @@ import TableRow from '@/Components/TableRow';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { FaPen } from 'react-icons/fa';
 import image from '@/../public/682c7390394d85444b46bee451dcb762.jpg'
 import FaArrow from '@/icons/FaArrow';
-
+import EditProfile from '@/ui/EditProfile';
 
 const page = () => {
     return (
         <div className='2xl:px-36 2xl:pt-10 xl:px-20 xl:pt-10'>
             <div className='flex items-center justify-between'>
                 <h1 className='text-[#000] font-bold 2xl:text-7xl xl:text-5xl'>Bonjour, Felix Müller</h1>
-                <div className='flex items-center gap-1'>
-                    <Link href={'/profile/updateProfile'}>
-                        <p>Modifier l'information</p></Link>
-                    <FaPen />
-                </div>
+                <EditProfile />
             </div>
             <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2'>
                 <p className='2xl:text-[22px] xl:text-base font-semibold'>Le nombre total de points dans le tournoi est de </p>
