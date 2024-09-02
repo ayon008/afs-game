@@ -18,7 +18,6 @@ const InputField = ({ label, name, placeholder, type = 'text', register, errors,
             />
             {errors[name] && <span className="text-red-500 text-sm mt-1">{errors[name].message}</span>}
         </div>
-
     </>
 );
 

@@ -10,7 +10,6 @@ import windfoil4 from '../../public/9b5f432062660643beb47fe5b853ad7f.jpg'
 import Sponsor from '@/Shared/Sponsor';
 import Join from '@/Shared/Join';
 
-
 const steps = [
     <>
         Cliquez sur le lien d'inscription <Link href={'/register'} className='text-red-600'>ici.</Link>
@@ -109,7 +108,6 @@ const Banner = () => {
                     }
                 </div>
             </div>
-
             <Join />
         </div>
 
