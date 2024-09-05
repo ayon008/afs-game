@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAuth from '@/Hooks/useAuth';
@@ -8,43 +8,31 @@ import Google from '@/icons/Google';
 import Link from 'next/link';
 import { FaEye } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-
+import requestPasswordReset from '@/lib/requestPasswordReset';
 
 const Page = () => {
-    // Form Hook
-    const { register, handleSubmit, formState: { errors, reset, isSubmitting } } = useForm();
-
-    // User Info
-    const userInfo = useAuth();
-    const { signIn, createWithGoogle } = userInfo;
-
-    // Routing
+    const { register, handleSubmit, formState: { errors }, reset, isSubmitting } = useForm();
+    const { signIn, createWithGoogle, changePassword } = useAuth();
     const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
+
+    // Show/hide password toggle
+    const togglePasswordVisibility = () => {
+        setShowPassword(prev => !prev);
+    };
 
     const onSubmit = async (data) => {
         try {
             const { email, password } = data;
-            signIn(email, password)
-                .then(result => {
-                    const user = result.user;
-                    console.log(user);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Signed in successfully!',
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    router.push('/')
-                    reset();
-                })
-                .catch(error => {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Sign in failed!',
-                        text: error.message,
-                    })
-                })
-
+            await signIn(email, password);
+            Swal.fire({
+                icon: 'success',
+                title: 'Signed in successfully!',
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            router.push('/');
+            reset();
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -54,19 +42,43 @@ const Page = () => {
         }
     };
 
+    const handleGoogleLogin = async () => {
+        try {
+            await createWithGoogle();
+            router.push('/');
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Google Sign-In failed!',
+                text: error.message,
+            });
+        }
+    };
 
-    // Google Login
-    const handleGoogleLogin = () => {
-        createWithGoogle()
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-                router.push('/')
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
+    const handlePasswordReset = async (email) => {
+        if (!email) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Please enter your email!',
+            });
+            return;
+        }
+        try {
+            // Trigger the backend to send a reset email
+            await requestPasswordReset(email);
+            Swal.fire({
+                icon: 'success',
+                title: 'Password reset email sent!',
+                text: 'Check your inbox for a reset link.',
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Password reset failed!',
+                text: error.message,
+            });
+        }
+    };
 
     return (
         <div className='lg:w-1/3 2xl:w-1/2 mx-auto'>
@@ -94,17 +106,28 @@ const Page = () => {
                     {/* Password Field */}
                     <div className="form-control relative mb-0">
                         <input
-                            type={'password'}
+                            type={showPassword ? 'text' : 'password'}
                             {...register('password', { required: 'Password is required' })}
                             placeholder="Password"
                             className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white"
                         />
-                        <FaEye className='text-[#999999] absolute right-4 top-1/2 bottom-1/2 cursor-pointer' style={{ transform: "translateY(-50%)" }} />
+                        <FaEye
+                            className='text-[#999999] absolute right-4 top-1/2 bottom-1/2 cursor-pointer'
+                            onClick={togglePasswordVisibility}
+                            style={{ transform: "translateY(-50%)" }}
+                        />
                         {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
                     </div>
 
                     <div className='flex items-center gap-1'>
-                        <p className='w-fit flex-grow-0'><Link href={"/forgot-password"} className='text-red-600 text-sm'>Forgot password?</Link></p>
+                        <p className='w-fit flex-grow-0'>
+                            <span
+                                className='text-red-600 text-sm cursor-pointer'
+                                onClick={() => handlePasswordReset(document.querySelector('input[name="email"]').value)}
+                            >
+                                Forgot password?
+                            </span>
+                        </p>
                         <FaArrow className={'h-[10px] w-[10px] mt-1'} />
                     </div>
 
@@ -113,14 +136,22 @@ const Page = () => {
                     </div>
 
                     {/* Google Sign-In */}
-                    <div className='flex items-center px-3 rounded-[10px] bg-white py-3 border-none border-2 gap-4 cursor-pointer btn' onClick={() => handleGoogleLogin()}>
+                    <div
+                        className='flex items-center px-3 rounded-[10px] bg-white py-3 border-none border-2 gap-4 cursor-pointer btn'
+                        onClick={handleGoogleLogin}
+                    >
                         <Google />
                         <h3 className='font-semibold'>Continue with Google</h3>
                     </div>
 
                     {/* Submit Button */}
                     <div className="form-control">
-                        <input type="submit" className="btn bg-red-600 border-none text-white" value={isSubmitting ? 'Login' : 'CONTINUE'} disabled={isSubmitting} />
+                        <input
+                            type="submit"
+                            className="btn bg-red-600 border-none text-white"
+                            value={isSubmitting ? 'Logging in...' : 'CONTINUE'}
+                            disabled={isSubmitting}
+                        />
                     </div>
 
                     {/* Sign Up Link */}

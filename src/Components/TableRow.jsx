@@ -2,33 +2,38 @@ import Image from 'next/image';
 import React from 'react';
 import image from '@/../public/682c7390394d85444b46bee451dcb762.jpg'
 
-const TableRow = () => {
+const TableRow = ({ data }) => {
+    const { name, pointsByDistance, pointsByTime, total, category, position } = data;
+    const { wingfoil, dw, windfoil, surfFoil, dockstart } = category;
+    console.log(position);
+
+
     return (
-        <tr className='first'>
-            <td>01.</td>
+        <tr className={position === 1 && 'first' || position === 2 && 'second' || position === 3 && 'third'}>
+            <td>{position.length > 2 ? position : `0${position}`}</td>
             <td>
                 <div className='flex items-center gap-2'>
                     <Image alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] rounded-[50%]' src={image} />
-                    <h3 className='2xl:text-lg xl:text-sm font-semibold'>Felix Müller</h3>
+                    <h3 className='2xl:text-lg xl:text-sm font-semibold'>{name}</h3>
                 </div>
             </td>
             <td className='2xl:text-lg xl:text-sm font-semibold'>
-                98 points
+                {wingfoil ? wingfoil.total + ' ' + 'points' : 'n/a'}
             </td>
             <td className='2xl:text-lg xl:text-sm font-semibold'>
-                n/a
+                {windfoil ? windfoil.total + ' ' + 'points' : 'n/a'}
             </td>
             <td className='2xl:text-lg xl:text-sm font-semibold'>
-                46 points
+                {dockstart ? dockstart.total + ' ' + 'points' : 'n/a'}
             </td>
             <td className='2xl:text-lg xl:text-sm font-semibold'>
-                57 points
+                {surfFoil ? surfFoil.total + ' ' + 'points' : 'n/a'}
             </td>
             <td className='2xl:text-lg xl:text-sm font-semibold'>
-                n/a
+                {dw ? dw.total + ' ' + 'points' : 'n/a'}
             </td>
             <td className='2xl:text-lg xl:text-sm font-semibold text-right'>
-                386 points
+                {total + ' ' + 'points' || 'n/a'}
             </td>
         </tr>
     );

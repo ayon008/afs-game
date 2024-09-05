@@ -36,11 +36,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={allianceNo2.className}>
-        <main className="pt-[10px] bg-[#FFFFF8]">
+        <main className="pt-[10px] bg-[#FFFFF8] max-w-[1920px] mx-auto">
           <QueryProvider>
             <AuthProvider>
               <Navbar />
-              {children}
+              <div className="min-h-screen">
+                {children}
+              </div>
               <Footer />
             </AuthProvider>
           </QueryProvider>

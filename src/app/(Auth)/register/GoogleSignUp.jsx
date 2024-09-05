@@ -70,7 +70,7 @@ const GoogleSignUp = () => {
             <div className='flex items-center w-fit mx-auto gap-2'>
                 <p className='text-sm text-[#FFFFFF99] w-fit'>Already have an account?</p>
                 <div className='flex items-center gap-1'>
-                    <Link href="/signin" className='text-red-600 text-sm'>Login</Link>
+                    <Link href="/register" className='text-red-600 text-sm'>Login</Link>
                     <FaArrow className='w-[10px] h-[10px] mt-1' />
                 </div>
             </div>

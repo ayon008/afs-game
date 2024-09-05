@@ -20,7 +20,7 @@ const steps = [
 
 const Banner = () => {
     return (
-        <div className='2xl:max-w-[1920px] xl:max-w-7xl mx-auto'>
+        <div className=''>
             {/* Headline */}
             <div className='2xl:px-36 xl:px-20 2xl:py-6 xl:py-3'>
                 <div className='w-1/2'>

@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import image from '../../public/1269c2f99e52bba6b8d0a67446092360.jpg'
 import useAuth from '@/Hooks/useAuth';
 import { FaChevronDown } from 'react-icons/fa';
 
@@ -12,6 +10,7 @@ const User = () => {
     const userInfo = useAuth();
     const { user, logOut } = userInfo;
     const uid = JSON.parse(localStorage.getItem('uid'));
+
     return (
         uid ?
             <div className="dropdown dropdown-end">
@@ -24,7 +23,7 @@ const User = () => {
                 </div>
                 <ul tabIndex={0} className="dropdown-content menu rounded-box z-[1] w-52 p-2 shadow mt-5 bg-[#111]">
                     <li>
-                        <Link href={'/profile'} className='uppercase 2xl:text-base lg:text-xs font-semibold'>Profile</Link>
+                        <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base lg:text-xs font-semibold'>Profile</Link>
                     </li>
                     <li>
                         <p onClick={() => logOut()} className='uppercase 2xl:text-base lg:text-xs font-semibold'>log out</p>

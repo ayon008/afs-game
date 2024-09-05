@@ -10,21 +10,19 @@ import GetUserData from '@/lib/getUserData';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import useAuth from '@/Hooks/useAuth';
 
-const Page = ({ params }) => {
-    const uid = params.uid;
-    const { isLoading, isError, error, userInfo } = GetUserData(uid);
+const Page = () => {
     const { user, updatedProfile } = useAuth();
-
+    const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
     const axiosSecure = useAxiosSecure();
 
     const { control, register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
         defaultValues: {
-            displayName: userInfo?.displayName || '',
+            displayName: userInfo?.displayName || user?.displayName,
             surName: userInfo?.surName || '',
             address: userInfo?.address || '',
             pays: userInfo?.pays || '',
             afsGear: userInfo?.afsGear || '',
-            email: userInfo?.email || '',
+            email: userInfo?.email || user?.email,
         },
     });
 

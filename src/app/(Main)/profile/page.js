@@ -6,51 +6,35 @@ import React from 'react';
 import image from '@/../public/682c7390394d85444b46bee451dcb762.jpg'
 import FaArrow from '@/icons/FaArrow';
 import EditProfile from '@/ui/EditProfile';
+import getUserLeaderBoard from '@/lib/getUserLeaderBoard';
 
-const page = () => {
+
+const page = async ({ searchParams }) => {
+    console.log(searchParams.uid);
+    const data = await getUserLeaderBoard(searchParams.uid);
+    console.log(data);
+    const find = data?.find(d => d.uid === searchParams.uid) || {};
+    console.log(find);
+
     return (
         <div className='2xl:px-36 2xl:pt-10 xl:px-20 xl:pt-10'>
-            <div className='flex items-center justify-between'>
-                <h1 className='text-[#000] font-bold 2xl:text-7xl xl:text-5xl'>Bonjour, Felix Müller</h1>
-                <EditProfile />
-            </div>
+            <EditProfile />
             <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2'>
                 <p className='2xl:text-[22px] xl:text-base font-semibold'>Le nombre total de points dans le tournoi est de </p>
-                <span className='2xl:text-[22px] xl:text-base font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 rounded-3xl'>360 points</span>
+                <span className='2xl:text-[22px] xl:text-base font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 rounded-3xl'>{find?.total || 0} points</span>
             </div>
             <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6">
                 <table className="table">
                     {/* head */}
                     <TableHead />
                     <tbody>
-                        <TableRow />
-                        <tr >
-                            <td>01.</td>
-                            <td>
-                                <div className='flex items-center gap-2'>
-                                    <Image alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] rounded-[50%]' src={image} />
-                                    <h3 className='2xl:text-lg xl:text-sm font-semibold'>Felix Müller</h3>
-                                </div>
-                            </td>
-                            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                                98 points
-                            </td>
-                            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                                n/a
-                            </td>
-                            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                                46 points
-                            </td>
-                            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                                57 points
-                            </td>
-                            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                                n/a
-                            </td>
-                            <td className='2xl:text-lg xl:text-sm font-semibold text-right'>
-                                386 points
-                            </td>
-                        </tr>
+                        {
+                            data?.map((d, i) => {
+                                return (
+                                    <TableRow key={i} data={d} />
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
             </div>
@@ -73,21 +57,19 @@ const page = () => {
                                 </thead>
                                 <tbody>
                                     {/* row 1 */}
-                                    <tr className='first'>
-                                        <th>01</th>
-                                        <td className='font-semibold'>Felix Müller</td>
-                                        <td className='text-right font-semibold'>98 points</td>
-                                    </tr>
-                                    <tr className=''>
-                                        <th>01</th>
-                                        <td className='font-semibold'>Felix Müller</td>
-                                        <td className='text-right font-semibold'>98 points</td>
-                                    </tr>
-                                    <tr className='third'>
-                                        <th>01</th>
-                                        <td className='font-semibold'>Felix Müller</td>
-                                        <td className='text-right font-semibold'>98 points</td>
-                                    </tr>
+                                    {
+                                        data?.map((d, i) => {
+                                            if (d.category.wingfoil) {
+                                                return (
+                                                    <tr key={i} className='first'>
+                                                        <th>01</th>
+                                                        <td className='font-semibold'>Felix Müller</td>
+                                                        <td className='text-right font-semibold'>98 points</td>
+                                                    </tr>
+                                                )
+                                            }
+                                        })
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -214,7 +196,7 @@ const page = () => {
                         <FaArrow className={'w-[20px] h-[20px]'} />
                     </button>
                 </Link>
-                <Link href={'/profile/uploadData'}>
+                <Link href={'/profile/uploadUserData'}>
                     <button className='uppercase flex items-center btn bg-black'>
                         <span className='text-lg text-white'>Import Data</span>
                         <FaArrow className={'w-[20px] h-[20px]'} />

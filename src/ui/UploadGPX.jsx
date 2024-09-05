@@ -9,6 +9,7 @@ import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import calculateTotalTimeAndDistance from '@/js/calculateTotalTimeAndDistance';
 import useAuth from '@/Hooks/useAuth';
 import Swal from 'sweetalert2';
+import { calCulatePointsByDistance, calCulatePointsByTime } from '@/js/calculatePoints';
 
 const UploadGPX = () => {
     const [geojson, setGeojson] = useState(null);
@@ -59,6 +60,9 @@ const UploadGPX = () => {
 
         if (geojson) {
             const { totalTime, totalDistance } = calculateTotalTimeAndDistance(geojson);
+            const pointsByTime = calCulatePointsByTime(totalTime);
+            const pointsByDistance = calCulatePointsByDistance(totalDistance);
+            // Loading state
             Swal.fire({
                 title: 'Saving...',
                 allowOutsideClick: false,
@@ -74,6 +78,9 @@ const UploadGPX = () => {
                     uid: user?.uid,
                     category,
                     filename: uploadedFiles[0]?.name,
+                    pointsByTime: pointsByTime,
+                    pointsByDistance: pointsByDistance,
+                    name: user?.displayName
                 });
 
                 Swal.fire({
@@ -150,11 +157,11 @@ const UploadGPX = () => {
                         onChange={(e) => setCategory(e.target.value)}
                     >
                         <option value="" disabled>Select a category</option>
-                        <option className='uppercase'>wingfoil</option>
-                        <option className='uppercase'>windfoil</option>
-                        <option className='uppercase'>dockstart</option>
-                        <option className='uppercase'>surf foil</option>
-                        <option className='uppercase'>dw</option>
+                        <option className='uppercase' value={'wingfoil'}>wingfoil</option>
+                        <option className='uppercase' value={'windfoil'}>windfoil</option>
+                        <option className='uppercase' value={'dockstart'}>dockstart</option>
+                        <option className='uppercase' value={'surfFoil'}>surf foil</option>
+                        <option className='uppercase' value={'dw'}>dw</option>
                     </select>
                 </div>
                 <div className='flex gap-2'>
