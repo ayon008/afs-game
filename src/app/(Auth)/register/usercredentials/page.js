@@ -1,37 +1,62 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaEye, FaEyeSlash, FaCheck } from 'react-icons/fa';
 import Link from 'next/link';
 import FaArrow from '@/icons/FaArrow';
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues: {
-            email: JSON.parse(localStorage.getItem('email')) || '',
-            password: JSON.parse(localStorage.getItem('password')) || '',
-            confirmPassword: JSON.parse(localStorage.getItem('password')) || ''
-        },
+    const [defaultValues, setDefaultValues] = useState({
+        email: '',
+        password: '',
+        confirmPassword: ''
     });
+
+    useEffect(() => {
+        // Only run this code on the client side
+        if (typeof window !== 'undefined') {
+            const email = JSON.parse(localStorage.getItem('email')) || '';
+            const password = JSON.parse(localStorage.getItem('password')) || '';
+            setDefaultValues({ email, password, confirmPassword: password });
+        }
+    }, []);
+
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues,
+    });
+
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-    const router = useRouter()
+    const router = useRouter();
 
     const onSubmit = async (data) => {
         if (data.password !== data.confirmPassword) {
-            alert('Passwords do not match');
+            Swal.fire({
+                title: 'Error',
+                text: 'Passwords do not match',
+                icon: 'error',
+                confirmButtonText: 'Try Again',
+                confirmButtonColor: '#d33',
+            });
             return;
         }
         try {
-            localStorage.setItem('email', JSON.stringify(data.email));
-            localStorage.setItem('password', JSON.stringify(data.password));
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('email', JSON.stringify(data.email));
+                localStorage.setItem('password', JSON.stringify(data.password));
+            }
             router.push('usercredentials/createUser');
-            // Further actions after successful sign-up can be added here
         } catch (error) {
-            console.error('Error during sign-up:', error);
-            alert('Sign-up failed');
+            Swal.fire({
+                title: 'Error',
+                text: 'Sign-up failed: ' + error.message,
+                icon: 'error',
+                confirmButtonText: 'Try Again',
+                confirmButtonColor: '#d33',
+            });
         }
     };
 

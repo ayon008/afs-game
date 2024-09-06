@@ -1,38 +1,50 @@
+'use client'
 import axios from 'axios';
 import useAuth from './useAuth';
 import { useRouter } from 'next/navigation';
 
-
 const useAxiosSecure = () => {
-    const { logOut, user } = useAuth()
+    const { logOut, user } = useAuth();
     const router = useRouter();
+
     const axiosSecure = axios.create({
-        baseURL: 'http://localhost:5000/',
-    })
-
-    axiosSecure.interceptors.request.use(function (config) {
-        const {token} = JSON.parse(localStorage.getItem('userToken'));
-        config.headers.authorization = `Bearer ${token}`;
-        return config;
-    }, function (error) {
-        // Do something with request error
-        return Promise.reject(error);
+        baseURL: 'https://afs-backend-4w9k.vercel.app/', // Adjust this to your actual base URL
     });
 
-    // Add a response interceptor
-    axiosSecure.interceptors.response.use(function (response) {
-        // Any status code that lie within the range of 2xx cause this function to trigger
-        // Do something with response data
-        return response;
-    }, async function (error) {
-        const status = error.response?.status;
-        console.log(error.response?.status);
-        // if (status) {
-        //     await logOut()
-        //     router.push('/login');
-        // }
-        return Promise.reject(error);
-    });
+    // Request interceptor
+    axiosSecure.interceptors.request.use(
+        (config) => {
+            // Ensure this runs only on the client side
+            if (typeof window !== 'undefined') {
+                const userToken = JSON.parse(localStorage.getItem('userToken'));
+                if (userToken && userToken.token) {
+                    config.headers.authorization = `Bearer ${userToken.token}`;
+                }
+            }
+            return config;
+        },
+        (error) => {
+            // Handle request error
+            return Promise.reject(error);
+        }
+    );
+
+    // Response interceptor
+    axiosSecure.interceptors.response.use(
+        (response) => {
+            // Handle successful response
+            return response;
+        },
+        async (error) => {
+            const status = error.response?.status;
+            if (status === 401 || status === 403) {
+                // Unauthorized or Forbidden, log out and redirect to login
+                await logOut();
+                router.push('/login');
+            }
+            return Promise.reject(error);
+        }
+    );
 
     return axiosSecure;
 };

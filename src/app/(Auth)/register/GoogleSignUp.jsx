@@ -24,15 +24,16 @@ const GoogleSignUp = () => {
 
     const onSubmit = async (data) => {
         try {
-            localStorage.setItem('email', JSON.stringify(data.email));
-            router.push('register/usercredentials')
-            // Additional form handling logic can be added here
+            // Check if window is defined (client-side) before accessing localStorage
+            if (typeof window !== "undefined") {
+                localStorage.setItem('email', JSON.stringify(data.email));
+            }
+            router.push('register/usercredentials');
         } catch (error) {
             console.error('Error during form submission:', error);
             alert('Form submission failed. Please try again.');
         }
     };
-
 
     return (
         <div className="card-body space-y-2 bg-[#111] rounded relative">

@@ -123,7 +123,7 @@ const UploadGPX = () => {
                                     {isDragActive ? 'Relâchez le fichier ici...' : 'Choisissez un fichier ou glissez-déposez-le ici'}
                                 </h3>
                                 <p className='2xl:text-lg xl:text-xs text-center font-semibold text-gray-400'>
-                                    Formats Gpx jusqu'à 10 MB
+                                    Formats Gpx jusqu&apos;à 10 MB
                                 </p>
                             </div>
                             <button className='text-center flex w-fit mx-auto bg-red-600 btn text-white'>

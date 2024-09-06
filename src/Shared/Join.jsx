@@ -10,7 +10,7 @@ const Join = () => {
                     <p className='text-white font-medium xl:text-5xl 2xl:text-7xl '>Rejoignez-nous et prenez part à la première édition des AFS GAMES ONLINE 2024, rencontrez des passionnés et participez à des challenges inédits. </p>
 
                     <div className='2xl:mt-7 xl:mt-5 flex items-start 2xl:gap-20 xl:gap-16'>
-                        <p className='text-white xl:text-xl font-semibold 2xl:text-3xl '>Ne manquez pas cette occasion unique de vivre <br /> l'expérience Foiling Spirit !</p>
+                        <p className='text-white xl:text-xl font-semibold 2xl:text-3xl '>Ne manquez pas cette occasion unique de vivre <br /> l&apos;expérience Foiling Spirit !</p>
 
                         <p className=' 2xl:text-xl xl:text-sm font-semibold text-white'>Emplacement-<span className='text-red-600'>ONLINE</span> <br /> PRIX-<span className='text-red-600'>Free</span></p>
 

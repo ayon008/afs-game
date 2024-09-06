@@ -12,7 +12,7 @@ import Join from '@/Shared/Join';
 
 const steps = [
     <>
-        Cliquez sur le lien d'inscription <Link href={'/register'} className='text-red-600'>ici.</Link>
+        Cliquez sur le lien d&apos;inscription <Link href={'/register'} className='text-red-600'>ici.</Link>
     </>,
     "Remplissez le formulaire avec vos informations.",
     "Confirmez votre inscription et recevez votre confirmation par email."
@@ -44,7 +44,7 @@ const Banner = () => {
                         <span className='2xl:text-base xl:text-xs font-semibold'>ou</span>
                         <Link href={'/login'}>
                             <button className='bg-red-600 text-white flex items-center font-semibold 2xl:text-base xl:text-xs rounded xl:py-2 xl:px-4 uppercase gap-1'>
-                                <span>M'inscrire</span>
+                                <span>M&apos;inscrire</span>
                                 <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} />
                             </button>
                         </Link>
@@ -94,7 +94,7 @@ const Banner = () => {
                 </p>
             </div>
             <div className='2xl:p-40 xl:p-28'>
-                <p className='2xl:text-5xl xl:text-3xl font-bold'>L'inscription est <br /> simple et rapide</p>
+                <p className='2xl:text-5xl xl:text-3xl font-bold'>L&apos;inscription est <br /> simple et rapide</p>
                 <div className='2xl:mt-10 xl:mt-6 grid grid-cols-3 2xl:gap-5 xl:gap-3'>
                     {
                         steps.map((step, i) => {

@@ -15,7 +15,7 @@ const page = () => {
                     placeholder='blur'
                     className='w-full h-auto'
                 />
-                <h2 className='text-white 2xl:text-7xl xl:text-5xl font-bold absolute left-24 bottom-10'>Défis de <br /> l'événement</h2>
+                <h2 className='text-white 2xl:text-7xl xl:text-5xl font-bold absolute left-24 bottom-10'>Défis de <br /> l&apos;événement</h2>
             </div>
 
             <div className='2xl:px-40 xl:px-28 2xl:mt-28 xl:mt-16'>

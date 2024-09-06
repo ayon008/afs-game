@@ -16,17 +16,40 @@ const UserForm = () => {
 
     const onSubmit = async (data) => {
         const { name, surName, Address, Pays, AfsGear } = data;
-        const email = JSON.parse(localStorage.getItem('email'));
-        const password = JSON.parse(localStorage.getItem('password'));
+        let email = '';
+        let password = '';
+
+        // Ensure localStorage is accessed on the client side only
+        if (typeof window !== "undefined") {
+            email = JSON.parse(localStorage.getItem('email'));
+            password = JSON.parse(localStorage.getItem('password'));
+        }
+
+        if (!email || !password) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Email or password is missing. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#d33',
+            });
+            return;
+        }
 
         try {
             const result = await createAccount(email, password);
             const user = result.user;
 
+            // Update user profile
             await updatedProfile(user, { displayName: name });
-            localStorage.removeItem('password');
-            localStorage.removeItem('email');
 
+            // Clear sensitive data from localStorage
+            if (typeof window !== "undefined") {
+                localStorage.removeItem('password');
+                localStorage.removeItem('email');
+            }
+
+            // Success feedback
             Swal.fire({
                 title: 'Account Created',
                 text: 'Your account has been successfully created!',
@@ -37,6 +60,7 @@ const UserForm = () => {
                 router.push('/');
             });
         } catch (error) {
+            // Error feedback
             Swal.fire({
                 title: 'Error',
                 text: `Error during account creation: ${error.message}`,
@@ -57,6 +81,7 @@ const UserForm = () => {
                 <h5 className="text-base Alliance tracking-wide text-[#FFFFFF99]">Your name will be seen in the leaderboard</h5>
             </div>
 
+            {/* Name Field */}
             <div className="form-control relative">
                 <input
                     type="text"
@@ -67,6 +92,7 @@ const UserForm = () => {
                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
             </div>
 
+            {/* Surname Field */}
             <div className="form-control relative">
                 <input
                     type="text"
@@ -77,6 +103,7 @@ const UserForm = () => {
                 {errors.surName && <p className="text-red-500 text-xs mt-1">{errors.surName.message}</p>}
             </div>
 
+            {/* Address Field */}
             <div className="form-control relative">
                 <input
                     type="text"
@@ -87,6 +114,7 @@ const UserForm = () => {
                 {errors.Address && <p className="text-red-500 text-xs mt-1">{errors.Address.message}</p>}
             </div>
 
+            {/* Pays Field */}
             <div className="form-control relative">
                 <input
                     type="text"
@@ -97,6 +125,7 @@ const UserForm = () => {
                 {errors.Pays && <p className="text-red-500 text-xs mt-1">{errors.Pays.message}</p>}
             </div>
 
+            {/* AfsGear Field */}
             <div className="form-control relative">
                 <input
                     type="text"
@@ -107,10 +136,12 @@ const UserForm = () => {
                 {errors.AfsGear && <p className="text-red-500 text-xs mt-1">{errors.AfsGear.message}</p>}
             </div>
 
+            {/* Submit Button */}
             <div className="form-control">
                 <button type="submit" className="btn bg-red-600 border-none text-white Alliance">CREATE ACCOUNT</button>
             </div>
 
+            {/* Footer */}
             <div className="flex items-center w-fit mx-auto gap-2">
                 <p className="text-sm text-[#FFFFFF99]">Already have an account?</p>
                 <div className="flex items-baseline gap-1">

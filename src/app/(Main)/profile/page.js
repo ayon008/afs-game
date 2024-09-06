@@ -76,7 +76,7 @@ const page = async ({ searchParams }) => {
                     </div>
                     <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[20px] xl:py-[10px] rounded-[10px] h-fit'>
                         <h5 className='font-semibold 2xl:text-xl xl:text-base'>Wingfoil</h5>
-                        <p className='2xl:text-lg xl:text-xs text-gray-400'>Vous n'avez pas pratiqué cette discipline jusqu'à présent.</p>
+                        <p className='2xl:text-lg xl:text-xs text-gray-400'>Vous n&apos;avez pas pratiqué cette discipline jusqu&apos;à présent.</p>
                     </div>
                     <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[20px] xl:py-[10px] rounded-[10px]'>
                         <h5 className='font-semibold 2xl:text-xl xl:text-base'>Wingfoil</h5>
@@ -152,7 +152,7 @@ const page = async ({ searchParams }) => {
                     </div>
                     <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[20px] xl:py-[10px] rounded-[10px] h-fit'>
                         <h5 className='font-semibold 2xl:text-xl xl:text-base'>Wingfoil</h5>
-                        <p className='2xl:text-lg xl:text-xs text-gray-400'>Vous n'avez pas pratiqué cette discipline jusqu'à présent.</p>
+                        <p className='2xl:text-lg xl:text-xs text-gray-400'>Vous n&apos;avez pas pratiqué cette discipline jusqu&apos;à présent.</p>
                     </div>
                     <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[20px] xl:py-[10px] rounded-[10px]'>
                         <h5 className='font-semibold 2xl:text-xl xl:text-base'>Wingfoil</h5>

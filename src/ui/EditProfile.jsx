@@ -11,7 +11,7 @@ const EditProfile = () => {
             <h1 className='text-[#000] font-bold 2xl:text-7xl xl:text-5xl'>Bonjour, {user?.displayName}</h1>
             <div className='flex items-center gap-1'>
                 <Link href={`/profile/${user?.uid}`}>
-                    <p>Modifier l'information</p></Link>
+                    <p>Modifier l&apos;information</p></Link>
                 <FaPen />
             </div>
         </div>
