@@ -9,11 +9,7 @@ import { FaChevronDown } from 'react-icons/fa';
 const User = () => {
     const userInfo = useAuth();
     const { user, logOut } = userInfo;
-    const [uid, setUid] = useState(null);
-
-    useEffect(() => {
-        setUid(JSON.parse(localStorage.getItem('uid')));
-    }, []);
+    const uid = user?.uid;
 
     return (
         uid ?
