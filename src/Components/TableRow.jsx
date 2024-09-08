@@ -1,20 +1,20 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from 'next/image';
 import React from 'react';
-import image from '@/../public/682c7390394d85444b46bee451dcb762.jpg'
 
 const TableRow = ({ data, position }) => {
-    const { name, pointsByDistance, pointsByTime, total, category } = data;
+    const { displayName, photoURL, pointsByDistance, pointsByTime, total, category } = data;
     const { wingfoil, dw, windfoil, surfFoil, dockstart } = category;
     console.log(position);
 
 
     return (
-        <tr className={position === 1 && 'first' || position === 2 && 'second' || position === 3 && 'third'}>
+        <tr className={`${position === 1 && 'first opacity-100' || position === 2 && 'second opacity-100' || position === 3 && 'third' || 'opacity-60'}`}>
             <td>{position < 10 ? `0${position}` : position}</td>
             <td>
                 <div className='flex items-center gap-2'>
-                    <Image alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] rounded-[50%]' src={image} />
-                    <h3 className='2xl:text-lg xl:text-sm font-semibold'>{name}</h3>
+                    <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] rounded-[50%]' src={photoURL} />
+                    <h3 className='2xl:text-lg xl:text-sm font-semibold'>{displayName}</h3>
                 </div>
             </td>
             <td className='2xl:text-lg xl:text-sm font-semibold'>

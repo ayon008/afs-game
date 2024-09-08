@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import logo from '@/../public/logo.png';
+import logo from '@/../public/Group.svg';
 import Link from 'next/link';
 import User from '@/ui/User';
 
@@ -11,19 +11,26 @@ const Navbar = () => {
     ]
 
     return (
-        <div className='flex items-center justify-between text-white 2xl:p-[20px] lg:py-3 lg:px-4 bg-[#111] rounded-[10px] mx-[10px]'>
+        <nav className='flex items-center justify-between text-white 2xl:p-[20px] xl:py-3 xl:px-4 mx-[10px] absolute top-0 right-0 left-0 z-20'>
             <Link href={'/'}>
-                <Image src={logo} className='2xl:w-[150px] lg:w-[100px] h-auto' alt='logo' />
+                <Image src={logo} className='2xl:w-[92px] lg:w-[72px] h-auto' alt='logo' />
             </Link>
-            {
-                navItems.map((item, index) => (
-                    <Link href={`/${item.toLowerCase()}`} key={index}>
-                        <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item}</p>
-                    </Link>
-                ))
-            }
-            <User />
-        </div>
+            <ul className='bg-[#111] flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px]'>
+                {
+                    navItems.map((item, index) => (
+                        <li key={index} className='flex items-center'>
+                            <Link href={`/${item.toLowerCase()}`} >
+                                <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item}</p>
+                            </Link>
+                            <div className='w-[7px] h-[7px] rounded-[50%] bg-yellow-500 mx-4 mt-1'>
+
+                            </div>
+                        </li>
+                    ))
+                }
+                <User />
+            </ul>
+        </nav>
     );
 };
 

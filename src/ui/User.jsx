@@ -9,7 +9,7 @@ import { FaChevronDown } from 'react-icons/fa';
 const User = () => {
     const userInfo = useAuth();
     const { user, logOut } = userInfo;
-    const uid = user?.uid;
+    const uid = JSON.parse(localStorage.getItem('uid'));
 
     return (
         uid ?
@@ -32,11 +32,13 @@ const User = () => {
             </div>
             :
             <>
-                <div className='uppercase 2xl:text-base lg:text-xs font-semibold font-alliance flex items-center gap-4'>
+                <div className='uppercase 2xl:text-base lg:text-xs font-semibold font-alliance flex items-center'>
                     <Link href={'/login'} className='text-[#FFF] opacity-50'>
                         Login
                     </Link>
-                    <span className='text-red-500'>/</span>
+                    <div className='w-[7px] h-[7px] rounded-[50%] bg-yellow-500 mx-4 mt-1'>
+
+                    </div>
                     <Link href={'/register'}>
                         Inscription
                     </Link>

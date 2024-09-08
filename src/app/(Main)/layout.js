@@ -14,7 +14,12 @@ const allianceNo2 = localfont(
         style: 'normal',
       },
       {
-        path: '../../../public/fonts/Alliance No.2 Bold.otf',
+        path: '../../../public/fonts/Alliance No.2 Medium.otf',
+        weight: '500',
+        style: 'normal',
+      },
+      {
+        path: '../../../public/fonts/Alliance No.2 SemiBold.otf',
         weight: '600',
         style: 'normal',
       },
@@ -23,6 +28,18 @@ const allianceNo2 = localfont(
         weight: '700',
         style: 'normal',
       },
+    ]
+  }
+);
+
+export const antiHero = localfont(
+  {
+    src: [
+      {
+        path: '../../../public/fonts/Antihero.ttf',
+        weight: '400',
+        style: 'normal',
+      }
     ]
   }
 );
@@ -36,7 +53,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={allianceNo2.className}>
-        <main className="pt-[10px] bg-[#FFFFF8] max-w-[1920px] mx-auto">
+        <main className="bg-[#FFFFF8] max-w-[1920px] mx-auto">
           <QueryProvider>
             <AuthProvider>
               <Navbar />

@@ -80,7 +80,6 @@ const UploadGPX = () => {
                     filename: uploadedFiles[0]?.name,
                     pointsByTime: pointsByTime,
                     pointsByDistance: pointsByDistance,
-                    name: user?.displayName
                 });
 
                 Swal.fire({

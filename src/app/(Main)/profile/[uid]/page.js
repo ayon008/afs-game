@@ -40,7 +40,7 @@ const Page = () => {
             }
         });
         try {
-            axiosSecure.patch(`/user/${userInfo?._id}`, { ...data, photoURL: user?.photoURL })
+            axiosSecure.patch(`/user/${userInfo?._id}`, { ...data, photoURL: user?.photoURL, uid: user?.uid })
                 .then(response => {
                     console.log(response.data);
                     updatedProfile(data?.displayName, user?.photoURL)
@@ -88,7 +88,7 @@ const Page = () => {
     }, [userInfo, reset]);
 
     return (
-        <div className='2xl:px-36 2xl:py-10 xl:px-20 xl:py-10'>
+        <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32'>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='flex justify-between items-center'>
                     <h1 className='text-[#000] font-bold 2xl:text-7xl xl:text-5xl'>Modifier le compte</h1>
