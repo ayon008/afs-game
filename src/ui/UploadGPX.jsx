@@ -53,9 +53,9 @@ const UploadGPX = () => {
         return 'border-gray-300';
     };
 
-    const handleStatus = (id) => {
-        axiosPublic.patch(`/updateStatus/${id}`, { status: true });
-    }
+    // const handleStatus = (id) => {
+    //     axiosPublic.patch(`/updateStatus/${id}`, { status: true });
+    // }
 
 
     const handleSave = async () => {
@@ -166,7 +166,7 @@ const UploadGPX = () => {
                                         <p>{f.filename}</p>
                                     </div>
                                     <div>
-                                        <button onClick={() => handleStatus(f._id)} className='btn'>
+                                        <button className='btn'>
                                             <FaTrashAlt />
                                         </button>
                                     </div>

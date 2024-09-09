@@ -13,7 +13,7 @@ const NavMobile = () => {
     ]
     const userInfo = useAuth();
     const { user, logOut } = userInfo;
-    const uid = JSON.parse(localStorage.getItem('uid'));
+    const uid = user?.uid;
     const [open, isOpen] = useState(false);
     return (
         <div className='block 2xl:hidden xl:hidden lg:hidden z-40'>
