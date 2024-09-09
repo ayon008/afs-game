@@ -15,7 +15,7 @@ const sortAndRankCategoryByDistance = (data, category) => {
         const totalB = b.category[category] ? b.category[category].pointsByDistance : 0;
         return totalB - totalA;
     });
-    return { sorted: sorted.slice(0, 3), };
+    return { sorted: sorted };
 };
 
 export { sortAndRankCategoryByDistance, sortAndRankCategoryByPoints }

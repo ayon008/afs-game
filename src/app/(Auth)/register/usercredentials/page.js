@@ -116,12 +116,12 @@ const SignUp = () => {
                     {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>}
                 </div>
                 <div className="form-control">
-                    <button type="submit" className="btn bg-red-600 border-none text-white Alliance">CONTINUE</button>
+                    <button type="submit" className="btn bg-yellow-500 border-none text-white Alliance">CONTINUE</button>
                 </div>
                 <div className='flex items-center w-fit mx-auto gap-2'>
                     <p className='text-sm text-[#FFFFFF99]'>Already have an account?</p>
                     <div className='flex items-baseline gap-1'>
-                        <p><Link href={"/login"} className='text-red-600 text-sm'>Log In</Link></p>
+                        <p><Link href={"/login"} className='text-blue-500 text-sm'>Log In</Link></p>
                         <FaArrow className={'w-[10px] h-[10px]'} />
                     </div>
                 </div>

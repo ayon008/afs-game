@@ -65,7 +65,7 @@ const CardsByDistance = () => {
         }
     ];
     return (
-        <div className="flex 2xl:flex-nowrap xl:flex-nowrap items-end 2xl:gap-5 xl:gap-3">
+        <div className="flex 2xl:flex-nowrap w-full xl:flex-nowrap items-end 2xl:gap-5 xl:gap-3">
             {tierData.map((stage) => (
                 <PilerCard key={stage.stage} {...stage} KM={'KM'} />
             ))}

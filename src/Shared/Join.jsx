@@ -27,7 +27,7 @@ const Join = () => {
                         <span>M’inscrire</span>
                         <FaArrow className={'2xl:w-[20px] 2xl:h-[20px] xl:w-[14px] xl:h-[14px]'} color={'white'} />
                     </button>
-                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] font-normal text-center mt-5'><span className='text-red-600'>*</span>Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant <br /> dans le cadre de la compétition. Le choix de la planche et de la wing est libre. </p>
+                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] font-normal text-center mt-5'><span className='text-blue-500'>*</span>Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant <br /> dans le cadre de la compétition. Le choix de la planche et de la wing est libre. </p>
                 </div>
             </div>
         </div>

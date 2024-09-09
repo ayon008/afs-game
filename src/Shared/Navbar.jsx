@@ -3,6 +3,7 @@ import React from 'react';
 import logo from '@/../public/Group.svg';
 import Link from 'next/link';
 import User from '@/ui/User';
+import NavMobile from '@/Components/navMobile';
 
 const Navbar = () => {
 
@@ -11,11 +12,11 @@ const Navbar = () => {
     ]
 
     return (
-        <nav className='flex items-center justify-between text-white 2xl:p-[20px] xl:p-4 mx-[10px] absolute top-0 right-0 left-0 z-20'>
+        <nav className='flex items-center justify-between text-white 2xl:p-[20px] xl:p-4 p-3 mx-[10px] absolute top-0 right-0 left-0 z-20'>
             <Link href={'/'}>
-                <Image src={logo} className='2xl:w-[92px] lg:w-[72px] h-auto' alt='logo' />
+                <Image src={logo} className='2xl:w-[92px] lg:w-[72px] w-[60px] h-auto' alt='logo' />
             </Link>
-            <ul className='bg-[#111] flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px]'>
+            <ul className='bg-[#111] 2xl:flex xl:flex lg:flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px] hidden'>
                 {
                     navItems.map((item, index) => (
                         <li key={index} className='flex items-center'>
@@ -30,6 +31,7 @@ const Navbar = () => {
                 }
                 <User />
             </ul>
+            <NavMobile />
         </nav>
     );
 };

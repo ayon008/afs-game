@@ -122,7 +122,7 @@ const Page = () => {
                     <div className='flex items-center gap-1'>
                         <p className='w-fit flex-grow-0'>
                             <span
-                                className='text-red-600 text-sm cursor-pointer'
+                                className='text-blue-500 text-sm cursor-pointer'
                                 onClick={() => handlePasswordReset(document.querySelector('input[name="email"]').value)}
                             >
                                 Forgot password?
@@ -148,7 +148,7 @@ const Page = () => {
                     <div className="form-control">
                         <input
                             type="submit"
-                            className="btn bg-red-600 border-none text-white"
+                            className="btn bg-yellow-500 border-none text-white"
                             value={isSubmitting ? 'Logging in...' : 'CONTINUE'}
                             disabled={isSubmitting}
                         />
@@ -158,7 +158,7 @@ const Page = () => {
                     <div className='flex items-center w-fit mx-auto gap-2'>
                         <p className='text-sm text-[#FFFFFF99]'>Need an account?</p>
                         <div className='flex items-baseline gap-1'>
-                            <p><Link href={"/register"} className='text-red-600 text-sm'>Create account</Link></p>
+                            <p><Link href={"/register"} className='text-blue-500 text-sm'>Create account</Link></p>
                             <FaArrow className={'h-[10px] w-[10px] mt-1'} />
                         </div>
                     </div>
@@ -166,8 +166,8 @@ const Page = () => {
             </div>
             <p className={`text-[#FFFFFF99] text-center Alliance 2xl:text-lg lg:text-base mt-2`}>
                 By signing up, I confirm that I have read and accepted Foil&Co.’s
-                <span className='text-red-600'> Terms & Conditions</span> and
-                <span className='text-red-600'> Privacy Policy</span>.
+                <span className='text-blue-500'> Terms & Conditions</span> and
+                <span className='text-blue-500'> Privacy Policy</span>.
             </p>
         </div>
     );

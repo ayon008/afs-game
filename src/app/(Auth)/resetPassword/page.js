@@ -63,7 +63,7 @@ const ResetPassword = () => {
                     <div className="form-control">
                         <input
                             type="submit"
-                            className="btn bg-red-600 border-none text-white"
+                            className="btn text-yellow-500 border-none text-white"
                             value={isSubmitting ? 'Resetting...' : 'Reset Password'}
                             disabled={isSubmitting}
                         />

@@ -53,6 +53,11 @@ const UploadGPX = () => {
         return 'border-gray-300';
     };
 
+    const handleStatus = (id) => {
+        axiosPublic.patch(`/updateStatus/${id}`, { status: true });
+    }
+
+
     const handleSave = async () => {
         if (!category) {
             Swal.fire({
@@ -85,6 +90,7 @@ const UploadGPX = () => {
                     filename: uploadedFiles[0]?.name,
                     pointsByTime: pointsByTime,
                     pointsByDistance: pointsByDistance,
+                    status: false,
                 });
 
                 Swal.fire({
@@ -130,7 +136,7 @@ const UploadGPX = () => {
                                     Formats Gpx jusqu&apos;à 10 MB
                                 </p>
                             </div>
-                            <button className='text-center flex w-fit mx-auto bg-red-600 btn text-white'>
+                            <button className='text-center flex w-fit mx-auto bg-yellow-500 btn text-white'>
                                 <span>Parcourir le fichier</span>
                                 <FaPlus className='mt-1' size={'0.8rem'} />
                             </button>
@@ -160,7 +166,7 @@ const UploadGPX = () => {
                                         <p>{f.filename}</p>
                                     </div>
                                     <div>
-                                        <button className='btn'>
+                                        <button onClick={() => handleStatus(f._id)} className='btn'>
                                             <FaTrashAlt />
                                         </button>
                                     </div>
@@ -193,7 +199,7 @@ const UploadGPX = () => {
                     <button className='uppercase text-gray-600 bg-gray-300 btn'>
                         annuler
                     </button>
-                    <button onClick={handleSave} className='uppercase text-gray-600 bg-blue-500 btn'>
+                    <button onClick={handleSave} className='uppercase text-white bg-blue-500 btn'>
                         sauver
                     </button>
                 </div>

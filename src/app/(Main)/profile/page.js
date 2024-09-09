@@ -7,10 +7,13 @@ import EditProfile from '@/ui/EditProfile';
 import LeadBoard from '@/ui/LeadBoard';
 import Link from 'next/link';
 import React from 'react';
+import { antiHero } from '../layout';
 
 const CategoryTable = ({ title, categoryName, data, find, points }) => {
     const position = data.indexOf(find) + 1;
     data = data.slice(0, 3);
+    console.log(data, categoryName);
+
     return (
         <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[15px] xl:py-[10px] rounded-[10px] h-fit'>
             <h5 className='font-semibold 2xl:text-xl xl:text-base'>{title}</h5>
@@ -67,9 +70,6 @@ const page = async ({ searchParams }) => {
     let allData = await getUserLeaderBoard();
     const userData = allData.find((d) => d?.uid === uid);
     const userPosition = allData.indexOf(userData) + 1;
-    console.log('user', userPosition);
-    allData = allData.slice(0, 3);
-
 
     // Sorting and ranking for points
     const { sorted: wingfoil } = sortAndRankCategoryByPoints(allData, 'wingfoil');
@@ -85,12 +85,13 @@ const page = async ({ searchParams }) => {
     const { sorted: dwDistance } = sortAndRankCategoryByDistance(allData, 'dw');
     const { sorted: surfFoilDistance } = sortAndRankCategoryByDistance(allData, 'surfFoil');
 
+    allData = allData.slice(0, 3);
     return (
         <div className='2xl:px-36 2xl:pt-20 xl:px-20 xl:pt-20'>
             <EditProfile />
             <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2'>
                 <p className='2xl:text-[22px] xl:text-base font-semibold'>Le nombre total de points dans le tournoi est de </p>
-                <span className='2xl:text-[22px] xl:text-base font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 rounded-3xl'>{userData?.total || 0} points</span>
+                <span className={`${antiHero.className} 2xl:text-[22px] xl:text-base font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 rounded-3xl text-blue-500`}>{userData?.total || 0} points</span>
             </div>
 
             {/* LeaderBoard */}

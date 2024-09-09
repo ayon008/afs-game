@@ -4,7 +4,7 @@ import React from "react";
 const PilerCard = ({ stage, hours, description, points, bgColor, minHeight, maxHeight, note, KM }) => {
     return (
         <section
-            className={`flex flex-col flex-1 shrink justify-between 2xl:p-4 xl:p-4 rounded-xl basis-0 ${bgColor} max-w-[240px]`}
+            className={`flex flex-col flex-1 shrink justify-between 2xl:p-4 xl:p-4 rounded-xl basis-0 ${bgColor}`}
             style={{ maxHeight, minHeight: minHeight }} // Apply height and maxHeight as inline styles
         >
             <header className="2xl:text-base xl:text-xs font-semibold tracking-normal leading-none uppercase text-white">
@@ -16,7 +16,7 @@ const PilerCard = ({ stage, hours, description, points, bgColor, minHeight, maxH
                         <h2 className="my-auto 2xl:text-6xl font-medium tracking-tighter leading-none text-white uppercase xl:text-4xl">
                             {hours}
                         </h2>
-                        <span className="flex-1 shrink 2xl:text-base xl:text-sm font-bold leading-6 basis-0">
+                        <span className="flex-1 shrink 2xl:text-base xl:text-sm font-bold leading-6 basis-0 text-white">
                             {KM || 'heure'}
                         </span>
                     </div>

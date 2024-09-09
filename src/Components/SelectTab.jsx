@@ -2,7 +2,6 @@
 'use client'
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import TableHead from './TableHead';
 import LeadBoard from '@/ui/LeadBoard';
 import { sortAndRankCategoryByDistance, sortAndRankCategoryByPoints } from '@/lib/getDataByCategory';
 
@@ -10,15 +9,15 @@ const SelectTab = ({ allData }) => {
 
     const categories = ['wingfoil', 'windfoil', 'dockstart', 'surfFoil', 'dw'];
 
-    const sortedByPoints = categories.reduce((acc, category) => {
-        acc[category] = sortAndRankCategoryByPoints(allData, category).sorted;
-        return acc;
+    const sortedByPoints = [...categories].reduce((acc1, category) => {
+        acc1[category] = sortAndRankCategoryByPoints(allData, category).sorted;
+        return acc1;
     }, {});
 
     // Sorting and ranking for distance
-    const sortedByDistance = categories.reduce((acc, category) => {
-        acc[category] = sortAndRankCategoryByDistance(allData, category).sorted;
-        return acc;
+    const sortedByDistance = [...categories].reduce((acc2, category) => {
+        acc2[category] = sortAndRankCategoryByDistance(allData, category).sorted;
+        return acc2;
     }, {});
 
     const [tabIndex, setTabIndex] = useState(0);
@@ -66,6 +65,7 @@ const SelectTab = ({ allData }) => {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {console.log(sortedByPoints['windfoil'])}
                                                 {
                                                     sortedByPoints[category]?.map((d, i) => {
                                                         const pos = i + 1;
@@ -123,7 +123,7 @@ const SelectTab = ({ allData }) => {
                     )
                 })
             }
-            
+
         </Tabs>
     );
 };
