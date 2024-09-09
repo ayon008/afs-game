@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import GetUserData from '@/lib/getUserData';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import useAuth from '@/Hooks/useAuth';
+import { antiHero } from '@/Components/Font';
 
 const Page = () => {
     const { user, updatedProfile } = useAuth();
@@ -90,35 +91,22 @@ const Page = () => {
     return (
         <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div className='flex justify-between items-center'>
-                    <h1 className='text-[#000] font-bold 2xl:text-7xl xl:text-5xl'>Modifier le compte</h1>
-                    <div className='flex items-center gap-2'>
-                        <button onClick={() => router.back()} type='button' className='flex items-center gap-2 text-[#111111BF] font-medium uppercase'>
-                            <FaArrowLeft size={'0.7rem'} />
-                            <span>Annuler</span>
-                        </button>
-                        <button
-                            type='submit'
-                            className={`uppercase ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-[#11111166]'}`}
-                            disabled={isSubmitting}
-                        >
-                            {isSubmitting ? 'Submitting...' : 'Sauver'}
-                        </button>
-                    </div>
-                </div>
+                <h1 className={`${antiHero.className} text-[#000] font-bold 2xl:text-7xl xl:text-5xl text-center`}>Modifier le compte</h1>
                 <div className='2xl:mt-10 xl:mt-6 bg-[#F0F0F0] rounded-[10px] p-5'>
-                    <Controller
-                        name="profilePicture"
-                        control={control}
-                        render={({ field: { onChange, onBlur, value, ref } }) => (
-                            <PicUpload
-                                onChange={onChange}
-                                onBlur={onBlur}
-                                ref={ref}
-                                name="profilePicture"
-                            />
-                        )}
-                    />
+                    <div className='w-fit mx-auto'>
+                        <Controller
+                            name="profilePicture"
+                            control={control}
+                            render={({ field: { onChange, onBlur, value, ref } }) => (
+                                <PicUpload
+                                    onChange={onChange}
+                                    onBlur={onBlur}
+                                    ref={ref}
+                                    name="profilePicture"
+                                />
+                            )}
+                        />
+                    </div>
                     <h4 className='2xl:text-xl xl:text-sm font-bold 2xl:mt-10 xl:mt-6'>Vos informations</h4>
                     <div className='grid grid-cols-3 2xl:mt-10 xl:mt-6 2xl:gap-x-5 xl:gap-x-3 2xl:gap-y-6 xl:gap-y-4'>
                         {fields.map((field, index) => (
@@ -129,6 +117,18 @@ const Page = () => {
                                 errors={errors}
                             />
                         ))}
+                    </div>
+                    <div className='flex items-center justify-center mt-10 gap-2'>
+                        <button onClick={() => router.back()} type='button' className='flex items-center gap-2 text-[#111111BF] font-medium uppercase btn bg-[#D9D9D9]'>
+                            <span>Annuler</span>
+                        </button>
+                        <button
+                            type='submit'
+                            className={`btn uppercase text-white bg-blue-500 ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-[#11111166]'}`}
+                            disabled={isSubmitting}
+                        >
+                            {isSubmitting ? 'Submitting...' : 'Sauver'}
+                        </button>
                     </div>
                 </div>
             </form>

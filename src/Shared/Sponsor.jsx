@@ -4,6 +4,7 @@ import sponsor1 from '../../public/svgexport-1 (1) 1.svg';
 import sponsor2 from '../../public/svgexport-1 1.svg';
 import sponsor3 from '../../public/image 7247.png';
 import Marquee from 'react-fast-marquee';
+import { antiHero } from '@/app/(Main)/layout';
 
 const sponsors = [
     { src: sponsor1, alt: 'sponsor1' },
@@ -42,7 +43,7 @@ const Sponsor = () => {
                 >
                     <p className='text-black uppercase 2xl:text-lg xl:text-base font-semibold'>
                         De nombreux lots à gagner <br /> avec{' '}
-                        <span className='text-red-600'>nos partenaires</span>
+                        <span className={`${antiHero.className} text-blue-500`}>nos partenaires</span>
                     </p>
                 </div>
                 <Image

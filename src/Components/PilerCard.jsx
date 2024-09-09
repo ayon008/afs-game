@@ -1,3 +1,4 @@
+import { antiHero } from "@/app/(Main)/layout";
 import React from "react";
 
 const PilerCard = ({ stage, hours, description, points, bgColor, minHeight, maxHeight, note, KM }) => {
@@ -7,7 +8,7 @@ const PilerCard = ({ stage, hours, description, points, bgColor, minHeight, maxH
             style={{ maxHeight, minHeight: minHeight }} // Apply height and maxHeight as inline styles
         >
             <header className="2xl:text-base xl:text-xs font-semibold tracking-normal leading-none uppercase text-white">
-                palier <span className="text-rose-600">{stage}.</span>
+                palier <span className={`${antiHero.className} text-blue-500`}>{stage}.</span>
             </header>
             <div className="flex flex-col mt-auto w-full max-md:mt-10">
                 <div className="flex flex-col w-full">
@@ -15,7 +16,7 @@ const PilerCard = ({ stage, hours, description, points, bgColor, minHeight, maxH
                         <h2 className="my-auto 2xl:text-6xl font-medium tracking-tighter leading-none text-white uppercase xl:text-4xl">
                             {hours}
                         </h2>
-                        <span className="flex-1 shrink 2xl:text-base xl:text-sm font-bold leading-6 text-rose-600 basis-0">
+                        <span className="flex-1 shrink 2xl:text-base xl:text-sm font-bold leading-6 basis-0">
                             {KM || 'heure'}
                         </span>
                     </div>

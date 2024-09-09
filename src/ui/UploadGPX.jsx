@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FaCheck, FaPlus } from 'react-icons/fa';
+import { FaCheck, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import Cloud from '@/icons/Cloud';
 import * as toGeoJSON from 'togeojson';
 import { DOMParser } from 'xmldom';
@@ -10,6 +10,9 @@ import calculateTotalTimeAndDistance from '@/js/calculateTotalTimeAndDistance';
 import useAuth from '@/Hooks/useAuth';
 import Swal from 'sweetalert2';
 import { calCulatePointsByDistance, calCulatePointsByTime } from '@/js/calculatePoints';
+import GetFileName from '@/lib/GetFileName';
+import gpx from '../../public/file.png';
+import Image from 'next/image';
 
 const UploadGPX = () => {
     const [geojson, setGeojson] = useState(null);
@@ -17,6 +20,8 @@ const UploadGPX = () => {
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
+    const { files, refetch } = GetFileName();
+
     const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
         accept: '.gpx',
         maxSize: 10 * 1024 * 1024, // 10 MB
@@ -87,7 +92,7 @@ const UploadGPX = () => {
                     title: 'Success',
                     text: 'Time, Distance, and Filename saved successfully!',
                 });
-
+                refetch();
                 // Reset all states after successful save
                 setGeojson(null);
                 setCategory('');
@@ -144,6 +149,27 @@ const UploadGPX = () => {
                     </ul>
                 )}
             </div>
+            <div className='my-10'>
+                {
+                    files?.map((f, i) => {
+                        return (
+                            <>
+                                <div className='my-4 w-3/4 mx-auto flex justify-between'>
+                                    <div className='flex gap-2 items-center'>
+                                        <Image className='h-[32px] w-[32px]' alt="logo" src={gpx} />
+                                        <p>{f.filename}</p>
+                                    </div>
+                                    <div>
+                                        <button className='btn'>
+                                            <FaTrashAlt />
+                                        </button>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    })
+                }
+            </div>
             <div className='flex items-center justify-between w-3/4 mx-auto gap-2 2xl:mt-20 xl:mt-14'>
                 <div className="form-control relative">
                     <label className="label items-center justify-normal bg-[#FFFFF8] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
@@ -167,7 +193,7 @@ const UploadGPX = () => {
                     <button className='uppercase text-gray-600 bg-gray-300 btn'>
                         annuler
                     </button>
-                    <button onClick={handleSave} className='uppercase text-gray-600 bg-gray-300 btn'>
+                    <button onClick={handleSave} className='uppercase text-gray-600 bg-blue-500 btn'>
                         sauver
                     </button>
                 </div>

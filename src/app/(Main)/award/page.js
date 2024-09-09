@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Sponsor from '@/Shared/Sponsor';
 import Join from '@/Shared/Join';
 import TopAchiver from '@/Components/TopAchiver';
+import { antiHero } from '../layout';
 
 const page = () => {
     return (
@@ -15,15 +16,15 @@ const page = () => {
                     placeholder='blur'
                     className='w-full h-auto'
                 />
-                <h2 className='text-white 2xl:text-7xl xl:text-5xl font-bold absolute left-24 bottom-10'>What you can win!</h2>
+                <h2 className={`${antiHero.className} text-white 2xl:text-7xl xl:text-5xl font-bold absolute left-24 bottom-10`}>What you can win!</h2>
             </div>
             <Sponsor />
             <p className="text-center font-semibold uppercase text-[#111111BF] xl:text-xs 2xl:text-lg">
                 classement général — La principale récompense
             </p>
 
-            <h2 className="text-center font-bold xl:text-4xl text-black 2xl:text-5xl xl:mt-2 2xl:mt-5">
-                <span className="text-red-600">Watermen Crown</span> Wingfoil,
+            <h2 className={`${antiHero.className} text-center font-bold xl:text-4xl text-black 2xl:text-5xl xl:mt-2 2xl:mt-5`}>
+                <span className="text-blue-500">Watermen Crown</span> Wingfoil,
                 <br />
                 Windfoil, Dockstart, Surffoil
             </h2>
@@ -56,7 +57,7 @@ const page = () => {
                     }
                 </div>
                 <div className='2xl:mt-40 xl:mt-28'>
-                    <h2 className="text-center font-bold xl:text-4xl 2xl:mb-10 xl:mb-6 text-black 2xl:text-5xl xl:mt-2 2xl:mt-5">
+                    <h2 className={`${antiHero.className} text-center font-bold xl:text-4xl 2xl:mb-10 xl:mb-6 2xl:text-5xl xl:mt-2 2xl:mt-5 text-blue-500`}>
                         Tous les prix dans les <br /> autres nominations
                     </h2>
 
