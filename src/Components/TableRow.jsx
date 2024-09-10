@@ -1,15 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
+import LeadBoard from '@/ui/LeadBoard';
 import Image from 'next/image';
 import React from 'react';
 
-const TableRow = ({ data, position }) => {
+const TableRow = ({ data, position, uid }) => {
     const { displayName, photoURL, pointsByDistance, pointsByTime, total, category } = data;
     const { wingfoil, dw, windfoil, surfFoil, dockstart } = category;
     console.log(position);
 
-
     return (
-        <tr className={`${position === 1 && 'first opacity-100' || position === 2 && 'second opacity-100' || position === 3 && 'third' || 'opacity-60'}`}>
+        <tr className={`${position === 1 ? 'first' : ''}
+        ${position === 2 ? 'second' : ''} 
+        ${position === 3 ? 'third' : ''} 
+        ${uid === data.uid ? 'opacity-100' : 'opacity-60'}
+        `}>
             <td>{position < 10 ? `0${position}` : position}</td>
             <td>
                 <div className='flex items-center gap-2'>

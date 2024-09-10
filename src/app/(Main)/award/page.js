@@ -9,27 +9,35 @@ import { antiHero } from '../layout';
 const page = () => {
     return (
         <div>
-            <div className='m-[10px] relative'>
+            <div className='2xl:m-[10px] m-1 relative'>
                 <Image
                     src={image}
                     alt='banner-image'
                     placeholder='blur'
-                    className='w-full h-auto'
+                    className='w-full max-h-auto min-h-[20vh]'
                 />
-                <h2 className={`${antiHero.className} text-white 2xl:text-7xl xl:text-5xl font-bold absolute left-24 bottom-10`}>What you can win!</h2>
+                <h2 className={`${antiHero.className} text-white 2xl:text-7xl xl:text-5xl text-lg font-bold absolute 2xl:left-24 xl:left-24 2xl:bottom-10 xl:bottom-10 left-10 bottom-5`}>What you can win!</h2>
             </div>
             <Sponsor />
-            <p className="text-center font-semibold uppercase text-[#111111BF] xl:text-xs 2xl:text-lg">
+            <p className="text-center font-semibold uppercase text-[#111111BF] xl:text-xs 2xl:text-lg text-[6px]">
                 classement général — La principale récompense
             </p>
 
-            <h2 className={`${antiHero.className} text-center font-bold xl:text-4xl text-black 2xl:text-5xl xl:mt-2 2xl:mt-5`}>
+            <h2 className={`${antiHero.className} text-center font-bold xl:text-4xl text-lg text-black 2xl:text-5xl xl:mt-2 2xl:mt-5`}>
                 <span className="text-blue-500">Watermen Crown</span> Wingfoil,
                 <br />
                 Windfoil, Dockstart, Surffoil
             </h2>
-            <div className='2xl:px-36 xl:px-20 2xl:mt-10 xl:mt-8'>
-                <div className='bg-[#FFEFB0] 2xl:p-5 xl:p-3 rounded-[10px] flex items-start 2xl:gap-[10px] xl:gap-2'>
+            <div className='2xl:px-36 xl:px-20 2xl:mt-10 xl:mt-8 mt-4'>
+                <div>
+                    <Image
+                        src={image}
+                        alt='watermen-crown'
+                        placeholder='blur'
+                        className='w-full h-full rounded-[10px]'
+                    />
+                </div>
+                {/* <div className='bg-[#FFEFB0] 2xl:p-5 xl:p-3 rounded-[10px] flex items-start 2xl:flex-row flex-col 2xl:gap-[10px] xl:gap-2'>
                     <p className='font-semibold 2xl:text-2xl xl:text-lg'>#1.</p>
 
                     {
@@ -55,7 +63,7 @@ const page = () => {
                             )
                         })
                     }
-                </div>
+                </div> */}
                 <div className='2xl:mt-40 xl:mt-28'>
                     <h2 className={`${antiHero.className} text-center font-bold xl:text-4xl 2xl:mb-10 xl:mb-6 2xl:text-5xl xl:mt-2 2xl:mt-5 text-blue-500`}>
                         Tous les prix dans les <br /> autres nominations

@@ -158,6 +158,7 @@ const UploadGPX = () => {
             <div className='my-10'>
                 {
                     files?.map((f, i) => {
+                        console.log(files)
                         return (
                             <>
                                 <div className='my-4 w-3/4 mx-auto flex justify-between'>

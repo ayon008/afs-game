@@ -20,7 +20,6 @@ const Page = () => {
         defaultValues: {
             displayName: userInfo?.displayName || user?.displayName,
             surName: userInfo?.surName || '',
-            address: userInfo?.address || '',
             pays: userInfo?.pays || '',
             afsGear: userInfo?.afsGear || '',
             email: userInfo?.email || user?.email,
@@ -69,7 +68,6 @@ const Page = () => {
 
     const fields = [
         { label: 'NAME', name: 'displayName', placeholder: 'Emmma', validation: { required: 'Name is required' } },
-        { label: 'ADDRESS', name: 'address', placeholder: 'Hauptstraße 123, 10115 Berlin', validation: { required: 'Address is required' } },
         { label: 'AFS Gear (invoice to check)', name: 'afsGear', placeholder: 'AFS123456789', validation: { required: 'AFS Gear is required' } },
         { label: 'SURNAME', name: 'surName', placeholder: 'Schmidt', validation: { required: 'Surname is required' } },
         { label: 'PAYS', name: 'pays', placeholder: 'GERMANY', validation: { required: 'Country is required' } },
@@ -83,7 +81,6 @@ const Page = () => {
             pays: userInfo?.pays || '',
             surName: userInfo?.surName || '',
             displayName: userInfo?.displayName || '',
-            address: userInfo?.address || '',
             afsGear: userInfo?.afsGear || ''
         });
     }, [userInfo, reset]);

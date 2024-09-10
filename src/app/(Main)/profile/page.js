@@ -4,20 +4,21 @@ import FaArrow from '@/icons/FaArrow';
 import { sortAndRankCategoryByDistance, sortAndRankCategoryByPoints } from '@/lib/getDataByCategory';
 import getUserLeaderBoard from '@/lib/getUserLeaderBoard';
 import EditProfile from '@/ui/EditProfile';
-import LeadBoard from '@/ui/LeadBoard';
 import Link from 'next/link';
 import React from 'react';
 import { antiHero } from '../layout';
+import getSurroundingData from '@/js/getSortedData';
 
 const CategoryTable = ({ title, categoryName, data, find, points }) => {
     const position = data.indexOf(find) + 1;
-    data = data.slice(0, 3);
-    console.log(data, categoryName);
-
+    const userIndex = position - 1;
+    const uid = find.uid;
+    let newData = getSurroundingData(data, userIndex);
     return (
         <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[15px] xl:py-[10px] rounded-[10px] h-fit'>
             <h5 className='font-semibold 2xl:text-xl xl:text-base'>{title}</h5>
             {
+
                 find?.category?.[categoryName] ? (
                     <div className="overflow-x-auto">
                         <table className="table">
@@ -30,26 +31,19 @@ const CategoryTable = ({ title, categoryName, data, find, points }) => {
                             </thead>
                             <tbody>
                                 {
-                                    data?.map((d, i) => {
-                                        const pos = i + 1;
-                                        return d.category[categoryName] && (
-                                            <tr key={i} className={pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : ''}>
+                                    newData?.map((d, i) => {
+                                        const pos = data.indexOf(d) + 1;
+                                        return (
+                                            <tr key={i} className={`${pos === 1 ? 'first' : ''} 
+                                            ${pos === 2 ? 'second' : ''} 
+                                            ${pos === 3 ? 'third' : ''} 
+                                            ${uid === d.uid ? 'opacity-100' : 'opacity-40'}`}>
                                                 <th>{pos}</th>
                                                 <td className='font-semibold'>{d.displayName}</td>
-                                                <td className='text-right font-semibold'>{points === 'byTime' ? `${d.category[categoryName].pointsByTime}` : `${d.category[categoryName].pointsByDistance}`}</td>
+                                                <td className='text-right font-semibold'>{points === 'byTime' ? `${d.category[categoryName]?.pointsByTime}` : `${d.category[categoryName]?.pointsByDistance}`}</td>
                                             </tr>
                                         );
                                     })
-                                }
-                                {
-                                    position > 3 &&
-                                    <tr key={position} className='opacity-50'>
-                                        <th>{position}</th>
-                                        <td className='font-semibold'>{find.name}</td>
-                                        <td className='text-right font-semibold'>
-                                            {points === 'byTime' ? `${find.category[categoryName].pointsByTime}` : `${find.category[categoryName].pointsByDistance}`}
-                                        </td>
-                                    </tr>
                                 }
                             </tbody>
                         </table>
@@ -64,13 +58,12 @@ const CategoryTable = ({ title, categoryName, data, find, points }) => {
     );
 };
 
-
 const page = async ({ searchParams }) => {
     const uid = searchParams?.uid;
     let allData = await getUserLeaderBoard();
     const userData = allData.find((d) => d?.uid === uid);
-    const userPosition = allData.indexOf(userData) + 1;
-
+    const position = allData.indexOf(userData) + 1;
+    const userIndex = position - 1;
     // Sorting and ranking for points
     const { sorted: wingfoil } = sortAndRankCategoryByPoints(allData, 'wingfoil');
     const { sorted: windfoil } = sortAndRankCategoryByPoints(allData, 'windfoil');
@@ -84,12 +77,12 @@ const page = async ({ searchParams }) => {
     const { sorted: dockstartDistance } = sortAndRankCategoryByDistance(allData, 'dockstart');
     const { sorted: dwDistance } = sortAndRankCategoryByDistance(allData, 'dw');
     const { sorted: surfFoilDistance } = sortAndRankCategoryByDistance(allData, 'surfFoil');
+    let newData = getSurroundingData(allData, userIndex);
 
-    allData = allData.slice(0, 3);
     return (
-        <div className='2xl:px-36 2xl:pt-20 xl:px-20 xl:pt-20'>
+        <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32 pt-20 px-10'>
             <EditProfile />
-            <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2'>
+            <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2 mt-4'>
                 <p className='2xl:text-[22px] xl:text-base font-semibold'>Le nombre total de points dans le tournoi est de </p>
                 <span className={`${antiHero.className} 2xl:text-[22px] xl:text-base font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 rounded-3xl text-blue-500`}>{userData?.total || 0} points</span>
             </div>
@@ -100,15 +93,12 @@ const page = async ({ searchParams }) => {
                     <TableHead />
                     <tbody>
                         {
-                            allData?.map((d, i) => {
+                            newData?.map((d, i) => {
+                                const pos = allData.indexOf(d) + 1;
                                 return (
-                                    <TableRow key={i} data={d} position={i + 1} />
+                                    <TableRow key={i} data={d} uid={userData.uid} position={pos} />
                                 );
                             })
-                        }
-                        {
-                            userPosition > 3 &&
-                            <TableRow key={userData.uid} data={userData} position={userPosition} />
                         }
                     </tbody>
                 </table>
@@ -136,21 +126,21 @@ const page = async ({ searchParams }) => {
                     <CategoryTable title="Surf Foil" categoryName="surfFoil" data={surfFoilDistance} find={userData} />
                 </div>
             </div>
-            <div className='2xl:mt-20 xl:mt-14 flex items-center justify-center gap-2'>
-                <Link href={'/profile/myData'}>
-                    <button className='uppercase flex items-center btn bg-black'>
-                        <span className='text-lg text-white'>My Sessions</span>
-                        <FaArrow className={'w-[20px] h-[20px]'} color={'white'} />
+            <div className='2xl:mt-20 xl:mt-14 flex w-full gap-2'>
+                <Link href={'/profile/myData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
+                    <button className='uppercase w-full h-full flex flex-col-reverse justify-between  bg-black p-5'>
+                        <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
+                        <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                     </button>
                 </Link>
-                <Link href={'/profile/uploadUserData'}>
-                    <button className='uppercase flex items-center btn bg-black'>
-                        <span className='text-lg text-white'>Import Data</span>
-                        <FaArrow className={'w-[20px] h-[20px]'} color={'white'} />
+                <Link href={'/profile/uploadUserData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
+                    <button className='uppercase flex flex-col-reverse justify-between w-full h-full  bg-black p-5'>
+                        <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>Import Data</span>
+                        <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                     </button>
                 </Link>
             </div>
-        </div>
+        </div >
     );
 };
 

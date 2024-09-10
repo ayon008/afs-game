@@ -2,11 +2,18 @@
 import useAuth from '@/Hooks/useAuth';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 
 const GetFileName = () => {
     const axiosPublic = useAxiosPublic();
     const user = useAuth();
-    const uid = user?.uid;
+    
+    const [uid, setUid] = useState(null);
+    useEffect(() => {
+        const uid = JSON.parse(localStorage.getItem('uid'));
+        setUid(uid);
+    }, [user?.uid])
+
     const { isLoading, isError, error, data: files, refetch } = useQuery({
         queryKey: ['fileName', uid], // Include `uid` in queryKey to refetch if `uid` changes
         queryFn: async () => {
@@ -14,7 +21,6 @@ const GetFileName = () => {
                 const response = await axiosPublic.get(`/fileName/${uid}`);
                 const data = await response.data;
                 console.log(data, 'fileName');
-
                 return data;
             } catch (err) {
                 console.error("Error fetching user data:", err);
