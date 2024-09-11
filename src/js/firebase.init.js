@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyD11uQEw-ScTr42WHRw_DSOdQURwD7QEMY",
-    authDomain: "afs-runs.firebaseapp.com",
-    projectId: "afs-runs",
-    storageBucket: "afs-runs.appspot.com",
-    messagingSenderId: "608480532098",
-    appId: "1:608480532098:web:f0fbce4acf0ad08438869b"
+  apiKey: "AIzaSyCYHhzorndIQLw5hSXs_QyGSjEE6t3nbXo",
+  authDomain: "afs-games.firebaseapp.com",
+  projectId: "afs-games",
+  storageBucket: "afs-games.appspot.com",
+  messagingSenderId: "975118707864",
+  appId: "1:975118707864:web:e1c3e38dcb9366f8aab4ed"
 };
 
 // Initialize Firebase

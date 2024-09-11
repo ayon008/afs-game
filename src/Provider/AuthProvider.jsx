@@ -3,6 +3,7 @@ import React, { createContext, useEffect, useRef, useState } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
 import app from '@/js/firebase.init';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
+import { useRouter } from 'next/navigation';
 
 export const AuthContext = createContext();
 
@@ -13,6 +14,7 @@ const AuthProvider = ({ children }) => {
     const axiosPublic = useAxiosPublic();
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
+    const router = useRouter();
 
     // Google Sign-In
     const createWithGoogle = async () => {
@@ -61,8 +63,10 @@ const AuthProvider = ({ children }) => {
         setLoader(true);
         try {
             await signOut(auth);
+            router.push('/');
             setUser(null);
             setUid(null);
+
             localStorage.removeItem('uid');
             localStorage.removeItem('userToken');
             console.log("User logged out successfully.");

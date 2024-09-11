@@ -6,13 +6,12 @@ import { useEffect, useState } from 'react';
 
 const GetFileName = () => {
     const axiosPublic = useAxiosPublic();
-    const user = useAuth();
-    
+    const { user } = useAuth();
     const [uid, setUid] = useState(null);
     useEffect(() => {
-        const uid = JSON.parse(localStorage.getItem('uid'));
+        const uid = user?.uid;
         setUid(uid);
-    }, [user?.uid])
+    }, [user])
 
     const { isLoading, isError, error, data: files, refetch } = useQuery({
         queryKey: ['fileName', uid], // Include `uid` in queryKey to refetch if `uid` changes

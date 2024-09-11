@@ -12,7 +12,7 @@ import getSurroundingData from '@/js/getSortedData';
 const CategoryTable = ({ title, categoryName, data, find, points }) => {
     const position = data.indexOf(find) + 1;
     const userIndex = position - 1;
-    const uid = find.uid;
+    const uid = find?.uid;
     let newData = getSurroundingData(data, userIndex);
     return (
         <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[15px] xl:py-[10px] rounded-[10px] h-fit'>
@@ -37,7 +37,7 @@ const CategoryTable = ({ title, categoryName, data, find, points }) => {
                                             <tr key={i} className={`${pos === 1 ? 'first' : ''} 
                                             ${pos === 2 ? 'second' : ''} 
                                             ${pos === 3 ? 'third' : ''} 
-                                            ${uid === d.uid ? 'opacity-100' : 'opacity-40'}`}>
+                                            ${uid === d?.uid ? 'opacity-100' : 'opacity-40'}`}>
                                                 <th>{pos}</th>
                                                 <td className='font-semibold'>{d.displayName}</td>
                                                 <td className='text-right font-semibold'>{points === 'byTime' ? `${d.category[categoryName]?.pointsByTime}` : `${d.category[categoryName]?.pointsByDistance}`}</td>
@@ -96,7 +96,7 @@ const page = async ({ searchParams }) => {
                             newData?.map((d, i) => {
                                 const pos = allData.indexOf(d) + 1;
                                 return (
-                                    <TableRow key={i} data={d} uid={userData.uid} position={pos} />
+                                    <TableRow key={i} data={d} uid={userData?.uid} position={pos} />
                                 );
                             })
                         }

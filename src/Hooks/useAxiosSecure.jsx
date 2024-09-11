@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
     const router = useRouter();
 
     const axiosSecure = axios.create({
-        baseURL: 'https://afs-backend-ldys.vercel.app/', // Adjust this to your actual base URL
+        baseURL: 'http://localhost:5000/', // Adjust this to your actual base URL
     });
 
     // Request interceptor
