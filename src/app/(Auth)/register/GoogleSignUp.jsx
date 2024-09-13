@@ -6,19 +6,33 @@ import useAuth from '@/Hooks/useAuth';
 import Google from '@/icons/Google';
 import Link from 'next/link';
 import FaArrow from '@/icons/FaArrow';
+import useAxiosPublic from '@/Hooks/useAxiosPublic';
 
 const GoogleSignUp = () => {
     const { createWithGoogle } = useAuth();
     const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const axiosPublic = useAxiosPublic();
 
-    const handleGoogleSignUp = async () => {
+    const handleGoogleLogin = async () => {
         try {
-            await createWithGoogle();
-            router.push('/'); // Redirect to homepage or another route after successful sign-up
+            const result = await createWithGoogle();
+            const user = result.user;
+            axiosPublic.get(`/user/${user?.uid}`)
+                .then(response => {
+                    console.log(response);
+                    router.push('/')
+                })
+                .catch(error => {
+                    console.log(error);
+                    router.push('register/usercredentials/categories')
+                })
         } catch (error) {
-            console.error('Error during Google sign-up:', error);
-            alert('Google sign-up failed. Please try again.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Google Sign-In failed!',
+                text: error.code?.split('auth/')[1],
+            });
         }
     };
 
@@ -36,7 +50,7 @@ const GoogleSignUp = () => {
     };
 
     return (
-        <div className="card-body space-y-2 bg-[#111] rounded relative">
+        <div className="card-body space-y-[1px] bg-[#111] rounded-lg relative">
             <span className='text-gray-500 absolute right-4 top-2'>
                 <Link href={'/'}>X</Link>
             </span>
@@ -44,13 +58,13 @@ const GoogleSignUp = () => {
                 <h3 className='font-bold text-[28px] Alliance tracking-wide'>Sign up</h3>
                 <h5 className='text-base Alliance tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
             </div>
-            <button
-                className='flex items-center p-3 gap-4 btn w-full bg-white rounded justify-start'
-                onClick={handleGoogleSignUp}
+            <div
+                className='flex items-center px-3 rounded-[10px] bg-white py-3 border-none border-2 gap-4 cursor-pointer btn'
+                onClick={handleGoogleLogin}
             >
                 <Google />
-                <h3 className='Alliance font-semibold'>Continue with Google</h3>
-            </button>
+                <h3 className='font-semibold'>Continue with Google</h3>
+            </div>
             <div>
                 <p className='text-center text-[#999999] Alliance text-xs'>OR</p>
             </div>

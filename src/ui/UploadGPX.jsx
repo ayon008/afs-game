@@ -13,6 +13,7 @@ import { calCulatePointsByDistance, calCulatePointsByTime } from '@/js/calculate
 import GetFileName from '@/lib/GetFileName';
 import gpx from '../../public/file.png';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const UploadGPX = () => {
     const [geojson, setGeojson] = useState(null);
@@ -21,9 +22,11 @@ const UploadGPX = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
     const { files, refetch } = GetFileName();
+    const router = useRouter();
 
     const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
         accept: '.gpx',
+        multiple: false,
         maxSize: 10 * 1024 * 1024, // 10 MB
         onDrop: (files) => {
             setUploadedFiles(files);
@@ -100,6 +103,7 @@ const UploadGPX = () => {
                 });
                 refetch();
                 // Reset all states after successful save
+                router.push(`/profile?uid=${user?.uid}`);
                 setGeojson(null);
                 setCategory('');
                 setUploadedFiles([]);

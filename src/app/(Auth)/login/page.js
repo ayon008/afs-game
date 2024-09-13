@@ -8,13 +8,14 @@ import Google from '@/icons/Google';
 import Link from 'next/link';
 import { FaEye } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-import requestPasswordReset from '@/lib/requestPasswordReset';
+import useAxiosPublic from '@/Hooks/useAxiosPublic';
 
 const Page = () => {
     const { register, handleSubmit, formState: { errors }, reset, isSubmitting } = useForm();
-    const { signIn, createWithGoogle, changePassword } = useAuth();
+    const { signIn, createWithGoogle } = useAuth();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
+    const axiosPublic = useAxiosPublic();
 
     // Show/hide password toggle
     const togglePasswordVisibility = () => {
@@ -37,61 +38,45 @@ const Page = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Sign in failed!',
-                text: error.message,
+                text: error.code?.split('auth/')[1],
             });
         }
     };
 
     const handleGoogleLogin = async () => {
         try {
-            await createWithGoogle();
-            router.push('/');
+            const result = await createWithGoogle();
+            const user = result.user;
+            console.log(user);
+            axiosPublic.get(`/user/${user?.uid}`)
+                .then(response => {
+                    console.log(response);
+                    router.push('/')
+                })
+                .catch(error => {
+                    console.log(error);
+                    router.push('register/usercredentials/categories')
+                })
         } catch (error) {
             Swal.fire({
                 icon: 'error',
                 title: 'Google Sign-In failed!',
-                text: error.message,
-            });
-        }
-    };
-
-    const handlePasswordReset = async (email) => {
-        if (!email) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Please enter your email!',
-            });
-            return;
-        }
-        try {
-            // Trigger the backend to send a reset email
-            await requestPasswordReset(email);
-            Swal.fire({
-                icon: 'success',
-                title: 'Password reset email sent!',
-                text: 'Check your inbox for a reset link.',
-            });
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Password reset failed!',
-                text: error.message,
+                text: error.code?.split('auth/')[1],
             });
         }
     };
 
     return (
-        <div className='lg:w-1/3 2xl:w-1/2 mx-auto'>
+        <div className='xl:w-1/3 2xl:w-1/2 w-[90%] mx-auto'>
             <div className='bg-[#111] rounded-lg relative'>
                 <span className='text-gray-500 absolute right-4 top-2'>
                     <Link href={'/'}>X</Link>
                 </span>
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-[1px]">
                     <div className='text-white text-center'>
-                        <h3 className='font-bold 2xl:text-[28px] lg:text-2xl tracking-wide'>Sign in</h3>
-                        <h5 className='2xl:text-base lg:text-sm mb-2 tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
+                        <h3 className='font-bold 2xl:text-[28px] xl:text-2xl text-lg tracking-wide'>Sign in</h3>
+                        <h5 className='2xl:text-base xl:text-sm text-[10px] 2xl:mb-2 xl:mb-2 mb-1 tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
                     </div>
-
                     {/* Email Field */}
                     <div className="form-control relative">
                         <input
@@ -100,8 +85,8 @@ const Page = () => {
                             placeholder="Email Address"
                             className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white"
                         />
-                        {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                     </div>
+                    {errors.email && <p className="text-red-500 2xl:text-xs xl:text-xs text-[8px] mt-1">{errors?.email?.message}</p>}
 
                     {/* Password Field */}
                     <div className="form-control relative mb-0">
@@ -116,14 +101,14 @@ const Page = () => {
                             onClick={togglePasswordVisibility}
                             style={{ transform: "translateY(-50%)" }}
                         />
-                        {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
                     </div>
+                    {errors.password && <p className="text-red-500 2xl:text-xs xl:text-xs text-[8px] mt-1">{errors?.password?.message}</p>}
 
                     <div className='flex items-center gap-1'>
                         <p className='w-fit flex-grow-0'>
                             <span
-                                className='text-blue-500 text-sm cursor-pointer'
-                                onClick={() => handlePasswordReset(document.querySelector('input[name="email"]').value)}
+                                className='text-blue-500 2xl:text-sm xl:text-sm text-xs  cursor-pointer'
+                                onClick={() => router.push('/forgotPassword')}
                             >
                                 Forgot password?
                             </span>

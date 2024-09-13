@@ -4,8 +4,13 @@ import GoogleSignUp from './GoogleSignUp';
 
 const page = () => {
     return (
-        <div className='lg:w-1/3 2xl:w-1/2 mx-auto'>
+        <div className='xl:w-1/3 2xl:w-1/2 w-[90%] mx-auto'>
             <GoogleSignUp />
+            <p className={`text-[#FFFFFF99] text-center Alliance 2xl:text-lg lg:text-base mt-2`}>
+                By signing up, I confirm that I have read and accepted Foil&Co.’s
+                <span className='text-blue-500'> Terms & Conditions</span> and
+                <span className='text-blue-500'> Privacy Policy</span>.
+            </p>
         </div>
     );
 };

@@ -1,9 +1,10 @@
 'use client'
 import React, { createContext, useEffect, useRef, useState } from 'react';
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, sendPasswordResetEmail } from "firebase/auth";
-import app from '@/js/firebase.init';
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile, sendPasswordResetEmail, confirmPasswordReset, EmailAuthProvider, reauthenticateWithCredential, deleteUser } from "firebase/auth";
+
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import { useRouter } from 'next/navigation';
+import { app } from '@/js/firebase.init';
 
 export const AuthContext = createContext();
 
@@ -61,12 +62,11 @@ const AuthProvider = ({ children }) => {
     // Log Out
     const logOut = async () => {
         setLoader(true);
+        router.push('/');
         try {
             await signOut(auth);
-            router.push('/');
             setUser(null);
             setUid(null);
-
             localStorage.removeItem('uid');
             localStorage.removeItem('userToken');
             console.log("User logged out successfully.");
@@ -104,6 +104,50 @@ const AuthProvider = ({ children }) => {
             throw error;
         }
     };
+    const verifyPassword = async (actionCode, newPassword) => {
+        try {
+            await confirmPasswordReset(auth, actionCode, newPassword);
+            console.log('Password reset successful');
+            // Optionally redirect or update UI
+        } catch (error) {
+            // Handle errors
+            console.error('Error resetting password:', error.message);
+            // Optionally notify the user of the error
+        }
+    };
+
+    const reauthenticateAndDelete = async (user, password) => {
+        try {
+            // 1. Get the user's credential (in this case, EmailAuthProvider)
+            const credential = EmailAuthProvider.credential(user?.email, password);
+
+            // 2. Re-authenticate the user
+            await reauthenticateWithCredential(user, credential);
+
+            // 3. Delete the user
+            await deleteUser(user);
+            console.log("User account deleted successfully");
+        } catch (error) {
+            console.error("Error re-authenticating or deleting user:", error.message);
+        }
+    };
+
+    const deleteGoogleUser = async (user) => {
+        // Get the currently logged-in user
+        if (!user) {
+            console.error("No user is currently logged in.");
+            return;
+        }
+
+        try {
+            // Delete the user account
+            await deleteUser(user);
+            console.log('User deleted successfully');
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    };
+
 
     const userInfo = {
         user,
@@ -114,6 +158,9 @@ const AuthProvider = ({ children }) => {
         loader,
         updatedProfile,
         changePassword,
+        verifyPassword,
+        reauthenticateAndDelete,
+        deleteGoogleUser
     };
 
     const isRequestInProgress = useRef(false);
@@ -127,16 +174,9 @@ const AuthProvider = ({ children }) => {
                 setUid(currentUser?.uid);
                 isRequestInProgress.current = true;
                 console.log(currentUser);
-
                 try {
                     const tokenResponse = await axiosPublic.post('/userToken', { email: currentUser.email });
                     localStorage.setItem('userToken', JSON.stringify(tokenResponse.data));
-
-                    try {
-                        await axiosPublic.post('/user', currentUser);
-                    } catch (error) {
-                        console.error("Error posting user to database:", error);
-                    }
                 } catch (error) {
                     console.error("Token Fetch Error:", error);
                 } finally {

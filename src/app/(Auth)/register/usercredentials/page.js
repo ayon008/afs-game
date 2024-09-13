@@ -1,31 +1,31 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { FaEye, FaEyeSlash, FaCheck } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaCheck, FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import FaArrow from '@/icons/FaArrow';
 import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 
 const SignUp = () => {
-    const [defaultValues, setDefaultValues] = useState({
-        email: '',
-        password: '',
-        confirmPassword: ''
+
+    const [email, setEmail] = useState(null);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        defaultValues: {
+            email: email
+        }
     });
 
     useEffect(() => {
         // Only run this code on the client side
         if (typeof window !== 'undefined') {
             const email = JSON.parse(localStorage.getItem('email')) || '';
-            const password = JSON.parse(localStorage.getItem('password')) || '';
-            setDefaultValues({ email, password, confirmPassword: password });
+            setEmail(email);
+            reset({
+                email: email
+            });
         }
-    }, []);
-
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        defaultValues,
-    });
+    }, [reset]);
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -48,7 +48,7 @@ const SignUp = () => {
                 localStorage.setItem('email', JSON.stringify(data.email));
                 localStorage.setItem('password', JSON.stringify(data.password));
             }
-            router.push('usercredentials/createUser');
+            router.push('usercredentials/categories');
         } catch (error) {
             Swal.fire({
                 title: 'Error',
@@ -61,14 +61,17 @@ const SignUp = () => {
     };
 
     return (
-        <div className='lg:w-1/3 2xl:w-1/2 mx-auto'>
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-2 bg-[#111] rounded relative">
-                <span className='text-gray-500 absolute right-4 top-2'>
+        <div className='xl:w-1/3 2xl:w-1/2 w-[90%] mx-auto'>
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-[1px] bg-[#111] rounded-lg relative">
+                <span className='text-gray-500 absolute right-3 top-1 cursor-pointer'>
                     <Link href={'/'}>X</Link>
                 </span>
+                <span className='text-gray-500 absolute left-2 top-1 cursor-pointer' onClick={() => router.back()}>
+                    <FaArrowLeft className='' />
+                </span>
                 <div className='text-white text-center'>
-                    <h3 className='font-bold text-[28px] Alliance tracking-wide'>Create Your Account</h3>
-                    <h5 className='text-base Alliance tracking-wide text-[#FFFFFF99]'>Set your password to continue</h5>
+                    <h3 className='font-bold 2xl:text-[28px] xl:text-2xl text-lg'>Create Your Account</h3>
+                    <h5 className='2xl:text-base xl:text-sm text-[10px] 2xl:mb-2 xl:mb-2 mb-1 tracking-wide text-[#FFFFFF99]'>Set your password to continue</h5>
                 </div>
                 <div className="form-control relative">
                     <label className="label items-center justify-normal bg-[#111] px-2 w-fit h-fit py-0 rounded-3xl gap-1 absolute left-[12px] -top-[10px]">
@@ -86,7 +89,13 @@ const SignUp = () => {
                 <div className="form-control relative">
                     <input
                         type={showPassword ? 'text' : 'password'}
-                        {...register('password', { required: 'Password is required' })}
+                        {...register('password', {
+                            required: 'Password is required',
+                            minLength: {
+                                value: 8,
+                                message: 'Password must be at least 8 characters long',
+                            }
+                        })}
                         placeholder="Password"
                         className="input input-bordered border-2 border-[#666] bg-[#111] text-white Alliance"
                     />
@@ -99,6 +108,7 @@ const SignUp = () => {
                     </span>
                     {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
                 </div>
+
                 <div className="form-control relative">
                     <input
                         type={showConfirmPassword ? 'text' : 'password'}
@@ -126,7 +136,13 @@ const SignUp = () => {
                     </div>
                 </div>
             </form>
+            <p className={`text-[#FFFFFF99] text-center Alliance 2xl:text-lg lg:text-base mt-2`}>
+                By signing up, I confirm that I have read and accepted Foil&Co.’s
+                <span className='text-blue-500'> Terms & Conditions</span> and
+                <span className='text-blue-500'> Privacy Policy</span>.
+            </p>
         </div>
+
     );
 };
 
