@@ -1,12 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import LeadBoard from '@/ui/LeadBoard';
-import Image from 'next/image';
 import React from 'react';
 
 const TableRow = ({ data, position, uid }) => {
-    const { displayName, photoURL, pointsByDistance, pointsByTime, total, category } = data;
-    const { wingfoil, dw, windfoil, surfFoil, dockstart } = category;
-    console.log(position);
+    const { Wingfoil, Windfoil, dockstart, surfFoil, dw, WatermanCrown, displayName, photoURL, total } = data;
 
     return (
         <tr className={`${position === 1 ? 'first' : ''}
@@ -21,26 +17,30 @@ const TableRow = ({ data, position, uid }) => {
                     <h3 className='2xl:text-lg xl:text-sm font-semibold'>{displayName}</h3>
                 </div>
             </td>
-            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                {wingfoil ? wingfoil.total + ' ' + 'points' : 'n/a'}
+            <td className={`2xl:text-lg xl:text-sm font-semibold`}>
+                {Wingfoil ? Wingfoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn't participant</span>}
             </td>
-            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                {windfoil ? windfoil.total + ' ' + 'points' : 'n/a'}
+            <td className={`2xl:text-lg xl:text-sm font-semibold`}>
+                {Windfoil ? Windfoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn't participant</span>}
             </td>
-            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                {dockstart ? dockstart.total + ' ' + 'points' : 'n/a'}
+            <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
+                {dockstart ? dockstart?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn't participant</span>}
             </td>
-            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                {surfFoil ? surfFoil.total + ' ' + 'points' : 'n/a'}
+            <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
+                {surfFoil ? surfFoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn't participant</span>}
             </td>
-            <td className='2xl:text-lg xl:text-sm font-semibold'>
-                {dw ? dw.total + ' ' + 'points' : 'n/a'}
+            <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
+                {dw ? dw?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn't participant</span>}
             </td>
-            <td className='2xl:text-lg xl:text-sm font-semibold text-right'>
-                {total + ' ' + 'points' || 'n/a'}
+            <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
+                {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn't participant</span>}
+            </td>
+            <td className={`2xl:text-lg xl:text-sm font-semibold`}>
+                {total?.toFixed(2) + ' ' + 'hours' || 'n/a'}
             </td>
         </tr>
     );
 };
+
 
 export default TableRow;

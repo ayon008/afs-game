@@ -27,15 +27,22 @@ const UserForm = () => {
                 Swal.showLoading();
             },
         });
-        const { name, surName, City, Pays, AfsGear } = data;
+        const { name, surName, city, pays, AfsGear } = data;
         const invoice = AfsGear[0];
         let email = '';
         let password = '';
         let categories;
         const invoiceURL = await uploadPdfToFirebase(invoice);
+        // Ensure localStorage is accessed on the client side only
+        if (typeof window !== "undefined") {
+            email = JSON.parse(localStorage.getItem('email'));
+            password = JSON.parse(localStorage.getItem('password'));
+            categories = JSON.parse(localStorage.getItem('categories'));
+        }
+
         if (user) {
             try {
-                await axiosPublic.post('/user', { name, surName, City, Pays, ...user, invoiceURL, ...categories });
+                await axiosPublic.post('/user', { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false });
                 Swal.fire({
                     title: 'Account Created',
                     text: 'Your account has been successfully created!',
@@ -43,6 +50,11 @@ const UserForm = () => {
                     confirmButtonText: 'OK',
                     confirmButtonColor: '#d33',
                 }).then(() => {
+                    if (typeof window !== "undefined") {
+                        localStorage.removeItem('password');
+                        localStorage.removeItem('email');
+                        localStorage.removeItem('categories');
+                    }
                     router.push('/');
                 });
                 return
@@ -62,12 +74,7 @@ const UserForm = () => {
             }
         }
 
-        // Ensure localStorage is accessed on the client side only
-        if (typeof window !== "undefined") {
-            email = JSON.parse(localStorage.getItem('email'));
-            password = JSON.parse(localStorage.getItem('password'));
-            categories = JSON.parse(localStorage.getItem('categories'));
-        }
+
         if (!email || !password || !categories || !invoice) {
             Swal.fire({
                 title: 'Error',
@@ -85,7 +92,7 @@ const UserForm = () => {
             // Update user profile
             await updatedProfile(name, user?.photoURL);
             try {
-                const userData = { name, surName, City, Pays, ...user, invoiceURL, ...categories };
+                const userData = { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
             }
             catch (error) {
@@ -131,7 +138,7 @@ const UserForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="relative card-body 2xl:space-y-2 xl:space-y-[1px] bg-[#111] rounded-lg">
+        <form onSubmit={handleSubmit(onSubmit)} className="relative card-body 2xl:space-y-2 xl:space-y-[1px] bg-[#111] rounded-lg xl:py-2">
             <span className='text-gray-500 absolute right-3 top-1 cursor-pointer'>
                 <Link href={'/'}>X</Link>
             </span>
@@ -149,7 +156,7 @@ const UserForm = () => {
                     type="text"
                     {...register('name', { required: 'Name is required' })}
                     placeholder="Name"
-                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white"
+                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
                 />
                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
             </div>
@@ -160,7 +167,7 @@ const UserForm = () => {
                     type="text"
                     {...register('surName', { required: 'Surname is required' })}
                     placeholder="Surname"
-                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white"
+                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
                 />
                 {errors.surName && <p className="text-red-500 text-xs mt-1">{errors.surName.message}</p>}
             </div>
@@ -171,13 +178,13 @@ const UserForm = () => {
                     type="text"
                     {...register('city', { required: 'city is required' })}
                     placeholder="City"
-                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white"
+                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
                 />
                 {errors.City && <p className="text-red-500 text-xs mt-1">{errors.City.message}</p>}
             </div>
 
             {/* Pays Field */}
-            <div className="form-control relative">
+            <div className="form-control relative xl:h-[40px]">
                 <select
                     {...register('pays', { required: 'Country is required' })}
                     className="select select-bordered border-2 border-[#666] bg-[#1F1F1F] text-white"
@@ -194,7 +201,7 @@ const UserForm = () => {
 
             {/* AfsGear Field */}
             <div className="form-control relative">
-                <label className="label text-white text-sm">Upload Your Afs gear (invoice)</label>
+                <label className="label text-white text-xs">Upload Your Afs gear (invoice)</label>
                 <input
                     type="file"
                     {...register('AfsGear', {
@@ -203,7 +210,7 @@ const UserForm = () => {
                             isPdf: (files) => files && files[0]?.type === "application/pdf" || 'Only PDF files are allowed',
                         }
                     })}
-                    className="file-input border-2 border-[#666] bg-[#1F1F1F] text-white"
+                    className="file-input border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
                     accept="application/pdf" // Only PDF files are allowed
                 />
                 {errors.AfsGear && <p className="text-red-500 text-xs mt-1">{errors.AfsGear.message}</p>}
@@ -211,7 +218,7 @@ const UserForm = () => {
 
 
             {/* Checkbox Fields */}
-            <div className="form-control">
+            <div className="form-control p-0">
                 <label className="cursor-pointer label">
                     <span className="label-text text-white text-xs">I agree to participate in the AFS Games and to receive communications related to the event.</span>
                     <input type="checkbox" {...register('agree', { required: 'You must agree to participate' })} className="checkbox checkbox-warning w-[10px] h-[10px]" />
@@ -219,7 +226,7 @@ const UserForm = () => {
                 {errors.agree && <p className="text-red-500 text-xs mt-1">{errors.agree.message}</p>}
             </div>
 
-            <div className="form-control">
+            <div className="form-control p-0">
                 <label className="cursor-pointer label">
                     <span className="label-text text-white text-xs">I certify that I own and will use my AFS foil for the competition. (Proof will be required later).</span>
                     <input type="checkbox" {...register('certify', { required: 'You must certify this' })} className="checkbox checkbox-warning w-[10px] h-[10px]" />

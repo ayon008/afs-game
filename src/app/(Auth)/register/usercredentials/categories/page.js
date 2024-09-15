@@ -39,9 +39,9 @@ const Categories = () => {
 
         // If Waterman Crown is selected, reset other fields
         if (isChecked) {
-            setValue("Wingfoil", false);
-            setValue("Windfoil", false);
-            setValue("Downwind", false);
+            setValue("Wingfoil", true);
+            setValue("Windfoil", true);
+            setValue("Downwind", true);
             setValue("Dockstart", false);
             setValue("Surffoil", false);
         }

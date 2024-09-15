@@ -14,6 +14,7 @@ import GetFileName from '@/lib/GetFileName';
 import gpx from '../../public/file.png';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import GetUserData from '@/lib/getUserData';
 
 const UploadGPX = () => {
     const [geojson, setGeojson] = useState(null);
@@ -22,8 +23,10 @@ const UploadGPX = () => {
     const axiosPublic = useAxiosPublic();
     const { user } = useAuth();
     const { files, refetch } = GetFileName();
-    const router = useRouter();
+    const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
+    console.log(userInfo);
 
+    const router = useRouter();
     const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
         accept: '.gpx',
         multiple: false,
@@ -73,8 +76,6 @@ const UploadGPX = () => {
 
         if (geojson) {
             const { totalTime, totalDistance } = calculateTotalTimeAndDistance(geojson);
-            const pointsByTime = calCulatePointsByTime(totalTime);
-            const pointsByDistance = calCulatePointsByDistance(totalDistance);
             // Loading state
             Swal.fire({
                 title: 'Saving...',
@@ -87,12 +88,10 @@ const UploadGPX = () => {
             try {
                 await axiosPublic.post('/geoJson', {
                     totalTime,
-                    totalDistance,
+                    distance: totalDistance,
                     uid: user?.uid,
                     category,
                     filename: uploadedFiles[0]?.name,
-                    pointsByTime: pointsByTime,
-                    pointsByDistance: pointsByDistance,
                     status: false,
                 });
 
@@ -193,11 +192,16 @@ const UploadGPX = () => {
                         onChange={(e) => setCategory(e.target.value)}
                     >
                         <option value="" disabled>Select a category</option>
-                        <option className='uppercase' value={'wingfoil'}>wingfoil</option>
-                        <option className='uppercase' value={'windfoil'}>windfoil</option>
-                        <option className='uppercase' value={'dockstart'}>dockstart</option>
-                        <option className='uppercase' value={'surfFoil'}>surf foil</option>
-                        <option className='uppercase' value={'dw'}>dw</option>
+
+                        <option className={`${userInfo?.Wingfoil || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase`} value={'Wingfoil'}>wingfoil</option>
+
+                        <option className={`${userInfo?.Windfoil || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase`} value={'Windfoil'}>windfoil</option>
+
+                        <option className={`${userInfo?.Dockstart ? 'block' : 'hidden'} uppercase`} value={'dockstart'}>dockstart</option>
+
+                        <option className={`${userInfo?.Surffoil ? 'block' : 'hidden'} uppercase`} value={'surfFoil'}>surf foil</option>
+
+                        <option className={`${userInfo?.Downwind || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase`} value={'dw'}>dw</option>
                     </select>
                 </div>
                 <div className='flex gap-2'>

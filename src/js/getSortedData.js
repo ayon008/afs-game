@@ -1,8 +1,7 @@
 const getSurroundingData = (array, index) => {
-    // Debugging logs
-    console.log("Array Length:", array.length);
-    console.log("Index:", index);
-
+    if (!index) {
+        return array.slice(0, 3);
+    }
     if (array.length === 0) return []; // Return an empty array if the input array is empty
     if (index === 0) {
         // When the index is the first element, get the first 3 elements
