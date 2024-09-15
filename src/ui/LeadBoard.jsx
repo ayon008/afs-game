@@ -55,7 +55,7 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                             {dw ? dw.toFixed(2) + ' hours' : 'n/a'}
                                         </td>
                                         <td className='2xl:text-lg xl:text-sm font-semibold'>
-                                            {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' hours' : <span className='text-[8px]'>You didn't participate</span>}
+                                            {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' hours' : <span className='text-[8px]'>You didn&lsquo;t participate</span>}
                                         </td>
                                         <td className='2xl:text-lg xl:text-sm font-semibold text-right flex items-center gap-2'>
                                             <span>{total.toFixed(2) + ' hours' || 'n/a'}</span>
