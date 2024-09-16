@@ -92,6 +92,7 @@ const UploadGPX = () => {
                     uid: user?.uid,
                     category,
                     filename: uploadedFiles[0]?.name,
+                    time: new Date(),
                     status: false,
                 });
 

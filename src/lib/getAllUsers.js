@@ -1,5 +1,5 @@
 const getAllUsers = async () => {
-    const response = await fetch(`https://afs-backend-13gw.vercel.app/allUsers`,
+    const response = await fetch(`http://localhost:5000/allUsers`,
         {
             cache: 'no-cache'
         }

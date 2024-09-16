@@ -1,5 +1,5 @@
 const getUserInfo = async (uid) => {
-    const response = await fetch(`https://afs-backend-13gw.vercel.app/user/${uid}`,
+    const response = await fetch(`http://localhost:5000/user/${uid}`,
         {
             cache: 'no-cache'
         }

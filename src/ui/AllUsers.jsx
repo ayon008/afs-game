@@ -7,7 +7,7 @@ const AllUsers = async () => {
     console.log(allUsers);
 
     return (
-        <div>
+        <div className='p-10'>
             <div>
                 <h3 className='text-2xl font-bold text-center'>All Users</h3>
                 <p className='text-xs text-center font-bold mt-2'>Manage users</p>
@@ -51,7 +51,7 @@ const AllUsers = async () => {
                                         <td>
                                             <a href={invoiceURL} target='_blank' className='text-blue-500 underline'>Invoice URL</a>
                                         </td>
-                                        <td>{Windfoil && 'Windfoil'},{Wingfoil && 'Wingfoil'},{DockStart && 'Dockstart'},{Downwind && 'Downwind'},{Surffoil && 'Surffoil'},{WatermanCrown && 'Waterman Crown'}</td>
+                                        <td className='font-bold'>{Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {DockStart && 'Dockstart'}{Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}</td>
                                         <td>
                                             {
                                                 !approved ?

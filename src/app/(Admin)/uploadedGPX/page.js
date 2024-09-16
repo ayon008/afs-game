@@ -1,10 +1,10 @@
-import AllUsers from '@/ui/AllUsers';
+import GpxLists from '@/ui/GpxLists';
 import React from 'react';
 
 const page = () => {
     return (
         <div>
-            <AllUsers />
+            <GpxLists />
         </div>
     );
 };
