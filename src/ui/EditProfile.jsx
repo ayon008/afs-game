@@ -2,12 +2,29 @@
 'use client'
 import { antiHero } from '@/Components/Font';
 import useAuth from '@/Hooks/useAuth';
+import GetUserData from '@/lib/getUserData';
 import Link from 'next/link';
 import React from 'react';
 import { FaPen } from 'react-icons/fa';
 
 const EditProfile = () => {
-    const { user } = useAuth();
+    const { user, logOut, deleteGoogleUser } = useAuth();
+
+    const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
+
+    if (!userInfo && !isLoading) {
+        const handleUserDeletion = async () => {
+            try {
+                await logOut();
+            } catch (err) {
+                console.error('Error deleting user:', err);
+            } finally {
+                await deleteGoogleUser(user);
+            }
+        };
+        handleUserDeletion();
+    }
+
     return (
         <div className='flex items-center justify-between'>
             <div className='flex items-center gap-2'>

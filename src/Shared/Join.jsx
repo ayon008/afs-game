@@ -1,33 +1,25 @@
-import { antiHero } from '@/app/(Main)/layout';
-import FaArrow from '@/icons/FaArrow';
-import React from 'react';
-import { FaArrowRight } from 'react-icons/fa';
+import { morgana } from '@/app/(Main)/layout';
+import logo from '../../public/Group.png'
+import Image from 'next/image';
 
 const Join = () => {
     return (
-        <div className='2xl:px-[10px] xl:px-[10px] px-1'>
+        <div className='2xl:mt-48 xl:mt-32 mt-20'>
             <div className='px-5 bg-black rounded-[10px]'>
-                <div className='2xl:px-[140px] xl:px-20 2xl:py-20 xl:py-[60px] px-4 py-10'>
-                    <p className='text-white font-medium text-xl xl:text-5xl 2xl:text-7xl '>Rejoignez-nous et prenez part à la première édition des <span className={`${antiHero.className} text-yellow-500`}>AFS GAMES ONLINE 2024</span>, rencontrez des passionnés et participez à des challenges inédits. </p>
+                <div className='2xl:px-[140px] xl:px-20 2xl:py-20 xl:py-[60px]  px-4 py-10'>
+                    <Image src={logo} className='2xl:w-[176px] xl:w-[150px] w-[100px] h-auto' alt='' />
+                    <p className={`${morgana.className} text-white font-medium text-2xl xl:text-5xl 2xl:text-7xl mt-8`}>Rejoignez-nous et prenez part à la première édition des <span className={`text-yellow-500`}>AFS GAMES ONLINE 2024</span>, rencontrez des passionnés et participez à des challenges inédits. </p>
+
+                    <p className='text-[#ffffff7f] xl:text-lg text-sm font-semibold 2xl:text-2xl my-7'>Ne manquez pas cette occasion unique de vivre l&apos;expérience Foiling Spirit !</p>
 
                     <div className='2xl:mt-7 xl:mt-5 mt-7 flex 2xl:flex-row xl:flex-row flex-col items-start 2xl:gap-20 xl:gap-16 gap-8'>
-                        <p className='text-white xl:text-xl text-sm font-semibold 2xl:text-3xl '>Ne manquez pas cette occasion unique de vivre <br /> l&apos;expérience Foiling Spirit !</p>
+                        <p className={`${morgana.className} 2xl:text-[40px] xl:text-3xl text-sm font-semibold text-white`}> PRIX-<span className={`${morgana.className} text-yellow-500`}>Free</span></p>
 
-                        <p className='2xl:text-xl xl:text-sm text-[10px] font-semibold text-white'>Emplacement-<span className={`${antiHero.className} text-yellow-500`}>ONLINE</span> <br /> PRIX-<span className={`${antiHero.className} text-yellow-500`}>Free</span></p>
-
-                        <p className='text-yellow-500 2xl:text-xl xl:text-sm font-semibold  flex items-center text-[10px] gap-2'>
-                            <span className={antiHero.className}>30 Sep.</span>
-                            <span className='text-white'>(Lundi)</span>
-                            <FaArrowRight color='white' />
-                            <span className={antiHero.className}>03 Oct.</span>
-                            <span className='text-white'>(Jeudi)</span>
+                        <p className={`${morgana.className} 2xl:text-[40px] xl:text-3xl text-sm font-semibold text-white`}>
+                            du lundi <span className='text-yellow-500'>30 septembre</span> au dimanche <span className='text-yellow-500'>3 novembre</span>
                         </p>
                     </div>
-                    {/* <button className='bg-yellow-500 flex items-center justify-center text-white 2xl:text-xl xl:text-sm font-semibold uppercase 2xl:mt-14 xl:mt-10 w-full border-none 2xl:rounded-[20px] xl:rounded-[12px] 2xl:py-7 xl:py-4 gap-2'>
-                        <span>M’inscrire</span>
-                        <FaArrow className={'2xl:w-[20px] 2xl:h-[20px] xl:w-[14px] xl:h-[14px]'} color={'white'} />
-                    </button> */}
-                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] text-[6px] font-normal text-center mt-5'><span className='text-blue-500'>*</span>Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant <br /> dans le cadre de la compétition. Le choix de la planche et de la wing est libre. </p>
+                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] text-[6px] font-normal mt-5'><span className='text-blue-500'>*</span>Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant dans le cadre de la compétition. Le choix de la planche et de la wing est libre. </p>
                 </div>
             </div>
         </div>

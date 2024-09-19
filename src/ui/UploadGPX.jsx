@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { FaCheck, FaPlus, FaTrashAlt } from 'react-icons/fa';
+import { FaCheck, FaPlus, FaTimes, FaTrashAlt } from 'react-icons/fa';
 import Cloud from '@/icons/Cloud';
 import * as toGeoJSON from 'togeojson';
 import { DOMParser } from 'xmldom';
@@ -9,12 +9,12 @@ import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import calculateTotalTimeAndDistance from '@/js/calculateTotalTimeAndDistance';
 import useAuth from '@/Hooks/useAuth';
 import Swal from 'sweetalert2';
-import { calCulatePointsByDistance, calCulatePointsByTime } from '@/js/calculatePoints';
 import GetFileName from '@/lib/GetFileName';
 import gpx from '../../public/file.png';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import GetUserData from '@/lib/getUserData';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
 
 const UploadGPX = () => {
     const [geojson, setGeojson] = useState(null);
@@ -24,7 +24,8 @@ const UploadGPX = () => {
     const { user } = useAuth();
     const { files, refetch } = GetFileName();
     const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
-    console.log(userInfo);
+    const isDisabled = userInfo?.approved;
+    const axiosSecure = useAxiosSecure();
 
     const router = useRouter();
     const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -44,6 +45,7 @@ const UploadGPX = () => {
             };
             reader.readAsText(file);
         },
+        disabled: !isDisabled
     });
 
     const getDropzoneStyle = () => {
@@ -58,11 +60,6 @@ const UploadGPX = () => {
         }
         return 'border-gray-300';
     };
-
-    // const handleStatus = (id) => {
-    //     axiosPublic.patch(`/updateStatus/${id}`, { status: true });
-    // }
-
 
     const handleSave = async () => {
         if (!category) {
@@ -124,6 +121,11 @@ const UploadGPX = () => {
         }
     };
 
+    const handleDelete = (id) => {
+        axiosSecure.delete(`/fileName/${id}`);
+        refetch();
+    }
+
     return (
         <>
             <div className='bg-[#F7F7F7] w-fit mx-auto 2xl:mt-10 xl:mt-6 flex items-center justify-center'>
@@ -140,7 +142,7 @@ const UploadGPX = () => {
                                     Formats Gpx jusqu&apos;à 10 MB
                                 </p>
                             </div>
-                            <button className='text-center flex w-fit mx-auto bg-yellow-500 btn text-white'>
+                            <button className='text-center flex w-fit mx-auto bg-yellow-500 btn text-white' disabled={!isDisabled}>
                                 <span>Parcourir le fichier</span>
                                 <FaPlus className='mt-1' size={'0.8rem'} />
                             </button>
@@ -159,10 +161,11 @@ const UploadGPX = () => {
                     </ul>
                 )}
             </div>
+            <p className={`${!isDisabled ? 'block' : 'hidden'} text-center text-red-600 font-semibold mt-6`}>Your account have not approved yet</p>
             <div className='my-10'>
                 {
                     files?.map((f, i) => {
-                        console.log(files)
+                        console.log(f);
                         return (
                             <>
                                 <div className='my-4 w-3/4 mx-auto flex justify-between'>
@@ -170,8 +173,20 @@ const UploadGPX = () => {
                                         <Image className='h-[32px] w-[32px]' alt="logo" src={gpx} />
                                         <p>{f.filename}</p>
                                     </div>
-                                    <div>
-                                        <button className='btn'>
+                                    <div className='flex items-center gap-6'>
+                                        <p className={`${f?.status === false ? 'block' : 'hidden'} flex items-center gap-2`}>
+                                            <span>Chargement</span>
+                                            <span className="loading loading-spinner text-accent"></span>
+                                        </p>
+                                        <p className={`${f?.status === true ? 'block' : 'hidden'} flex items-center gap-2`}>
+                                            <span>Complite</span>
+
+                                            <FaCheck color='green' />                                        </p>
+                                        <p className={`${f?.status === 'rejected' ? 'block' : 'hidden'} flex items-center gap-2`}>
+                                            <span>Erreur de chargement</span>
+
+                                            <FaTimes color='red' />                                       </p>
+                                        <button onClick={() => handleDelete(f?._id)} className={`${f?.status && 'hidden'} btn`}>
                                             <FaTrashAlt />
                                         </button>
                                     </div>
@@ -181,7 +196,8 @@ const UploadGPX = () => {
                     })
                 }
             </div>
-            <div className='flex items-center justify-between w-3/4 mx-auto gap-2 2xl:mt-20 xl:mt-14'>
+
+            <div className='flex items-center justify-between w-3/4 mx-auto gap-2 2xl:mt-20 xl:mt-14 pb-20'>
                 <div className="form-control relative">
                     <label className="label items-center justify-normal bg-[#FFFFF8] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
                         <span className="label-text text-[#666] text-sm font-bold py-0">Discipline </span>

@@ -8,14 +8,15 @@ import Google from '@/icons/Google';
 import Link from 'next/link';
 import { FaEye } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
-import useAxiosPublic from '@/Hooks/useAxiosPublic';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
+import Cookies from 'js-cookie';
 
 const Page = () => {
     const { register, handleSubmit, formState: { errors }, reset, isSubmitting } = useForm();
     const { signIn, createWithGoogle } = useAuth();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     // Show/hide password toggle
     const togglePasswordVisibility = () => {
@@ -47,15 +48,14 @@ const Page = () => {
         try {
             const result = await createWithGoogle();
             const user = result.user;
-            console.log(user);
-            axiosPublic.get(`/user/${user?.uid}`)
+            axiosSecure.get(`/user/${user?.uid}`)
                 .then(response => {
                     console.log(response);
-                    router.push('/')
+                    return router.push('/')
                 })
                 .catch(error => {
                     console.log(error);
-                    router.push('register/usercredentials/categories')
+                    return router.push('register/usercredentials/categories');
                 })
         } catch (error) {
             Swal.fire({

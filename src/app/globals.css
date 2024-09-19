@@ -45,6 +45,12 @@ li:focus {
     background-color: rgba(0, 0, 0, 0.15) !important;
 }
 
+.banner {
+    background-image: url('../../public/home\ page.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 @media screen and (max-width:576px) {
     .custom-grid {

@@ -1,50 +1,52 @@
-import Image from 'next/image';
 import React from 'react';
-import image from '../../../../public/DSC08012.png'
 import Join from '@/Shared/Join';
-import Cards from '@/ui/Cards';
-import CardsByDistance from '@/ui/CardsByDistance';
-import { antiHero } from '../layout';
+import { morgana } from '../layout';
+import CountdownTimer from '@/ui/CountDown';
+import Image from 'next/image';
+import step1 from '../../../../public/Frame.svg';
+import step2 from '../../../../public/Frame (1).svg'
+import step3 from '../../../../public/Frame (2).svg'
+import step4 from '../../../../public/Frame (3).svg'
+
 
 const page = () => {
     return (
-        <div>
-            <div className='2xl:m-[10px] m-1 relative'>
-                <Image
-                    src={image}
-                    alt='banner-image'
-                    placeholder='blur'
-                    className='max-h-auto min-h-[20vh]'
-                />
-                <h2 className={`${antiHero.className} text-white 2xl:text-7xl xl:text-5xl text-lg font-bold absolute 2xl:left-24 xl:left-24 2xl:bottom-10 xl:bottom-10 left-10 bottom-5`}>Defis de l&lsquo;EvEnement</h2>
-            </div>
-
-            <div className='2xl:px-40 xl:px-28 2xl:mt-28 xl:mt-16 mt-10 px-6'>
-                <h2 className={`${antiHero.className} font-bold xl:text-4xl text-black 2xl:text-5xl text-lg`}>
-                    <span className="text-blue-600">Watermen Crown</span> Wingfoil,
-                    <br /> Windfoil, Dockstart, Surffoil
-                </h2>
-                <p className="font-semibold uppercase text-[#111111BF] xl:text-xs 2xl:text-lg text-[8px] xl:my-3 2xl:my-5 my-2">
-                    classement général
-                </p>
-                <div className='2xl:h-[420px] points 2xl:p-5 xl:p-4 rounded-[10px] xl:h-[300px] flex flex-col justify-between h-[200px] p-2'>
-                    <p className='uppercase font-semibold 2xl:text-base xl:text-xs text-white text-[8px]'>niveau <span className={`${antiHero.className} text-blue-500`}>général</span></p>
-                    <div>
-                        <p className='uppercase font-semibold text-white 2xl:text-lg xl:text-sm text-[10px]'>Réservé aux participants sur les <span className={`${antiHero.className} text-blue-500`}>4 disciplines</span></p>
-                        <h1 className='2xl:text-7xl text-white xl:text-5xl font-medium uppercase text-lg'><span className={`${antiHero.className} text-[#EDBE1A]`}>Points gagnants</span> — la somme des points obtenus pour la participation aux 4 disciplines</h1>
-                    </div>
+        <div className='banner'>
+            <div className='min-h-screen flex flex-col'>
+                <div className='m-auto'>
+                    <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-white uppercase`}>le challenge</h1>
+                    <p className={`text-[#FFE500] 2xl:text-6xl xl:text-4xl ${morgana.className} text-center 2xl:mt-12 xl:mt-8`}>en octobre, enchaîne les sessions !</p>
                 </div>
             </div>
-            <div className='2xl:p-40 xl:p-28 bg-black 2xl:mt-40 xl:mt-28 mt-10 p-10'>
-                <h2 className={`${antiHero.className} 2xl:text-5xl xl:text-3xl font-bold text-white text-sm`}>Temps passé à l’eau sur la <br /> durée de l’événement</h2>
-                <p className='uppercase 2xl:text-base 2xl:mt-5 xl:mt-3 xl:text-xs text-[6px] mt-1 text-white'>Pour Wingfoil, windfoil, dockstart, surf foil, DW</p>
-                <Cards />
+            <div className='w-fit mx-auto'>
+                <CountdownTimer />
             </div>
-            <div className='2xl:p-40 xl:p-28 w-full'>
-                <h2 className='2xl:text-5xl xl:text-3xl font-bold'>Distance totale parcourue <br /> sur la durée de l’événement</h2>
-                <p className='uppercase 2xl:text-base 2xl:mt-5 xl:mt-3 xl:text-xs font-semibold text-opacity-60'>Pour Wingfoil, windfoil, dockstart, DW</p>
-                <CardsByDistance />
+            <p className='text-center text-white w-3/4 mx-auto 2xl:text-2xl xl:text-lg font-medium'>
+                L’objectif des AFS GAMES est de vous motiver à aller à l’eau tout au long du mois d’octobre, pour progresser et repousser vos limites dans une ambiance conviviale. Accumulez des heures de navigation et tentez de décrocher une place sur le podium, avec à la clé des lots offerts par nos partenaires.
+            </p>
+            <p className='2xl:text-2xl xl:text-lg text-white text-center mt-10 font-medium'>
+                Pour participer :
+            </p>
+            <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-start justify-evenly mt-8 gap-x-6 2xl:gap-0 xl:gap-0'>
+                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
+                    <Image src={step1} className='ml-24' alt='' />
+                    <p className='text-white text-center font-semibold 2xl:text-3xl xl:text-2xl mt-[2px]'>Démarrez une <br /> session sur votre <br /> spot favori</p>
+                </div>
+                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
+                    <Image src={step2} className='ml-24' alt='' />
+                    <p className='text-white text-center font-semibold 2xl:text-3xl xl:text-2xl mt-[2px]'>Une fois terminé, <br /> exportez votre <br /> fichier GPX</p>
+                    <p className='2xl:mt-6 xl:mt-4 mt-2 text-white text-center font-semibold 2xl:text-xl xl:text-base'>(les tutoriels seront <br /> bientôt disponibles).</p>
+                </div>
+                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
+                    <Image src={step3} className='ml-24' alt='' />
+                    <p className='text-white text-center font-semibold 2xl:text-3xl xl:text-2xl mt-[2px]'>Connectez-vous à <br /> votre profil et <br /> cliquez sur <br />“importer.”</p>
+                </div>
+                <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
+                    <Image src={step4} className='ml-24' alt='' />
+                    <p className='text-white text-center font-semibold 2xl:text-3xl xl:text-2xl mt-[2px]'>Téléchargez votre <br /> fichier et c’est <br /> validé !</p>
+                </div>
             </div>
+            <h3 className='2xl:text-3xl xl:text-2xl text-center font-medium text-white 2xl:mt-11 xl:mt-11 mt-8'>Vous pourrez ensuite suivre votre progression dans le <br /> classement !</h3>
             <Join />
         </div>
     );

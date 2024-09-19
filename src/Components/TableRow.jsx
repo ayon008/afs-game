@@ -18,25 +18,25 @@ const TableRow = ({ data, position, uid }) => {
                 </div>
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold`}>
-                {Wingfoil ? Wingfoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn&lsquo;t participant</span>}
+                {Wingfoil ? Wingfoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>0 hours</span>}
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold`}>
-                {Windfoil ? Windfoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn&lsquo;t participant</span>}
+                {Windfoil ? Windfoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>0 hours</span>}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
-                {dockstart ? dockstart?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn&lsquo;t participant</span>}
+                {dockstart ? dockstart?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>0 hours</span>}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
-                {surfFoil ? surfFoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn&lsquo;t participant</span>}
+                {surfFoil ? surfFoil?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>0 hours</span>}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
-                {dw ? dw?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn&lsquo;t participant</span>}
+                {dw ? dw?.toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>O hours</span>}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold`}>
-                {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>You didn&lsquo;t participant</span>}
+                {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' ' + 'hours' : <span className='text-[8px]'>O hours</span>}
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold`}>
-                {total?.toFixed(2) + ' ' + 'hours' || 'n/a'}
+                {total?.toFixed(2) + ' ' + 'hours' || '0 hours'}
             </td>
         </tr>
     );

@@ -1,11 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import logo from '@/../public/Group.svg';
 import useAuth from '@/Hooks/useAuth';
-import { FaChevronDown } from 'react-icons/fa';
+import Link from 'next/link';
+import React from 'react';
 
 const NavMobile = () => {
     const navItems = [
@@ -13,19 +10,19 @@ const NavMobile = () => {
     ]
     const userInfo = useAuth();
     const { user, logOut } = userInfo;
-    const uid = user?.uid;
-    const [open, isOpen] = useState(false);
+
     return (
-        <div className='block 2xl:hidden xl:hidden lg:hidden z-40'>
-            <svg onClick={() => isOpen(!open)} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 z-10 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
-            </svg>
-            <ul className={`${open === true ? 'block' : 'hidden'}
-            space-y-2 absolute w-1/2 min-h-screen -py-[4] left-0 top-0 -ml-[10px] transition duration-1000 bg-white z-40 px-4 py-5
-            `}>
+        <div className="dropdown dropdown-end 2xl:hidden xl:hidden lg:hidden block">
+            <div tabIndex={0} role="button" className="btn m-1">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 z-10 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                </svg>
+            </div>
+
+            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow text-black">
                 {
-                    uid && <li className='flex gap-2'>
-                        <img src={user?.photoURL} alt='profile-picture' className='h-[30px] w-[30px] rounded-[50%]' />
+                    user && <li className='flex gap-2'>
+                        <img src={user?.photoURL} alt='profile-picture' className='h-[30px] w-[30px] rounded-[50%] ml-3' />
                         <div className='flex items-center gap-1'>
                             <p className='uppercase 2xl:text-base xl:text-xs text-sm font-semibold text-black'>{user?.displayName}</p>
                         </div>
@@ -43,7 +40,7 @@ const NavMobile = () => {
                     })
                 }
                 {
-                    uid ?
+                    user ?
                         <>
                             <li>
                                 <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>Profile</Link>
@@ -54,14 +51,16 @@ const NavMobile = () => {
                         </>
                         :
                         <>
-                            <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>
-                                Login
-                            </Link>
-                            <div className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>
-                            </div>
-                            <Link href={'/register'}>
-                                Inscription
-                            </Link>
+                            <li>
+                                <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>
+                                    Inscription
+                                </Link>
+                            </li>
                         </>
                 }
             </ul>

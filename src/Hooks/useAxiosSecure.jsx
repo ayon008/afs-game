@@ -2,6 +2,7 @@
 import axios from 'axios';
 import useAuth from './useAuth';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const useAxiosSecure = () => {
     const { logOut, user } = useAuth();
@@ -14,12 +15,12 @@ const useAxiosSecure = () => {
     // Request interceptor
     axiosSecure.interceptors.request.use(
         (config) => {
-            // Ensure this runs only on the client side
-            if (typeof window !== 'undefined') {
-                const userToken = JSON.parse(localStorage.getItem('userToken'));
-                if (userToken && userToken.token) {
-                    config.headers.authorization = `Bearer ${userToken.token}`;
-                }
+            const token = Cookies.get('userToken');
+            console.log(token);
+            console.log('ccc');
+            console.log(`Bearer ${token}`);
+            if (token) {
+                config.headers.authorization = `Bearer ${token}`;
             }
             return config;
         },
@@ -36,6 +37,8 @@ const useAxiosSecure = () => {
             return response;
         },
         async (error) => {
+            console.log(error.message);
+            
             const status = error.response?.status;
             if (status === 401 || status === 403) {
                 // Unauthorized or Forbidden, log out and redirect to login

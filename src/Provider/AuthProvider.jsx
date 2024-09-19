@@ -5,6 +5,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, creat
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import { useRouter } from 'next/navigation';
 import { app } from '@/js/firebase.init';
+import Cookies from 'js-cookie';
 
 export const AuthContext = createContext();
 
@@ -68,7 +69,6 @@ const AuthProvider = ({ children }) => {
             setUser(null);
             setUid(null);
             localStorage.removeItem('uid');
-            localStorage.removeItem('userToken');
             console.log("User logged out successfully.");
         } catch (error) {
             console.error("Logout Error:", error);
@@ -176,7 +176,8 @@ const AuthProvider = ({ children }) => {
                 console.log(currentUser);
                 try {
                     const tokenResponse = await axiosPublic.post('/userToken', { email: currentUser.email });
-                    localStorage.setItem('userToken', JSON.stringify(tokenResponse.data));
+                    const { token } = tokenResponse.data;
+                    Cookies.set('userToken', token, { expires: 1 / 24, sameSite: 'Lax' })
                 } catch (error) {
                     console.error("Token Fetch Error:", error);
                 } finally {
@@ -185,7 +186,7 @@ const AuthProvider = ({ children }) => {
                 }
             } else if (!currentUser) {
                 localStorage.removeItem('uid');
-                localStorage.removeItem('userToken');
+                Cookies.remove('userToken')
                 setUser(null);
                 setLoader(false);
                 setUid(null);

@@ -1,10 +1,101 @@
 /* eslint-disable @next/next/no-img-element */
-import getGpx from '@/lib/getGpx';
-import getUserInfo from '@/lib/getUserInfo';
+'use client'
+import UploadedUser from '@/Components/UploadedUser';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
+import convertToFranceTime from '@/lib/convertTime';
+import GetGpx from '@/lib/getGpx';
 import React from 'react';
+import Swal from 'sweetalert2';
 
-const GpxLists = async () => {
-    const gpx = await getGpx();
+const GpxLists = () => {
+    const { isLoading, isError, error, gpx, refetch } = GetGpx();
+    const axiosSecure = useAxiosSecure();
+
+    const handleAccept = (id) => {
+        // Show loading alert before making the request
+        Swal.fire({
+            title: 'Updating...',
+            text: 'Please wait while we update the status.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading(); // Show the loading spinner
+            },
+        });
+
+        // Make the API request to update status
+        axiosSecure.patch(`/updateStatus/${id}`, { status: true })
+            .then(() => {
+                // Close the loading alert after success
+                Swal.close();
+
+                // Show success alert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Status updated successfully!',
+                    confirmButtonText: 'OK',
+                });
+
+                // Refetch data after successful update
+                refetch();
+            })
+            .catch((error) => {
+                // Close the loading alert if there's an error
+                Swal.close();
+
+                // Show error alert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Failed to update status. Please try again.',
+                    confirmButtonText: 'OK',
+                });
+            });
+    };
+
+
+    const handleReject = (id) => {
+        // Show loading alert before making the request
+        Swal.fire({
+            title: 'Rejecting...',
+            text: 'Please wait while we reject the status.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading(); // Show loading spinner
+            },
+        });
+
+        // Make the API request to reject status
+        axiosSecure.patch(`/updateStatus/${id}`, { status: 'rejected' })
+            .then(() => {
+                // Close the loading alert after success
+                Swal.close();
+
+                // Show success alert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Rejected!',
+                    text: 'Status has been rejected successfully.',
+                    confirmButtonText: 'OK',
+                });
+
+                // Optionally, you can refetch data here if needed
+                refetch();
+            })
+            .catch((error) => {
+                // Close the loading alert if there's an error
+                Swal.close();
+
+                // Show error alert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'Failed to reject status. Please try again.',
+                    confirmButtonText: 'OK',
+                });
+            });
+    };
+
     return (
         <div className='p-10'>
             <div>
@@ -23,41 +114,36 @@ const GpxLists = async () => {
                             <th>Total Time</th>
                             <th>Filename</th>
                             <th>Uploaded By</th>
+                            <th>Email</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* row 1 */}
                         {
-                            gpx.map(async (g, i) => {
-                                const { category, distance, totalTime, filename, status, uid } = g;
-                                const uploadedBy = await getUserInfo(uid);
+                            gpx?.map((g, i) => {
+                                const { category, distance, totalTime, filename, status, uid,
+                                    lastUploadedTime, _id } = g;
+                                const time = convertToFranceTime(lastUploadedTime);
                                 return (
                                     <tr key={i}>
                                         <th>{i + 1}</th>
                                         <td className='uppercase font-bold text-xs'>{category}</td>
-                                        <td>Quality Control Specialist</td>
+                                        <td>{time}</td>
                                         <td>{distance.toFixed(2)} KM</td>
                                         <td>{totalTime.toFixed(2)} hr</td>
                                         <td>{filename}</td>
+                                        <UploadedUser uid={uid} />
+                                        {
+                                            status === false &&
+                                            <td className='flex items-center gap-1'>
+                                                <button onClick={() => handleAccept(_id)} className='btn btn-outline text-green-600 hover:bg-green-600 hover:text-white'>Accept</button>
+                                                <button onClick={()=>handleReject(_id)} className='btn btn-outline text-red-600 hover:bg-red-600 hover:text-white'>Reject</button>
+                                            </td>
+                                        }
                                         <td>
-                                            <div className="flex items-center gap-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle h-12 w-12">
-                                                        <img
-                                                            src={uploadedBy?.photoURL}
-                                                            alt="user-profile" />
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div className="font-bold">{uploadedBy?.displayName}</div>
-                                                    <div className="text-sm opacity-50">{uploadedBy?.city} , {uploadedBy?.pays}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td className='flex items-center gap-1'>
-                                            <button className='btn btn-outline text-green-600'>Accept</button>
-                                            <button className='btn btn-outline text-red-600'>Reject</button>
+                                            {status === true && 'Approved'}
+                                            {status === 'rejected' && 'Rejected'}
                                         </td>
                                     </tr>
                                 )

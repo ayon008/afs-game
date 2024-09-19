@@ -75,6 +75,8 @@ const page = async ({ searchParams }) => {
 
     // user information
     const userInformation = await getUserInfo(uid);
+    console.log(userInformation);
+    
     const { Wingfoil, Windfoil, Dockstart, Surffoil, Downwind, WatermanCrown } = userInformation;
 
     const WingfoilPoint = sortDataByTime(pointTable, 'Wingfoil');

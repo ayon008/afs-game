@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { FaArrowLeft } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import InputField from '@/Components/InputField';
 import PicUpload from '@/Components/PicUpload';

@@ -78,7 +78,7 @@ const UserForm = () => {
         if (!email || !password || !categories || !invoice) {
             Swal.fire({
                 title: 'Error',
-                text: 'Email or password is missing. Please try again.',
+                text: `${email, password, categories, invoice}`,
                 icon: 'error',
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#d33',
@@ -205,7 +205,6 @@ const UserForm = () => {
                 <input
                     type="file"
                     {...register('AfsGear', {
-                        required: 'Afs Gear is required',
                         validate: {
                             isPdf: (files) => files && files[0]?.type === "application/pdf" || 'Only PDF files are allowed',
                         }
@@ -213,7 +212,6 @@ const UserForm = () => {
                     className="file-input border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
                     accept="application/pdf" // Only PDF files are allowed
                 />
-                {errors.AfsGear && <p className="text-red-500 text-xs mt-1">{errors.AfsGear.message}</p>}
             </div>
 
 

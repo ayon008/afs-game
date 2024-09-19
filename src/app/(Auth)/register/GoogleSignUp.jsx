@@ -7,25 +7,24 @@ import Google from '@/icons/Google';
 import Link from 'next/link';
 import FaArrow from '@/icons/FaArrow';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
 
 const GoogleSignUp = () => {
     const { createWithGoogle } = useAuth();
     const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const handleGoogleLogin = async () => {
         try {
             const result = await createWithGoogle();
             const user = result.user;
-            axiosPublic.get(`/user/${user?.uid}`)
+            axiosSecure.get(`/user/${user?.uid}`)
                 .then(response => {
-                    console.log(response);
-                    router.push('/')
+                    return router.push('/')
                 })
                 .catch(error => {
-                    console.log(error);
-                    router.push('register/usercredentials/categories')
+                    return router.push('register/usercredentials/categories');
                 })
         } catch (error) {
             Swal.fire({

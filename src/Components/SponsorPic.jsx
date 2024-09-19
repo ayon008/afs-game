@@ -6,7 +6,6 @@
 import Image from 'next/image';
 import React, { useState, forwardRef } from 'react';
 import axios from 'axios';
-import useAuth from '@/Hooks/useAuth';
 import image from '@/../public/image_wrap.png';
 
 const SponsorPic = forwardRef(({ onChange, onBlur, name, ...props }, ref) => {

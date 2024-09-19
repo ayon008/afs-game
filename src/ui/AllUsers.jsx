@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import getAllUsers from '@/lib/getAllUsers';
+'use client'
+import ApprovedBtn from '@/Components/ApprovedBtn';
+import GetAllUser from '@/lib/getAllUsers';
 import React from 'react';
 
-const AllUsers = async () => {
-    const allUsers = await getAllUsers();
-    console.log(allUsers);
-
+const AllUsers = () => {
+    const { isLoading, isError, error, allUsers, refetch } = GetAllUser();
     return (
         <div className='p-10'>
             <div>
@@ -27,7 +27,7 @@ const AllUsers = async () => {
                     <tbody>
                         {
                             allUsers?.map((user, i) => {
-                                const { name, pays, city, surname, email, displayName, photoURL, approved, invoiceURL, uid, Windfoil, Wingfoil, DockStart, Downwind, Surffoil, WatermanCrown } = user;
+                                const { name, pays, city, surname, email, displayName, photoURL, approved, invoiceURL, uid, Windfoil, Wingfoil, DockStart, Downwind, Surffoil, WatermanCrown, _id } = user;
                                 return (
                                     <tr key={i}>
                                         <td>
@@ -55,9 +55,7 @@ const AllUsers = async () => {
                                         <td>
                                             {
                                                 !approved ?
-                                                    <button className='btn btn-outline text-green-500 hover:text-white hover:bg-green-500'>
-                                                        Accept
-                                                    </button>
+                                                    <ApprovedBtn id={_id} refetch={refetch} />
                                                     : <span>Approved</span>
                                             }
                                         </td>
