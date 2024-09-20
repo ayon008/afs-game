@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 const Join = () => {
     return (
-        <div className='2xl:mt-48 xl:mt-32 mt-20'>
+        <div className=''>
             <div className='px-5 bg-black rounded-[10px]'>
                 <div className='2xl:px-[140px] xl:px-20 2xl:py-20 xl:py-[60px]  px-4 py-10'>
                     <Image src={logo} className='2xl:w-[176px] xl:w-[150px] w-[100px] h-auto' alt='' />

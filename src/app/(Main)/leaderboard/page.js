@@ -1,16 +1,20 @@
 import SelectTab from '@/Components/SelectTab';
 import React from 'react';
-import { antiHero } from '../layout';
+import { antiHero, morgana } from '../layout';
 import getUserLeaderBoard from '@/lib/getUserLeaderBoard';
+import Join from '@/Shared/Join';
 
 const page = async () => {
     const pointTable = await getUserLeaderBoard();
     return (
-        <div className='2xl:px-36 2xl:pt-36 xl:px-20 xl:pt-36 pt-20'>
-            <h1 className={`${antiHero.className} text-[#000] font-bold 2xl:text-7xl xl:text-5xl text-center`}>Classement par nombre de points</h1>
-            <div className='2xl:mt-20 xl:mt-14'>
+        <div className="banner">
+            <div className="min-h-screen flex flex-col">
+                <h2 className={`${morgana.className} uppercase m-auto text-white 2xl:text-[120px] xl:text-7xl`}>classement</h2>
+            </div>
+            <div className='2xl:mt-20 xl:mt-14 bg-white p-20 rounded-tr-[50px] rounded-tl-[50px]'>
                 <SelectTab pointTable={pointTable} />
             </div>
+            <Join />
         </div>
     );
 };

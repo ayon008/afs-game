@@ -46,7 +46,7 @@ const page = () => {
                     <p className='text-white text-center font-semibold 2xl:text-3xl xl:text-2xl mt-[2px]'>Téléchargez votre <br /> fichier et c’est <br /> validé !</p>
                 </div>
             </div>
-            <h3 className='2xl:text-3xl xl:text-2xl text-center font-medium text-white 2xl:mt-11 xl:mt-11 mt-8'>Vous pourrez ensuite suivre votre progression dans le <br /> classement !</h3>
+            <h3 className='2xl:text-3xl xl:text-2xl text-center font-medium text-white 2xl:mt-11 xl:mt-11 mt-8 2xl:mb-48 xl:mb-32 mb-20'>Vous pourrez ensuite suivre votre progression dans le <br /> classement !</h3>
             <Join />
         </div>
     );

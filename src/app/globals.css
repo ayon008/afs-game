@@ -51,6 +51,33 @@ li:focus {
     background-size: cover;
 }
 
+.icon-container {
+    display: flex;
+    align-items: center;
+}
+
+input:checked~.collapse-title .icon-plus {
+    display: none;
+}
+
+input:checked~.collapse-title .icon-minus {
+    display: block;
+}
+
+input:not(:checked)~.collapse-title .icon-minus {
+    display: none;
+}
+
+input:not(:checked)~.collapse-title .icon-plus {
+    display: block;
+}
+
+.my-position {
+    border-radius: 10px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.00) !important;
+    background: #FFE500 !important;
+}
+
 
 @media screen and (max-width:576px) {
     .custom-grid {
