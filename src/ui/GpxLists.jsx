@@ -124,12 +124,13 @@ const GpxLists = () => {
                             gpx?.map((g, i) => {
                                 const { category, distance, totalTime, filename, status, uid,
                                     lastUploadedTime, _id } = g;
-                                const time = convertToFranceTime(lastUploadedTime);
+                                const time = convertToFranceTime(lastUploadedTime).time;
+                                const date = convertToFranceTime(lastUploadedTime).date;
                                 return (
                                     <tr key={i}>
                                         <th>{i + 1}</th>
                                         <td className='uppercase font-bold text-xs'>{category}</td>
-                                        <td>{time}</td>
+                                        <td>{time}, {date}</td>
                                         <td>{distance.toFixed(2)} KM</td>
                                         <td>{totalTime.toFixed(2)} hr</td>
                                         <td>{filename}</td>
@@ -138,7 +139,7 @@ const GpxLists = () => {
                                             status === false &&
                                             <td className='flex items-center gap-1'>
                                                 <button onClick={() => handleAccept(_id)} className='btn btn-outline text-green-600 hover:bg-green-600 hover:text-white'>Accept</button>
-                                                <button onClick={()=>handleReject(_id)} className='btn btn-outline text-red-600 hover:bg-red-600 hover:text-white'>Reject</button>
+                                                <button onClick={() => handleReject(_id)} className='btn btn-outline text-red-600 hover:bg-red-600 hover:text-white'>Reject</button>
                                             </td>
                                         }
                                         <td>
