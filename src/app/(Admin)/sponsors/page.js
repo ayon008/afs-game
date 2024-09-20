@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import DeleteButton from '@/Components/DeleteButton';
 import getSponsors from '@/lib/getSponsors';
 import Sponsor from '@/Shared/Sponsor';
@@ -30,7 +31,7 @@ const Page = async () => {
                         {
                             sponsors?.map((sponsor, i) => {
                                 return (
-                                    <tr>
+                                    <tr key={i}>
                                         <th>
                                             {i + 1}
                                         </th>

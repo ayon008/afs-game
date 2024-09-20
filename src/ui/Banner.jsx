@@ -25,7 +25,7 @@ const Banner = () => {
                 </p>
                 <div className='w-fit mx-auto 2xl:mt-10 xl:mt-8 mt-6'>
                     <button className='btn bg-[#FFE500] border-none'>
-                        <span>JE M'INSCRIS</span>
+                        <span>JE M&apos;INSCRIS</span>
                         <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
                     </button>
                 </div>
@@ -98,7 +98,7 @@ const Banner = () => {
             <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-center justify-evenly mt-8 gap-6 2xl:gap-0 xl:gap-0 2xl:mb-48 xl:mb-32 mb-20'>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step1} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Cliquez sur le lien <br /> d'inscription <span className='text-yellow-500 underline'>ici.</span></p>
+                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Cliquez sur le lien <br /> d&apos;inscription <span className='text-yellow-500 underline'>ici.</span></p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step2} alt='' />
