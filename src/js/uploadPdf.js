@@ -3,7 +3,9 @@ import { storage } from "./firebase.init";
 
 // Function to upload the PDF
 const uploadPdfToFirebase = async (file) => {
-    if (!file) throw new Error('No file provided');
+    if (!file) {
+        return ''
+    };
 
     const storageRef = ref(storage, `pdfs/${file.name}`);
     const snapshot = await uploadBytes(storageRef, file);

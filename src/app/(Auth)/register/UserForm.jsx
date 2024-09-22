@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import countries from '@/js/countries';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import uploadPdfToFirebase from '@/js/uploadPdf';
+import axios from 'axios';
 
 const UserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -21,7 +22,7 @@ const UserForm = () => {
         // Show loading indicator
         Swal.fire({
             title: 'Creating Account...',
-            text: 'Please wait while we create your account and upload the invoice.',
+            text: 'Please wait while we create your account',
             allowOutsideClick: false,
             didOpen: () => {
                 Swal.showLoading();
@@ -32,7 +33,7 @@ const UserForm = () => {
         let email = '';
         let password = '';
         let categories;
-        const invoiceURL = await uploadPdfToFirebase(invoice);
+        const invoiceURL = await uploadPdfToFirebase(invoice)
         // Ensure localStorage is accessed on the client side only
         if (typeof window !== "undefined") {
             email = JSON.parse(localStorage.getItem('email'));
@@ -43,6 +44,7 @@ const UserForm = () => {
         if (user) {
             try {
                 await axiosPublic.post('/user', { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false });
+                await axios.post('https://hook.eu1.make.com/ll1c5gwel7rxs98ebohfx4h1urgu4kwn', { name, pays });
                 Swal.fire({
                     title: 'Account Created',
                     text: 'Your account has been successfully created!',
@@ -75,7 +77,7 @@ const UserForm = () => {
         }
 
 
-        if (!email || !password || !categories || !invoice) {
+        if (!email || !password || !categories) {
             Swal.fire({
                 title: 'Error',
                 text: `${email, password, categories, invoice}`,
@@ -94,6 +96,7 @@ const UserForm = () => {
             try {
                 const userData = { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
+                await axios.post('https://hook.eu1.make.com/ll1c5gwel7rxs98ebohfx4h1urgu4kwn', { name, pays });
             }
             catch (error) {
                 console.log(error.message);
@@ -127,6 +130,8 @@ const UserForm = () => {
             });
         } catch (error) {
             // Error feedback
+            console.log(error);
+
             Swal.fire({
                 title: 'Error',
                 text: `Error during account creation: ${error.code?.split('auth/')[1]}`,
@@ -206,12 +211,18 @@ const UserForm = () => {
                     type="file"
                     {...register('AfsGear', {
                         validate: {
-                            isPdf: (files) => files && files[0]?.type === "application/pdf" || 'Only PDF files are allowed',
-                        }
+                            isPdf: (files) => {
+                                // Only validate if a file is selected
+                                if (!files || files.length === 0) return true;
+                                // Check if the selected file is a PDF
+                                return files[0]?.type === "application/pdf" || 'Only PDF files are allowed';
+                            },
+                        },
                     })}
                     className="file-input border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
                     accept="application/pdf" // Only PDF files are allowed
                 />
+                {errors.AfsGear && <span className="text-red-500 text-xs mt-1">{errors.AfsGear.message}</span>}
             </div>
 
 

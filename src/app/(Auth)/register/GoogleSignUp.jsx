@@ -7,6 +7,7 @@ import Google from '@/icons/Google';
 import Link from 'next/link';
 import FaArrow from '@/icons/FaArrow';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const GoogleSignUp = () => {
     const { createWithGoogle } = useAuth();

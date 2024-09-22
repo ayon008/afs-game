@@ -49,7 +49,10 @@ const AllUsers = () => {
                                             {email}
                                         </td>
                                         <td>
-                                            <a href={invoiceURL} target='_blank' className='text-blue-500 underline'>Invoice URL</a>
+                                            {
+                                                invoiceURL &&
+                                                <a href={invoiceURL} target='_blank' className='text-blue-500 underline'>Invoice URL</a>
+                                            }
                                         </td>
                                         <td className='font-bold'>{Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {DockStart && 'Dockstart'}{Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}</td>
                                         <td>

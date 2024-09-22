@@ -147,7 +147,7 @@ const page = async ({ searchParams }) => {
 
                 {/* Upload Data */}
                 <div className='2xl:mt-20 xl:mt-14 mt-8 flex w-full gap-2'>
-                    <Link href={'/profile/myData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
+                    <Link href={'/profile/uploadUserData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
                         <button className='uppercase w-full h-full flex flex-col-reverse justify-between  bg-black p-5'>
                             <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
                             <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />

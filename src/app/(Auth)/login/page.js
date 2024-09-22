@@ -14,7 +14,7 @@ const Page = ({ searchParams }) => {
     const { message, redirect } = searchParams;
     console.log(message, redirect);
     const { register, handleSubmit, formState: { errors }, reset, isSubmitting } = useForm();
-    const { signIn, createWithGoogle } = useAuth();
+    const { signIn, createWithGoogle, deleteGoogleUser, user, logOut } = useAuth();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const axiosSecure = useAxiosSecure();

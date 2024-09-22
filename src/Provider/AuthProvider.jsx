@@ -179,10 +179,7 @@ const AuthProvider = ({ children }) => {
                     const { token } = tokenResponse.data;
                     Cookies.set('userToken', token, { expires: 1 / 24, sameSite: 'Lax' })
                 } catch (error) {
-                    if (error.response && error.response.status === 404) {
-                        logOut();
-                        deleteGoogleUser(currentUser);
-                    }
+                    console.log(error.message);
                 } finally {
                     isRequestInProgress.current = false;
                     setLoader(false);

@@ -11,9 +11,10 @@ import useAuth from '@/Hooks/useAuth';
 import { antiHero } from '@/Components/Font';
 import countries from '@/js/countries';
 import { FaCheck } from 'react-icons/fa';
+import uploadPdfToFirebase from '@/js/uploadPdf';
 
 const Page = () => {
-    const { user, updatedProfile } = useAuth();
+    const { user, updatedProfile, up } = useAuth();
     const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
     const axiosSecure = useAxiosSecure();
 
@@ -22,7 +23,7 @@ const Page = () => {
             displayName: userInfo?.displayName || user?.displayName,
             surName: userInfo?.surName || '',
             pays: userInfo?.pays || '',
-            afsGear: userInfo?.afsGear || '',
+            city: userInfo?.city || '',
             email: userInfo?.email || user?.email,
         },
     });
@@ -42,21 +43,11 @@ const Page = () => {
             }
         });
 
-        const formData = new FormData();
-        formData.append('displayName', data.displayName);
-        formData.append('surName', data.surName);
-        formData.append('pays', data.pays);
-        formData.append('email', data.email);
-        formData.append('afsGear', data.afsGear[0]); // The file input as a FormData item
-        formData.append('photoURL', user?.photoURL);
-        formData.append('uid', user?.uid);
+        const invoice = data.Afsgear[0];
+        const invoiceURL = await uploadPdfToFirebase(invoice)
 
         try {
-            const response = await axiosSecure.patch(`/user/${userInfo?._id}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+            const response = await axiosSecure.patch(`/user/${userInfo?._id}`, { ...data, invoiceURL });
             console.log(response.data);
             updatedProfile(data.displayName, user?.photoURL);
             swal.close(); // Close the loading alert
@@ -81,6 +72,7 @@ const Page = () => {
     const fields = [
         { label: 'NAME', name: 'displayName', placeholder: 'Emmma', validation: { required: 'Name is required' } },
         { label: 'SURNAME', name: 'surName', placeholder: 'Schmidt', validation: { required: 'Surname is required' } },
+        { label: 'CITY', name: 'city', placeholder: 'Schmidt', validation: { required: 'city is required' } },
         { label: 'EMAIL', name: 'email', placeholder: 'emmma_s@email.com', type: 'email', disabled: true }
     ];
 
@@ -88,9 +80,9 @@ const Page = () => {
         reset({
             email: userInfo?.email || '',
             pays: userInfo?.pays || '',
+            city: userInfo?.city || '',
             surName: userInfo?.surName || '',
             displayName: userInfo?.displayName || '',
-            afsGear: userInfo?.afsGear || ''
         });
     }, [userInfo, reset]);
 
@@ -114,7 +106,7 @@ const Page = () => {
                         />
                     </div>
                     <h4 className='2xl:text-xl xl:text-sm font-bold 2xl:mt-10 xl:mt-6'>Vos informations</h4>
-                    <div className='grid grid-cols-3 2xl:mt-10 xl:mt-6 2xl:gap-x-5 xl:gap-x-3 2xl:gap-y-6 xl:gap-y-4'>
+                    <div className='grid 2xl:grid-cols-3 xl:grid-cols-3 grid-cols-1 2xl:mt-10 xl:mt-6 mt-4 2xl:gap-x-5 xl:gap-x-3 2xl:gap-y-6 xl:gap-y-4 gap-4'>
                         {fields.map((field, index) => (
                             <InputField
                                 key={index}
@@ -123,52 +115,42 @@ const Page = () => {
                                 errors={errors}
                             />
                         ))}
-                        {/* File Upload Field for AFS Gear */}
-                        {/* <label className="form-control w-full max-w-xs">
-                            <div className="label">
-                                <span className="label-text">AFS Gear (Invoice)</span>
-                            </div>
-                            <Controller
-                                name="afsGear"
-                                control={control}
-                                rules={{ required: 'AFS Gear is required' }}
-                                render={({ field: { onChange, onBlur, ref } }) => (
-                                    <input
-                                        type="file"
-                                        accept=".pdf,.jpg,.jpeg,.png"
-                                        onChange={(e) => onChange(e.target.files)}
-                                        onBlur={onBlur}
-                                        ref={ref}
-                                        className="input input-bordered w-full"
-                                    />
-                                )}
-                            />
-                            {errors.afsGear && <span className="text-red-500">{errors.afsGear.message}</span>}
-                        </label> */}
                         <div className="form-control relative">
                             <label className="label items-center justify-normal bg-[#F0F0F0] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
                                 <span className="label-text text-[#666] text-sm font-bold py-0">Pays</span>
                                 {errors['pays'] ? <span className="text-red-500">*</span> : <FaCheck size={'0.85rem'} color='#2A7029' />}
                             </label>
-                            <select className="select select-bordered w-full bg-[#F0F0F0]">
-                                <option disabled selected>Pays</option>
+
+                            {/* Add register to the select element and validation rules */}
+                            <select
+                                {...register('pays', { required: 'Country is required' })}
+                                className="select select-bordered w-full bg-[#F0F0F0]"
+                            >
+                                <option value="" disabled selected>Pays</option> {/* value="" ensures the default state */}
                                 {
-                                    countries.map(c => {
-                                        return (
-                                            <option className='uppercase'>{c}</option>
-                                        )
-                                    })
+                                    countries.map((c, index) => (
+                                        <option key={index} value={c} className='uppercase'>{c}</option>
+                                    ))
                                 }
                             </select>
-                            {errors['pays'] && <span className="text-red-500 text-sm mt-1">{errors['pays'].message}</span>}
                         </div>
+                        {/* Display validation error message if the country is not selected */}
+                        {errors['pays'] && <span className="text-red-500 text-sm mt-1">{errors['pays'].message}</span>}
                         <div className="form-control relative">
-                            <label className="label items-center justify-normal bg-[#F0F0F0] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
-                                <span className="label-text text-[#666] text-sm font-bold py-0">Afs gear</span>
-                                {errors['pays'] ? <span className="text-red-500">*</span> : <FaCheck size={'0.85rem'} color='#2A7029' />}
-                            </label>
-                            <input type="file" className="file-input file-input-bordered w-full" />
-                            {errors['pays'] && <span className="text-red-500 text-sm mt-1">{errors['pays'].message}</span>}
+                            <input
+                                type="file"
+                                {...register('Afsgear', {
+                                    required: 'Invoice file is required', // Adding required validation
+                                    validate: {
+                                        isPdf: (files) =>
+                                            files && files[0]?.type === "application/pdf" || 'Only PDF files are allowed', // PDF validation
+                                    }
+                                })}
+                                className="file-input file-input-bordered w-full border-none"
+                            />
+                            {/* Display error messages */}
+                            {errors['AfsGear'] && <span className="text-red-500 text-sm mt-1">{errors['AfsGear'].message}</span>}
+                            <p className='text-[#666] mt-2'>(Choose invoice PDF only)</p>
                         </div>
                     </div>
                     <div className='flex items-center justify-center mt-10 gap-2'>
