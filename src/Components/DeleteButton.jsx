@@ -3,18 +3,21 @@ import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import React from 'react';
 import Swal from 'sweetalert2';
 
-const DeleteButton = ({id}) => {
+const DeleteButton = ({ id, refetch }) => {
     const axiosSecure = useAxiosSecure();
 
     const handleDelete = (id) => {
         axiosSecure.delete(`/sponsors/${id}`)
             .then(res => {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Deleted',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                });
+                if (res) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Deleted',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    });
+                    refetch(); // Refetch data after successful deletion
+                }
             })
     }
 

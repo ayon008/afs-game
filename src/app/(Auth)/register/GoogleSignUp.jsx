@@ -6,7 +6,6 @@ import useAuth from '@/Hooks/useAuth';
 import Google from '@/icons/Google';
 import Link from 'next/link';
 import FaArrow from '@/icons/FaArrow';
-import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 
 const GoogleSignUp = () => {
@@ -21,10 +20,17 @@ const GoogleSignUp = () => {
             const user = result.user;
             axiosSecure.get(`/user/${user?.uid}`)
                 .then(response => {
-                    return router.push('/')
+                    console.log(response);
+                    return router.push('/');
                 })
                 .catch(error => {
-                    return router.push('register/usercredentials/categories');
+                    if (error) {
+                        console.log(error?.response?.data?.message);
+                        if (error.response && error.response.status === 404) {
+                            return router.push('register/usercredentials/categories');
+                        }
+                    }
+
                 })
         } catch (error) {
             Swal.fire({

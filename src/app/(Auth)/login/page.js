@@ -9,9 +9,10 @@ import Link from 'next/link';
 import { FaEye } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
-import Cookies from 'js-cookie';
 
-const Page = () => {
+const Page = ({ searchParams }) => {
+    const { message, redirect } = searchParams;
+    console.log(message, redirect);
     const { register, handleSubmit, formState: { errors }, reset, isSubmitting } = useForm();
     const { signIn, createWithGoogle } = useAuth();
     const router = useRouter();
@@ -33,7 +34,10 @@ const Page = () => {
                 showConfirmButton: false,
                 timer: 1500,
             });
-            router.push('/');
+            if (redirect) {
+                router.push(redirect);
+            }
+            return router.push('/');
             reset();
         } catch (error) {
             Swal.fire({
@@ -51,11 +55,16 @@ const Page = () => {
             axiosSecure.get(`/user/${user?.uid}`)
                 .then(response => {
                     console.log(response);
-                    return router.push('/')
+                    return router.push('/');
                 })
                 .catch(error => {
-                    console.log(error);
-                    return router.push('register/usercredentials/categories');
+                    if (error) {
+                        console.log(error?.response?.data?.message);
+                        if (error.response && error.response.status === 404) {
+                            return router.push('register/usercredentials/categories');
+                        }
+                    }
+
                 })
         } catch (error) {
             Swal.fire({
@@ -66,6 +75,7 @@ const Page = () => {
         }
     };
 
+
     return (
         <div className='xl:w-1/3 2xl:w-1/2 w-[90%] mx-auto'>
             <div className='bg-[#111] rounded-lg relative'>
@@ -74,6 +84,7 @@ const Page = () => {
                 </span>
                 <form onSubmit={handleSubmit(onSubmit)} className="card-body space-y-[1px]">
                     <div className='text-white text-center'>
+                        <p className={`${message ? 'block' : 'hidden'} text-red-600 font-semibold`}>{message}</p>
                         <h3 className='font-bold 2xl:text-[28px] xl:text-2xl text-lg tracking-wide'>Sign in</h3>
                         <h5 className='2xl:text-base xl:text-sm text-[10px] 2xl:mb-2 xl:mb-2 mb-1 tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
                     </div>

@@ -84,7 +84,7 @@ const page = () => {
     const problème = items?.filter(item => item.category === "PROBLÈMES TECHNIQUES ET SUPPORT");
 
     return (
-        <div className='banner'>
+        <div className=''>
             <div className='min-h-screen flex flex-col'>
                 <div className='m-auto'>
                     <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-white uppercase`}>FAQ</h1>

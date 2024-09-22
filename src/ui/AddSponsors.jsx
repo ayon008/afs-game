@@ -6,10 +6,12 @@ import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
-const AddSponsors = () => {
-    const { control, register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm()
+const AddSponsors = ({ refetch }) => {
+    const { control, register, handleSubmit, watch, reset, formState: { errors, isSubmitting } } = useForm();
+    const sponsorPictureValue = watch('sponsorPicture');
+
     const fields = [
-        { label: 'SPONSOR NAME', name: 'sponsorName', placeholder: 'Redbull', validation: { required: 'sponsor name is required' } },
+        { label: 'SPONSOR WEBSITE', name: 'sponsorName', placeholder: 'Redbull', validation: { required: 'sponsor name is required' } },
         { label: 'SPONSOR DETAILS', name: 'SponosorDetails', placeholder: 'Details', validation: { required: 'Details is required' } },
     ];
 
@@ -17,7 +19,6 @@ const AddSponsors = () => {
 
     const onSubmit = (data) => {
         console.log(data);
-
         const swal = Swal.fire({
             title: 'Submitting...',
             text: 'Please wait while we process your request.',
@@ -39,6 +40,7 @@ const AddSponsors = () => {
                         icon: 'success',
                         confirmButtonText: 'OK'
                     });
+                    refetch();
                 })
             reset();
         }
@@ -62,14 +64,14 @@ const AddSponsors = () => {
                 <div className='2xl:mt-10 xl:mt-6 bg-[#F0F0F0] rounded-[10px] p-5'>
                     <div className='w-fit mx-auto'>
                         <Controller
-                            name="profilePicture"
+                            name="sponsorPicture"
                             control={control}
                             render={({ field: { onChange, onBlur, value, ref } }) => (
                                 <SponsorPic
                                     onChange={onChange}
                                     onBlur={onBlur}
                                     ref={ref}
-                                    name="Sponsor Picture"
+                                    name="sponsorPicture"
                                 />
                             )}
                         />
@@ -92,7 +94,7 @@ const AddSponsors = () => {
                         <button
                             type='submit'
                             className={`btn uppercase text-white bg-blue-500 ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-[#11111166]'}`}
-                            disabled={isSubmitting}
+                            disabled={!sponsorPictureValue}
                         >
                             {isSubmitting ? 'Submitting...' : 'Sauver'}
                         </button>

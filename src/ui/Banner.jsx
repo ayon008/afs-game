@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Sponsor from '@/Shared/Sponsor';
 import FaArrow from '@/icons/FaArrow';
-import { morgana } from '@/app/(Main)/layout';
+import { antiHero, morgana } from '@/app/(Main)/layout';
 import bannerImage from '../../public/Frame.png'
 import image1 from '../../public/Rectangle 1.png'
 import image2 from '../../public/Rectangle 2.png'
@@ -17,17 +17,19 @@ import Join from '@/Shared/Join';
 
 const Banner = () => {
     return (
-        <div className='z-30 banner'>
+        <div className='z-30'>
             <Image src={bannerImage} className='2xl:w-[527px] 2xl:h-[575px] mx-auto pt-24 xl:w-[450px] xl:h-[490px] w-[250px] h-auto' alt='' />
             <div className='2xl:px-32 xl:px-24 mt-10 mb-20 px-6'>
                 <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs'>
-                    Du 30 septembre au 3 octobre, naviguez sur vos spots préférés équipé de vos GPS, uploadez votre session sur votre compte via notre site, passez les paliers et intégrez le classement de points !
+                    Du 30 septembre au 3 novembre, naviguez sur vos spots préférés équipés de vos GPS, uploadez votre session sur votre compte et cumuler les heures de sessions pour être en tête du classement !
                 </p>
                 <div className='w-fit mx-auto 2xl:mt-10 xl:mt-8 mt-6'>
-                    <button className='btn bg-[#FFE500] border-none'>
-                        <span>JE M&apos;INSCRIS</span>
-                        <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
-                    </button>
+                    <Link href={'/register'}>
+                        <button className='btn bg-[#FFE500] border-none'>
+                            <span>JE M&apos;INSCRIS</span>
+                            <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
+                        </button>
+                    </Link>
                 </div>
                 <p className='text-center text-white 2xl:text-2xl xl:text-base font-medium 2xl:mt-32 xl:mt-24 text-sm mt-10'>
                     Les AFS GAMES sont un événement exclusif,<span className='text-[#FFE500]'>réservé uniquement aux clients équipés de matériel AFS*</span>. Cet événement unique met en avant plusieurs disciplines de foil, offrant une expérience inédite et immersive aux participants. La particularité des AFS GAMES, c’est qu’ils se déroulent en ligne !
@@ -40,6 +42,14 @@ const Banner = () => {
                 </div>
             </div>
             <Sponsor />
+
+            <div className='w-fit mx-auto 2xl:mt-0 xl:mt-0 mt-10'>
+                <button className='btn bg-[#FFE500] border-none'>
+                    <span>DÉCOUVRIR LES PARTENAIRES</span>
+                    <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
+                </button>
+            </div>
+
             <div>
                 <h1 className={`${morgana.className} text-center text-white 2xl:mt-28 xl:mt-16 2xl:text-6xl xl:text-4xl uppercase mt-10 text-2xl`}>
                     <span className='text-[#FFE500]'>plusieurs disciplines</span>
@@ -89,7 +99,7 @@ const Banner = () => {
                 </div>
             </div>
             <p className='2xl:text-3xl xl:text-lg font-semibold text-white 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10'>Peu importe votre niveau ou votre âge, vous pouvez prendre part à cet événement, pensé et crée pour nos clients AFS. <span className='text-[#FFE500]'>
-                Équipez vous et cumulez les sessions !</span></p>
+                Équipez vous et enchaînez les sessions !</span></p>
 
             <h2 className={`${morgana.className} text-center text-white 2xl:text-6xl xl:text-4xl 2xl:mt-40 xl:mt-28 mt-16 text-2xl
             `}>l’inscription est <br /> <span className='text-[#FFE500]'>simple et rapide !</span>
@@ -108,6 +118,12 @@ const Banner = () => {
                     <Image src={step3} alt='' />
                     <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Confirmez votre <br /> inscription et recevez <br /> votre confirmation par email.</p>
                 </div>
+            </div>
+            <div>
+                <h1 className={`${antiHero.className} text-center text-white 2xl:text-7xl xl:text-5xl text-3xl 2xl:mb-48 xl:mb-32 mb-20`}>
+                    <span className=''>Votre objectif ?</span> <br />
+                    <span className='text-[#FFE500]'>Enchainer les sessions <br /> et additionner les heures <br /> passEes A l'eau !</span>
+                </h1>
             </div>
             <Join />
         </div>

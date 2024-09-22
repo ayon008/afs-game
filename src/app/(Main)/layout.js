@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
           <QueryProvider>
             <AuthProvider>
               <Navbar />
-              <div className="min-h-screen">
+              <div className="min-h-screen banner">
                 {children}
               </div>
               {/* <Footer /> */}

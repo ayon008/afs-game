@@ -72,6 +72,11 @@ input:not(:checked)~.collapse-title .icon-plus {
     display: block;
 }
 
+.award {
+    border-radius: 30px;
+    background: linear-gradient(229deg, #707070 1.31%, #000 100%);
+}
+
 .my-position {
     border-radius: 10px !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.00) !important;

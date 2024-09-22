@@ -5,7 +5,6 @@ import sortDataByTime from '@/lib/getDataByCategory';
 import GetFlag from '@/lib/getFlag';
 import LeadBoard from '@/ui/LeadBoard';
 import React, { useState } from 'react';
-import { FaArrowDown } from 'react-icons/fa';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 const SelectTab = ({ pointTable }) => {

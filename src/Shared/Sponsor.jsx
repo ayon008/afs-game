@@ -1,9 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import Marquee from 'react-fast-marquee';
-import getSponsors from '@/lib/getSponsors';
+import getAllSponsors from '@/lib/getAllSponsors';
 
 const Sponsor = async () => {
-    const sponsors = await getSponsors();
+    const sponsors = await getAllSponsors();
+    console.log(sponsors);
+    
     return (
         <div className='2xl:mt-[60px] xl:mt-10 lg:mt-8 mt-6 2xl:px-24 xl:px-10 lg:px-8 px-6 2xl:pb-40 xl:pb-20'>
             <Marquee
@@ -14,7 +16,7 @@ const Sponsor = async () => {
                     <div key={index} className='flex items-center mx-10'>
                         <img
                             className='2xl:w-[75px] xl:w-[75px] lg:w-[60px] w-[60px] h-auto'
-                            src={sponsor.profilePicture}
+                            src={sponsor.sponsorPicture}
                             alt={sponsor.alt}
                         />
                     </div>

@@ -5,7 +5,7 @@ import Image from 'next/image';
 const Join = () => {
     return (
         <div className=''>
-            <div className='px-5 bg-black rounded-[10px]'>
+            <div className='px-5 bg-[#080808] rounded-[10px]'>
                 <div className='2xl:px-[140px] xl:px-20 2xl:py-20 xl:py-[60px]  px-4 py-10'>
                     <Image src={logo} className='2xl:w-[176px] xl:w-[150px] w-[100px] h-auto' alt='' />
                     <p className={`${morgana.className} text-white font-medium text-2xl xl:text-5xl 2xl:text-7xl mt-8`}>Rejoignez-nous et prenez part à la première édition des <span className={`text-yellow-500`}>AFS GAMES ONLINE 2024</span>, rencontrez des passionnés et participez à des challenges inédits. </p>

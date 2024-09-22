@@ -1,12 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+'use client'
 import DeleteButton from '@/Components/DeleteButton';
-import getSponsors from '@/lib/getSponsors';
-import Sponsor from '@/Shared/Sponsor';
+import GetSponsors from '@/lib/getSponsors';
 import AddSponsors from '@/ui/AddSponsors';
 import React from 'react';
 
-const Page = async () => {
-    const sponsors = await getSponsors();
+const Page = () => {
+    const { isLoading, isError, error, sponsors, refetch } = GetSponsors();
+
     return (
         <div className='p-10'>
             <div>
@@ -22,7 +23,7 @@ const Page = async () => {
                                 #
                             </th>
                             <th>Sponsor Logo</th>
-                            <th>Sponsor Name</th>
+                            <th>Sponsor Website</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,7 +41,7 @@ const Page = async () => {
                                                 <div className="avatar">
                                                     <div className="mask mask-squircle h-12 w-12">
                                                         <img
-                                                            src={sponsor?.profilePicture}
+                                                            src={sponsor?.sponsorPicture}
                                                             alt="Avatar Tailwind CSS Component" />
                                                     </div>
                                                 </div>
@@ -50,7 +51,7 @@ const Page = async () => {
                                             {sponsor?.sponsorName}
                                         </td>
                                         <td>
-                                            <DeleteButton id={sponsor?._id} />
+                                            <DeleteButton id={sponsor?._id} refetch={refetch} />
                                         </td>
                                     </tr>
                                 )
@@ -59,7 +60,7 @@ const Page = async () => {
                     </tbody>
                 </table>
             </div>
-            <AddSponsors />
+            <AddSponsors refetch={refetch} />
         </div>
     );
 };

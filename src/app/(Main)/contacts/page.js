@@ -14,7 +14,7 @@ import whatsapp from '../../../../public/ri_whatsapp-fill.svg'
 
 const page = () => {
     return (
-        <div className='banner'>
+        <div className=''>
             <div className='min-h-screen flex flex-col'>
                 <div className='m-auto'>
                     <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-white uppercase`}>Contact</h1>

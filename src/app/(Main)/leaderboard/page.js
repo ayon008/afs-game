@@ -7,7 +7,7 @@ import Join from '@/Shared/Join';
 const page = async () => {
     const pointTable = await getUserLeaderBoard();
     return (
-        <div className="banner">
+        <div className="">
             <div className="min-h-screen flex flex-col">
                 <h2 className={`${morgana.className} uppercase m-auto text-white 2xl:text-[120px] xl:text-7xl`}>classement</h2>
             </div>
