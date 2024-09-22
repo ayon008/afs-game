@@ -94,7 +94,6 @@ const Award = () => {
                         )
                     })
                 }
-
             </Tabs>
         </div>
     );

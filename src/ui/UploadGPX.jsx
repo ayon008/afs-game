@@ -128,7 +128,7 @@ const UploadGPX = () => {
 
     return (
         <>
-            <div className='bg-[#F7F7F7] w-fit mx-auto 2xl:mt-10 xl:mt-6 flex items-center justify-center'>
+            <div className='bg-white w-fit mx-auto 2xl:mt-10 xl:mt-6 mt-3 flex items-center justify-center'>
                 <div>
                     <div className={`w-fit mx-auto ${getDropzoneStyle()} border-2 border-dashed p-6 rounded`}>
                         <div {...getRootProps()} className='flex flex-col items-center justify-center w-full'>
@@ -143,7 +143,7 @@ const UploadGPX = () => {
                                 </p>
                             </div>
                             <button className='text-center flex w-fit mx-auto bg-yellow-500 btn text-white' disabled={!isDisabled}>
-                                <span>Parcourir le fichier</span>
+                                <span className='text-white'>Parcourir le fichier</span>
                                 <FaPlus className='mt-1' size={'0.8rem'} />
                             </button>
                         </div>
@@ -171,19 +171,19 @@ const UploadGPX = () => {
                                 <div className='my-4 w-3/4 mx-auto flex justify-between'>
                                     <div className='flex gap-2 items-center'>
                                         <Image className='h-[32px] w-[32px]' alt="logo" src={gpx} />
-                                        <p>{f.filename}</p>
+                                        <p className='text-white'>{f.filename}</p>
                                     </div>
                                     <div className='flex items-center gap-6'>
                                         <p className={`${f?.status === false ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span>Chargement</span>
+                                            <span className='text-white'>Chargement</span>
                                             <span className="loading loading-spinner text-accent"></span>
                                         </p>
                                         <p className={`${f?.status === true ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span>Complite</span>
+                                            <span className='text-white'>Complite</span>
 
                                             <FaCheck color='green' />                                        </p>
                                         <p className={`${f?.status === 'rejected' ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span>Erreur de chargement</span>
+                                            <span className='text-white'>Erreur de chargement</span>
 
                                             <FaTimes color='red' />                                       </p>
                                         <button onClick={() => handleDelete(f?._id)} className={`${f?.status && 'hidden'} btn`}>
@@ -197,28 +197,28 @@ const UploadGPX = () => {
                 }
             </div>
 
-            <div className='flex items-center justify-between w-3/4 mx-auto gap-2 2xl:mt-20 xl:mt-14 pb-20'>
+            <div className='flex items-center 2xl:flex-row xl:flex-row flex-col justify-between w-3/4 mx-auto 2xl:gap-2 xl:gap2 gap-y-6 2xl:mt-20 xl:mt-14 pb-20'>
                 <div className="form-control relative">
-                    <label className="label items-center justify-normal bg-[#FFFFF8] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
+                    <label className="label items-center justify-normal w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
                         <span className="label-text text-[#666] text-sm font-bold py-0">Discipline </span>
                         <FaCheck size={'0.85rem'} color='#2A7029' />
                     </label>
                     <select
-                        className="select select-bordered w-[300px] bg-[#FFFFF8]"
+                        className="select select-bordered w-[300px] bg-black text-white"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
                     >
-                        <option value="" disabled>Select a category</option>
+                        <option value="" disabled className='text-white'>Select a category</option>
 
-                        <option className={`${userInfo?.Wingfoil || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase`} value={'Wingfoil'}>wingfoil</option>
+                        <option className={`${userInfo?.Wingfoil || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase text-white `} value={'Wingfoil'}>wingfoil</option>
 
-                        <option className={`${userInfo?.Windfoil || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase`} value={'Windfoil'}>windfoil</option>
+                        <option className={`${userInfo?.Windfoil || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase text-white`} value={'Windfoil'}>windfoil</option>
 
-                        <option className={`${userInfo?.Dockstart ? 'block' : 'hidden'} uppercase`} value={'dockstart'}>dockstart</option>
+                        <option className={`${userInfo?.Dockstart ? 'block' : 'hidden'} uppercase text-white`} value={'dockstart'}>dockstart</option>
 
-                        <option className={`${userInfo?.Surffoil ? 'block' : 'hidden'} uppercase`} value={'surfFoil'}>surf foil</option>
+                        <option className={`${userInfo?.Surffoil ? 'block' : 'hidden'} uppercase text-white`} value={'surfFoil'}>surf foil</option>
 
-                        <option className={`${userInfo?.Downwind || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase`} value={'dw'}>dw</option>
+                        <option className={`${userInfo?.Downwind || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase text-white`} value={'dw'}>dw</option>
                     </select>
                 </div>
                 <div className='flex gap-2'>

@@ -8,16 +8,16 @@ const CountdownTimer = () => {
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
             // What to render when the countdown completes
-            return <span className='2xl:text-[220px] xl:text-9xl font-bold'>The game has started!</span>;
+            return <span className='2xl:text-[220px] xl:text-9xl text-5xl font-bold text-white'>The game has started!</span>;
         } else {
             // Render the countdown
             return (
                 <div>
                     <div className='text-white'>
-                        <span className='2xl:text-[220px] xl:text-[170px] font-bold'>{days} :</span>
-                        <span className='2xl:text-[220px] xl:text-[170px] font-bold'>{hours} : </span>
-                        <span className='2xl:text-[220px] xl:text-[170px] font-bold'>{minutes} :</span>
-                        <span className='2xl:text-[220px] xl:text-[170px] font-bold'>{seconds}</span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{days} :</span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{hours} : </span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{minutes}</span>
+                        {/* <span className='2xl:text-[220px] xl:text-[170px] font-bold'>{seconds}</span> */}
                     </div>
                 </div>
             );

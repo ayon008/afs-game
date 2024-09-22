@@ -16,7 +16,7 @@ const CategoryTable = ({ title, data, find, categoryName }) => {
     const uid = find?.uid;
     let newData = getSurroundingData(data, userIndex);
     return (
-        <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[15px] xl:py-[10px] rounded-[10px] h-fit'>
+        <div className='bg-[#F7F7F7] 2xl:px-[20px] 2xl:py-[10px] xl:px-[15px] xl:py-[10px] p-4 rounded-[10px] h-fit'>
             <h5 className='font-semibold 2xl:text-xl xl:text-base'>{title}</h5>
             {
                 position ?
@@ -76,7 +76,7 @@ const page = async ({ searchParams }) => {
     // user information
     const userInformation = await getUserInfo(uid);
     console.log(userInformation);
-    
+
     const { Wingfoil, Windfoil, Dockstart, Surffoil, Downwind, WatermanCrown } = userInformation;
 
     const WingfoilPoint = sortDataByTime(pointTable, 'Wingfoil');
@@ -86,77 +86,80 @@ const page = async ({ searchParams }) => {
     const DWPoint = sortDataByTime(pointTable, 'dw');
 
     return (
-        <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32 pt-20 px-10'>
-            <EditProfile />
-            <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2 mt-4'>
-                <p className='2xl:text-[22px] xl:text-base font-semibold'>Le nombre total de points dans le tournoi est de </p>
-                <span className={`${antiHero.className} 2xl:text-[22px] xl:text-base font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 rounded-3xl text-blue-500`}>{userPointTable?.total.toFixed(2) || 0} Hours</span>
-            </div>
+        <div>
+            <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32 pt-20 px-6'>
+                <EditProfile />
+                <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2 mt-4'>
+                    <p className='2xl:text-[22px] xl:text-base text-xs font-semibold text-white'>Le nombre total de points dans le tournoi est de </p>
+                    <span className={`${antiHero.className} 2xl:text-[22px] xl:text-base text-xs font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 p-[2px] rounded-3xl text-blue-500`}>{userPointTable?.total.toFixed(2) || 0} Hours</span>
+                </div>
 
-            {/* leaderboard */}
-            <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6">
-                <table className="table">
-                    <TableHead tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'WatermanCrown', 'Total des Points']} />
-                    <tbody>
-                        {
-                            newData?.map((d, i) => {
-                                const pos = pointTable.indexOf(d) + 1;
-                                return (
-                                    <TableRow key={i} data={d} uid={userPointTable?.uid} position={pos} />
-                                );
-                            })
-                        }
-                    </tbody>
-                </table>
-            </div>
-
-            <div className='2xl:mt-40 xl:mt-28'>
-
-                <h2 className='font-bold 2xl:text-5xl xl:text-3xl'>Vous êtes dans les classements</h2>
-
-                <p className='2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-bold'>Temps passé à l’eau sur la durée de l’événement </p>
-
-                <hr className='mt-2 mb-4' />
-
-                <div className='grid grid-cols-2 gap-4'>
-
-                    <span className={Wingfoil ? 'block' : 'hidden'}>
-                        <CategoryTable data={WingfoilPoint} title={'Wingfoil'} find={userPointTable} categoryName={'Wingfoil'} />
-                    </span>
-
-                    <span className={Windfoil ? 'block' : 'hidden'}>
-                        <CategoryTable data={WindfoilPoint} title={'Windfoil'} find={userPointTable} categoryName={'Windfoil'} />
-                    </span>
-
-                    <span className={Dockstart ? 'block' : 'hidden'}>
-                        <CategoryTable data={DockstartPoint} title={'Dockstart'} find={userPointTable} categoryName={'dockstart'} />
-                    </span>
-
-                    <span className={Surffoil ? 'block' : 'hidden'}>
-                        <CategoryTable data={SurffoilPoint} title={'Surffoil'} find={userPointTable} categoryName={'surfFoil'} />
-                    </span>
-
-                    <span className={Downwind ? 'block' : 'hidden'}>
-                        <CategoryTable data={DWPoint} title={'Downwind'} find={userPointTable} categoryName={'dw'} />
-                    </span>
+                {/* leaderboard */}
+                <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6 mt-3">
+                    <table className="table">
+                        <TableHead tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'WatermanCrown', 'Total des Points']} />
+                        <tbody>
+                            {
+                                newData?.map((d, i) => {
+                                    const pos = pointTable.indexOf(d) + 1;
+                                    return (
+                                        <TableRow key={i} data={d} uid={userPointTable?.uid} position={pos} />
+                                    );
+                                })
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
+            <div className='bg-white 2xl:p-20 xl:p-20 p-10 rounded-t-[50px] 2xl:mt-40 xl:mt-28 mt-16'>
+                <div className=''>
+
+                    <h2 className='font-bold 2xl:text-5xl xl:text-3xl'>Vous êtes dans les classements</h2>
+
+                    <p className='2xl:text-2xl xl:text-lg 2xl:mt-14 xl:mt-7 font-bold'>Temps passé à l’eau sur la durée de l’événement </p>
+
+                    <hr className='mt-2 mb-4' />
+
+                    <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 gap-4'>
+
+                        <span className={Wingfoil ? 'block' : 'hidden'}>
+                            <CategoryTable data={WingfoilPoint} title={'Wingfoil'} find={userPointTable} categoryName={'Wingfoil'} />
+                        </span>
+
+                        <span className={Windfoil ? 'block' : 'hidden'}>
+                            <CategoryTable data={WindfoilPoint} title={'Windfoil'} find={userPointTable} categoryName={'Windfoil'} />
+                        </span>
+
+                        <span className={Dockstart ? 'block' : 'hidden'}>
+                            <CategoryTable data={DockstartPoint} title={'Dockstart'} find={userPointTable} categoryName={'dockstart'} />
+                        </span>
+
+                        <span className={Surffoil ? 'block' : 'hidden'}>
+                            <CategoryTable data={SurffoilPoint} title={'Surffoil'} find={userPointTable} categoryName={'surfFoil'} />
+                        </span>
+
+                        <span className={Downwind ? 'block' : 'hidden'}>
+                            <CategoryTable data={DWPoint} title={'Downwind'} find={userPointTable} categoryName={'dw'} />
+                        </span>
+                    </div>
+                </div>
 
 
-            {/* Upload Data */}
-            <div className='2xl:mt-20 xl:mt-14 flex w-full gap-2'>
-                <Link href={'/profile/myData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
-                    <button className='uppercase w-full h-full flex flex-col-reverse justify-between  bg-black p-5'>
-                        <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
-                        <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
-                    </button>
-                </Link>
-                <Link href={'/profile/uploadUserData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
-                    <button className='uppercase flex flex-col-reverse justify-between w-full h-full  bg-black p-5'>
-                        <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>Import Data</span>
-                        <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
-                    </button>
-                </Link>
+                {/* Upload Data */}
+                <div className='2xl:mt-20 xl:mt-14 mt-8 flex w-full gap-2'>
+                    <Link href={'/profile/myData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
+                        <button className='uppercase w-full h-full flex flex-col-reverse justify-between  bg-black p-5'>
+                            <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
+                            <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
+                        </button>
+                    </Link>
+                    <Link href={'/profile/uploadUserData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
+                        <button className='uppercase flex flex-col-reverse justify-between w-full h-full  bg-black p-5'>
+                            <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>Import Data</span>
+                            <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
+                        </button>
+                    </Link>
+                </div>
             </div>
         </div>
     );

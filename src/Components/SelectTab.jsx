@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import useAuth from '@/Hooks/useAuth';
+import convertToFranceTime from '@/lib/convertTime';
 import sortDataByTime from '@/lib/getDataByCategory';
 import GetFlag from '@/lib/getFlag';
 import LeadBoard from '@/ui/LeadBoard';
@@ -37,21 +38,21 @@ const SelectTab = ({ pointTable }) => {
     return (
         <div>
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                <TabList className={'flex items-center justify-center gap-10 cursor-pointer'}>
+                <TabList className={'flex items-center justify-center 2xl:gap-10 xl:gap-10 gap-5 cursor-pointer'}>
                     {
                         categories.map((category, i) => {
                             return (
-                                <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm font-semibold uppercase pb-1`}>{category}</Tab>
+                                <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>{category}</Tab>
                             )
                         })
                     }
-                    <Tab className={`${tabIndex === 5 && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm font-semibold uppercase pb-1`}>WatermanCrown</Tab>
+                    <Tab className={`${tabIndex === 5 && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>WatermanCrown</Tab>
                 </TabList>
                 {/* */}
                 {
                     categories.map((category, i) => {
                         return (
-                            <TabPanel key={i} className={'2xl:mt-20 xl:mt-12'}>
+                            <TabPanel key={i} className={'2xl:mt-20 xl:mt-12 mt-8'}>
                                 <div className="overflow-x-auto">
                                     <table className="table">
                                         <thead>
@@ -67,36 +68,52 @@ const SelectTab = ({ pointTable }) => {
                                                 sortDataByTime(pointTable, category)?.map((d, i) => {
                                                     const flag = GetFlag(d?.pays);
                                                     const pos = i + 1;
+                                                    const time = d.lastUploadedTime;
                                                     return (
                                                         <>
-                                                            <tr key={i} className={pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : ''}>
-                                                                <td>{pos}</td>
+                                                            <tr onClick={() => handleOpen(i, open)} key={i} className={pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : userPosition === pos ? 'my-position' : ''}>
+                                                                <th>{pos}</th>
                                                                 <td>
                                                                     <div className='flex items-center gap-2'>
-                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px]' src={flag} />
-                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] rounded-[50%]' src={d?.photoURL} />
-                                                                        <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
+                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[15px] h-[10px]' src={flag} />
+                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[10px] rounded-[50%]' src={d?.photoURL} />
+                                                                        <h3 className='2xl:text-lg xl:text-sm text-[10px] font-semibold'>{d?.displayName}</h3>
                                                                     </div>
                                                                 </td>
                                                                 <td></td>
-                                                                <td className='text-right font-semibold flex items-center gap-2 justify-end'><span>
+                                                                <td className='text-right font-semibold flex items-center gap-2 justify-end '><span>
                                                                     {d[category].toFixed(2) + ' ' + 'hours' || 'n/a'}
                                                                 </span>
                                                                 </td>
                                                             </tr>
                                                             {index === i + 1 && open && (
                                                                 <tr>
-                                                                    <td>
-                                                                        <span className='font-bold'>Number of sessions completed</span>: {d[`${category}Session`] || 'N/A'}
-                                                                    </td>
-                                                                    <td>
-                                                                        <span className='font-bold'>City & Country</span>: {d?.city || 'N/A'}, {d?.pays || 'N/A'}
-                                                                    </td>
-                                                                    <td>
-                                                                        <span className='font-bold'>Date of the last recorded sessions</span>: {d?.city || 'N/A'}, {d?.pays || 'N/A'}
-                                                                    </td>
-                                                                    <td>
-                                                                        <span className='font-bold'>Cumulative distance of the sessions</span>: {d[`${category}Distance`]?.toFixed(2) + ' ' + 'KM' || 'N/A'}
+                                                                    <td colSpan={'9'} className='p-0'>
+                                                                        <div className='bg-black rounded-[20px] 2xl:p-10 xl:p-6 p-2 grid grid-cols-4'>
+                                                                            <div className='border-r-2 border-[#FFF]'>
+                                                                                <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{d.city} {d.pays}</h2>
+                                                                                <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>CITY, COUNTRY</p>
+                                                                            </div>
+                                                                            <div className='border-r-2 border-[#FFF] ml-2'>
+                                                                                <div className='w-fit mx-auto'>
+                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{convertToFranceTime(time).date}</h2>
+                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>DATE DE DERNIÈRE SESSION</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className='border-r-2 border-[#FFF] ml-2'>
+                                                                                <div className='w-fit mx-auto'>
+                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{d[`${category}Session`]}</h2>
+                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>NOMBRE DE SESSIONS TOTAL</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div>
+                                                                                <div className='w-fit ml-auto'>
+                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{(d[`${category}Distance`]).toFixed(2)
+                                                                                    } KM</h2>
+                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>DISTANCE TOTALEL</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             )}

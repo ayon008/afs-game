@@ -9,9 +9,9 @@ const page = async () => {
     return (
         <div className="">
             <div className="min-h-screen flex flex-col">
-                <h2 className={`${morgana.className} uppercase m-auto text-white 2xl:text-[120px] xl:text-7xl`}>classement</h2>
+                <h2 className={`${morgana.className} uppercase m-auto text-white 2xl:text-[120px] xl:text-7xl text-5xl`}>classement</h2>
             </div>
-            <div className='2xl:mt-20 xl:mt-14 bg-white p-20 rounded-tr-[50px] rounded-tl-[50px]'>
+            <div className='2xl:mt-20 xl:mt-14 mt-8 bg-white 2xl:p-20 xl:p-20 px-6 py-12 rounded-tr-[50px] rounded-tl-[50px]'>
                 <SelectTab pointTable={pointTable} />
             </div>
             <Join />

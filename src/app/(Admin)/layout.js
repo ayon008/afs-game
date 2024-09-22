@@ -63,7 +63,7 @@ export default function RootLayout({ children }) {
                                         <li><Link href={'/adminPanel'}>All Users</Link></li>
                                         <li><Link href={'/uploadedGPX'}>Uploaded Gpx</Link></li>
                                         <li><Link href={'/sponsors'}>Add Sponsors</Link></li>
-                                        <li><Link href={'/pricelist'}>Price List</Link></li>
+                                        <li><Link href={'/faqPanel'}>Add FAQ</Link></li>
                                         <li><Link href={'/addAwards'}>Add Awards</Link></li>
                                     </ul>
                                 </div>

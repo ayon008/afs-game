@@ -34,9 +34,9 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                         <td className='font-semibold 2xl:text-lg xl:text-base z-20'>{position < 10 ? `0${position}` : position}</td>
                                         <td>
                                             <div className='flex items-center gap-2'>
-                                                <img alt='flag' className='2xl:w-[51px] 2xl:h-[31px] xl:w-[41px] xl:h-auto w-[41px] h-auto' src={flag} />
-                                                <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] rounded-[50%]' src={photoURL} />
-                                                <h3 className='2xl:text-lg xl:text-sm font-semibold'>{displayName}</h3>
+                                                <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[15px] h-[10px]' src={flag} />
+                                                <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[10px] rounded-[50%]' src={d?.photoURL} />
+                                                <h3 className='2xl:text-lg xl:text-sm text-[10px] font-semibold'>{d?.displayName}</h3>
                                             </div>
                                         </td>
                                         <td className='2xl:text-lg xl:text-sm font-semibold'>
