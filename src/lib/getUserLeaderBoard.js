@@ -1,5 +1,5 @@
 const getUserLeaderBoard = async () => {
-    const response = await fetch(`https://afs-backend-oc8s.vercel.app/totalPoints`,
+    const response = await fetch(`https://afs-backend-8zs8.vercel.app/totalPoints`,
         {
             cache:'no-cache'
         }

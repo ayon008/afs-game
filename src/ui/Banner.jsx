@@ -122,7 +122,7 @@ const Banner = () => {
             <div>
                 <h1 className={`${antiHero.className} text-center text-white 2xl:text-7xl xl:text-5xl text-3xl 2xl:mb-48 xl:mb-32 mb-20`}>
                     <span className=''>Votre objectif ?</span> <br />
-                    <span className='text-[#FFE500]'>Enchainer les sessions <br /> et additionner les heures <br /> passEes A l'eau !</span>
+                    <span className='text-[#FFE500]'>Enchainer les sessions <br /> et additionner les heures <br /> passEes A l&#39;eau !</span>
                 </h1>
             </div>
             <Join />

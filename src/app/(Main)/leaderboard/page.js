@@ -1,6 +1,6 @@
 import SelectTab from '@/Components/SelectTab';
 import React from 'react';
-import { antiHero, morgana } from '../layout';
+import { morgana } from '../layout';
 import getUserLeaderBoard from '@/lib/getUserLeaderBoard';
 import Join from '@/Shared/Join';
 

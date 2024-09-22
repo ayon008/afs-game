@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
+/* eslint-disable @next/next/no-img-element */
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import GetAwards from '@/lib/getAwards';
 import React from 'react';
@@ -297,7 +297,7 @@ const AddAwards = ({ sponsors }) => {
                                                             console.log(w._id);
 
                                                             return (
-                                                                <div className='my-2'>
+                                                                <div key={w._id} className='my-2'>
                                                                     <button onClick={() => handleDelete(w._id)} key={w._id} className='btn btn-outline text-red-600'>
                                                                         Delete
                                                                     </button>

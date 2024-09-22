@@ -26,13 +26,13 @@ const Award = () => {
 
 
                         return (
-                            <TabPanel>
+                            <TabPanel key={i}>
                                 <div className='2xl:mt-14 xl:mt-8 mt-6 grid grid-cols-3 items-end 2xl:gap-6 xl:gap-5 gap-3'>
                                     {
                                         awardsCategory?.map((a, i) => {
                                             if (a.position === '1st') {
                                                 return (
-                                                    <div className='2xl:p-10 xl:p-6 p-4 award 2xl:h-[490px] xl:h-[410px] h-[340px] flex flex-col'>
+                                                    <div key={i} className='2xl:p-10 xl:p-6 p-4 award 2xl:h-[490px] xl:h-[410px] h-[340px] flex flex-col'>
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             1<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>ER</sup>
                                                         </h1>
@@ -51,7 +51,7 @@ const Award = () => {
                                             }
                                             if (a.position === '2nd') {
                                                 return (
-                                                    <div className='2xl:p-10 xl:p-6 p-4 award 2xl:h-[430px] xl:h-[340px] h-[280px] flex flex-col'>
+                                                    <div key={i} className='2xl:p-10 xl:p-6 p-4 award 2xl:h-[430px] xl:h-[340px] h-[280px] flex flex-col'>
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             2<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>EME</sup>
                                                         </h1>
@@ -70,7 +70,7 @@ const Award = () => {
                                             }
                                             if (a.position === '3rd') {
                                                 return (
-                                                    <div className='2xl:p-10 xl:p-6 p-4 award 2xl:h-[380px] xl:h-[290px] h-[200px] flex flex-col'>
+                                                    <div key={i} className='2xl:p-10 xl:p-6 p-4 award 2xl:h-[380px] xl:h-[290px] h-[200px] flex flex-col'>
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             3<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>EME</sup>
                                                         </h1>

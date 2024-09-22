@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
     const router = useRouter();
 
     const axiosSecure = axios.create({
-        baseURL: 'https://afs-backend-oc8s.vercel.app/', // Adjust this to your actual base URL
+        baseURL: 'https://afs-backend-8zs8.vercel.app/', // Adjust this to your actual base URL
     });
 
     // Request interceptor
