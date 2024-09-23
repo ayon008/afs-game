@@ -1,5 +1,5 @@
 const getAllSponsors = async () => {
-    const response = await fetch(`https://afs-backend-8zs8.vercel.app/sponsors`,
+    const response = await fetch(`http://localhost:5000/sponsors`,
         {
             cache: 'no-cache'
         }

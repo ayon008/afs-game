@@ -154,7 +154,7 @@ const UploadGPX = () => {
                 {uploadedFiles.length > 0 && (
                     <ul className='list-disc mt-4 w-fit mx-auto'>
                         {uploadedFiles.map(file => (
-                            <li key={file.path}>
+                            <li key={file.path} className='text-white'>
                                 {file.path} - {(file.size / (1024 * 1024)).toFixed(2)} MB
                             </li>
                         ))}

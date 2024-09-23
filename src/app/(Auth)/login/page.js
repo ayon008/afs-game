@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAuth from '@/Hooks/useAuth';
@@ -11,10 +11,10 @@ import { useRouter } from 'next/navigation';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 
 const Page = ({ searchParams }) => {
+
     const { message, redirect } = searchParams;
-    console.log(message, redirect);
     const { register, handleSubmit, formState: { errors }, reset, isSubmitting } = useForm();
-    const { signIn, createWithGoogle, deleteGoogleUser, user, logOut } = useAuth();
+    const { signIn, createWithGoogle } = useAuth();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const axiosSecure = useAxiosSecure();
@@ -35,10 +35,9 @@ const Page = ({ searchParams }) => {
                 timer: 1500,
             });
             if (redirect) {
-                router.push(redirect);
+                return router.push(redirect);
             }
-            return router.push('/');
-            reset();
+            return router.push('/')
         } catch (error) {
             Swal.fire({
                 icon: 'error',
@@ -55,7 +54,10 @@ const Page = ({ searchParams }) => {
             axiosSecure.get(`/user/${user?.uid}`)
                 .then(response => {
                     console.log(response);
-                    return router.push('/');
+                    if (redirect) {
+                        return router.push(redirect);
+                    }
+                    return router.push('/')
                 })
                 .catch(error => {
                     if (error) {

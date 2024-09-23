@@ -10,7 +10,7 @@ const page = async () => {
     const sponsors = await getAllSponsors();
     return (
         <div className=''>
-            <div className='min-h-screen flex flex-col'>
+            <div className='max-h-[750px] min-h-[550px] flex flex-col'>
                 <div className='m-auto'>
                     <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-5xl text-white uppercase`}>Award</h1>
                 </div>
@@ -18,13 +18,13 @@ const page = async () => {
             <div className='bg-white 2xl:p-20 xl:p-20 p-6 rounded-t-[50px]'>
                 <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl`}>découvrez les partenaires de <br />l’événement</h2>
 
-                <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-20 xl:mt-16 mt-10 2xl:gap-10 xl:gap-8 gap-y-6 2xl:justify-center xl:justify-center justify-normal'>
+                <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-20 xl:mt-16 mt-10 2xl:gap-32 xl:gap-24 gap-y-20 2xl:justify-center xl:justify-center justify-normal'>
                     {
                         sponsors.map((sponsor, i) => {
                             return (
                                 <div key={i} className='2xl:space-y-6 xl:space-y-5 space-y-3 '>
                                     <div className='w-fit'>
-                                        <img src={sponsor.sponsorPicture} alt='sponsor' />
+                                        <img src={sponsor.sponsorPicture} className='2xl:w-full 2xl:h-auto xl:w-full xl:h-auto w-[80px] h-auto' alt='sponsor' />
                                     </div>
                                     <p className='text-[#0000007f] 2xl:text-2xl xl:text-lg text-sm font-semibold'>
                                         {sponsor.SponosorDetails}

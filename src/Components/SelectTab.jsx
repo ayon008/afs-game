@@ -1,16 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import useAuth from '@/Hooks/useAuth';
+import FaArrowDown from '@/icons/FaArrowDown';
 import convertToFranceTime from '@/lib/convertTime';
 import sortDataByTime from '@/lib/getDataByCategory';
 import GetFlag from '@/lib/getFlag';
 import LeadBoard from '@/ui/LeadBoard';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 const SelectTab = ({ pointTable }) => {
     const categories = ['Wingfoil', 'Windfoil', 'dockstart', 'surfFoil', 'dw'];
     const [tabIndex, setTabIndex] = useState(0);
+    const [flags, setFlags] = useState({});
     const WatermanCrown = pointTable.filter((d) => {
         if (d.WatermanCrown) {
             return d
@@ -22,6 +24,12 @@ const SelectTab = ({ pointTable }) => {
 
     const [index, setIndex] = useState(0);
     const [open, setOpen] = useState(false);
+    const [itemsToShow, setItemsToShow] = useState(10);
+
+    const handleShowMore = () => {
+        setItemsToShow(prev => prev + 10);
+    };
+
 
     const handleOpen = (i, open) => {
         setIndex(i + 1)
@@ -33,6 +41,21 @@ const SelectTab = ({ pointTable }) => {
 
     const userData = pointTable.find(point => point.uid === uid);
     const userPosition = pointTable.indexOf(userData) + 1;
+
+    useEffect(() => {
+        const fetchFlags = async () => {
+            const newFlags = {};
+            for (const entry of pointTable) {
+                if (!flags[entry.pays]) {
+                    newFlags[entry.pays] = await GetFlag(entry.pays);
+                }
+            }
+            setFlags((prevFlags) => ({ ...prevFlags, ...newFlags }));
+        };
+
+        fetchFlags();
+    }, [pointTable, flags]);
+
 
 
     return (
@@ -60,18 +83,18 @@ const SelectTab = ({ pointTable }) => {
                                                 <th>#</th>
                                                 <th>Participant</th>
                                                 <th></th>
-                                                <th className='text-right'>Total des points</th>
+                                                <th className='text-right'>Temps Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {
-                                                sortDataByTime(pointTable, category)?.map((d, i) => {
-                                                    const flag = GetFlag(d?.pays);
+                                                [...sortDataByTime(pointTable, category)].slice(0, itemsToShow)?.map((d, i) => {
+                                                    const flag = flags[d?.pays]
                                                     const pos = i + 1;
                                                     const time = d.lastUploadedTime;
                                                     return (
                                                         <>
-                                                            <tr onClick={() => handleOpen(i, open)} key={i} className={pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : userPosition === pos ? 'my-position' : ''}>
+                                                            <tr onClick={() => handleOpen(i, open)} key={i} className={`${pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : userPosition === pos ? 'my-position' : ''} cursor-pointer border-b-[1px] border-[#00000033]`}>
                                                                 <th>{pos}</th>
                                                                 <td>
                                                                     <div className='flex items-center gap-2'>
@@ -89,28 +112,28 @@ const SelectTab = ({ pointTable }) => {
                                                             {index === i + 1 && open && (
                                                                 <tr>
                                                                     <td colSpan={'9'} className='p-0'>
-                                                                        <div className='bg-black rounded-[20px] 2xl:p-10 xl:p-6 p-2 grid grid-cols-4'>
+                                                                        <div className='bg-black rounded-[20px] 2xl:p-10 xl:p-6 p-4 grid 2xl:grid-cols-4 xl:grid-cols-4 grid-cols-2 2xl:gap-0 xl:gap-0 gap-6'>
                                                                             <div className='border-r-2 border-[#FFF]'>
-                                                                                <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{d.city} {d.pays}</h2>
+                                                                                <h2 className='2xl:text-3xl xl:text-xl text-xs font-bold text-white'>{d.city} {d.pays}</h2>
                                                                                 <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>CITY, COUNTRY</p>
                                                                             </div>
-                                                                            <div className='border-r-2 border-[#FFF] ml-2'>
-                                                                                <div className='w-fit mx-auto'>
-                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{convertToFranceTime(time).date}</h2>
+                                                                            <div className='2xl:border-r-2 xl:border-r-2 2xl:border-[#FFF] xl:border-[#FFF] 2xl:ml-2 xl:ml-2'>
+                                                                                <div className='2xl:w-fit 2xl:mx-auto xl:w-fit xl:mx-auto'>
+                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-xs font-bold text-white'>{convertToFranceTime(time).date}</h2>
                                                                                     <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>DATE DE DERNIÈRE SESSION</p>
                                                                                 </div>
                                                                             </div>
-                                                                            <div className='border-r-2 border-[#FFF] ml-2'>
-                                                                                <div className='w-fit mx-auto'>
-                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{d[`${category}Session`]}</h2>
+                                                                            <div className='border-r-2 border-[#FFF] 2xl:ml-2 xl:ml-2'>
+                                                                                <div className='2xl:w-fit 2xl:mx-auto xl:w-fit xl:mx-auto'>
+                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-xs font-bold text-white'>{d[`${category}Session`]}</h2>
                                                                                     <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>NOMBRE DE SESSIONS TOTAL</p>
                                                                                 </div>
                                                                             </div>
                                                                             <div>
-                                                                                <div className='w-fit ml-auto'>
-                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-base font-bold text-white'>{(d[`${category}Distance`]).toFixed(2)
+                                                                                <div className='w-fit 2xl:ml-auto xl:ml-auto'>
+                                                                                    <h2 className='2xl:text-3xl xl:text-xl text-xs font-bold text-white'>{(d[`${category}Distance`]).toFixed(2)
                                                                                     } KM</h2>
-                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>DISTANCE TOTALEL</p>
+                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>TOTAL DISTANCE</p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -123,6 +146,14 @@ const SelectTab = ({ pointTable }) => {
                                             }
                                         </tbody>
                                     </table>
+                                    {
+                                        sortDataByTime(pointTable, category).length > 10 && <div className='w-fit mx-auto mt-10'>
+                                            <button onClick={() => handleShowMore()} className="btn bg-white border-none flex items-center gap-0">
+                                                <span>Voir plus</span> <span className="mt-1"><FaArrowDown /></span>
+                                            </button>
+                                        </div>
+                                    }
+
                                 </div>
                             </TabPanel>
                         )

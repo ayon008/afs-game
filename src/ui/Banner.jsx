@@ -14,8 +14,11 @@ import step1 from '../../public/Frame (1).png'
 import step2 from '../../public/Frame 109.png'
 import step3 from '../../public/Frame (2).png'
 import Join from '@/Shared/Join';
+import RegisBtn from '@/Components/RegisBtn';
+import Ici from '@/Components/Ici';
 
 const Banner = () => {
+
     return (
         <div className='z-30'>
             <Image src={bannerImage} className='2xl:w-[527px] 2xl:h-[575px] mx-auto pt-24 xl:w-[450px] xl:h-[490px] w-[250px] h-auto' alt='' />
@@ -23,14 +26,7 @@ const Banner = () => {
                 <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs'>
                     Du 30 septembre au 3 novembre, naviguez sur vos spots préférés équipés de vos GPS, uploadez votre session sur votre compte et cumuler les heures de sessions pour être en tête du classement !
                 </p>
-                <div className='w-fit mx-auto 2xl:mt-10 xl:mt-8 mt-6'>
-                    <Link href={'/register'}>
-                        <button className='btn bg-[#FFE500] border-none'>
-                            <span>JE M&apos;INSCRIS</span>
-                            <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
-                        </button>
-                    </Link>
-                </div>
+                <RegisBtn />
                 <p className='text-center text-white 2xl:text-2xl xl:text-base font-medium 2xl:mt-32 xl:mt-24 text-sm mt-10'>
                     Les AFS GAMES sont un événement exclusif,<span className='text-[#FFE500]'>réservé uniquement aux clients équipés de matériel AFS*</span>. Cet événement unique met en avant plusieurs disciplines de foil, offrant une expérience inédite et immersive aux participants. La particularité des AFS GAMES, c’est qu’ils se déroulent en ligne !
                 </p>
@@ -44,10 +40,12 @@ const Banner = () => {
             <Sponsor />
 
             <div className='w-fit mx-auto 2xl:mt-0 xl:mt-0 mt-10'>
-                <button className='btn bg-[#FFE500] border-none'>
-                    <span>DÉCOUVRIR LES PARTENAIRES</span>
-                    <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
-                </button>
+                <Link href={'/award'}>
+                    <button className='btn bg-[#FFE500] border-none'>
+                        <span>DÉCOUVRIR LES PARTENAIRES</span>
+                        <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
+                    </button>
+                </Link>
             </div>
 
             <div>
@@ -56,46 +54,46 @@ const Banner = () => {
                     et <br /> challenges au choix !
                 </h1>
             </div>
-            <div className='flex justify-center 2xl:mt-32 xl:mt-20 2xl:gap-x-10 xl:gap-x-8 gap-x-4 mt-10 px-6'>
+            <div className='grid grid-cols-5 w-fit mx-auto 2xl:mt-32 xl:mt-20 2xl:gap-x-10 xl:gap-x-8 gap-x-4 mt-10 px-6'>
                 <div>
                     <Image
-                        className='w-auto 2xl:h-[275px] xl:h-[250px]  2xl:mt-20 xl:mt-20 mt-10'
+                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto  2xl:mt-20 xl:mt-20 mt-10'
                         src={image1}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-sm font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Wingfoil</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Wingfoil</p>
                 </div>
                 <div>
                     <Image
-                        className='w-auto 2xl:h-[275px] xl:h-[250px]'
+                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto'
                         src={image2}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-sm font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Surf foil</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Surf foil</p>
                 </div>
                 <div>
                     <Image
-                        className='w-auto 2xl:h-[275px] xl:h-[250px]  2xl:mt-20 xl:mt-20 mt-10'
+                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto  2xl:mt-20 xl:mt-20 mt-10'
                         src={image3}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-sm font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Dockstart</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Dockstart</p>
                 </div>
                 <div>
                     <Image
-                        className='w-auto 2xl:h-[275px] xl:h-[250px]'
+                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto'
                         src={image4}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-sm font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Windfoil</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Windfoil</p>
                 </div>
                 <div>
                     <Image
-                        className='w-auto 2xl:h-[275px] xl:h-[250px]  2xl:mt-20 xl:mt-20 mt-10'
+                        className='w-full 2xl:h-[275px] xl:h-[250px] h-auto 2xl:mt-20 xl:mt-20 mt-10'
                         src={image5}
                         alt=''
                     />
-                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-sm font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Downwind</p>
+                    <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Downwind</p>
                 </div>
             </div>
             <p className='2xl:text-3xl xl:text-lg font-semibold text-white 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10'>Peu importe votre niveau ou votre âge, vous pouvez prendre part à cet événement, pensé et crée pour nos clients AFS. <span className='text-[#FFE500]'>
@@ -108,7 +106,7 @@ const Banner = () => {
             <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-center justify-evenly mt-8 gap-6 2xl:gap-0 xl:gap-0 2xl:mb-48 xl:mb-32 mb-20'>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step1} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Cliquez sur le lien <br /> d&apos;inscription <span className='text-yellow-500 underline'>ici.</span></p>
+                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Cliquez sur le lien <br /> d&apos;inscription <Ici/></p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step2} alt='' />
@@ -120,12 +118,14 @@ const Banner = () => {
                 </div>
             </div>
             <div>
-                <h1 className={`${antiHero.className} text-center text-white 2xl:text-7xl xl:text-5xl text-3xl 2xl:mb-48 xl:mb-32 mb-20`}>
+                <h1 className={`${antiHero.className} text-center text-white 2xl:text-7xl xl:text-5xl text-2xl 2xl:mb-48 xl:mb-32 mb-20`}>
                     <span className=''>Votre objectif ?</span> <br />
                     <span className='text-[#FFE500]'>Enchainer les sessions <br /> et additionner les heures <br /> passEes A l&#39;eau !</span>
                 </h1>
             </div>
-            <Join />
+            <div className=''>
+                <Join home={true} />
+            </div>
         </div>
 
     );

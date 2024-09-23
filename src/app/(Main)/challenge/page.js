@@ -11,8 +11,8 @@ import step4 from '../../../../public/Frame (7).svg'
 
 const page = () => {
     return (
-        <div className=''>
-            <div className='min-h-screen flex flex-col'>
+        <div className='2xl:pt-16 xl:pt-16'>
+            <div className='max-h-[750px] min-h-[550px] flex flex-col'>
                 <div className='m-auto'>
                     <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-white uppercase text-5xl`}>le challenge</h1>
                     <p className={`text-[#FFE500] 2xl:text-6xl xl:text-4xl text-2xl ${morgana.className} text-center 2xl:mt-12 xl:mt-8`}>en octobre, enchaîne les sessions !</p>

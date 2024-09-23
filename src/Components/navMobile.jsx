@@ -19,12 +19,12 @@ const NavMobile = () => {
                 </svg>
             </div>
 
-            <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow text-black">
+            <ul tabIndex={0} className="dropdown-content menu bg-black rounded-box z-[1] w-52 p-2 shadow text-white">
                 {
                     user && <li className='flex gap-2'>
                         <img src={user?.photoURL} alt='profile-picture' className='h-[30px] w-[30px] rounded-[50%] ml-3' />
                         <div className='flex items-center gap-1'>
-                            <p className='uppercase 2xl:text-base xl:text-xs text-sm font-semibold text-black'>{user?.displayName}</p>
+                            <p className='uppercase 2xl:text-base xl:text-xs text-sm font-semibold text-white'>{user?.displayName}</p>
                         </div>
                     </li>
                 }
@@ -33,7 +33,7 @@ const NavMobile = () => {
                         return (
                             <li key={i}>
                                 <Link href={`/${n.toLowerCase()}`} >
-                                    <p className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>{n}</p>
+                                    <p className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>{n}</p>
                                 </Link>
                             </li>
                         )
@@ -43,21 +43,21 @@ const NavMobile = () => {
                     user ?
                         <>
                             <li>
-                                <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>Profile</Link>
+                                <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>Profile</Link>
                             </li>
                             <li>
-                                <p onClick={() => logOut()} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>log out</p>
+                                <p onClick={() => logOut()} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>log out</p>
                             </li>
                         </>
                         :
                         <>
                             <li>
-                                <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>
+                                <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>
                                     Login
                                 </Link>
                             </li>
                             <li>
-                                <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-black'>
+                                <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>
                                     Inscription
                                 </Link>
                             </li>

@@ -15,15 +15,15 @@ import whatsapp from '../../../../public/ri_whatsapp-fill.svg'
 const page = () => {
     return (
         <div className=''>
-            <div className='min-h-screen flex flex-col'>
+            <div className='max-h-[750px] min-h-[550px] flex flex-col'>
                 <div className='m-auto'>
-                    <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-white uppercase`}>Contact</h1>
+                    <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-5xl text-white uppercase`}>Contact</h1>
                 </div>
             </div>
-            <div className='bg-white p-20 rounded-t-[50px]'>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl`}>l’équipe AFS</h2>
-                <div className='2xl:mt-14 xl:mt-10 mt-8 w-fit mx-auto grid 2xl:grid-cols-3 xl:grid-cols-2 grid-cols-1 2xl:gap-8 xl:gap-6 gap-4'>
-                    <div className="card bg-base-100 w-96 shadow-xl">
+            <div className='bg-white 2xl:p-20 xl:p-20 p-10 rounded-t-[50px]'>
+                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-3xl`}>l’équipe AFS</h2>
+                <div className='2xl:mt-14 xl:mt-10 mt-8 w-fit mx-auto grid 2xl:grid-cols-3 xl:grid-cols-3 grid-cols-1 2xl:gap-8 xl:gap-6 gap-4'>
+                    <div className="card bg-base-100 w-full shadow-xl">
                         <figure>
                             <Image
                                 src={image1}
@@ -42,7 +42,7 @@ const page = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card bg-base-100 w-96 shadow-xl">
+                    <div className="card bg-base-100 w-full shadow-xl">
                         <figure>
                             <Image
                                 src={image2}
@@ -62,7 +62,7 @@ const page = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="card bg-base-100 w-96 shadow-xl">
+                    <div className="card bg-base-100 w-full shadow-xl">
                         <figure>
                             <Image
                                 src={image3}
@@ -82,13 +82,24 @@ const page = () => {
                         </div>
                     </div>
                 </div>
-                <h2 className={`${morgana.className} 2xl:my-20 xl:my-16 my-10 uppercase text-center 2xl:text-7xl xl:text-5xl`}>Médias sociaux</h2>
-                <div className='flex items-center justify-center 2xl:gap-10 xl:gap-8 gap-6'>
-                    <Image src={facebook} alt='facebook'/>
-                    <Image src={instagram} alt='instagram'/>
-                    <Image src={youtube} alt='youtube'/>
-                    <Image src={tiktok} alt='tiktok'/>
-                    <Image src={whatsapp} alt='whatsapp'/>
+                <h2 className={`${morgana.className} 2xl:my-20 xl:my-16 my-10 uppercase text-center 2xl:text-7xl xl:text-5xl text-3xl`}>Médias sociaux</h2>
+                <div className='flex items-center justify-center 2xl:flex-nowrap xl:flex-nowrap flex-wrap 2xl:gap-10 xl:gap-8 gap-6'>
+
+                    <a target='_blank' className="cursor-pointer" href={'https://www.facebook.com/afsfoils/'}>
+                        <Image src={facebook} alt='facebook' />
+                    </a>
+                    <a className='cursor-pointer' target='_blank' href='https://www.instagram.com/afsfoils/'>
+                        <Image src={instagram} alt='instagram' />
+                    </a>
+                    <a className='cursor-pointer' target='_blank' href='https://www.youtube.com/channel/UCv-LqvRBRFQWBSJSeIZK_5g'>
+                        <Image src={youtube} alt='youtube' />
+                    </a>
+                    <a className='' target='_blank' href=''>
+                        <Image src={tiktok} alt='tiktok' />
+                    </a>
+                    <a className='cursor-pointer' href='https://www.whatsapp.com/channel/0029VaR5sep0Qeajo7HHEQ32'>
+                        <Image src={whatsapp} alt='whatsapp' />
+                    </a>
                 </div>
             </div>
             <Join />

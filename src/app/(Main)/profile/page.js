@@ -87,17 +87,12 @@ const page = async ({ searchParams }) => {
 
     return (
         <div>
-            <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32 pt-20 px-6'>
+            <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32 pt-24 px-6'>
                 <EditProfile />
-                <div className='2xl:mt-6 xl:mt-2 flex items-center gap-2 mt-4'>
-                    <p className='2xl:text-[22px] xl:text-base text-xs font-semibold text-white'>Le nombre total de points dans le tournoi est de </p>
-                    <span className={`${antiHero.className} 2xl:text-[22px] xl:text-base text-xs font-semibold bg-[#EDBE1A] px-2 2xl:py-[6px] xl:py-1 p-[2px] rounded-3xl text-blue-500`}>{userPointTable?.total.toFixed(2) || 0} Hours</span>
-                </div>
-
                 {/* leaderboard */}
                 <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6 mt-3">
                     <table className="table">
-                        <TableHead tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'WatermanCrown', 'Total des Points']} />
+                        <TableHead profile={true} tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'WatermanCrown', 'Temps total']} />
                         <tbody>
                             {
                                 newData?.map((d, i) => {
@@ -111,7 +106,7 @@ const page = async ({ searchParams }) => {
                     </table>
                 </div>
             </div>
-            <div className='bg-white 2xl:p-20 xl:p-20 p-10 rounded-t-[50px] 2xl:mt-40 xl:mt-28 mt-16'>
+            <div className='bg-white 2xl:p-20 xl:p-20 px-6 py-10 rounded-t-[50px] 2xl:mt-40 xl:mt-28 mt-16'>
                 <div className=''>
 
                     <h2 className='font-bold 2xl:text-5xl xl:text-3xl'>Vous êtes dans les classements</h2>
@@ -146,16 +141,16 @@ const page = async ({ searchParams }) => {
 
 
                 {/* Upload Data */}
-                <div className='2xl:mt-20 xl:mt-14 mt-8 flex w-full gap-2'>
-                    <Link href={'/profile/uploadUserData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
+                <div className='2xl:mt-20 xl:mt-14 mt-8 flex 2xl:flex-row xl:flex-row flex-col w-full gap-2'>
+                    <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px]'>
                         <button className='uppercase w-full h-full flex flex-col-reverse justify-between  bg-black p-5'>
-                            <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
+                            <span className={`${antiHero.className} text-lg text-[#FAE500] 2xl:text-7xl xl:text-4xl`}>My Sessions</span>
                             <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                         </button>
                     </Link>
-                    <Link href={'/profile/uploadUserData'} className='w-1/2 2xl:h-[240px] xl:h-[200px]'>
+                    <Link href={'/profile/uploadUserData'} className='2xl:w-1/2 xl:w-1/2 w-full 2xl:h-[240px] xl:h-[200px]'>
                         <button className='uppercase flex flex-col-reverse justify-between w-full h-full  bg-black p-5'>
-                            <span className={`${antiHero.className} text-lg text-yellow-400 2xl:text-7xl xl:text-4xl`}>Import Data</span>
+                            <span className={`${antiHero.className} text-lg text-[#FAE500] 2xl:text-7xl xl:text-4xl`}>Import Data</span>
                             <FaArrow className={'w-[40px] h-[40px] ml-auto'} color={'#FAE500'} />
                         </button>
                     </Link>

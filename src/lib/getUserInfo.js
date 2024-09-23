@@ -4,7 +4,7 @@ const getUserInfo = async (uid) => {
     const cookieStore = cookies();
     const cookieObj = cookieStore.get('userToken');
     const token = cookieObj?.value;
-    const response = await fetch(`https://afs-backend-8zs8.vercel.app/user/${uid}`, {
+    const response = await fetch(`http://localhost:5000/user/${uid}`, {
         method: 'GET',  // Optional if GET is the default
         cache: 'no-cache',
         headers: {

@@ -10,17 +10,16 @@ const EditProfile = () => {
     const { user } = useAuth();
 
     return (
-        <div className='flex items-center justify-between'>
-            <div className='flex items-center gap-2'>
-                <h1 className='text-white font-bold 2xl:text-7xl xl:text-5xl text-sm'><span className={`${antiHero.className} text-yellow-500`}>
-                    Bonjour</span>, 
-                      {user?.displayName}
+        <div className='flex items-start justify-between w-full'>
+            <div className='flex 2xl:items-center xl:items-center items-start gap-y-2 2xl:gap-2 xl:gap-2 2xl:flex-row xl:flex-row flex-col-reverse 2xl:w-fit xl:w-fit w-1/2'>
+                <h1 className='text-white font-bold 2xl:text-7xl xl:text-5xl text-sm'><span className={`${antiHero.className} text-[#FAE500]`}>
+                    Bonjour</span>, <span className='2xl:ml-3 xl:ml-3 ml-1'>{user?.displayName}</span>
                 </h1>
-                <img src={user?.photoURL} className='xl:w-[50px] xl:h-[50px] 2xl:w-[70px] 2xl:h-[70px] w-[20px] h-[20px] rounded-[10px]' alt='profile-img' />
+                <img src={user?.photoURL} className='xl:w-[50px] xl:h-[50px] 2xl:w-[70px] 2xl:h-[70px] w-[40px] h-[40px] rounded-[10px]' alt='profile-img' />
             </div>
             <div className='flex items-center gap-1'>
                 <Link href={`/profile/${user?.uid}`}>
-                    <p className='text-white'>Modifier l&apos;information</p></Link>
+                    <p className='text-white 2xl:text-lg xl:text-lg text-xs'>Modifier l&apos;information</p></Link>
                 <FaPen color='white' />
             </div>
         </div>
