@@ -278,13 +278,13 @@ const AddAwards = ({ sponsors }) => {
                                                             return (
                                                                 <div key={i} className={`${i == 1 && 'my-3'} flex items-center gap-2`}>
                                                                     <div className={w[`sponsors1`] === "" ? "hidden" : "block"}>
-                                                                        <img src={w[`sponsors1`]} alt="" className='h-[30px] w-[30px]' />
+                                                                        <img src={w[`sponsors1`]} alt="" className='h-auto w-[50px]' />
                                                                     </div>
                                                                     <div className={w[`sponsors2`] === "" ? "hidden" : "block"}>
-                                                                        <img className='h-[30px] w-[30px]' src={w[`sponsors2`]} alt="" />
+                                                                        <img className='h-auto w-[50px]' src={w[`sponsors2`]} alt="" />
                                                                     </div>
                                                                     <div className={w[`sponsors3`] === "" ? "hidden" : 'block'}>
-                                                                        <img className='h-[30px] w-[30px]' src={w[`sponsors3`]} alt="" />
+                                                                        <img className='h-auto w-[50px]' src={w[`sponsors3`]} alt="" />
                                                                     </div>
                                                                 </div>
                                                             )

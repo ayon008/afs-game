@@ -38,7 +38,7 @@ const page = () => {
                             </div>
                             <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Responsable évenementiel</p>
                             <div className='bg-[#EFEFEF] p-3 rounded-[18.5px] w-fit mt-4'>
-                                <p className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-[8px]'>chloe.chaussy@foilandco.com</p>
+                                <a href={'mailto:chloe.chaussy@foilandco.com'} className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-[8px]'>chloe.chaussy@foilandco.com</a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ const page = () => {
                             <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Responsable Marketing &
                                 Communication</p>
                             <div className='bg-[#EFEFEF] p-3 rounded-[18.5px] w-fit mt-4'>
-                                <p className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-[8px]'>antonin.raffarin@foilandco.com</p>
+                                <a href={'mailto:antonin.raffarin@foilandco.com'} className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-[8px]'>antonin.raffarin@foilandco.com</a>
                             </div>
                         </div>
                     </div>
@@ -77,7 +77,7 @@ const page = () => {
                             </div>
                             <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Responsable contenu</p>
                             <div className='bg-[#EFEFEF] p-3 rounded-[18.5px] w-fit mt-4'>
-                                <p className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-[8px]'>benedicte.viseux@foilandco.com</p>
+                                <a href={'mailto:benedicte.viseux@foilandco.com'} className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-[8px]'>benedicte.viseux@foilandco.com</a>
                             </div>
                         </div>
                     </div>

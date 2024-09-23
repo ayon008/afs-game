@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import countries from '@/js/countries';
 import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import uploadPdfToFirebase from '@/js/uploadPdf';
-import axios from 'axios';
+import sendDataToWebhook from '@/js/kalviyoSubscribe';
 
 const UserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -42,9 +42,10 @@ const UserForm = () => {
         }
 
         if (user) {
-            try {
+            try { 
+                await sendDataToWebhook({ email, name, surName })
                 await axiosPublic.post('/user', { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false });
-                await axios.post('https://hook.eu1.make.com/ll1c5gwel7rxs98ebohfx4h1urgu4kwn', { name, pays });
+                
                 Swal.fire({
                     title: 'Account Created',
                     text: 'Your account has been successfully created!',
@@ -94,9 +95,10 @@ const UserForm = () => {
             // Update user profile
             await updatedProfile(name, user?.photoURL);
             try {
+                await sendDataToWebhook({ email, name, surName })
                 const userData = { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
-                await axios.post('https://hook.eu1.make.com/ll1c5gwel7rxs98ebohfx4h1urgu4kwn', { name, pays });
+                
             }
             catch (error) {
                 console.log(error.message);
@@ -130,7 +132,7 @@ const UserForm = () => {
             });
         } catch (error) {
             // Error feedback
-            console.log(error);
+            console.log(error.message);
 
             Swal.fire({
                 title: 'Error',

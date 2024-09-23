@@ -1,23 +1,24 @@
-'use client'
+'use client';
 import InputField from '@/Components/InputField';
 import SponsorPic from '@/Components/SponsorPic';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { FaCheck } from 'react-icons/fa'; // Import FaCheck if not already imported
 
 const AddSponsors = ({ refetch }) => {
     const { control, register, handleSubmit, watch, reset, formState: { errors, isSubmitting } } = useForm();
     const sponsorPictureValue = watch('sponsorPicture');
 
     const fields = [
-        { label: 'SPONSOR WEBSITE', name: 'sponsorName', placeholder: 'Redbull', validation: { required: 'sponsor name is required' } },
-        { label: 'SPONSOR DETAILS', name: 'SponosorDetails', placeholder: 'Details', validation: { required: 'Details is required' } },
+        { label: 'SPONSOR WEBSITE', name: 'sponsorName', placeholder: 'Redbull', validation: { required: 'Sponsor name is required' } },
+        { label: 'SPONSOR DETAILS', name: 'sponsorDetails', placeholder: 'Details', validation: { required: 'Details are required' } },
     ];
 
     const axiosSecure = useAxiosSecure();
 
-    const onSubmit = (data) => {
+    const onSubmit = async (data) => {
         console.log(data);
         const swal = Swal.fire({
             title: 'Submitting...',
@@ -29,23 +30,21 @@ const AddSponsors = ({ refetch }) => {
                 Swal.showLoading();
             }
         });
+
         try {
-            axiosSecure.post(`/sponsors`, data)
-                .then(response => {
-                    console.log(response.data);
-                    swal.close(); // Close the loading alert
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Sponsor Added',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                    });
-                    refetch();
-                })
+            const response = await axiosSecure.post(`/sponsors`, data);
+            console.log(response.data);
+            swal.close(); // Close the loading alert
+            Swal.fire({
+                title: 'Success!',
+                text: 'Sponsor Added',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+            refetch();
             reset();
-        }
-        catch (error) {
-            Swal.close(); // Close the loading alert
+        } catch (error) {
+            swal.close(); // Close the loading alert
             console.log(error.message);
             Swal.fire({
                 title: 'Error!',
@@ -56,9 +55,8 @@ const AddSponsors = ({ refetch }) => {
         }
     }
 
-
     return (
-        <div className=''>
+        <div>
             <h3 className='my-10 text-center font-bold text-2xl'>Add Sponsors</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className='2xl:mt-10 xl:mt-6 bg-[#F0F0F0] rounded-[10px] p-5'>
@@ -86,6 +84,23 @@ const AddSponsors = ({ refetch }) => {
                                 errors={errors}
                             />
                         ))}
+                        <div>
+                            <div className="form-control relative">
+                                <label className="label items-center justify-normal bg-[#F0F0F0] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
+                                    <span className="label-text text-[#666] text-sm font-bold py-0">Show in Home</span>
+                                    {errors['showInHome'] ? <span className="text-red-500">*</span> : <FaCheck size={'0.85rem'} color='#2A7029' />}
+                                </label>
+                                <select
+                                    {...register('showInHome', { required: 'This field is required' })}
+                                    className="select select-bordered w-full bg-[#F0F0F0]"
+                                >
+                                    <option value="">Show in home</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            {errors['showInHome'] && <span className="text-red-500 text-sm mt-1">{errors['showInHome'].message}</span>}
+                        </div>
                     </div>
                     <div className='flex items-center justify-center mt-10 gap-2'>
                         <button onClick={() => router.back()} type='button' className='flex items-center gap-2 text-[#111111BF] font-medium uppercase btn bg-[#D9D9D9]'>

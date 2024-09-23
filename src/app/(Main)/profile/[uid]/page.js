@@ -14,7 +14,7 @@ import { FaCheck } from 'react-icons/fa';
 import uploadPdfToFirebase from '@/js/uploadPdf';
 
 const Page = () => {
-    const { user, updatedProfile, up } = useAuth();
+    const { user, updatedProfile } = useAuth();
     const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
     const axiosSecure = useAxiosSecure();
 
@@ -31,7 +31,6 @@ const Page = () => {
     const router = useRouter();
 
     const onSubmit = async (data) => {
-        // Show loading SweetAlert
         const swal = Swal.fire({
             title: 'Submitting...',
             text: 'Please wait while we process your request.',
@@ -43,14 +42,13 @@ const Page = () => {
             }
         });
 
-        const invoice = data.Afsgear[0];
-        const invoiceURL = await uploadPdfToFirebase(invoice)
+        const invoice = data.Afsgear?.[0];
+        const invoiceURL = invoice ? await uploadPdfToFirebase(invoice) : userInfo?.invoiceURL;
 
         try {
-            const response = await axiosSecure.patch(`/user/${userInfo?._id}`, { ...data, invoiceURL });
-            console.log(response.data);
-            updatedProfile(data.displayName, user?.photoURL);
-            swal.close(); // Close the loading alert
+            const response = await axiosSecure.patch(`/user/${userInfo?._id}`, { ...data, uid: userInfo?.uid, invoiceURL });
+            updatedProfile(data.displayName || user?.displayName, user?.photoURL);
+            swal.close();
             Swal.fire({
                 title: 'Success!',
                 text: 'Your account has been updated.',
@@ -58,8 +56,7 @@ const Page = () => {
                 confirmButtonText: 'OK'
             });
         } catch (error) {
-            swal.close(); // Close the loading alert
-            console.log(error.message);
+            swal.close();
             Swal.fire({
                 title: 'Error!',
                 text: 'There was a problem updating your account.',
@@ -70,9 +67,9 @@ const Page = () => {
     };
 
     const fields = [
-        { label: 'NAME', name: 'displayName', placeholder: 'Emmma', validation: { required: 'Name is required' } },
-        { label: 'SURNAME', name: 'surName', placeholder: 'Schmidt', validation: { required: 'Surname is required' } },
-        { label: 'CITY', name: 'city', placeholder: 'Schmidt', validation: { required: 'city is required' } },
+        { label: 'NAME', name: 'displayName', placeholder: 'Emmma' },
+        { label: 'SURNAME', name: 'surName', placeholder: 'Schmidt' },
+        { label: 'CITY', name: 'city', placeholder: 'Schmidt' },
         { label: 'EMAIL', name: 'email', placeholder: 'emmma_s@email.com', type: 'email', disabled: true }
     ];
 
@@ -120,37 +117,34 @@ const Page = () => {
                                 <span className="label-text text-[#666] text-sm font-bold py-0">Pays</span>
                                 {errors['pays'] ? <span className="text-red-500">*</span> : <FaCheck size={'0.85rem'} color='#2A7029' />}
                             </label>
-
-                            {/* Add register to the select element and validation rules */}
                             <select
-                                {...register('pays', { required: 'Country is required' })}
+                                {...register('pays')}
                                 className="select select-bordered w-full bg-[#F0F0F0]"
                             >
-                                <option value="" disabled selected>Pays</option> {/* value="" ensures the default state */}
-                                {
-                                    countries.map((c, index) => (
-                                        <option key={index} value={c} className='uppercase'>{c}</option>
-                                    ))
-                                }
+                                <option value="" disabled selected>Pays</option>
+                                {countries.map((c, index) => (
+                                    <option key={index} value={c} className='uppercase'>{c}</option>
+                                ))}
                             </select>
                         </div>
-                        {/* Display validation error message if the country is not selected */}
                         {errors['pays'] && <span className="text-red-500 text-sm mt-1">{errors['pays'].message}</span>}
                         <div className="form-control relative">
                             <input
                                 type="file"
                                 {...register('Afsgear', {
-                                    required: 'Invoice file is required', // Adding required validation
                                     validate: {
-                                        isPdf: (files) =>
-                                            files && files[0]?.type === "application/pdf" || 'Only PDF files are allowed', // PDF validation
+                                        isPdf: (files) => {
+                                            // Only validate if a file is selected
+                                            if (!files || files.length === 0) return true;
+                                            // Check if the selected file is a PDF
+                                            return files[0]?.type === "application/pdf" || 'Only PDF files are allowed';
+                                        },
                                     }
                                 })}
                                 className="file-input file-input-bordered w-full border-none"
                             />
-                            {/* Display error messages */}
                             {errors['AfsGear'] && <span className="text-red-500 text-sm mt-1">{errors['AfsGear'].message}</span>}
-                            <p className='text-[#666] mt-2'>(Choose invoice PDF only)</p>
+                            <p className='text-[#666] mt-2'>{userInfo?.invoiceURL ? 'You uploaded pdf already' : '(Choose invoice PDF only)'}</p>
                         </div>
                     </div>
                     <div className='flex items-center justify-center mt-10 gap-2'>

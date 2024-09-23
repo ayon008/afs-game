@@ -24,6 +24,7 @@ const Page = () => {
                             </th>
                             <th>Sponsor Logo</th>
                             <th>Sponsor Website</th>
+                            <th>Show in Home</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -50,6 +51,7 @@ const Page = () => {
                                         <td className='font-bold'>
                                             {sponsor?.sponsorName}
                                         </td>
+                                        <td>{sponsor.showInHome ? 'Yes' : 'No'}</td>
                                         <td>
                                             <DeleteButton id={sponsor?._id} refetch={refetch} />
                                         </td>

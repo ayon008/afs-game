@@ -96,7 +96,7 @@ const AddFaq = () => {
 
                 {/* Submit Button */}
                 <div className='w-fit mx-auto my-10'>
-                    <button type='submit' className='btn btn-outline text-yellow-400'>
+                    <button type='submit' className='btn btn-outline text-[#FFE500]'>
                         Submit
                     </button>
                 </div>

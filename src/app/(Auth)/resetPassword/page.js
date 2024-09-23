@@ -64,7 +64,7 @@ const ResetPassword = ({ searchParams }) => {
                     <div className="form-control">
                         <input
                             type="submit"
-                            className="btn text-yellow-500 border-none"
+                            className="btn text-[#FFE500] border-none"
                             value={isSubmitting ? 'Resetting...' : 'Reset Password'}
                             disabled={isSubmitting}
                         />
