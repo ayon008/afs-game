@@ -1,5 +1,5 @@
 import { morgana } from '@/app/(Main)/layout';
-import logo from '../../public/Group.png'
+import logo from '../../public/logo afs games (3).svg'
 import Image from 'next/image';
 
 const Join = ({ home }) => {
@@ -8,7 +8,7 @@ const Join = ({ home }) => {
             <div className='px-5 rounded-[10px] z-40'>
                 <div className={`2xl:px-[140px] xl:px-20 2xl:py-20 xl:py-[60px]  px-4 py-10`}>
                     <Image src={logo} className='2xl:w-[176px] xl:w-[150px] w-[100px] h-auto' alt='' />
-                    <p className={`${morgana.className} text-white font-medium text-2xl xl:text-5xl 2xl:text-7xl mt-8`}>Rejoignez-nous et prenez part à la première édition des <span className={`text-[#FFE500]`}>AFS GAMES ONLINE 2024</span>, rencontrez des passionnés et participez à des challenges inédits. </p>
+                    <p className={`${morgana.className} text-white font-medium text-2xl xl:text-5xl 2xl:text-7xl mt-8`}><span className="text-[#FFE500]">Rejoignez-nous</span> et prenez part à la première édition des <span className={`text-[#FFE500]`}>AFS GAMES ONLINE 2024</span>, rencontrez des passionnés et participez à des challenges inédits. </p>
 
                     <p className='text-[#ffffff7f] xl:text-lg text-sm font-semibold 2xl:text-2xl my-7'>Ne manquez pas cette occasion unique de vivre l&apos;expérience Foiling Spirit !</p>
 

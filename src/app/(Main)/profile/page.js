@@ -41,7 +41,7 @@ const CategoryTable = ({ title, data, find, categoryName }) => {
                                                 <th>{pos}</th>
                                                 <td className='font-semibold'>{d.displayName}</td>
                                                 <td className='text-right font-semibold'>
-                                                    {(d[`${categoryName}`])?.toFixed(2) + ' ' + 'hours'}
+                                                    {(d[`${categoryName}`])?.toFixed(2) + ' ' + 'heures'}
                                                 </td>
                                             </tr>
                                         );
@@ -89,6 +89,7 @@ const page = async ({ searchParams }) => {
         <div>
             <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32 pt-24 px-6'>
                 <EditProfile />
+                <p className={`${antiHero.className} text-blue-500 bg-[#FFE500] w-fit px-2 rounded-[20px] mt-4`}>{userPointTable ? (userPointTable?.total).toFixed(2) : "0"} heures</p>
                 {/* leaderboard */}
                 <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6 mt-3">
                     <table className="table">

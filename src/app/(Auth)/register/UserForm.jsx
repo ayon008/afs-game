@@ -21,8 +21,8 @@ const UserForm = () => {
     const onSubmit = async (data) => {
         // Show loading indicator
         Swal.fire({
-            title: 'Creating Account...',
-            text: 'Please wait while we create your account',
+            title: "Création d'un compte...",
+            text: 'Veuillez patienter pendant que nous créons votre compte',
             allowOutsideClick: false,
             didOpen: () => {
                 Swal.showLoading();
@@ -42,16 +42,16 @@ const UserForm = () => {
         }
 
         if (user) {
-            try { 
-                await sendDataToWebhook({ email, name, surName })
+            try {
+                await sendDataToWebhook({ email, name, surName, pays })
                 await axiosPublic.post('/user', { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false });
-                
+
                 Swal.fire({
-                    title: 'Account Created',
-                    text: 'Your account has been successfully created!',
+                    title: 'Compte créé',
+                    text: 'Votre compte a été créé avec succès !',
                     icon: 'success',
                     confirmButtonText: 'OK',
-                    confirmButtonColor: '#d33',
+                    confirmButtonColor: '#FFE500',
                 }).then(() => {
                     if (typeof window !== "undefined") {
                         localStorage.removeItem('password');
@@ -71,7 +71,7 @@ const UserForm = () => {
                     text: error.code?.split('auth/')[1],
                     icon: 'error',
                     confirmButtonText: 'OK',
-                    confirmButtonColor: '#d33',
+                    confirmButtonColor: '#FFE500',
                 });
                 return;
             }
@@ -84,7 +84,7 @@ const UserForm = () => {
                 text: `${email, password, categories, invoice}`,
                 icon: 'error',
                 confirmButtonText: 'OK',
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#FFE500',
             });
             return;
         }
@@ -95,10 +95,10 @@ const UserForm = () => {
             // Update user profile
             await updatedProfile(name, user?.photoURL);
             try {
-                await sendDataToWebhook({ email, name, surName })
+                await sendDataToWebhook({ email, name, surName,pays })
                 const userData = { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
-                
+
             }
             catch (error) {
                 console.log(error.message);
@@ -109,7 +109,7 @@ const UserForm = () => {
                     text: error.code?.split('auth/')[1],
                     icon: 'error',
                     confirmButtonText: 'OK',
-                    confirmButtonColor: '#d33',
+                    confirmButtonColor: '#FFE500',
                 });
                 return;
             }
@@ -121,11 +121,11 @@ const UserForm = () => {
             }
             // Success feedback
             Swal.fire({
-                title: 'Account Created',
-                text: 'Your account has been successfully created!',
+                title: 'Compte créé',
+                text: 'Votre compte a été créé avec succès !',
                 icon: 'success',
                 confirmButtonText: 'OK',
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#FFE500',
             }).then(() => {
                 logOut();
                 router.push('/login');
@@ -139,7 +139,7 @@ const UserForm = () => {
                 text: `Error during account creation: ${error.code?.split('auth/')[1]}`,
                 icon: 'error',
                 confirmButtonText: 'Try Again',
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#FFE500',
             });
         }
     };
@@ -247,7 +247,7 @@ const UserForm = () => {
 
             {/* Submit Button */}
             <div className="form-control">
-                <button type="submit" className="btn bg-yellow-500 xl:text-xs p-1 border-none text-white">CREATE ACCOUNT</button>
+                <button type="submit" className="btn bg-[#FFE500]-500 xl:text-xs p-1 border-none text-white">CREATE ACCOUNT</button>
             </div>
 
             {/* Footer */}

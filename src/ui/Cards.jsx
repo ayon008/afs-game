@@ -4,7 +4,7 @@ import PilerCard from "@/Components/PilerCard";
 const stages = [
     {
         stage: "01",
-        hours: "02",
+        heures: "02",
         note: 'Accessible et motivant. assuré de passer 1 palier',
         description: "Environ 1 ou 2 sessions dans la semaine",
         points: 500,
@@ -14,7 +14,7 @@ const stages = [
     },
     {
         stage: "02",
-        hours: "06",
+        heures: "06",
         description: "Environ 1 ou 2 semaines de challeng",
         points: 1000,
         bgColor: "bg-zinc-800",
@@ -23,7 +23,7 @@ const stages = [
     },
     {
         stage: "03",
-        hours: "10",
+        heures: "10",
         description: "Environ 2 ou 3 semaines de challenge",
         points: 1500,
         bgColor: "bg-neutral-800",
@@ -32,7 +32,7 @@ const stages = [
     },
     {
         stage: "04",
-        hours: "15",
+        heures: "15",
         description: "Environ 3 ou 4 semaines de challenge",
         points: 2000,
         bgColor: "bg-zinc-900",
@@ -41,7 +41,7 @@ const stages = [
     },
     {
         stage: "05",
-        hours: "20",
+        heures: "20",
         description: "Environ 4 ou 5 semaines de challenge",
         points: 3000,
         bgColor: "bg-stone-950",

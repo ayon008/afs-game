@@ -6,7 +6,7 @@ const CardsByDistance = () => {
         {
             stage: '01',
             // tier
-            hours: '20',
+            heures: '20',
             // Kilometers
             description: 'environ 1 ou 2 sessions',
             // sessions
@@ -18,7 +18,7 @@ const CardsByDistance = () => {
         {
             stage: '02',
             // tier
-            hours: '50',
+            heures: '50',
             // Kilometers
             description: 'environ 3 à 5 sessions',
             // sessions
@@ -30,7 +30,7 @@ const CardsByDistance = () => {
         {
             stage: '03',
             // tier
-            hours: '150',
+            heures: '150',
             // Kilometers
             description: 'environ 2 semaines de challenge',
             // sessions
@@ -42,7 +42,7 @@ const CardsByDistance = () => {
         {
             stage: '04',
             // tier
-            hours: '250',
+            heures: '250',
             // Kilometers
             description: 'environ 3 semaines de challenge',
             // sessions
@@ -54,7 +54,7 @@ const CardsByDistance = () => {
         {
             stage: '05',
             // tier
-            hours: '300',
+            heures: '300',
             // Kilometers
             description: 'environ 4 à 5 semaines de challenge',
             // sessions

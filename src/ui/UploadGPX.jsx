@@ -66,7 +66,7 @@ const UploadGPX = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Category must be selected.',
+                text: 'La catégorie doit être sélectionnée.',
             });
             return;
         }
@@ -96,7 +96,7 @@ const UploadGPX = () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Time, Distance, and Filename saved successfully!',
+                    text: 'La durée, la distance et le nom du fichier ont été enregistrés avec succès !',
                 });
                 refetch();
                 // Reset all states after successful save
@@ -109,14 +109,14 @@ const UploadGPX = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: 'Failed to save data.',
+                    text: "Échec de l'enregistrement des données.",
                 });
             }
         } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'No GeoJSON data to save.',
+                text: 'Pas de données GeoJSON à sauvegarder.',
             });
         }
     };
@@ -142,7 +142,7 @@ const UploadGPX = () => {
                                     Formats Gpx jusqu&apos;à 10 MB
                                 </p>
                             </div>
-                            <button className='text-center flex w-fit mx-auto bg-yellow-500 btn text-white' disabled={!isDisabled}>
+                            <button className='text-center flex w-fit mx-auto bg-[#FFE500]-500 btn text-white' disabled={!isDisabled}>
                                 <span className='text-white'>Parcourir le fichier</span>
                                 <FaPlus className='mt-1' size={'0.8rem'} />
                             </button>

@@ -15,13 +15,15 @@ const EditProfile = () => {
                 <h1 className='text-white font-bold 2xl:text-7xl xl:text-5xl text-sm'><span className={`${antiHero.className} text-[#FAE500]`}>
                     Bonjour</span>, <span className='2xl:ml-3 xl:ml-3 ml-1'>{user?.displayName}</span>
                 </h1>
-                <img src={user?.photoURL} className='xl:w-[50px] xl:h-[50px] 2xl:w-[70px] 2xl:h-[70px] w-[40px] h-[40px] rounded-[10px]' alt='profile-img' />
+                <img src={user?.photoURL} className='xl:w-[50px] xl:h-[50px] 2xl:w-[70px] 2xl:h-[70px] w-[40px] h-[40px] rounded-[10px] object-cover' alt='profile-img' />
             </div>
-            <div className='flex items-center gap-1'>
-                <Link href={`/profile/${user?.uid}`}>
-                    <p className='text-white 2xl:text-lg xl:text-lg text-xs'>Modifier l&apos;information</p></Link>
-                <FaPen color='white' />
-            </div>
+            <Link href={`/profile/${user?.uid}`}>
+                <div className='flex items-center gap-1'>
+                    <p className='text-white 2xl:text-lg xl:text-lg text-xs'>Modifier l&apos;information</p>
+                    <FaPen color='white' />
+                </div>
+            </Link>
+
         </div>
     );
 };

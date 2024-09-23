@@ -39,7 +39,7 @@ const SignUp = () => {
                 text: 'Passwords do not match',
                 icon: 'error',
                 confirmButtonText: 'Try Again',
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#FFE500',
             });
             return;
         }
@@ -55,7 +55,7 @@ const SignUp = () => {
                 text: 'Sign-up failed: ' + error.message,
                 icon: 'error',
                 confirmButtonText: 'Try Again',
-                confirmButtonColor: '#d33',
+                confirmButtonColor: '#FFE500',
             });
         }
     };
@@ -126,7 +126,7 @@ const SignUp = () => {
                     {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>}
                 </div>
                 <div className="form-control">
-                    <button type="submit" className="btn bg-yellow-500 border-none text-white Alliance">CONTINUE</button>
+                    <button type="submit" className="btn bg-[#FFE500]-500 border-none text-white Alliance">CONTINUE</button>
                 </div>
                 <div className='flex items-center w-fit mx-auto gap-2'>
                     <p className='text-sm text-[#FFFFFF99]'>Already have an account?</p>

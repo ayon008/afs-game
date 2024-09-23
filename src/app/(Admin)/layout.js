@@ -57,7 +57,7 @@ export default function RootLayout({ children }) {
                                 </div>
                                 <div className="drawer-side ">
                                     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                                    <ul className="menu text-black min-h-full 2xl:w-80 xl:w-80 min-w-1/2 p-4 bg-yellow-600">
+                                    <ul className="menu text-black min-h-full 2xl:w-80 xl:w-80 min-w-1/2 p-4 bg-[#FFE500]-600">
                                         {/* Sidebar content here */}
                                         <li><a href='/'>Home</a></li>
                                         <li><Link href={'/adminPanel'}>All Users</Link></li>

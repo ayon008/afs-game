@@ -24,7 +24,7 @@ const Banner = () => {
             <Image src={bannerImage} className='2xl:w-[527px] 2xl:h-[575px] mx-auto pt-24 xl:w-[450px] xl:h-[490px] w-[250px] h-auto' alt='' />
             <div className='2xl:px-32 xl:px-24 mt-10 mb-20 px-6'>
                 <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs'>
-                    Du 30 septembre au 3 novembre, naviguez sur vos spots préférés équipés de vos GPS, uploadez votre session sur votre compte et cumuler les heures de sessions pour être en tête du classement !
+                    Du 30 septembre au 3 novembre, naviguez sur vos spots préférés équipés de vos GPS, uploadez votre session sur votre compte et cumulez les heures de sessions pour être en tête du classement !
                 </p>
                 <RegisBtn />
                 <p className='text-center text-white 2xl:text-2xl xl:text-base font-medium 2xl:mt-32 xl:mt-24 text-sm mt-10'>

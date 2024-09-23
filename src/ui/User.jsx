@@ -1,10 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import useAuth from '@/Hooks/useAuth';
 import { FaChevronDown } from 'react-icons/fa';
-
 
 const User = () => {
     const userInfo = useAuth();
@@ -38,7 +37,7 @@ const User = () => {
                     <Link href={'/login'} className='text-[#FFF] opacity-50'>
                         Login
                     </Link>
-                    <div className='w-[7px] h-[7px] rounded-[50%] bg-yellow-500 mx-4'>
+                    <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500]-500 mx-4'>
 
                     </div>
                     <Link href={'/register'}>

@@ -3,8 +3,7 @@ import "../globals.css";
 import Image from "next/image";
 import bgImage from '@/../public/d7c10ca2c366195e3e8a69e980287131.jpg'
 import AuthProvider from "@/Provider/AuthProvider";
-import logo from '../../../public/Group.svg'
-
+import logo from '../../../public/logo afs games (3).svg'
 
 const allianceNo2 = localfont(
     {

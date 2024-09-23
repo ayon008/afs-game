@@ -13,8 +13,8 @@ const AddFaq = () => {
     const onSubmit = (data) => {
         // Show loading state
         Swal.fire({
-            title: 'Submitting...',
-            text: 'Please wait while we submit your data.',
+            title: 'Soumettre...',
+            text: 'Veuillez patienter pendant que nous soumettons vos données.',
             icon: 'info',
             allowOutsideClick: false,
             didOpen: () => {

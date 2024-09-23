@@ -32,8 +32,8 @@ const Page = () => {
 
     const onSubmit = async (data) => {
         const swal = Swal.fire({
-            title: 'Submitting...',
-            text: 'Please wait while we process your request.',
+            title: 'Soumettre...',
+            text: 'Veuillez patienter pendant que nous traitons votre demande.',
             icon: 'info',
             showConfirmButton: false,
             allowOutsideClick: false,
@@ -51,7 +51,7 @@ const Page = () => {
             swal.close();
             Swal.fire({
                 title: 'Success!',
-                text: 'Your account has been updated.',
+                text: 'Votre compte a été mis à jour.',
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
@@ -59,7 +59,7 @@ const Page = () => {
             swal.close();
             Swal.fire({
                 title: 'Error!',
-                text: 'There was a problem updating your account.',
+                text: 'Il y a eu un problème de mise à jour de votre compte.',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
@@ -144,7 +144,7 @@ const Page = () => {
                                 className="file-input file-input-bordered w-full border-none"
                             />
                             {errors['AfsGear'] && <span className="text-red-500 text-sm mt-1">{errors['AfsGear'].message}</span>}
-                            <p className='text-[#666] mt-2'>{userInfo?.invoiceURL ? 'You uploaded pdf already' : '(Choose invoice PDF only)'}</p>
+                            <p className='text-[#666] mt-2'>{userInfo?.invoiceURL ? 'Vous avez déjà téléchargé le pdf' : '(Choisir la facture au format PDF uniquement)'}</p>
                         </div>
                     </div>
                     <div className='flex items-center justify-center mt-10 gap-2'>

@@ -1,7 +1,7 @@
 import { antiHero } from "@/app/(Main)/layout";
 import React from "react";
 
-const PilerCard = ({ stage, hours, description, points, bgColor, minHeight, maxHeight, note, KM }) => {
+const PilerCard = ({ stage, heures, description, points, bgColor, minHeight, maxHeight, note, KM }) => {
     return (
         <section
             className={`flex flex-col flex-1 shrink justify-between 2xl:p-4 xl:p-4 rounded-xl basis-0 ${bgColor}`}
@@ -14,7 +14,7 @@ const PilerCard = ({ stage, hours, description, points, bgColor, minHeight, maxH
                 <div className="flex flex-col w-full">
                     <div className="flex justify-center w-full whitespace-nowrap">
                         <h2 className="my-auto 2xl:text-6xl font-medium tracking-tighter leading-none text-white uppercase xl:text-4xl">
-                            {hours}
+                            {heures}
                         </h2>
                         <span className="flex-1 shrink 2xl:text-base xl:text-sm font-bold leading-6 basis-0 text-white">
                             {KM || 'heure'}

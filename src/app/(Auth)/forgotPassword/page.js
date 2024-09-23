@@ -13,7 +13,7 @@ const Page = () => {
             changePassword(email)
             Swal.fire({
                 icon: 'success',
-                title: 'Email send successfully, Please check your email',
+                title: "L'email a été envoyé avec succès, veuillez vérifier votre email",
                 showConfirmButton: false,
                 timer: 1500,
             });
@@ -21,7 +21,7 @@ const Page = () => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Reset failed!',
+                title: 'La réinitialisation a échoué !',
                 text: error.message,
             });
         }

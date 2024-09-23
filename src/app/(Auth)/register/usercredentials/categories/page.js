@@ -21,7 +21,7 @@ const Categories = () => {
         if (!data.Wingfoil && !data.Windfoil && !data.Downwind && !data.Dockstart && !data.Surffoil && !data.WatermanCrown) {
             Swal.fire({
                 title: 'Error',
-                text: 'Please select at least one category.',
+                text: 'Veuillez sélectionner au moins une catégorie.',
                 icon: 'error',
                 confirmButtonText: 'OK',
             });
@@ -145,7 +145,7 @@ const Categories = () => {
 
                 {/* Submit Button */}
                 <div className="form-control">
-                    <button type="submit" className="btn bg-yellow-500 border-none text-white">CONTINUE</button>
+                    <button type="submit" className="btn bg-[#FFE500]-500 border-none text-white">CONTINUE</button>
                 </div>
 
                 {/* Footer */}

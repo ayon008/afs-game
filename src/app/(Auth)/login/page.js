@@ -30,7 +30,7 @@ const Page = ({ searchParams }) => {
             await signIn(email, password);
             Swal.fire({
                 icon: 'success',
-                title: 'Signed in successfully!',
+                title: 'Connexion réussie !',
                 showConfirmButton: false,
                 timer: 1500,
             });
@@ -41,7 +41,7 @@ const Page = ({ searchParams }) => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Sign in failed!',
+                title: 'La connexion a échoué !',
                 text: error.code?.split('auth/')[1],
             });
         }
@@ -71,7 +71,7 @@ const Page = ({ searchParams }) => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'Google Sign-In failed!',
+                title: 'La connexion Google a échoué !',
                 text: error.code?.split('auth/')[1],
             });
         }
@@ -146,7 +146,7 @@ const Page = ({ searchParams }) => {
                     <div className="form-control">
                         <input
                             type="submit"
-                            className="btn bg-yellow-500 border-none text-white"
+                            className="btn bg-[#FFE500]-500 border-none text-white"
                             value={isSubmitting ? 'Logging in...' : 'CONTINUE'}
                             disabled={isSubmitting}
                         />

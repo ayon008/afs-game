@@ -5,7 +5,7 @@ const CountdownTimer = () => {
     const targetDate = new Date('2024-09-30T00:00:00').getTime();
 
     // Renderer to customize the countdown display
-    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    const renderer = ({ days, heures, minutes, seconds, completed }) => {
         if (completed) {
             // What to render when the countdown completes
             return <span className='2xl:text-[220px] xl:text-9xl text-5xl font-bold text-white'>The game has started!</span>;
@@ -15,7 +15,7 @@ const CountdownTimer = () => {
                 <div>
                     <div className='text-white'>
                         <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{days} :</span>
-                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{hours} : </span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{heures} : </span>
                         <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{minutes}</span>
                         {/* <span className='2xl:text-[220px] xl:text-[170px] font-bold'>{seconds}</span> */}
                     </div>

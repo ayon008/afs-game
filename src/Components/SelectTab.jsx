@@ -105,7 +105,7 @@ const SelectTab = ({ pointTable }) => {
                                                                 </td>
                                                                 <td></td>
                                                                 <td className='text-right font-semibold flex items-center gap-2 justify-end '><span>
-                                                                    {d[category].toFixed(2) + ' ' + 'hours' || 'n/a'}
+                                                                    {d[category].toFixed(2) + ' ' + 'heures' || 'n/a'}
                                                                 </span>
                                                                 </td>
                                                             </tr>
