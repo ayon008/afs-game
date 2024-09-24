@@ -85,13 +85,13 @@ const GoogleSignUp = () => {
                     {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
                 </div>
                 <div className="form-control">
-                    <input type="submit" className="btn bg-[#FFE500]-500 border-none text-white Alliance" value={'CONTINUE'} />
+                    <input type="submit" className="btn bg-[#FFE500] border-none text-white Alliance" value={'CONTINUE'} />
                 </div>
             </form>
             <div className='flex items-center w-fit mx-auto gap-2'>
                 <p className='text-sm text-[#FFFFFF99] w-fit'>Already have an account?</p>
                 <div className='flex items-center gap-1'>
-                    <Link href="/login" className='text-blue-500 text-sm'>Login</Link>
+                    <Link href="/login" className='text-[#FFE500] text-sm'>Login</Link>
                     <FaArrow className='w-[10px] h-[10px] mt-1' />
                 </div>
             </div>

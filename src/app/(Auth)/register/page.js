@@ -8,8 +8,8 @@ const page = () => {
             <GoogleSignUp />
             <p className={`text-[#FFFFFF99] text-center Alliance 2xl:text-lg lg:text-base mt-2`}>
                 By signing up, I confirm that I have read and accepted Foil&Co.’s
-                <span className='text-blue-500'> Terms & Conditions</span> and
-                <span className='text-blue-500'> Privacy Policy</span>.
+                <span className='text-[#FFE500]'> Terms & Conditions</span> and
+                <span className='text-[#FFE500]'> Privacy Policy</span>.
             </p>
         </div>
     );

@@ -126,20 +126,20 @@ const SignUp = () => {
                     {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>}
                 </div>
                 <div className="form-control">
-                    <button type="submit" className="btn bg-[#FFE500]-500 border-none text-white Alliance">CONTINUE</button>
+                    <button type="submit" className="btn bg-[#FFE500] border-none text-white Alliance">CONTINUE</button>
                 </div>
                 <div className='flex items-center w-fit mx-auto gap-2'>
                     <p className='text-sm text-[#FFFFFF99]'>Already have an account?</p>
                     <div className='flex items-baseline gap-1'>
-                        <p><Link href={"/login"} className='text-blue-500 text-sm'>Log In</Link></p>
+                        <p><Link href={"/login"} className='text-[#FFE500] text-sm'>Log In</Link></p>
                         <FaArrow className={'w-[10px] h-[10px]'} />
                     </div>
                 </div>
             </form>
             <p className={`text-[#FFFFFF99] text-center Alliance 2xl:text-lg lg:text-base mt-2`}>
                 By signing up, I confirm that I have read and accepted Foil&Co.’s
-                <span className='text-blue-500'> Terms & Conditions</span> and
-                <span className='text-blue-500'> Privacy Policy</span>.
+                <span className='text-[#FFE500]'> Terms & Conditions</span> and
+                <span className='text-[#FFE500]'> Privacy Policy</span>.
             </p>
         </div>
 

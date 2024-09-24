@@ -24,7 +24,7 @@ const Navbar = () => {
                                 <Link href={`/${item.toLowerCase()}`} >
                                     <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item}</p>
                                 </Link>
-                                <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500]-500 mx-4'>
+                                <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>
                                 </div>
                             </li>
                         ))

@@ -80,10 +80,11 @@ const SelectTab = ({ pointTable }) => {
                                     <table className="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Participant</th>
+                                                <th className='text-black'>#</th>
+                                                <th className='font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'>Participant</th>
                                                 <th></th>
-                                                <th className='text-right'>Temps Total</th>
+                                                <th></th>
+                                                <th className='text-right font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'>Temps Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -95,14 +96,15 @@ const SelectTab = ({ pointTable }) => {
                                                     return (
                                                         <>
                                                             <tr onClick={() => handleOpen(i, open)} key={i} className={`${pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : userPosition === pos ? 'my-position' : ''} cursor-pointer border-b-[1px] border-[#00000033]`}>
-                                                                <th>{pos}</th>
+                                                                <th>{pos}.</th>
                                                                 <td>
                                                                     <div className='flex items-center gap-2'>
-                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[15px] h-[10px]' src={flag} />
-                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[10px] rounded-[50%]' src={d?.photoURL} />
-                                                                        <h3 className='2xl:text-lg xl:text-sm text-[10px] font-semibold'>{d?.displayName}</h3>
+                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
+                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
+                                                                        <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                                                     </div>
                                                                 </td>
+                                                                <td></td>
                                                                 <td></td>
                                                                 <td className='text-right font-semibold flex items-center gap-2 justify-end '><span>
                                                                     {d[category].toFixed(2) + ' ' + 'heures' || 'n/a'}

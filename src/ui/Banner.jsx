@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Sponsor from '@/Shared/Sponsor';
 import FaArrow from '@/icons/FaArrow';
 import { antiHero, morgana } from '@/app/(Main)/layout';
-import bannerImage from '../../public/Frame.png'
+import bannerImage from '../../public/Group (5).png';
 import image1 from '../../public/Rectangle 1.png'
 import image2 from '../../public/Rectangle 2.png'
 import image3 from '../../public/Rectangle 3.png'

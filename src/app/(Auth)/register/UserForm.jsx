@@ -247,14 +247,14 @@ const UserForm = () => {
 
             {/* Submit Button */}
             <div className="form-control">
-                <button type="submit" className="btn bg-[#FFE500]-500 xl:text-xs p-1 border-none text-white">CREATE ACCOUNT</button>
+                <button type="submit" className="btn bg-[#FFE500] xl:text-xs p-1 border-none text-white">CREATE ACCOUNT</button>
             </div>
 
             {/* Footer */}
             <div className="flex items-center w-fit mx-auto gap-2">
                 <p className="text-sm text-[#FFFFFF99]">Already have an account?</p>
                 <div className="flex items-baseline gap-1">
-                    <p><Link href="/register" className="text-blue-500 text-sm">Log In</Link></p>
+                    <p><Link href="/register" className="text-[#FFE500] text-sm">Log In</Link></p>
                 </div>
             </div>
         </form>

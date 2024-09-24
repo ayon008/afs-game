@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import TableHead from '@/Components/TableHead';
 import FaArrowDown from '@/icons/FaArrowDown';
@@ -42,11 +43,11 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
     return (
         <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6">
             <table className="table">
-                <TableHead tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'DW', 'WatermanCrown', 'Temps Total']} />
+                <TableHead tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'DW', 'Temps Total']} />
                 <tbody>
                     {data?.map((d, i) => {
                         const { displayName, photoURL, Wingfoil, Windfoil, dw, dockstart, surfFoil, total, pays, WatermanCrown } = d;
-                        const position = pointTable.indexOf(d) + 1;
+                        const pos = pointTable.indexOf(d) + 1;
                         const time = d.lastUploadedTime;
                         const flag = flags[pays]; // Use the fetched flag from the state
 
@@ -55,26 +56,21 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                 {/* First Row */}
                                 <tr
                                     onClick={() => handleOpen(i, open)}
-                                    className={`relative cursor-pointer ${userPosition === i + 1 && 'my-position'} border-b-[1px] border-[#00000033]`}
+                                    className={`relative cursor-pointer ${pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : userPosition === pos ? 'my-position' : ''} border-b-[1px] border-[#00000033]`}
                                 >
-                                    <td className="font-semibold 2xl:text-lg xl:text-base z-20">{i + 1 < 10 ? `0${i + 1}` : i + 1}</td>
+                                    <td className="font-semibold 2xl:text-lg xl:text-base z-20">{i + 1 < 10 ? `0${i + 1}` : i + 1}.</td>
                                     <td>
                                         <div className="flex items-center gap-2">
-                                            <img alt="profile-image" className="2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[15px] h-[10px]" src={flag} />
-                                            <img alt="profile-image" className="2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[10px] rounded-[50%]" src={photoURL} />
-                                            <h3 className="2xl:text-lg xl:text-sm text-[10px] font-semibold">{displayName}</h3>
+                                            <img alt="profile-image" className="2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]" src={flag} />
+                                            <img alt="profile-image" className="2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]" src={photoURL} />
+                                            <h3 className="2xl:text-lg xl:text-sm font-semibold">{displayName}</h3>
                                         </div>
                                     </td>
                                     <td className="2xl:text-lg xl:text-sm font-semibold">{Wingfoil ? Wingfoil.toFixed(2) + ' heures' : '0 heures'}</td>
                                     <td className="2xl:text-lg xl:text-sm font-semibold">{Windfoil ? Windfoil.toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}</td>
-                                    <td className="2xl:text-lg xl:text-sm font-semibold">{dockstart ? dockstart.toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}</td>
-                                    <td className="2xl:text-lg xl:text-sm font-semibold">{surfFoil ? surfFoil.toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}</td>
                                     <td className="2xl:text-lg xl:text-sm font-semibold">{dw ? dw.toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}</td>
-                                    <td className="2xl:text-lg xl:text-sm font-semibold">
-                                        {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}
-                                    </td>
                                     <td className="2xl:text-lg xl:text-sm font-semibold text-right">
-                                        <span className="text-right">{total.toFixed(2) + ' heures' || <span className="text-[#11111166]">0 heures</span>}</span>
+                                        {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}
                                     </td>
                                 </tr>
                                 {index === i + 1 && open && (

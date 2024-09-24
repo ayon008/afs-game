@@ -33,7 +33,7 @@ const NavMobile = () => {
                         return (
                             <li key={i}>
                                 <Link href={`/${n.toLowerCase()}`} >
-                                    <p className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>{n}</p>
+                                    <p className='uppercase 2xl:text-base xl:text-xs text-[16px] font-semibold text-white'>{n}</p>
                                 </Link>
                             </li>
                         )
@@ -43,21 +43,21 @@ const NavMobile = () => {
                     user ?
                         <>
                             <li>
-                                <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>Profile</Link>
+                                <Link href={`/profile?uid=${user?.uid}`} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>Profile</Link>
                             </li>
                             <li>
-                                <p onClick={() => logOut()} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>log out</p>
+                                <p onClick={() => logOut()} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>log out</p>
                             </li>
                         </>
                         :
                         <>
                             <li>
-                                <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>
+                                <Link href={'/login'} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>
                                     Login
                                 </Link>
                             </li>
                             <li>
-                                <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-[8px] font-semibold text-white'>
+                                <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>
                                     Inscription
                                 </Link>
                             </li>

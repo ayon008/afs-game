@@ -19,7 +19,7 @@ const Join = ({ home }) => {
                             du lundi <span className='text-[#FFE500]'>30 septembre</span> au dimanche <span className='text-[#FFE500]'>3 novembre</span>
                         </p>
                     </div>
-                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] text-[6px] font-normal mt-5'><span className='text-blue-500'>*</span>Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant dans le cadre de la compétition. Le choix de la planche et de la wing est libre. </p>
+                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] text-[6px] font-normal mt-5'><span className='text-[#FFE500]'>*</span>Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant dans le cadre de la compétition. Le choix de la planche et de la wing est libre. </p>
                 </div>
             </div>
             <div className={`${home ? 'filter blur-[12.5px] absolute block inset-0 z-20' : 'hidden'}`}>

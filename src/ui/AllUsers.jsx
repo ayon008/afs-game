@@ -67,7 +67,7 @@ const AllUsers = () => {
                                     <td>{email}</td>
                                     <td>
                                         {invoiceURL && (
-                                            <a href={invoiceURL} target='_blank' className='text-blue-500 underline'>Invoice URL</a>
+                                            <a href={invoiceURL} target='_blank' className='text-[#FFE500] underline'>Invoice URL</a>
                                         )}
                                     </td>
                                     <td className='font-bold'>

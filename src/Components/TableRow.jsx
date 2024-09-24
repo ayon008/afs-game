@@ -8,7 +8,7 @@ const TableRow = ({ data, position, uid }) => {
         <tr className={`${position === 1 ? 'first' : ''}
         ${position === 2 ? 'second' : ''} 
         ${position === 3 ? 'third' : ''}`}>
-            <th className='text-white'>{position < 10 ? `0${position}` : position}</th>
+            <th className='text-white'>{position < 10 ? `0${position}` : position}.</th>
             <td>
                 <div className='flex items-center gap-2'>
                     <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[15px] rounded-[50%]' src={photoURL} />

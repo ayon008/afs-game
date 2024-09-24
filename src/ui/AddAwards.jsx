@@ -224,7 +224,7 @@ const AddAwards = ({ sponsors }) => {
                 </div>
                 {/* Submit Button */}
                 <div className="w-fit mx-auto">
-                    <button type="submit" className="btn bg-[#FFE500]-500 text-white border-none mb-10 mt-6 btn-primary w-full">Submit</button>
+                    <button type="submit" className="btn bg-[#FFE500] text-white border-none mb-10 mt-6 btn-primary w-full">Submit</button>
                 </div>
             </form>
             <div>

@@ -142,7 +142,7 @@ const UploadGPX = () => {
                                     Formats Gpx jusqu&apos;à 10 MB
                                 </p>
                             </div>
-                            <button className='text-center flex w-fit mx-auto bg-[#FFE500]-500 btn text-white' disabled={!isDisabled}>
+                            <button className='text-center flex w-fit mx-auto bg-[#FFE500] btn text-white' disabled={!isDisabled}>
                                 <span className='text-white'>Parcourir le fichier</span>
                                 <FaPlus className='mt-1' size={'0.8rem'} />
                             </button>

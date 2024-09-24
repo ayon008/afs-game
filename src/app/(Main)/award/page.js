@@ -7,7 +7,8 @@ import getAllSponsors from '@/lib/getAllSponsors';
 import Award from '@/ui/Award';
 
 const page = async () => {
-    const sponsors = await getAllSponsors();
+    const data = await getAllSponsors();
+    const sponsors = data.filter(d => d?.showInHome !== 'true');
     return (
         <div className=''>
             <div className='max-h-[750px] min-h-[550px] flex flex-col'>

@@ -33,9 +33,9 @@ const FaqPage = async () => {
                                                     boxShadow: "0px 5px 16px 0px rgba(8, 15, 52, 0.06)"
                                                 }} key={i} className="collapse rounded-2xl bg-[#FFF] 2xl:px-7 2xl:py-10 xl:px-4 xl:py-7 h-fit">
                                                     <input type="checkbox" id={`${item.title}`} className="hidden" />
-                                                    <label htmlFor={`${item.title}`} className="collapse-title cursor-pointer 2xl:text-[22px] xl:text-lg text-sm font-medium flex items-center justify-between">
+                                                    <label htmlFor={`${item.title}`} className="collapse-title cursor-pointer 2xl:text-[22px] xl:text-lg text-sm font-medium flex items-center justify-between max-w-[92.5%]">
                                                         {item.title}
-                                                        <span className="icon-container">
+                                                        <span className="icon-container ml-2">
                                                             <svg className="icon icon-plus" xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47" fill="none">
                                                                 <rect x="0.802734" y="0.493774" width="45.7867" height="45.7867" rx="8" fill="#FFE500" />
                                                                 <path d="M23.5928 13.3075C22.9576 13.3075 22.4428 13.8223 22.4428 14.4575V32.3168C22.4428 32.9519 22.9576 33.4668 23.5928 33.4668H23.7994C24.4345 33.4668 24.9494 32.9519 24.9494 32.3168V14.4575C24.9494 13.8223 24.4345 13.3075 23.7994 13.3075H23.5928Z" fill="black" stroke="#6F6C90" stroke-width="0.3" stroke-linecap="round" />

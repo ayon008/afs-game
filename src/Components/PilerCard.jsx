@@ -8,7 +8,7 @@ const PilerCard = ({ stage, heures, description, points, bgColor, minHeight, max
             style={{ maxHeight, minHeight: minHeight }} // Apply height and maxHeight as inline styles
         >
             <header className="2xl:text-base xl:text-xs font-semibold tracking-normal leading-none uppercase text-white">
-                palier <span className={`${antiHero.className} text-blue-500`}>{stage}.</span>
+                palier <span className={`${antiHero.className} text-[#FFE500]`}>{stage}.</span>
             </header>
             <div className="flex flex-col mt-auto w-full max-md:mt-10">
                 <div className="flex flex-col w-full">

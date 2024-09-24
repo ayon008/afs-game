@@ -37,7 +37,7 @@ const User = () => {
                     <Link href={'/login'} className='text-[#FFF] opacity-50'>
                         Login
                     </Link>
-                    <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500]-500 mx-4'>
+                    <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>
 
                     </div>
                     <Link href={'/register'}>
