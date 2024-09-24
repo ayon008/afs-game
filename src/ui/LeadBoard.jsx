@@ -56,7 +56,8 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                 {/* First Row */}
                                 <tr
                                     onClick={() => handleOpen(i, open)}
-                                    className={`relative cursor-pointer ${pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : userPosition === pos ? 'my-position' : ''} border-b-[1px] border-[#00000033]`}
+                                    className={`relative cursor-pointer ${pos === 1 && userPosition !== 1 ? 'first' : pos === 2 && userPosition !== 2 ? 'second' : pos === 3
+                                        && userPosition !== 3 ? 'third' : userPosition === pos ? 'my-position' : ''} border-b-[1px] border-[#00000033]`}
                                 >
                                     <td className="font-semibold 2xl:text-lg xl:text-base z-20">{i + 1 < 10 ? `0${i + 1}` : i + 1}.</td>
                                     <td>

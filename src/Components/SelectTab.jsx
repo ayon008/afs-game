@@ -95,11 +95,12 @@ const SelectTab = ({ pointTable }) => {
                                                     const time = d.lastUploadedTime;
                                                     return (
                                                         <>
-                                                            <tr onClick={() => handleOpen(i, open)} key={i} className={`${pos === 1 ? 'first' : pos === 2 ? 'second' : pos === 3 ? 'third' : userPosition === pos ? 'my-position' : ''} cursor-pointer border-b-[1px] border-[#00000033]`}>
+                                                            <tr onClick={() => handleOpen(i, open)} key={i} className={`${pos === 1 && userPosition !== 1 ? 'first' : pos === 2 && userPosition !== 2 ? 'second' : pos === 3
+                                                                && userPosition !== 3 ? 'third' : userPosition === pos ? 'my-position' : ''} cursor-pointer border-b-[1px] border-[#00000033]`}>
                                                                 <th>{pos}.</th>
                                                                 <td>
                                                                     <div className='flex items-center gap-2'>
-                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
+                                                                        <img alt='profile-image' className='2xl:w-[51px] 2xl:h-[31px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
                                                                         <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
                                                                         <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                                                     </div>
