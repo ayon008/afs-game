@@ -107,7 +107,7 @@ const SelectTab = ({ pointTable }) => {
                                                                 </td>
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td className='text-right font-semibold flex items-center gap-2 justify-end '><span>
+                                                                <td className='text-right font-semibold  2xl:text-lg xl:text-sm flex items-center gap-2 justify-end '><span>
                                                                     {d[category].toFixed(2) + ' ' + 'heures' || 'n/a'}
                                                                 </span>
                                                                 </td>
@@ -163,7 +163,7 @@ const SelectTab = ({ pointTable }) => {
                     })
                 }
                 <TabPanel className={'2xl:mt-20 xl:mt-12'}>
-                    <LeadBoard pointTable={pointTable} userPosition={userPosition} />
+                    <LeadBoard pointTable={sortedWatermanCrown} userPosition={userPosition} />
                 </TabPanel>
             </Tabs>
         </div>

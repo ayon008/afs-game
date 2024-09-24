@@ -64,13 +64,6 @@ const GoogleSignUp = () => {
                 <h3 className='font-bold text-[28px] Alliance tracking-wide'>Sign up</h3>
                 <h5 className='text-base Alliance tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
             </div>
-            <div
-                className='flex items-center px-3 rounded-[10px] bg-white py-3 border-none border-2 gap-4 cursor-pointer btn'
-                onClick={handleGoogleLogin}
-            >
-                <Google />
-                <h3 className='font-semibold'>Continue with Google</h3>
-            </div>
             <div>
                 <p className='text-center text-[#999999] Alliance text-xs'>OR</p>
             </div>

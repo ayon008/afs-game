@@ -23,11 +23,11 @@ const Banner = () => {
         <div className='z-30'>
             <Image src={bannerImage} className='2xl:w-[527px] 2xl:h-[575px] mx-auto pt-24 xl:w-[450px] xl:h-[490px] w-[250px] h-auto' alt='' />
             <div className='2xl:px-32 xl:px-24 mt-10 mb-20 px-6'>
-                <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs max-w-[1184px]'>
+                <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs max-w-[1184px] mx-auto'>
                     Du 30 septembre au 3 novembre, naviguez sur vos spots préférés équipés de vos GPS, uploadez votre session sur votre compte et cumulez les heures de sessions pour être en tête du classement !
                 </p>
                 <RegisBtn />
-                <p className='text-center text-white 2xl:text-2xl xl:text-base font-medium 2xl:mt-32 xl:mt-24 text-sm mt-10 max-w-[1184px]'>
+                <p className='text-center text-white 2xl:text-2xl xl:text-base font-medium 2xl:mt-32 xl:mt-24 text-sm mt-10 max-w-[1184px] mx-auto'>
                     Les AFS GAMES sont un événement exclusif,<span className='text-[#FFE500]'>réservé uniquement aux clients équipés de foil AFS*</span>. Cet événement unique met en avant plusieurs disciplines de foil, offrant une expérience inédite et immersive aux participants. La particularité des AFS GAMES, c’est qu’ils se déroulent en ligne !
                 </p>
                 <p className='2xl:text-base xl:text-[10px] text-[#FFE500] text-[8px] text-center mt-6'>*Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant dans le cadre des <br /> challenges. Le choix de la planche et de la wing est libre.</p>

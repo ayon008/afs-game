@@ -134,13 +134,6 @@ const Page = ({ searchParams }) => {
                     </div>
 
                     {/* Google Sign-In */}
-                    <div
-                        className='flex items-center px-3 rounded-[10px] bg-white py-3 border-none border-2 gap-4 cursor-pointer btn'
-                        onClick={handleGoogleLogin}
-                    >
-                        <Google />
-                        <h3 className='font-semibold'>Continue with Google</h3>
-                    </div>
 
                     {/* Submit Button */}
                     <div className="form-control">

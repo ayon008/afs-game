@@ -61,10 +61,10 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                 >
                                     <td className="font-semibold 2xl:text-lg xl:text-base z-20">{i + 1 < 10 ? `0${i + 1}` : i + 1}.</td>
                                     <td>
-                                        <div className="flex items-center gap-2">
-                                            <img alt="profile-image" className="2xl:w-[40px] 2xl:h-[20px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]" src={flag} />
-                                            <img alt="profile-image" className="2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]" src={photoURL} />
-                                            <h3 className="2xl:text-lg xl:text-sm font-semibold">{displayName}</h3>
+                                        <div className='flex items-center gap-2'>
+                                            <img alt='profile-image' className='2xl:w-[51px] 2xl:h-[31px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
+                                            <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
+                                            <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                         </div>
                                     </td>
                                     <td className="2xl:text-lg xl:text-sm font-semibold">{Wingfoil ? Wingfoil.toFixed(2) + ' heures' : '0 heures'}</td>
