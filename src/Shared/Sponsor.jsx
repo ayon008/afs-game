@@ -12,7 +12,7 @@ const Sponsor = async () => {
                 autoFill={true}
                 gradient={false}
             >
-                {data.map((sponsor, index) => (
+                {data?.map((sponsor, index) => (
                     <div key={index} className='flex items-center mx-10'>
                         <img
                             className='2xl:w-[75px] xl:w-[75px] lg:w-[60px] w-[60px] h-auto'

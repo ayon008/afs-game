@@ -8,7 +8,7 @@ import { FaTrash } from 'react-icons/fa';
 
 const page = async () => {
     const items = await getFaq();
-    const categories = [...new Set(items.map(item => item.category))];
+    const categories = [...new Set(items?.map(item => item.category))];
 
     const data = (category) => {
         return items?.filter(item => item.category === category);

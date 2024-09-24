@@ -5,7 +5,7 @@ import getFaq from '@/lib/getFaq';
 
 const FaqPage = async () => {
     const items = await getFaq();
-    const categories = [...new Set(items.map(item => item.category))];
+    const categories = [...new Set(items?.map(item => item.category))];
 
     const data = (category) => {
         return items?.filter(item => item.category === category);

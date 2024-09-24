@@ -29,7 +29,7 @@ const NavMobile = () => {
                     </li>
                 }
                 {
-                    navItems.map((n, i) => {
+                    navItems?.map((n, i) => {
                         return (
                             <li key={i}>
                                 <Link href={`/${n.toLowerCase()}`} >

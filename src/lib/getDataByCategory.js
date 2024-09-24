@@ -1,5 +1,5 @@
 const sortDataByTime = (data, category) => {
-    const filter = data.filter(d => {
+    const filter = data?.filter(d => {
         if (d[`${category}`]) {
             return d;
         }

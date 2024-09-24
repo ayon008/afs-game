@@ -76,7 +76,7 @@ const AddSponsors = ({ refetch }) => {
                     </div>
                     <h4 className='2xl:text-xl xl:text-sm font-bold 2xl:mt-10 xl:mt-6'>Sponsor Information</h4>
                     <div className='grid grid-cols-2 2xl:mt-10 xl:mt-6 2xl:gap-x-5 xl:gap-x-3 2xl:gap-y-6 xl:gap-y-4'>
-                        {fields.map((field, index) => (
+                        {fields?.map((field, index) => (
                             <InputField
                                 key={index}
                                 {...field}

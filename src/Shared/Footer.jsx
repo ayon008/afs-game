@@ -16,7 +16,7 @@ const Footer = () => {
                 <div className='bg-black p-2 rounded'>
                     <Image className='2xl:w-[60px] xl:w-[60px] w-[50px] h-auto' src={logo} alt='Foil and Co. Logo' />
                 </div>
-                {links.map(({ text, underline }, index) => (
+                {links?.map(({ text, underline }, index) => (
                     <p
                         key={index}
                         className={`2xl:text-base xl:text-[10px] text-[6px] font-medium font-alliance ${underline ? 'underline' : ''}`}

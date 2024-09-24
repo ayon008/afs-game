@@ -5,7 +5,7 @@ const TableHead = ({ tableHead, profile }) => {
         <thead>
             <tr>
                 {
-                    tableHead.map((head, index) => (
+                    tableHead?.map((head, index) => (
                         <th className={`${head === 'Temps Total' ? 'text-right' : 'text-left'} ${profile ? 'text-white' : 'text-black'} font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033]`} key={index}>{head}</th>
                     ))
                 }

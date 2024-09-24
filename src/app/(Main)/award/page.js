@@ -8,7 +8,7 @@ import Award from '@/ui/Award';
 
 const page = async () => {
     const data = await getAllSponsors();
-    const sponsors = data.filter(d => d?.showInHome !== 'true');
+    const sponsors = data?.filter(d => d?.showInHome !== 'true');
     return (
         <div className=''>
             <div className='max-h-[750px] min-h-[550px] flex flex-col'>
@@ -21,7 +21,7 @@ const page = async () => {
 
                 <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-20 xl:mt-16 mt-10 2xl:gap-32 xl:gap-24 gap-y-20 2xl:justify-center xl:justify-center justify-normal'>
                     {
-                        sponsors.map((sponsor, i) => {
+                        sponsors?.map((sponsor, i) => {
                             return (
                                 <div key={i} className='2xl:space-y-6 xl:space-y-5 space-y-3 '>
                                     <div className='w-fit'>

@@ -198,7 +198,7 @@ const UserForm = () => {
                 >
                     <option disabled selected className='text-[#666]'>Country</option>
                     {
-                        countries.map((country, index) => (
+                        countries?.map((country, index) => (
                             <option key={index} value={country}>{country}</option>
                         ))
                     }

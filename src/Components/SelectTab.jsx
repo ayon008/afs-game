@@ -13,7 +13,7 @@ const SelectTab = ({ pointTable }) => {
     const categories = ['Wingfoil', 'Windfoil', 'dockstart', 'surfFoil', 'dw'];
     const [tabIndex, setTabIndex] = useState(0);
     const [flags, setFlags] = useState({});
-    const WatermanCrown = pointTable.filter((d) => {
+    const WatermanCrown = pointTable?.filter((d) => {
         if (d.WatermanCrown) {
             return d
         }
@@ -63,7 +63,7 @@ const SelectTab = ({ pointTable }) => {
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList className={'flex items-center justify-center 2xl:gap-10 xl:gap-10 gap-5 cursor-pointer'}>
                     {
-                        categories.map((category, i) => {
+                        categories?.map((category, i) => {
                             return (
                                 <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>{category}</Tab>
                             )
@@ -73,7 +73,7 @@ const SelectTab = ({ pointTable }) => {
                 </TabList>
                 {/* */}
                 {
-                    categories.map((category, i) => {
+                    categories?.map((category, i) => {
                         return (
                             <TabPanel key={i} className={'2xl:mt-20 xl:mt-12 mt-8'}>
                                 <div className="overflow-x-auto">

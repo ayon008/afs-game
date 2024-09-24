@@ -104,7 +104,7 @@ const Page = () => {
                     </div>
                     <h4 className='2xl:text-xl xl:text-sm font-bold 2xl:mt-10 xl:mt-6'>Vos informations</h4>
                     <div className='grid 2xl:grid-cols-3 xl:grid-cols-3 grid-cols-1 2xl:mt-10 xl:mt-6 mt-4 2xl:gap-x-5 xl:gap-x-3 2xl:gap-y-6 xl:gap-y-4 gap-4'>
-                        {fields.map((field, index) => (
+                        {fields?.map((field, index) => (
                             <InputField
                                 key={index}
                                 {...field}
@@ -122,7 +122,7 @@ const Page = () => {
                                 className="select select-bordered w-full bg-[#F0F0F0]"
                             >
                                 <option value="" disabled selected>Pays</option>
-                                {countries.map((c, index) => (
+                                {countries?.map((c, index) => (
                                     <option key={index} value={c} className='uppercase'>{c}</option>
                                 ))}
                             </select>

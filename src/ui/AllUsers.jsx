@@ -29,7 +29,7 @@ const AllUsers = () => {
                     <select onChange={handleValue} className="select select-bordered w-full max-w-xs">
                         <option disabled>Sort by category</option>
                         <option value={''}>All users</option>
-                        {categories.map((c, i) => (
+                        {categories?.map((c, i) => (
                             <option key={i} value={c}>{c}</option>
                         ))}
                     </select>

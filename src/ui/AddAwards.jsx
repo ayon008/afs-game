@@ -244,7 +244,7 @@ const AddAwards = ({ sponsors }) => {
                         <tbody>
                             {/* row 1 */}
                             {
-                                data.map((d, i) => {
+                                data?.map((d, i) => {
                                     return (
                                         <>
                                             <tr className=''>

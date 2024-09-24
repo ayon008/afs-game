@@ -12,7 +12,7 @@ const Award = () => {
             <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList className={'flex items-center justify-center 2xl:gap-10 xl:gap-10 gap-3 cursor-pointer'}>
                     {
-                        categories.map((category, i) => {
+                        categories?.map((category, i) => {
                             return (
                                 <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>{category}</Tab>
                             )
@@ -20,7 +20,7 @@ const Award = () => {
                     }
                 </TabList>
                 {
-                    categories.map((category, i) => {
+                    categories?.map((category, i) => {
                         const { isLoading, isError, error, awardsCategory, refetch } = GetAwardsByCategory(category);
                         console.log(awardsCategory);
 
