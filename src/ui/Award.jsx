@@ -32,16 +32,16 @@ const Award = () => {
                                         awardsCategory?.map((a, i) => {
                                             if (a.position === '1st') {
                                                 return (
-                                                    <div key={i} className='2xl:p-10 xl:p-6 p-6 award 2xl:h-[550px] xl:h-[440px] h-[390px] flex flex-col'>
+                                                    <div key={i} className='2xl:p-10 xl:p-6 p-6 award 2xl:h-[550px] xl:h-[440px] h-auto flex flex-col'>
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             1<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>ER</sup>
                                                         </h1>
                                                         <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2 2xl:mt-14 xl:mt-10 mt-6'>
-                                                            <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize1}</li>
-                                                            {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize2}</li>}
-                                                            {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize3}</li>}
+                                                            <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize1}</li>
+                                                            {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize2}</li>}
+                                                            {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
-                                                        <div className='mt-auto grid grid-cols-3 2xl:gap-10 xl:gap-6 gap-4 w-full overflow-hidden items-end'>
+                                                        <div className='2xl:mt-auto xl:mt-auto mt-10 grid grid-cols-3 2xl:gap-10 xl:gap-6 gap-4 w-full overflow-hidden items-end'>
                                                             <img src={a.sponsors1} className='w-full h-auto' alt='' />
                                                             <img src={a.sponsors2} className='w-full h-auto' alt='' />
                                                             <img src={a.sponsors3} className='w-full h-auto' alt='' />
@@ -51,16 +51,16 @@ const Award = () => {
                                             }
                                             if (a.position === '2nd') {
                                                 return (
-                                                    <div key={i} className='2xl:p-10 xl:p-6 p-6 award 2xl:h-[490px] xl:h-[380px] h-[330px] flex flex-col'>
+                                                    <div key={i} className='2xl:p-10 xl:p-6 p-6 award 2xl:h-[490px] xl:h-[380px] h-auto flex flex-col'>
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             2<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>EME</sup>
                                                         </h1>
                                                         <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2 2xl:mt-14 xl:mt-10 mt-6'>
-                                                            <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize1}</li>
-                                                            {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize2}</li>}
-                                                            {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize3}</li>}
+                                                            <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize1}</li>
+                                                            {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize2}</li>}
+                                                            {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
-                                                        <div className='mt-auto grid grid-cols-3 2xl:gap-10 xl:gap-6 gap-4 w-full overflow-hidden items-end'>
+                                                        <div className='2xl:mt-auto xl:mt-auto mt-10 grid grid-cols-3 2xl:gap-10 xl:gap-6 gap-4 w-full overflow-hidden items-end'>
                                                             <img src={a.sponsors1} className='w-full h-auto' alt='' />
                                                             <img src={a.sponsors2} className='w-full h-auto' alt='' />
                                                             <img src={a.sponsors3} className='w-full h-auto' alt='' />
@@ -70,16 +70,16 @@ const Award = () => {
                                             }
                                             if (a.position === '3rd') {
                                                 return (
-                                                    <div key={i} className='2xl:p-10 xl:p-6 p-6 award 2xl:h-[430px] xl:h-[320px] h-[270px] flex flex-col'>
+                                                    <div key={i} className='2xl:p-10 xl:p-6 p-6 award 2xl:h-[430px] xl:h-[320px] h-auto flex flex-col'>
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             3<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>EME</sup>
                                                         </h1>
                                                         <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2 mt-6'>
-                                                            <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize1}</li>
-                                                            {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize2}</li>}
-                                                            {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-xs'>{a.prize3}</li>}
+                                                            <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize1}</li>
+                                                            {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize2}</li>}
+                                                            {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
-                                                        <div className='mt-auto grid grid-cols-3 2xl:gap-10 xl:gap-6 gap-4 w-full overflow-hidden items-end'>
+                                                        <div className='2xl:mt-auto xl:mt-auto mt-10 grid grid-cols-3 2xl:gap-10 xl:gap-6 gap-4 w-full overflow-hidden items-end'>
                                                             <img src={a.sponsors1} className='w-full h-auto' alt='' />
                                                             <img src={a.sponsors2} className='w-full h-auto' alt='' />
                                                             <img src={a.sponsors3} className='w-full h-auto' alt='' />

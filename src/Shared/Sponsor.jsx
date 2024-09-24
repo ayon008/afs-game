@@ -15,7 +15,7 @@ const Sponsor = async () => {
                 {data?.map((sponsor, index) => (
                     <div key={index} className='flex items-center mx-10'>
                         <img
-                            className='2xl:w-[75px] xl:w-[75px] lg:w-[60px] w-[60px] h-auto'
+                            className=''
                             src={sponsor.sponsorPicture}
                             alt={sponsor.alt}
                         />
