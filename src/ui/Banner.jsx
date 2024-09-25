@@ -20,7 +20,7 @@ import Ici from '@/Components/Ici';
 const Banner = () => {
 
     return (
-        <div className='z-30'>
+        <div className='z-30 pt-10'>
             <Image src={bannerImage} className='2xl:w-[527px] 2xl:h-[575px] mx-auto pt-24 xl:w-[450px] xl:h-[490px] w-[250px] h-auto' alt='' />
             <div className='2xl:px-32 xl:px-24 mt-10 mb-20 px-6'>
                 <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs max-w-[1184px] mx-auto'>

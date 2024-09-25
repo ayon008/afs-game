@@ -83,6 +83,9 @@ input:not(:checked)~.collapse-title .icon-plus {
     background: #FFE500 !important;
 }
 
+.faq {
+    padding-inline-end: 20px !important
+}
 
 @media screen and (max-width:576px) {
     .custom-grid {

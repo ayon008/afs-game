@@ -60,7 +60,7 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                         && userPosition !== 3 ? 'third' : userPosition === pos ? 'my-position' : ''} border-b-[1px] border-[#00000033]`}
                                 >
                                     <td className="font-semibold 2xl:text-lg xl:text-base z-20">{i + 1 < 10 ? `0${i + 1}` : i + 1}.</td>
-                                    <td>
+                                    <td colSpan={2}>
                                         <div className='flex items-center gap-2'>
                                             <img alt='profile-image' className='2xl:w-[51px] 2xl:h-[31px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
                                             <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
@@ -78,24 +78,24 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                     <tr>
                                         <td colSpan={'9'} className="p-0">
                                             <div className="bg-black rounded-[20px] 2xl:p-10 xl:p-6 p-2 grid grid-cols-4">
-                                                <div className="border-r-2 border-[#FFF]">
+                                                <div className="border-r-2 border-[#FFF] px-2">
                                                     <h2 className="2xl:text-3xl xl:text-xl text-base font-bold text-white">{d.city} {d.pays}</h2>
                                                     <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]">CITY, COUNTRY</p>
                                                 </div>
-                                                <div className="border-r-2 border-[#FFF]">
+                                                <div className="border-r-2 border-[#FFF] px-2">
                                                     <div className="w-fit mx-auto">
                                                         <h2 className="2xl:text-3xl xl:text-xl text-base font-bold text-white">{convertToFranceTime(time).date}</h2>
                                                         <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]">DATE DE DERNIÈRE SESSION</p>
                                                     </div>
                                                 </div>
-                                                <div className="border-r-2 border-[#FFF]">
+                                                <div className="border-r-2 border-[#FFF] px-2">
                                                     <div className="w-fit mx-auto">
                                                         <h2 className="2xl:text-3xl xl:text-xl text-base font-bold text-white">{d.session}</h2>
                                                         <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]">NOMBRE DE SESSIONS TOTAL</p>
                                                     </div>
                                                 </div>
                                                 <div>
-                                                    <div className="w-fit ml-auto">
+                                                    <div className="w-fit ml-auto px-2">
                                                         <h2 className="2xl:text-3xl xl:text-xl text-base font-bold text-white">{(d.distance).toFixed(2)} KM</h2>
                                                         <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]">TOTAL DISTANCE</p>
                                                     </div>
