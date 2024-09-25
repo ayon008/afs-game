@@ -17,7 +17,7 @@ const page = async () => {
                 </div>
             </div>
             <div className='bg-white 2xl:p-20 xl:p-20 p-6 rounded-t-[50px]'>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl`}>découvrez les partenaires de <br />l’événement</h2>
+                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl`}>Discover the partners of <br />the event</h2>
 
                 <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-20 xl:mt-16 mt-10 2xl:gap-32 xl:gap-24 gap-y-10 2xl:justify-center xl:justify-center justify-normal'>
                     {
@@ -28,7 +28,7 @@ const page = async () => {
                                         <img src={sponsor.sponsorPicture} className='2xl:w-full 2xl:h-auto xl:w-full xl:h-auto w-[80px] h-auto' alt='sponsor' />
                                     </div>
                                     <p className='text-[#0000007f] 2xl:text-2xl xl:text-lg text-sm font-semibold'>
-                                        {sponsor.SponosorDetails}
+                                        {sponsor.SponsorDetails}
                                     </p>
                                     <div>
                                         <a className='text-[#000] 2xl:text-2xl xl:text-lg text-sm font-semibold underline' href={sponsor.sponsorName}>{sponsor.sponsorName}</a>
@@ -38,12 +38,12 @@ const page = async () => {
                         })
                     }
                 </div>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl 2xl:mt-24 xl:mt-16 mt-10`}>les podiums de l’événement</h2>
-                <p className='text-[#0000007f] 2xl:text-2xl xl:text-lg text-sm font-semibold text-center 2xl:my-12 xl:my-6 my-4'>Temps passé à l’eau en wingfoil, downwind, windfoil, dockstart, surf foil</p>
+                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl 2xl:mt-24 xl:mt-16 mt-10`}>The event podiums</h2>
+                <p className='text-[#0000007f] 2xl:text-2xl xl:text-lg text-sm font-semibold text-center 2xl:my-12 xl:my-6 my-4'>Time spent on water in wingfoil, downwind, windfoil, dockstart, surf foil</p>
                 <Award />
             </div>
             <Join />
-        </div >
+        </div>
     );
 };
 

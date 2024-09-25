@@ -32,8 +32,8 @@ const Page = () => {
 
     const onSubmit = async (data) => {
         const swal = Swal.fire({
-            title: 'Soumettre...',
-            text: 'Veuillez patienter pendant que nous traitons votre demande.',
+            title: 'Submitting...',
+            text: 'Please wait while we process your request.',
             icon: 'info',
             showConfirmButton: false,
             allowOutsideClick: false,
@@ -51,7 +51,7 @@ const Page = () => {
             swal.close();
             Swal.fire({
                 title: 'Success!',
-                text: 'Votre compte a été mis à jour.',
+                text: 'Your account has been updated.',
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
@@ -59,7 +59,7 @@ const Page = () => {
             swal.close();
             Swal.fire({
                 title: 'Error!',
-                text: 'Il y a eu un problème de mise à jour de votre compte.',
+                text: 'There was a problem updating your account.',
                 icon: 'error',
                 confirmButtonText: 'OK'
             });
@@ -86,7 +86,7 @@ const Page = () => {
     return (
         <div className='2xl:px-36 2xl:py-32 xl:px-20 xl:py-32 p-10 '>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className={`${antiHero.className}font-bold 2xl:text-7xl xl:text-5xl text-center text-white`}>Modifier le compte</h1>
+                <h1 className={`${antiHero.className}font-bold 2xl:text-7xl xl:text-5xl text-center text-white`}>Edit Account</h1>
                 <div className='2xl:mt-10 xl:mt-6 bg-[#F0F0F0] rounded-[10px] p-5'>
                     <div className='w-fit mx-auto'>
                         <Controller
@@ -102,7 +102,7 @@ const Page = () => {
                             )}
                         />
                     </div>
-                    <h4 className='2xl:text-xl xl:text-sm font-bold 2xl:mt-10 xl:mt-6'>Vos informations</h4>
+                    <h4 className='2xl:text-xl xl:text-sm font-bold 2xl:mt-10 xl:mt-6'>Your Information</h4>
                     <div className='grid 2xl:grid-cols-3 xl:grid-cols-3 grid-cols-1 2xl:mt-10 xl:mt-6 mt-4 2xl:gap-x-5 xl:gap-x-3 2xl:gap-y-6 xl:gap-y-4 gap-4'>
                         {fields?.map((field, index) => (
                             <InputField
@@ -114,14 +114,14 @@ const Page = () => {
                         ))}
                         <div className="form-control relative">
                             <label className="label items-center justify-normal bg-[#F0F0F0] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
-                                <span className="label-text text-[#666] text-sm font-bold py-0">Pays</span>
+                                <span className="label-text text-[#666] text-sm font-bold py-0">Country</span>
                                 {errors['pays'] ? <span className="text-red-500">*</span> : <FaCheck size={'0.85rem'} color='#2A7029' />}
                             </label>
                             <select
                                 {...register('pays')}
                                 className="select select-bordered w-full bg-[#F0F0F0]"
                             >
-                                <option value="" disabled selected>Pays</option>
+                                <option value="" disabled selected>Country</option>
                                 {countries?.map((c, index) => (
                                     <option key={index} value={c} className='uppercase'>{c}</option>
                                 ))}
@@ -144,19 +144,19 @@ const Page = () => {
                                 className="file-input file-input-bordered w-full border-none"
                             />
                             {errors['AfsGear'] && <span className="text-red-500 text-sm mt-1">{errors['AfsGear'].message}</span>}
-                            <p className='text-[#666] mt-2'>{userInfo?.invoiceURL ? 'Vous avez déjà téléchargé le pdf' : '(Choisir la facture au format PDF uniquement)'}</p>
+                            <p className='text-[#666] mt-2'>{userInfo?.invoiceURL ? 'You have already uploaded the pdf' : '(Choose the invoice in PDF format only)'}</p>
                         </div>
                     </div>
                     <div className='flex items-center justify-center mt-10 gap-2'>
                         <button onClick={() => router.back()} type='button' className='flex items-center gap-2 text-[#111111BF] font-medium uppercase btn bg-[#D9D9D9]'>
-                            <span>Annuler</span>
+                            <span>Cancel</span>
                         </button>
                         <button
                             type='submit'
                             className={`btn uppercase text-white bg-blue-500 ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-[#11111166]'}`}
                             disabled={isSubmitting}
                         >
-                            {isSubmitting ? 'Submitting...' : 'Sauver'}
+                            {isSubmitting ? 'Submitting...' : 'Save'}
                         </button>
                     </div>
                 </div>

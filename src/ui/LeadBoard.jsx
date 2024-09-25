@@ -43,7 +43,7 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
     return (
         <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6">
             <table className="table">
-                <TableHead tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'DW', 'Temps Total']} />
+                <TableHead tableHead={['#', 'Participant', 'Wingfoil', 'Windfoil', 'DW', 'Total Time']} />
                 <tbody>
                     {data?.map((d, i) => {
                         const { displayName, photoURL, Wingfoil, Windfoil, dw, dockstart, surfFoil, total, pays, WatermanCrown } = d;
@@ -67,11 +67,11 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                             <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                         </div>
                                     </td>
-                                    <td className="2xl:text-lg xl:text-sm font-semibold">{Wingfoil ? Wingfoil.toFixed(2) + ' heures' : '0 heures'}</td>
-                                    <td className="2xl:text-lg xl:text-sm font-semibold">{Windfoil ? Windfoil.toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}</td>
-                                    <td className="2xl:text-lg xl:text-sm font-semibold">{dw ? dw.toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}</td>
+                                    <td className="2xl:text-lg xl:text-sm font-semibold">{Wingfoil ? Wingfoil.toFixed(2) + ' hours' : '0 hours'}</td>
+                                    <td className="2xl:text-lg xl:text-sm font-semibold">{Windfoil ? Windfoil.toFixed(2) + ' hours' : <span className="text-[#11111166]">0 hours</span>}</td>
+                                    <td className="2xl:text-lg xl:text-sm font-semibold">{dw ? dw.toFixed(2) + ' hours' : <span className="text-[#11111166]">0 hours</span>}</td>
                                     <td className="2xl:text-lg xl:text-sm font-semibold text-right">
-                                        {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' heures' : <span className="text-[#11111166]">0 heures</span>}
+                                        {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' hours' : <span className="text-[#11111166]">0 hours</span>}
                                     </td>
                                 </tr>
                                 {index === i + 1 && open && (

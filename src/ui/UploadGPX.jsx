@@ -66,7 +66,7 @@ const UploadGPX = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'La catégorie doit être sélectionnée.',
+                text: 'A category must be selected.',
             });
             return;
         }
@@ -96,7 +96,7 @@ const UploadGPX = () => {
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'La durée, la distance et le nom du fichier ont été enregistrés avec succès !',
+                    text: 'Duration, distance, and filename have been successfully saved!',
                 });
                 refetch();
                 // Reset all states after successful save
@@ -109,14 +109,14 @@ const UploadGPX = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: "Échec de l'enregistrement des données.",
+                    text: "Failed to save the data.",
                 });
             }
         } else {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: 'Pas de données GeoJSON à sauvegarder.',
+                text: 'No GeoJSON data to save.',
             });
         }
     };
@@ -130,20 +130,20 @@ const UploadGPX = () => {
         <>
             <div className='bg-white w-fit mx-auto 2xl:mt-10 xl:mt-6 mt-3 flex items-center justify-center'>
                 <div>
-                    <div className={`w-fit mx-auto ${getDropzoneStyle()} border-2 border-dashed p-6 rounded`}>
+                    <div className={`2xl:w-[500px] xl:w-[500px] w-fit mx-auto ${getDropzoneStyle()} border-2 border-dashed p-6 rounded`}>
                         <div {...getRootProps()} className='flex flex-col items-center justify-center w-full'>
                             <input {...getInputProps()} />
                             <Cloud />
                             <div className='my-6'>
                                 <h3 className='2xl:text-xl xl:text-base font-semibold text-center'>
-                                    {isDragActive ? 'Relâchez le fichier ici...' : 'Choisissez un fichier ou glissez-déposez-le ici'}
+                                    {isDragActive ? 'Drop the file here...' : 'Choose a file or drag it here'}
                                 </h3>
                                 <p className='2xl:text-lg xl:text-xs text-center font-semibold text-gray-400'>
-                                    Formats Gpx jusqu&apos;à 10 MB
+                                    GPX formats up to 10 MB
                                 </p>
                             </div>
                             <button className='text-center flex w-fit mx-auto bg-[#FFE500] btn text-white' disabled={!isDisabled}>
-                                <span className='text-white'>Parcourir le fichier</span>
+                                <span className='text-white'>Browse the file</span>
                                 <FaPlus className='mt-1' size={'0.8rem'} />
                             </button>
                         </div>
@@ -161,7 +161,7 @@ const UploadGPX = () => {
                     </ul>
                 )}
             </div>
-            <p className={`${!isDisabled ? 'block' : 'hidden'} text-center text-red-600 font-semibold mt-6`}>Your account have not approved yet</p>
+            <p className={`${!isDisabled ? 'block' : 'hidden'} text-center text-red-600 font-semibold mt-6`}>Your account has not been approved yet</p>
             <div className='my-10'>
                 {
                     files?.map((f, i) => {
@@ -175,16 +175,14 @@ const UploadGPX = () => {
                                     </div>
                                     <div className='flex items-center gap-6'>
                                         <p className={`${f?.status === false ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span className='text-white'>Chargement</span>
+                                            <span className='text-white'>Loading</span>
                                             <span className="loading loading-spinner text-accent"></span>
                                         </p>
                                         <p className={`${f?.status === true ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span className='text-white'>Complite</span>
-
+                                            <span className='text-white'>Complete</span>
                                             <FaCheck color='green' />                                        </p>
                                         <p className={`${f?.status === 'rejected' ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span className='text-white'>Erreur de chargement</span>
-
+                                            <span className='text-white'>Loading error</span>
                                             <FaTimes color='red' />                                       </p>
                                         <button onClick={() => handleDelete(f?._id)} className={`${f?.status && 'hidden'} btn`}>
                                             <FaTrashAlt />
@@ -218,17 +216,18 @@ const UploadGPX = () => {
 
                         <option className={`${userInfo?.Surffoil ? 'block' : 'hidden'} uppercase text-white`} value={'surfFoil'}>surf foil</option>
 
-                        <option className={`${userInfo?.Downwind || userInfo?.WatermanCrown ? 'block' : 'hidden'} uppercase text-white`} value={'dw'}>dw</option>
+                        <option className={`${userInfo?.Downwind ? 'block' : 'hidden'} uppercase text-white`} value={'downwind'}>downwind</option>
                     </select>
                 </div>
                 <div className='flex gap-2'>
                     <button className='uppercase text-gray-600 bg-gray-300 btn'>
-                        annuler
+                        cancel
                     </button>
                     <button onClick={handleSave} className='uppercase text-white bg-blue-500 btn'>
-                        sauver
+                        save
                     </button>
                 </div>
+
             </div>
         </>
     );

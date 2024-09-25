@@ -95,7 +95,7 @@ const UserForm = () => {
             // Update user profile
             await updatedProfile(name, user?.photoURL);
             try {
-                await sendDataToWebhook({ email, name, surName,pays })
+                await sendDataToWebhook({ email, name, surName,pays });
                 const userData = { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
 

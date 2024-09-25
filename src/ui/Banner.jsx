@@ -5,14 +5,14 @@ import Sponsor from '@/Shared/Sponsor';
 import FaArrow from '@/icons/FaArrow';
 import { antiHero, morgana } from '@/app/(Main)/layout';
 import bannerImage from '../../public/Group (5).png';
-import image1 from '../../public/Rectangle 1.png'
-import image2 from '../../public/Rectangle 2.png'
-import image3 from '../../public/Rectangle 3.png'
-import image4 from '../../public/Rectangle 4.png'
-import image5 from '../../public/Rectangle 5.png'
-import step1 from '../../public/Frame (1).png'
-import step2 from '../../public/Frame 109.png'
-import step3 from '../../public/Frame (2).png'
+import image1 from '../../public/Rectangle 1.png';
+import image2 from '../../public/Rectangle 2.png';
+import image3 from '../../public/Rectangle 3.png';
+import image4 from '../../public/Rectangle 4.png';
+import image5 from '../../public/Rectangle 5.png';
+import step1 from '../../public/Frame (1).png';
+import step2 from '../../public/Frame 109.png';
+import step3 from '../../public/Frame (2).png';
 import Join from '@/Shared/Join';
 import RegisBtn from '@/Components/RegisBtn';
 import Ici from '@/Components/Ici';
@@ -24,16 +24,16 @@ const Banner = () => {
             <Image src={bannerImage} className='2xl:w-[527px] 2xl:h-[575px] mx-auto pt-24 xl:w-[450px] xl:h-[490px] w-[250px] h-auto' alt='' />
             <div className='2xl:px-32 xl:px-24 mt-10 mb-20 px-6'>
                 <p className='text-white 2xl:text-3xl xl:text-xl font-semibold text-center text-xs max-w-[1184px] mx-auto'>
-                    Du 30 septembre au 3 novembre, naviguez sur vos spots préférés équipés de vos GPS, uploadez votre session sur votre compte et cumulez les heures de sessions pour être en tête du classement !
+                    From September 30 to November 3, navigate to your favorite spots equipped with your GPS, upload your session to your account, and accumulate session hours to top the leaderboard!
                 </p>
                 <RegisBtn />
                 <p className='text-center text-white 2xl:text-2xl xl:text-base font-medium 2xl:mt-32 xl:mt-24 text-sm mt-10 max-w-[1184px] mx-auto'>
-                    Les AFS GAMES sont un événement exclusif,<span className='text-[#FFE500]'>réservé uniquement aux clients équipés de foil AFS*</span>. Cet événement unique met en avant plusieurs disciplines de foil, offrant une expérience inédite et immersive aux participants. La particularité des AFS GAMES, c’est qu’ils se déroulent en ligne !
+                    The AFS GAMES is an exclusive event, <span className='text-[#FFE500]'>reserved only for customers equipped with AFS foils*</span>. This unique event highlights several foil disciplines, offering an unprecedented and immersive experience for participants. The particularity of the AFS GAMES is that they take place online!
                 </p>
-                <p className='2xl:text-base xl:text-[10px] text-[#FFE500] text-[8px] text-center mt-6'>*Le client AFS est désigné par un pratiquant possédant au moins un foil AFS et l’utilisant dans le cadre des <br /> challenges. Le choix de la planche et de la wing est libre.</p>
+                <p className='2xl:text-base xl:text-[10px] text-[#FFE500] text-[8px] text-center mt-6'>*The AFS customer is designated by a practitioner owning at least one AFS foil and using it as part of the challenges. The choice of board and wing is free.</p>
                 <div>
                     <h1 className={`${morgana.className} text-center text-white 2xl:mt-28 xl:mt-16 mt-10 2xl:text-6xl xl:text-4xl uppercase text-2xl`}>
-                        De nombreux lots à gagner <br /> avec <span className='text-[#FFE500]'>nos partenaires</span> !
+                        Many prizes to win <br /> with <span className='text-[#FFE500]'>our partners</span>!
                     </h1>
                 </div>
             </div>
@@ -42,7 +42,7 @@ const Banner = () => {
             <div className='w-fit mx-auto 2xl:mt-0 xl:mt-0 mt-10'>
                 <Link href={'/award'}>
                     <button className='btn bg-[#FFE500] border-none'>
-                        <span>DÉCOUVRIR LES PARTENAIRES</span>
+                        <span>DISCOVER THE PARTNERS</span>
                         <FaArrow className={'2xl:w-[14px] 2xl:h-[14px] w-[8px] h-[8px] xl:w-[10px] xl:h-[10px] 2xl:mt-1'} color={'black'} />
                     </button>
                 </Link>
@@ -50,8 +50,8 @@ const Banner = () => {
 
             <div>
                 <h1 className={`${morgana.className} text-center text-white 2xl:mt-28 xl:mt-16 2xl:text-6xl xl:text-4xl uppercase mt-10 text-2xl`}>
-                    <span className='text-[#FFE500]'>plusieurs disciplines</span>
-                    et <br /> challenges au choix !
+                    <span className='text-[#FFE500]'>several disciplines</span>
+                    and <br /> challenges to choose from!
                 </h1>
             </div>
             <div className='grid grid-cols-5 w-fit mx-auto 2xl:mt-32 xl:mt-20 2xl:gap-x-10 xl:gap-x-8 gap-x-4 mt-10 px-6'>
@@ -96,39 +96,33 @@ const Banner = () => {
                     <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Downwind</p>
                 </div>
             </div>
-            <p className='2xl:text-3xl xl:text-lg font-semibold text-white 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10'>Peu importe votre niveau ou votre âge, vous pouvez prendre part à cet événement, pensé et crée pour nos clients AFS. <span className='text-[#FFE500]'>
-                Équipez vous et enchaînez les sessions !</span></p>
+            <p className='2xl:text-3xl xl:text-lg font-semibold text-white 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10'>No matter your level or age, you can take part in this event, designed and created for our AFS customers. <span className='text-[#FFE500]'>
+                Equip yourself and rack up the sessions!</span></p>
 
             <h2 className={`${morgana.className} text-center text-white 2xl:text-6xl xl:text-4xl 2xl:mt-40 xl:mt-28 mt-16 text-2xl
-            `}>l’inscription est <br /> <span className='text-[#FFE500]'>simple et rapide !</span>
+            `}>The registration is <br /> <span className='text-[#FFE500]'>simple and quick!</span>
             </h2>
 
             <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-center justify-evenly mt-8 gap-6 2xl:gap-0 xl:gap-0 2xl:mb-48 xl:mb-32 mb-20'>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step1} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Cliquez sur le lien <br /> d&apos;inscription <Ici/></p>
+                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Click on the <br /> registration link <Ici /></p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step2} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Remplissez le formulaire avec vos informations.</p>
+                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Fill out the form with your information.</p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step3} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Confirmez votre <br /> inscription et recevez <br /> votre confirmation par email.</p>
+                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Confirm your <br /> registration and receive <br /> your confirmation by email.</p>
                 </div>
             </div>
             <div>
-                <h1 className={`${antiHero.className} text-center text-white 2xl:text-7xl xl:text-5xl text-2xl 2xl:mb-48 xl:mb-32 mb-20`}>
-                    <span className=''>Votre objectif ?</span> <br />
-                    <span className='text-[#FFE500]'>Enchainer les sessions <br /> et additionner les heures <br /> passEes A l&#39;eau !</span>
-                </h1>
-            </div>
-            <div className=''>
-                <Join home={true} />
+                <h1 className={`${antiHero.className} text-center text-white 2xl:text-7xl xl:text-5xl text-2xl`}>From <span className='text-[#FFE500]'>September 30</span> to <span className='text-[#FFE500]'>November 3</span></h1>
+                <p className='text-center text-white text-base mt-2'>At the end of the event, you will receive your results via email!</p>
             </div>
         </div>
-
-    );
-};
+    )
+}
 
 export default Banner;

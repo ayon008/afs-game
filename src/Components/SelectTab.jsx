@@ -84,7 +84,7 @@ const SelectTab = ({ pointTable }) => {
                                                 <th className='font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'>Participant</th>
                                                 <th></th>
                                                 <th></th>
-                                                <th className='text-right font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'>Temps Total</th>
+                                                <th className='text-right font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'>Total time</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -108,7 +108,7 @@ const SelectTab = ({ pointTable }) => {
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td className='text-right font-semibold  2xl:text-lg xl:text-sm flex items-center gap-2 justify-end '><span>
-                                                                    {d[category].toFixed(2) + ' ' + 'heures' || 'n/a'}
+                                                                    {d[category].toFixed(2) + ' ' + 'hours' || 'n/a'}
                                                                 </span>
                                                                 </td>
                                                             </tr>
@@ -123,13 +123,13 @@ const SelectTab = ({ pointTable }) => {
                                                                             <div className='2xl:border-r-2 xl:border-r-2 2xl:border-[#FFF] xl:border-[#FFF] 2xl:ml-2 xl:ml-2'>
                                                                                 <div className='2xl:w-fit 2xl:mx-auto xl:w-fit xl:mx-auto'>
                                                                                     <h2 className='2xl:text-3xl xl:text-xl text-xs font-bold text-white'>{convertToFranceTime(time).date}</h2>
-                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>DATE DE DERNIÈRE SESSION</p>
+                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>DATE OF LAST SESSION</p>
                                                                                 </div>
                                                                             </div>
                                                                             <div className='border-r-2 border-[#FFF] 2xl:ml-2 xl:ml-2'>
                                                                                 <div className='2xl:w-fit 2xl:mx-auto xl:w-fit xl:mx-auto'>
                                                                                     <h2 className='2xl:text-3xl xl:text-xl text-xs font-bold text-white'>{d[`${category}Session`]}</h2>
-                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>NOMBRE DE SESSIONS TOTAL</p>
+                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>TOTAL NUMBER OF SESSIONS</p>
                                                                                 </div>
                                                                             </div>
                                                                             <div>
@@ -152,7 +152,7 @@ const SelectTab = ({ pointTable }) => {
                                     {
                                         sortDataByTime(pointTable, category).length > 10 && <div className='w-fit mx-auto mt-10'>
                                             <button onClick={() => handleShowMore()} className="btn bg-white border-none flex items-center gap-0">
-                                                <span>Voir plus</span> <span className="mt-1"><FaArrowDown /></span>
+                                                <span>See more</span> <span className="mt-1"><FaArrowDown /></span>
                                             </button>
                                         </div>
                                     }
