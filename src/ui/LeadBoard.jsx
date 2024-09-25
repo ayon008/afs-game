@@ -111,7 +111,7 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
             </table>
             <div className={`w-fit mx-auto mt-10 ${pointTable.length > 10 && 'block'}`}>
                 <button onClick={() => handleShowMore()} className="btn bg-white border-none flex items-center gap-0">
-                    <span>Voir plus</span> <span className="mt-1"><FaArrowDown /></span>
+                    <span>See More</span> <span className="mt-1"><FaArrowDown /></span>
                 </button>
             </div>
         </div>
