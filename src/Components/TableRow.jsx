@@ -9,7 +9,7 @@ const TableRow = ({ data, position, uid }) => {
         ${position === 2 ? 'second' : ''} 
         ${position === 3 ? 'third' : ''}`}>
             <th className='text-white'>{position < 10 ? `0${position}` : position}.</th>
-            <td>
+            <td colSpan={2}>
                 <div className='flex items-center gap-2'>
                     <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[15px] rounded-[50%]' src={photoURL} />
                     <h3 className='2xl:text-lg xl:text-sm text-[8px] font-semibold text-white'>{displayName}</h3>
