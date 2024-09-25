@@ -60,7 +60,7 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                         && userPosition !== 3 ? 'third' : userPosition === pos ? 'my-position' : ''} border-b-[1px] border-[#00000033]`}
                                 >
                                     <td className="font-semibold 2xl:text-lg xl:text-base z-20">{i + 1 < 10 ? `0${i + 1}` : i + 1}.</td>
-                                    <td colSpan={2}>
+                                    <td>
                                         <div className='flex items-center gap-2'>
                                             <img alt='profile-image' className='2xl:w-[51px] 2xl:h-[31px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
                                             <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />

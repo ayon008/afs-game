@@ -6,7 +6,7 @@ const TableHead = ({ tableHead, profile }) => {
             <tr>
                 {
                     tableHead?.map((head, index) => (
-                        <th colSpan={head === 'Participant' && 2} className={`${head === 'Temps Total' ? 'text-right' : 'text-left'} ${profile ? 'text-white' : 'text-black'} font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] `} key={index}>{head}</th>
+                        <th className={`${head === 'Temps Total' ? 'text-right' : 'text-left'} ${profile ? 'text-white' : 'text-black'} font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] `} key={index}>{head}</th>
                     ))
                 }
             </tr>

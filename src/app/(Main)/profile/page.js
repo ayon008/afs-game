@@ -38,7 +38,7 @@ const CategoryTable = ({ title, data, find, categoryName }) => {
                                             ${pos === 2 ? 'second' : ''} 
                                             ${pos === 3 ? 'third' : ''} 
                                             ${uid === d?.uid ? 'opacity-100' : 'opacity-40'}`}>
-                                                <th className=''>{pos}.</th>
+                                                <th className='text-white'>{pos}.</th>
                                                 <td className='font-semibold'>{d.displayName}</td>
                                                 <td className='text-right font-semibold'>
                                                     {(d[`${categoryName}`])?.toFixed(2) + ' ' + 'heures'}
