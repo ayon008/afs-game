@@ -14,7 +14,7 @@ const CountdownTimer = () => {
             return (
                 <div>
                     <div className='text-white'>
-                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{days}:</span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{days} :</span>
                         <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{hours} : </span>
                         <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{minutes}</span>
                     </div>
