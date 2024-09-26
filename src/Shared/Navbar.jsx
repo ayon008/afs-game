@@ -19,15 +19,17 @@ const Navbar = () => {
             <div className='flex items-center gap-1'>
                 <ul className='bg-[#000] 2xl:flex xl:flex lg:flex items-center rounded-[10px] 2xl:px-[15px] 2xl:py-[10px] xl:px-[12px] xl:py-[8px] hidden backdrop-blur-[10px]'>
                     {
-                        navItems?.map((item, index) => (
-                            <li key={index} className='flex items-center'>
-                                <Link href={`/${item.toLowerCase()}`} >
-                                    <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item}</p>
-                                </Link>
-                                <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>
-                                </div>
-                            </li>
-                        ))
+                        navItems?.map((item, index) => {
+                            return (
+                                <li key={index} className='flex items-center'>
+                                    <Link href={`/${item.toLowerCase()}`} passHref>
+                                        <p className='uppercase 2xl:text-base lg:text-xs font-semibold'>{item}</p>
+                                    </Link>
+                                    <div className='w-[7px] h-[7px] rounded-[50%] bg-[#FFE500] mx-4'>
+                                    </div>
+                                </li>
+                            )
+                        })
                     }
                 </ul>
                 <ul className=''>

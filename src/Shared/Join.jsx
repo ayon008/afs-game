@@ -21,7 +21,7 @@ const Join = ({ home }) => {
                             from <span className='text-[#FFE500]'>September 30</span> to <span className='text-[#FFE500]'>November 3rd</span>
                         </p>
                     </div>
-                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] text-[6px] font-normal mt-5'>
+                    <p className='text-[#666] 2xl:text-sm xl:text-[10px] xl:leading-[10px] text-[10px] font-normal mt-5'>
                         <span className='text-[#FFE500]'>*</span>An AFS customer is defined as a practitioner who owns at least one AFS foil and uses it for the challenges. The choice of board and wing is free.
                     </p>
                 </div>

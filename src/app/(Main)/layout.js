@@ -58,21 +58,9 @@ export const morgana = localfont(
 export const metadata = {
   title: "Afs Games",
   description: "A platform for gaming enthusiasts.",
-  openGraph: {
-    title: "Afs Games",
-    description: "A platform for gaming enthusiasts.",
-    url: "https://afs-game-bvco.vercel.app/", // Update with your site's URL
-    images: [
-      {
-        url: "../../../public/Group.svg", // Update with your image URL
-        width: 800,
-        height: 600,
-        alt: "Afs Games Image", // Alt text for accessibility
-      },
-    ],
-    site_name: "Afs Games",
-  },
 };
+
+export const revalidate = 5;
 
 export default function RootLayout({ children }) {
   return (

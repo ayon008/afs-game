@@ -2,9 +2,11 @@
 'use client'
 import useAuth from '@/Hooks/useAuth';
 import FaArrowDown from '@/icons/FaArrowDown';
+import GetFlags from '@/js/GetFlags';
+
+import watermanCrown from '@/js/getWatermanCrown';
 import convertToFranceTime from '@/lib/convertTime';
 import sortDataByTime from '@/lib/getDataByCategory';
-import GetFlag from '@/lib/getFlag';
 import LeadBoard from '@/ui/LeadBoard';
 import React, { useEffect, useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
@@ -12,66 +14,37 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 const SelectTab = ({ pointTable }) => {
     const categories = ['Wingfoil', 'Windfoil', 'dockstart', 'surfFoil', 'dw'];
     const [tabIndex, setTabIndex] = useState(0);
-    const [flags, setFlags] = useState({});
-    const WatermanCrown = pointTable?.filter((d) => {
-        if (d.WatermanCrown) {
-            return d
-        }
-    })
-    const sortedWatermanCrown = WatermanCrown.sort((a, b) => {
-        return (a.Wingfoil + a.Windfoil + a.dw) - (b.Wingfoil + b.Windfoil + b.dw)
-    })
-
+    const sortedWatermanCrown = watermanCrown(pointTable);
     const [index, setIndex] = useState(0);
     const [open, setOpen] = useState(false);
     const [itemsToShow, setItemsToShow] = useState(10);
-
     const handleShowMore = () => {
         setItemsToShow(prev => prev + 10);
     };
-
 
     const handleOpen = (i, open) => {
         setIndex(i + 1)
         setOpen(!open)
     }
-
+    console.log(sortedWatermanCrown);
     const { user } = useAuth();
     const uid = user?.uid;
-
     const userData = pointTable.find(point => point.uid === uid);
     const userPosition = pointTable.indexOf(userData) + 1;
 
-    useEffect(() => {
-        const fetchFlags = async () => {
-            const newFlags = {};
-            for (const entry of pointTable) {
-                if (!flags[entry.pays]) {
-                    newFlags[entry.pays] = await GetFlag(entry.pays);
-                }
-            }
-            setFlags((prevFlags) => ({ ...prevFlags, ...newFlags }));
-        };
-
-        fetchFlags();
-    }, [pointTable, flags]);
-
-
-
     return (
         <div>
-            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-                <TabList className={'flex items-center justify-center 2xl:gap-10 xl:gap-10 gap-5 cursor-pointer'}>
+            <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)} className={'mr-2'}>
+                <TabList className={'flex items-center justify-center 2xl:gap-10 xl:gap-10 gap-5 cursor-pointer overflow-x-auto'}>
                     {
                         categories?.map((category, i) => {
                             return (
-                                <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>{category === 'surfFoil' ? 'prone foil' : category === 'dw' ? 'Downwind' : category}</Tab>
+                                <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-xs font-semibold uppercase pb-1`}>{category === 'surfFoil' ? 'prone foil' : category === 'dw' ? 'Downwind' : category}</Tab>
                             )
                         })
                     }
-                    <Tab className={`${tabIndex === 5 && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>WatermanCrown</Tab>
+                    <Tab className={`${tabIndex === 5 && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-xs font-semibold uppercase pb-1`}>WatermanCrown</Tab>
                 </TabList>
-                {/* */}
                 {
                     categories?.map((category, i) => {
                         return (
@@ -80,17 +53,16 @@ const SelectTab = ({ pointTable }) => {
                                     <table className="table">
                                         <thead>
                                             <tr>
-                                                <th className='text-black'>#</th>
-                                                <th className='font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'>Participant</th>
-                                                <th></th>
-                                                <th></th>
-                                                <th className='text-right font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'>Total time</th>
+                                                <th className='font-semibold 2xl:text-lg xl:text-sm text-xs border-b-[1px] border-[#00000033] text-black'>#</th>
+                                                <th className='font-semibold 2xl:text-lg xl:text-sm text-xs border-b-[1px] border-[#00000033] text-black'>Participant</th>
+                                                <th className='font-semibold 2xl:text-lg xl:text-sm text-xs border-b-[1px] border-[#00000033] text-black'></th>
+                                                <th className='font-semibold 2xl:text-lg xl:text-sm text-xs border-b-[1px] border-[#00000033] text-black'></th>
+                                                <th className='text-right font-semibold 2xl:text-lg xl:text-sm text-xs border-b-[1px] border-[#00000033] text-black'>Total time</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {
                                                 [...sortDataByTime(pointTable, category)].slice(0, itemsToShow)?.map((d, i) => {
-                                                    const flag = flags[d?.pays]
                                                     const pos = i + 1;
                                                     const time = d.lastUploadedTime;
                                                     return (
@@ -100,13 +72,13 @@ const SelectTab = ({ pointTable }) => {
                                                                 <th>{pos}.</th>
                                                                 <td>
                                                                     <div className='flex items-center gap-2'>
-                                                                        <img alt='profile-image' className='2xl:w-[51px] 2xl:h-[31px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
+                                                                        <GetFlags params={{ country: d?.pays }} />
                                                                         <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
                                                                         <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                                                     </div>
                                                                 </td>
-                                                                <td></td>
-                                                                <td></td>
+                                                                <td className='font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'></td>
+                                                                <td className='font-semibold 2xl:text-lg xl:text-sm text-[8px] border-b-[1px] border-[#00000033] text-black'></td>
                                                                 <td className='text-right font-semibold  2xl:text-lg xl:text-sm flex items-center gap-2 justify-end '><span>
                                                                     {d[category].toFixed(2) + ' ' + 'hours' || 'n/a'}
                                                                 </span>
@@ -156,7 +128,6 @@ const SelectTab = ({ pointTable }) => {
                                             </button>
                                         </div>
                                     }
-
                                 </div>
                             </TabPanel>
                         )
@@ -166,7 +137,7 @@ const SelectTab = ({ pointTable }) => {
                     <LeadBoard pointTable={sortedWatermanCrown} userPosition={userPosition} />
                 </TabPanel>
             </Tabs>
-        </div>
+        </div >
     );
 };
 

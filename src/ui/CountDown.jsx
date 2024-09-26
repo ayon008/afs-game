@@ -12,11 +12,18 @@ const CountdownTimer = () => {
         } else {
             // Render the countdown
             return (
-                <div>
+                <div className=''>
                     <div className='text-white'>
-                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{days} :</span>
-                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{hours} : </span>
-                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>{minutes}</span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>
+                            {days} :
+                        </span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'> {hours} : </span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'> {minutes}</span>
+                    </div>
+                    <div className='flex justify-between'>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Days</p>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Hours</p>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Second</p>
                     </div>
                 </div>
             );

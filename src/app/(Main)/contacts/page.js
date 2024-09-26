@@ -94,7 +94,7 @@ const page = () => {
                     <a className='cursor-pointer' target='_blank' rel='noopener noreferrer' href='https://www.youtube.com/channel/UCv-LqvRBRFQWBSJSeIZK_5g'>
                         <Image className='2xl:w-auto 2xl:h-auto xl:w-auto xl:h-auto w-[50px] h-auto' src={youtube} alt='youtube' />
                     </a>
-                    <a className='' target='_blank' rel='noopener noreferrer' href='https://www.tiktok.com/'>
+                    <a className='' target='_blank' rel='noopener noreferrer' href='https://www.tiktok.com/@afsfoils'>
                         <Image className='2xl:w-auto 2xl:h-auto xl:w-auto xl:h-auto w-[50px] h-auto' src={tiktok} alt='tiktok' />
                     </a>
                     <a className='cursor-pointer' href='https://www.whatsapp.com/channel/0029VaR5sep0Qeajo7HHEQ32'>

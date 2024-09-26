@@ -124,7 +124,7 @@ const Page = ({ searchParams }) => {
                                 className='text-[#FFE500] 2xl:text-sm xl:text-sm text-xs  cursor-pointer'
                                 onClick={() => router.push('/forgotPassword')}
                             >
-                                Forgot password?
+                                Forget your password?
                             </span>
                         </p>
                         <FaArrow className={'h-[10px] w-[10px] mt-1'} />

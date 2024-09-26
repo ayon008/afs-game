@@ -140,7 +140,6 @@ const AddAwards = ({ sponsors }) => {
                         </select>
                         {errors.position && <span className="text-red-500">Position is required</span>}
                     </div>
-
                     <div>
                         <label htmlFor="sponsors1" className="block mb-2">
                             Sponsors 1
@@ -173,6 +172,58 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 3
                         </label>
                         <select id="sponsors3" className="select select-bordered w-full" {...register("sponsors3")}>
+                            <option disabled selected value={''}>Pick Sponsors</option>
+                            {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
+                                <option key={i} value={sponsor.sponsorPicture}>
+                                    {sponsor.sponsorName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="sponsors4" className="block mb-2">
+                            Sponsors 4
+                        </label>
+                        <select id="sponsors4" className="select select-bordered w-full" {...register("sponsors4")}>
+                            <option disabled selected value={''}>Pick Sponsors</option>
+                            {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
+                                <option key={i} value={sponsor.sponsorPicture}>
+                                    {sponsor.sponsorName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="sponsors5" className="block mb-2">
+                            Sponsors 5
+                        </label>
+                        <select id="sponsors5" className="select select-bordered w-full" {...register("sponsors5")}>
+                            <option disabled selected value={''}>Pick Sponsors</option>
+                            {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
+                                <option key={i} value={sponsor.sponsorPicture}>
+                                    {sponsor.sponsorName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="sponsors6" className="block mb-2">
+                            Sponsors 6
+                        </label>
+                        <select id="sponsors6" className="select select-bordered w-full" {...register("sponsors6")}>
+                            <option disabled selected value={''}>Pick Sponsors</option>
+                            {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
+                                <option key={i} value={sponsor.sponsorPicture}>
+                                    {sponsor.sponsorName}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div>
+                        <label htmlFor="sponsors7" className="block mb-2">
+                            Sponsors 7
+                        </label>
+                        <select id="sponsors7" className="select select-bordered w-full" {...register("sponsors7")}>
                             <option disabled selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
