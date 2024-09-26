@@ -16,25 +16,25 @@ const TableRow = ({ data, position, uid }) => {
                 </div>
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
-                {Wingfoil ? Wingfoil?.toFixed(2) + ' ' + 'heures' : '0 heures'}
+                {Wingfoil ? Wingfoil?.toFixed(2) + ' ' + 'hours' : '0 hours'}
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
-                {Windfoil ? Windfoil?.toFixed(2) + ' ' + 'heures' : '0 heures'}
+                {Windfoil ? Windfoil?.toFixed(2) + ' ' + 'hours' : '0 hours'}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
-                {dockstart ? dockstart?.toFixed(2) + ' ' + 'heures' : '0 heures'}
+                {dockstart ? dockstart?.toFixed(2) + ' ' + 'hours' : '0 hours'}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
-                {surfFoil ? surfFoil?.toFixed(2) + ' ' + 'heures' : '0 heures'}
+                {surfFoil ? surfFoil?.toFixed(2) + ' ' + 'hours' : '0 hours'}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
-                {dw ? dw?.toFixed(2) + ' ' + 'heures' : '0 heures'}
+                {dw ? dw?.toFixed(2) + ' ' + 'hours' : '0 hours'}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
-                {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' ' + 'heures' : 'O heures'}
+                {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' ' + 'hours' : 'O hours'}
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold text-right text-[8px] text-white`}>
-                {total?.toFixed(2) + ' ' + 'heures' || '0 heures'}
+                {total?.toFixed(2) + ' ' + 'hours' || '0 hours'}
             </td>
         </tr>
     );

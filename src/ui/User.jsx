@@ -41,7 +41,7 @@ const User = () => {
 
                     </div>
                     <Link href={'/register'}>
-                        Inscription
+                        Registration
                     </Link>
                 </li>
             </>

@@ -20,8 +20,8 @@ const Categories = () => {
     const onSubmit = async (data) => {
         if (!data.Wingfoil && !data.Windfoil && !data.Downwind && !data.Dockstart && !data.Surffoil && !data.WatermanCrown) {
             Swal.fire({
-                title: 'Error',
-                text: 'Veuillez sélectionner au moins une catégorie.',
+                title: 'Erreur',
+                text: 'Please select at least one category.',
                 icon: 'error',
                 confirmButtonText: 'OK',
             });

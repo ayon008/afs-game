@@ -21,7 +21,7 @@ const page = () => {
                 </div>
             </div>
             <div className='bg-white 2xl:p-20 xl:p-20 p-10 rounded-t-[50px]'>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-3xl`}>The AFS Team</h2>
+                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-3xl`}>AFS GAMES TEAM</h2>
                 <div className='2xl:mt-14 xl:mt-10 mt-8 w-fit mx-auto grid 2xl:grid-cols-3 xl:grid-cols-3 grid-cols-1 2xl:gap-8 xl:gap-6 gap-4'>
                     <div className="card bg-base-100 w-full shadow-xl">
                         <figure>
@@ -36,7 +36,7 @@ const page = () => {
                                 <h2 className="card-title 2xl:text-2xl xl:text-base text-sm">Chaussy</h2>
                                 <p className='2xl:text-2xl xl:text-lg text-sm'>Chloé</p>
                             </div>
-                            <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Event Manager</p>
+                            <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Event & Community Manager</p>
                             <div className='bg-[#EFEFEF] p-3 rounded-[18.5px] w-fit mt-4'>
                                 <a href={'mailto:chloe.chaussy@foilandco.com'} className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-base'>chloe.chaussy@foilandco.com</a>
                             </div>
@@ -55,7 +55,9 @@ const page = () => {
                                 <h2 className="card-title 2xl:text-2xl xl:text-base text-sm">Raffarin</h2>
                                 <p className='2xl:text-2xl xl:text-lg text-sm'>Antonin</p>
                             </div>
-                            <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Marketing & Communication Manager</p>
+                            <p className='mt-2 text-[#989898] 2xl:text-lg xl:text-base text-sm'>Chief Marketing <br /> Officer
+                                E-commerce & Website Manager
+                            </p>
                             <div className='bg-[#EFEFEF] p-3 rounded-[18.5px] w-fit mt-4'>
                                 <a href={'mailto:antonin.raffarin@foilandco.com'} className='text-[#B5B5B5] 2xl:text-sm xl:text-xs text-base'>antonin.raffarin@foilandco.com</a>
                             </div>

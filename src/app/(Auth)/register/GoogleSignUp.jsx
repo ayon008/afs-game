@@ -36,7 +36,7 @@ const GoogleSignUp = () => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'La connexion Google a échoué !',
+                title: 'The Google login failed!',
                 text: error.code?.split('auth/')[1],
             });
         }
@@ -63,9 +63,6 @@ const GoogleSignUp = () => {
             <div className='text-white text-center'>
                 <h3 className='font-bold text-[28px] Alliance tracking-wide'>Sign up</h3>
                 <h5 className='text-base Alliance tracking-wide text-[#FFFFFF99]'>Add your own records for everyone to see</h5>
-            </div>
-            <div>
-                <p className='text-center text-[#999999] Alliance text-xs'>OR</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
                 <div className="form-control">

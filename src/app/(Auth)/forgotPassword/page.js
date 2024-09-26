@@ -13,15 +13,16 @@ const Page = () => {
             changePassword(email)
             Swal.fire({
                 icon: 'success',
-                title: "L'email a été envoyé avec succès, veuillez vérifier votre email",
+                title: 'The email has been sent successfully, please check your email',
                 showConfirmButton: false,
                 timer: 1500,
             });
+
             reset();
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'La réinitialisation a échoué !',
+                title: 'Reset failed!',
                 text: error.message,
             });
         }

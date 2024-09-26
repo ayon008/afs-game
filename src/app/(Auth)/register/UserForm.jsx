@@ -21,8 +21,8 @@ const UserForm = () => {
     const onSubmit = async (data) => {
         // Show loading indicator
         Swal.fire({
-            title: "Création d'un compte...",
-            text: 'Veuillez patienter pendant que nous créons votre compte',
+            title: "Creating an account...",
+            text: 'Please wait while we create your account',
             allowOutsideClick: false,
             didOpen: () => {
                 Swal.showLoading();
@@ -47,8 +47,8 @@ const UserForm = () => {
                 await axiosPublic.post('/user', { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false });
 
                 Swal.fire({
-                    title: 'Compte créé',
-                    text: 'Votre compte a été créé avec succès !',
+                    title: 'Account Created',
+                    text: 'Your account has been created successfully!',
                     icon: 'success',
                     confirmButtonText: 'OK',
                     confirmButtonColor: '#FFE500',
@@ -95,7 +95,7 @@ const UserForm = () => {
             // Update user profile
             await updatedProfile(name, user?.photoURL);
             try {
-                await sendDataToWebhook({ email, name, surName,pays });
+                await sendDataToWebhook({ email, name, surName, pays });
                 const userData = { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false };
                 await axiosPublic.post('/user', userData);
 
@@ -121,8 +121,8 @@ const UserForm = () => {
             }
             // Success feedback
             Swal.fire({
-                title: 'Compte créé',
-                text: 'Votre compte a été créé avec succès !',
+                title: 'Account Created',
+                text: 'Your account has been created successfully!',
                 icon: 'success',
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#FFE500',

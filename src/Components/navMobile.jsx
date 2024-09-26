@@ -58,7 +58,7 @@ const NavMobile = () => {
                             </li>
                             <li>
                                 <Link href={'/register'} className='uppercase 2xl:text-base xl:text-xs text-base font-semibold text-white'>
-                                    Inscription
+                                    Registration
                                 </Link>
                             </li>
                         </>

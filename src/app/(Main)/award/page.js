@@ -17,7 +17,7 @@ const page = async () => {
                 </div>
             </div>
             <div className='bg-white 2xl:p-20 xl:p-20 p-6 rounded-t-[50px]'>
-                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl`}>Discover the partners of <br />the event</h2>
+                <h2 className={`${morgana.className} uppercase text-center 2xl:text-7xl xl:text-5xl text-2xl`}>Discover the event partners</h2>
 
                 <div className='grid 2xl:grid-cols-2 xl:grid-cols-2 grid-cols-1 2xl:mt-20 xl:mt-16 mt-10 2xl:gap-32 xl:gap-24 gap-y-10 2xl:justify-center xl:justify-center justify-normal'>
                     {

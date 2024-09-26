@@ -85,13 +85,14 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                                 <div className="border-r-2 border-[#FFF] px-2">
                                                     <div className="w-fit mx-auto">
                                                         <h2 className="2xl:text-3xl xl:text-xl text-base font-bold text-white">{convertToFranceTime(time).date}</h2>
-                                                        <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]">DATE DE DERNIÈRE SESSION</p>
+                                                        <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]">last session</p>
                                                     </div>
                                                 </div>
                                                 <div className="border-r-2 border-[#FFF] px-2">
                                                     <div className="w-fit mx-auto">
                                                         <h2 className="2xl:text-3xl xl:text-xl text-base font-bold text-white">{d.session}</h2>
-                                                        <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]">NOMBRE DE SESSIONS TOTAL</p>
+                                                        <p className="2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px] uppercase">total number of sessions
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div>

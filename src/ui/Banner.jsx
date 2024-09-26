@@ -51,7 +51,7 @@ const Banner = () => {
             <div>
                 <h1 className={`${morgana.className} text-center text-white 2xl:mt-28 xl:mt-16 2xl:text-6xl xl:text-4xl uppercase mt-10 text-2xl`}>
                     <span className='text-[#FFE500]'>several disciplines</span>
-                    and <br /> challenges to choose from!
+                    <br /> to choose
                 </h1>
             </div>
             <div className='grid grid-cols-5 w-fit mx-auto 2xl:mt-32 xl:mt-20 2xl:gap-x-10 xl:gap-x-8 gap-x-4 mt-10 px-6'>
@@ -96,11 +96,11 @@ const Banner = () => {
                     <p className='2xl:text-[28px] xl:text-xl lg:text-lg text-xs font-bold  text-white 2xl:mt-[18px] xl:mt-3 lg:mt-2 mt-1'>Downwind</p>
                 </div>
             </div>
-            <p className='2xl:text-3xl xl:text-lg font-semibold text-white 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10'>No matter your level or age, you can take part in this event, designed and created for our AFS customers. <span className='text-[#FFE500]'>
-                Equip yourself and rack up the sessions!</span></p>
+            <p className='2xl:text-3xl xl:text-lg font-semibold text-white 2xl:mt-24 xl:mt-16 text-center 2xl:w-3/4 xl:w-3/4 2xl:mx-auto xl:mx-auto px-6 mt-10'>Regardless of your level or age, you can take part in this event, designed and created for our AFS customers. <span className='text-[#FFE500]'>
+                Get equipped and start chaining sessions!</span></p>
 
             <h2 className={`${morgana.className} text-center text-white 2xl:text-6xl xl:text-4xl 2xl:mt-40 xl:mt-28 mt-16 text-2xl
-            `}>The registration is <br /> <span className='text-[#FFE500]'>simple and quick!</span>
+            `}>registration is <br /> <span className='text-[#FFE500]'>simple and quick!</span>
             </h2>
 
             <div className='2xl:mt-20 xl:mt-12 flex 2xl:flex-row xl:flex-row flex-col items-center justify-evenly mt-8 gap-6 2xl:gap-0 xl:gap-0 2xl:mb-48 xl:mb-32 mb-20'>
@@ -110,16 +110,21 @@ const Banner = () => {
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step2} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Fill out the form with your information.</p>
+                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Fill in the form <br /> with your information.
+                    </p>
                 </div>
                 <div className='2xl:w-[340px] xl:w-[320px] w-[280px] h-auto'>
                     <Image src={step3} alt='' />
-                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Confirm your <br /> registration and receive <br /> your confirmation by email.</p>
+                    <p className='text-white text-center font-semibold 2xl:text-2xl xl:text-lg mt-4'>Validate your registration <br /> and receive your confirmation by email
+                    </p>
                 </div>
             </div>
-            <div>
-                <h1 className={`${antiHero.className} text-center text-white 2xl:text-7xl xl:text-5xl text-2xl`}>From <span className='text-[#FFE500]'>September 30</span> to <span className='text-[#FFE500]'>November 3</span></h1>
-                <p className='text-center text-white text-base mt-2'>At the end of the event, you will receive your results via email!</p>
+            <div className='2xl:mb-48 xl:mb-32 mb-20'>
+                <h1 className={`${antiHero.className} text-center text-white max-w-[1920px] mx-auto 2xl:px-20 xl:px-16 px-10 2xl:text-7xl xl:text-5xl text-2xl`}><span className='text-[#FFE500]'>Your goal?</span> <br />Chain sessions and add up the hours spent on the water!</h1>
+                {/* <p className='text-center text-white text-base mt-2'>At the end of the event, you will receive your results via email!</p> */}
+            </div>
+            <div className=''>
+                <Join home={true} />
             </div>
         </div>
     )

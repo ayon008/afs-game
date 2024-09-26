@@ -24,7 +24,7 @@ const ResetPassword = ({ searchParams }) => {
             verifyPassword(code, password)
             Swal.fire({
                 icon: 'success',
-                title: 'Réinitialisation du mot de passe réussie !',
+                title: 'Password reset successful!',
                 showConfirmButton: false,
                 timer: 1500,
             });
@@ -33,9 +33,9 @@ const ResetPassword = ({ searchParams }) => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'La réinitialisation a échoué !',
+                title: 'Reset failed!',
                 text: error.message,
-            });
+            });            
         }
     };
 

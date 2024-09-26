@@ -29,11 +29,12 @@ const Page = ({ searchParams }) => {
             const { email, password } = data;
             await signIn(email, password);
             Swal.fire({
+                title: 'Success!',
+                text: 'Your action has been successfully completed.',
                 icon: 'success',
-                title: 'Connexion réussie !',
-                showConfirmButton: false,
-                timer: 1500,
+                confirmButtonText: 'OK'
             });
+
             if (redirect) {
                 return router.push(redirect);
             }
@@ -41,7 +42,7 @@ const Page = ({ searchParams }) => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'La connexion a échoué !',
+                title: 'Connection failed!',
                 text: error.code?.split('auth/')[1],
             });
         }
@@ -71,7 +72,7 @@ const Page = ({ searchParams }) => {
         } catch (error) {
             Swal.fire({
                 icon: 'error',
-                title: 'La connexion Google a échoué !',
+                title: 'Google connection failed!',
                 text: error.code?.split('auth/')[1],
             });
         }
@@ -128,11 +129,6 @@ const Page = ({ searchParams }) => {
                         </p>
                         <FaArrow className={'h-[10px] w-[10px] mt-1'} />
                     </div>
-
-                    <div>
-                        <p className='text-center text-[#999999] text-xs mb-1'>OR</p>
-                    </div>
-
                     {/* Google Sign-In */}
 
                     {/* Submit Button */}

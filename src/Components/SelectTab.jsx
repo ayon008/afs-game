@@ -65,7 +65,7 @@ const SelectTab = ({ pointTable }) => {
                     {
                         categories?.map((category, i) => {
                             return (
-                                <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>{category}</Tab>
+                                <Tab key={i} className={`${tabIndex === i && 'text-blue-500 pb-1 border-b-2 border-blue-500'} 2xl:text-lg xl:text-sm text-[8px] font-semibold uppercase pb-1`}>{category === 'surfFoil' ? 'prone foil' : category === 'dw' ? 'Downwind' : category}</Tab>
                             )
                         })
                     }
@@ -123,7 +123,7 @@ const SelectTab = ({ pointTable }) => {
                                                                             <div className='2xl:border-r-2 xl:border-r-2 2xl:border-[#FFF] xl:border-[#FFF] 2xl:ml-2 xl:ml-2'>
                                                                                 <div className='2xl:w-fit 2xl:mx-auto xl:w-fit xl:mx-auto'>
                                                                                     <h2 className='2xl:text-3xl xl:text-xl text-xs font-bold text-white'>{convertToFranceTime(time).date}</h2>
-                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px]'>DATE OF LAST SESSION</p>
+                                                                                    <p className='2xl:text-sm xl:text-xs text-[8px] text-[#FFFFFF80] 2xl:mt-2 xl:mt-1 mt-[2px] uppercase'>last session</p>
                                                                                 </div>
                                                                             </div>
                                                                             <div className='border-r-2 border-[#FFF] 2xl:ml-2 xl:ml-2'>

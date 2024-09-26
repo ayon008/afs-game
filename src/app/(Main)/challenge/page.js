@@ -14,7 +14,7 @@ const page = () => {
             <div className='max-h-[750px] min-h-[550px] flex flex-col'>
                 <div className='m-auto'>
                     <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-white uppercase text-5xl`}>The Challenge</h1>
-                    <p className={`text-[#FFE500] 2xl:text-6xl xl:text-4xl text-2xl ${morgana.className} text-center 2xl:mt-12 xl:mt-8`}>In October, join the sessions!</p>
+                    <p className={`text-[#FFE500] 2xl:text-6xl xl:text-4xl text-2xl ${morgana.className} text-center 2xl:mt-12 xl:mt-8`}>In October, chain your sessions!</p>
                 </div>
             </div>
             <div className='w-fit mx-auto'>
@@ -45,7 +45,7 @@ const page = () => {
                     <p className='text-white text-center font-semibold 2xl:text-3xl xl:text-2xl mt-[2px]'>Upload your <br /> file and it’s <br /> validated!</p>
                 </div>
             </div>
-            <h3 className='2xl:text-3xl xl:text-2xl text-base px-6 text-center font-medium text-white 2xl:mt-11 xl:mt-11 mt-8 2xl:mb-48 xl:mb-32 mb-20'>You will then be able to track your progress in the <br /> ranking!</h3>
+            <h3 className='2xl:text-3xl xl:text-2xl text-base px-6 text-center font-medium text-white 2xl:mt-11 xl:mt-11 mt-8 2xl:mb-48 xl:mb-32 mb-20'>You can then follow your progress in the ranking!</h3>
             <Join />
         </div>
     );

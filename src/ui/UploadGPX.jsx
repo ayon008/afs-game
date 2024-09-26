@@ -26,6 +26,17 @@ const UploadGPX = () => {
     const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
     const isDisabled = userInfo?.approved;
     const axiosSecure = useAxiosSecure();
+    const currentDate = new Date();
+    const september30 = new Date('2024-09-30');
+
+    // Show the alert if it's before September 30, 2024
+    const showDateErrorAlert = () => {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Challenge only starts on September 30',
+        });
+    };
 
     const router = useRouter();
     const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
@@ -62,6 +73,7 @@ const UploadGPX = () => {
     };
 
     const handleSave = async () => {
+
         if (!category) {
             Swal.fire({
                 icon: 'error',
@@ -131,7 +143,26 @@ const UploadGPX = () => {
             <div className='bg-white w-fit mx-auto 2xl:mt-10 xl:mt-6 mt-3 flex items-center justify-center'>
                 <div>
                     <div className={`2xl:w-[500px] xl:w-[500px] w-fit mx-auto ${getDropzoneStyle()} border-2 border-dashed p-6 rounded`}>
-                        <div {...getRootProps()} className='flex flex-col items-center justify-center w-full'>
+                        <div {...getRootProps({
+                            onClick: (event) => {
+                                // Prevent file input dialog if before September 30, 2024
+                                if (currentDate < september30) {
+                                    event.preventDefault();
+                                    event.stopPropagation()
+                                    showDateErrorAlert();
+                                    return
+                                }
+                            },
+                            onDragEnter: (event) => {
+                                // Prevent drag and drop if before September 30, 2024
+                                if (currentDate < september30) {
+                                    event.preventDefault();
+                                    event.stopPropagation()
+                                    showDateErrorAlert();
+                                    return
+                                }
+                            }
+                        })} className='flex flex-col items-center justify-center w-full'>
                             <input {...getInputProps()} />
                             <Cloud />
                             <div className='my-6'>
