@@ -21,6 +21,11 @@ li:focus {
     background: linear-gradient(86deg, #1F1F1F 0.71%, #000 99.72%) !important;
 }
 
+.custom-swal-popup {
+    height: 200px !important;
+    font-size: 20px !important;
+}
+
 .custom-grid {
     display: grid !important;
     grid-template-columns: 1fr 2fr !important;

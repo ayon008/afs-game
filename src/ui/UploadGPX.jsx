@@ -32,9 +32,12 @@ const UploadGPX = () => {
     // Show the alert if it's before September 30, 2024
     const showDateErrorAlert = () => {
         Swal.fire({
-            icon: 'error',
-            title: 'Error',
             text: 'Challenge only starts on September 30',
+            heightAuto: false,
+            confirmButtonColor: '#FFE500',
+            customClass: {
+                popup: 'custom-swal-popup' // Add a custom class
+            }
         });
     };
 
