@@ -101,6 +101,23 @@ const AddSponsors = ({ refetch }) => {
                             </div>
                             {errors['showInHome'] && <span className="text-red-500 text-sm mt-1">{errors['showInHome'].message}</span>}
                         </div>
+                        <div>
+                            <div className="form-control relative">
+                                <label className="label items-center justify-normal bg-[#F0F0F0] w-fit h-fit py-0 gap-1 absolute left-[12px] -top-[10px]">
+                                    <span className="label-text text-[#666] text-sm font-bold py-0">Show in prize</span>
+                                    {errors['showInPrize'] ? <span className="text-red-500">*</span> : <FaCheck size={'0.85rem'} color='#2A7029' />}
+                                </label>
+                                <select
+                                    {...register('showInPrize', { required: 'This field is required' })}
+                                    className="select select-bordered w-full bg-[#F0F0F0]"
+                                >
+                                    <option value="">Show in prize</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            {errors['showInPrize'] && <span className="text-red-500 text-sm mt-1">{errors['showInPrize'].message}</span>}
+                        </div>
                     </div>
                     <div className='flex items-center justify-center mt-10 gap-2'>
                         <button onClick={() => router.back()} type='button' className='flex items-center gap-2 text-[#111111BF] font-medium uppercase btn bg-[#D9D9D9]'>

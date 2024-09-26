@@ -8,7 +8,7 @@ import Award from '@/ui/Award';
 
 const page = async () => {
     const data = await getAllSponsors();
-    const sponsors = data?.filter(d => d?.showInHome !== 'true');
+    const sponsors = data?.filter(d => d?.showInHome !== 'true' && d?.showInPrize !== "true");
     return (
         <div className=''>
             <div className='max-h-[750px] min-h-[550px] flex flex-col'>
@@ -28,7 +28,7 @@ const page = async () => {
                                         <img src={sponsor.sponsorPicture} className='2xl:w-full 2xl:h-auto xl:w-full xl:h-auto w-[80px] h-auto' alt='sponsor' />
                                     </div>
                                     <p className='text-[#0000007f] 2xl:text-2xl xl:text-lg text-sm font-semibold'>
-                                        {sponsor.SponsorDetails}
+                                        {sponsor.sponsorDetails}
                                     </p>
                                     <div>
                                         <a className='text-[#000] 2xl:text-2xl xl:text-lg text-sm font-semibold underline' href={sponsor.sponsorName}>{sponsor.sponsorName}</a>

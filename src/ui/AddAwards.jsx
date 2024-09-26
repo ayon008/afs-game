@@ -147,7 +147,7 @@ const AddAwards = ({ sponsors }) => {
                         </label>
                         <select id="sponsors1" className="select select-bordered w-full" {...register("sponsors1", { required: true })}>
                             <option disabled selected value={''}>Pick Sponsors</option>
-                            {sponsors?.map((sponsor, i) => (
+                            {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
                                 </option>
@@ -161,7 +161,7 @@ const AddAwards = ({ sponsors }) => {
                         </label>
                         <select id="sponsors2" className="select select-bordered w-full" {...register("sponsors2")}>
                             <option disabled selected value={''}>Pick Sponsors</option>
-                            {sponsors?.map((sponsor, i) => (
+                            {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
                                 </option>
@@ -174,9 +174,8 @@ const AddAwards = ({ sponsors }) => {
                         </label>
                         <select id="sponsors3" className="select select-bordered w-full" {...register("sponsors3")}>
                             <option disabled selected value={''}>Pick Sponsors</option>
-                            {sponsors?.map((sponsor, i) => (
-                                <option key={i} value={sponsor.
-                                    sponsorPicture}>
+                            {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
+                                <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
                                 </option>
                             ))}

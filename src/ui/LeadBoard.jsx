@@ -110,11 +110,15 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                     })}
                 </tbody>
             </table>
-            <div className={`w-fit mx-auto mt-10 ${pointTable.length > 10 && 'block'}`}>
-                <button onClick={() => handleShowMore()} className="btn bg-white border-none flex items-center gap-0">
-                    <span>See More</span> <span className="mt-1"><FaArrowDown /></span>
-                </button>
-            </div>
+            {
+                pointTable.length > 10 &&
+                <div className={`w-fit mx-auto mt-10`}>
+                    <button onClick={() => handleShowMore()} className="btn bg-white border-none flex items-center gap-0">
+                        <span>See More</span> <span className="mt-1"><FaArrowDown /></span>
+                    </button>
+                </div>
+            }
+
         </div>
     );
 };
