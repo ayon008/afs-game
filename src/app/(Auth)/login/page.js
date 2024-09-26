@@ -36,7 +36,7 @@ const Page = ({ searchParams }) => {
             });
 
             if (redirect) {
-                return router.push(redirect);
+                return router.push('/');
             }
             return router.push('/')
         } catch (error) {
@@ -56,7 +56,7 @@ const Page = ({ searchParams }) => {
                 .then(response => {
                     console.log(response);
                     if (redirect) {
-                        return router.push(redirect);
+                        return router.push('/');
                     }
                     return router.push('/')
                 })
