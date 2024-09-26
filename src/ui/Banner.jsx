@@ -120,7 +120,7 @@ const Banner = () => {
                 </div>
             </div>
             <div className='2xl:mb-48 xl:mb-32 mb-20'>
-                <h1 className={`${antiHero.className} text-center text-white max-w-[1920px] mx-auto 2xl:px-20 xl:px-16 px-10 2xl:text-7xl xl:text-5xl text-2xl`}><span className='text-[#FFE500]'>Your goal?</span> <br />Chain sessions and add up the hours spent on the water!</h1>
+                <h1 className={`${antiHero.className} text-center max-w-[1080px] mx-auto text-[#FFE500] 2xl:px-20 xl:px-16 px-10 2xl:text-7xl xl:text-5xl text-2xl`}><span className='text-white '>Your goal?</span> <br />Chain sessions and add up the hours spent on the water!</h1>
                 {/* <p className='text-center text-white text-base mt-2'>At the end of the event, you will receive your results via email!</p> */}
             </div>
             <div className=''>
