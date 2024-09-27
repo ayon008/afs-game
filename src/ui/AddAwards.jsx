@@ -118,7 +118,7 @@ const AddAwards = ({ sponsors }) => {
                             Add Category
                         </label>
                         <select id="category" className="select select-bordered w-full" {...register("category", { required: true })}>
-                            <option disabled selected>Pick Category</option>
+                            <option selected>Pick Category</option>
                             {categories?.map((category, index) => (
                                 <option key={index} value={category}>
                                     {category}
@@ -133,7 +133,7 @@ const AddAwards = ({ sponsors }) => {
                             Position
                         </label>
                         <select id="position" className="select select-bordered w-full" {...register("position", { required: true })}>
-                            <option disabled selected>Pick Position</option>
+                            <option selected>Pick Position</option>
                             <option value="1st">1st</option>
                             <option value="2nd">2nd</option>
                             <option value="3rd">3rd</option>
@@ -145,7 +145,7 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 1
                         </label>
                         <select id="sponsors1" className="select select-bordered w-full" {...register("sponsors1", { required: true })}>
-                            <option disabled selected value={''}>Pick Sponsors</option>
+                            <option selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
@@ -159,7 +159,7 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 2
                         </label>
                         <select id="sponsors2" className="select select-bordered w-full" {...register("sponsors2")}>
-                            <option disabled selected value={''}>Pick Sponsors</option>
+                            <option selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
@@ -172,7 +172,7 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 3
                         </label>
                         <select id="sponsors3" className="select select-bordered w-full" {...register("sponsors3")}>
-                            <option disabled selected value={''}>Pick Sponsors</option>
+                            <option selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
@@ -185,7 +185,7 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 4
                         </label>
                         <select id="sponsors4" className="select select-bordered w-full" {...register("sponsors4")}>
-                            <option disabled selected value={''}>Pick Sponsors</option>
+                            <option selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
@@ -198,7 +198,7 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 5
                         </label>
                         <select id="sponsors5" className="select select-bordered w-full" {...register("sponsors5")}>
-                            <option disabled selected value={''}>Pick Sponsors</option>
+                            <option selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
@@ -211,7 +211,7 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 6
                         </label>
                         <select id="sponsors6" className="select select-bordered w-full" {...register("sponsors6")}>
-                            <option disabled selected value={''}>Pick Sponsors</option>
+                            <option selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
@@ -224,7 +224,7 @@ const AddAwards = ({ sponsors }) => {
                             Sponsors 7
                         </label>
                         <select id="sponsors7" className="select select-bordered w-full" {...register("sponsors7")}>
-                            <option disabled selected value={''}>Pick Sponsors</option>
+                            <option selected value={''}>Pick Sponsors</option>
                             {sponsors?.filter(s => s.showInPrize === "true")?.map((sponsor, i) => (
                                 <option key={i} value={sponsor.sponsorPicture}>
                                     {sponsor.sponsorName}
@@ -335,6 +335,9 @@ const AddAwards = ({ sponsors }) => {
                                                                     </div>
                                                                     <div className={w[`sponsors3`] === "" ? "hidden" : 'block'}>
                                                                         <img className='h-auto w-[50px]' src={w[`sponsors3`]} alt="" />
+                                                                    </div>
+                                                                    <div className={w[`sponsors4`] === "" ? "hidden" : 'block'}>
+                                                                        <img className='h-auto w-[50px]' src={w[`sponsors4`]} alt="" />
                                                                     </div>
                                                                 </div>
                                                             )
