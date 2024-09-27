@@ -63,10 +63,10 @@ const SelectTab = ({ pointTable }) => {
                                         </thead>
                                         <tbody>
                                             {
-                                                [...sortDataByTime(pointTable, category)].slice(0, itemsToShow)?.map((d, i) => {
+                                                [...sortDataByTime(pointTable, category)]?.slice(0, itemsToShow)?.map((d, i) => {
                                                     const pos = i + 1;
                                                     const time = d.lastUploadedTime;
-                                                    const userPosition = [...sortDataByTime(pointTable, category)].indexOf(userData) + 1;
+                                                    const userPosition = [...sortDataByTime(pointTable, category)]?.indexOf(userData) + 1;
                                                     console.log(userPosition);
                                                     return (
                                                         <>
