@@ -43,11 +43,11 @@ const Award = () => {
                                                             {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
                                                         <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden items-center'>
-                                                            <img src={a.sponsors1} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />
-                                                            {a.sponsors2 && <img src={a.sponsors2} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors3 && <img src={a.sponsors3} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors4 && <img src={a.sponsors4} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors5 && <img src={a.sponsors5} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            <img src={a.sponsors1} className='w-auto h-auto' alt='' />
+                                                            {a.sponsors2 && <img src={a.sponsors2} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors3 && <img src={a.sponsors3} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors4 && <img src={a.sponsors4} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors5 && <img src={a.sponsors5} className='w-auto h-auto' alt='' />}
                                                         </div>
                                                     </div>
                                                 )
@@ -64,11 +64,11 @@ const Award = () => {
                                                             {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
                                                         <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden items-center'>
-                                                            <img src={a.sponsors1} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />
-                                                            {a.sponsors2 && <img src={a.sponsors2} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors3 && <img src={a.sponsors3} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors4 && <img src={a.sponsors4} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors5 && <img src={a.sponsors5} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            <img src={a.sponsors1} className='w-auto h-auto' alt='' />
+                                                            {a.sponsors2 && <img src={a.sponsors2} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors3 && <img src={a.sponsors3} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors4 && <img src={a.sponsors4} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors5 && <img src={a.sponsors5} className='w-auto h-auto' alt='' />}
                                                         </div>
                                                     </div>
                                                 )
@@ -85,11 +85,11 @@ const Award = () => {
                                                             {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
                                                         <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden items-center'>
-                                                            <img src={a.sponsors1} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />
-                                                            {a.sponsors2 && <img src={a.sponsors2} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors3 && <img src={a.sponsors3} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors4 && <img src={a.sponsors4} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
-                                                            {a.sponsors5 && <img src={a.sponsors5} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            <img src={a.sponsors1} className='w-auto h-auto' alt='' />
+                                                            {a.sponsors2 && <img src={a.sponsors2} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors3 && <img src={a.sponsors3} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors4 && <img src={a.sponsors4} className='w-auto h-auto' alt='' />}
+                                                            {a.sponsors5 && <img src={a.sponsors5} className='w-auto h-auto' alt='' />}
                                                         </div>
                                                     </div>
                                                 )

@@ -9,6 +9,7 @@ const SelectTab = dynamic(() => import('@/Components/SelectTab'), {
 
 const page = async () => {
     const pointTable = await getUserLeaderBoard();
+    
     return (
         <div className="">
             <div className="max-h-[750px] min-h-[550px] flex flex-col">

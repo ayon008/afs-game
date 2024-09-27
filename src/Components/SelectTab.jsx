@@ -26,7 +26,7 @@ const SelectTab = ({ pointTable }) => {
         setIndex(i + 1)
         setOpen(!open)
     }
-    console.log(sortedWatermanCrown);
+    console.log(sortedWatermanCrown,"ayon");
     const { user } = useAuth();
     const uid = user?.uid;
     const userData = pointTable.find(point => point.uid === uid);

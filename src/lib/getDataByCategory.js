@@ -7,6 +7,8 @@ const sortDataByTime = (data, category) => {
     const sortData = filter?.sort((a, b) => {
         return a.category - b.category;
     })
+    console.log(sortData,'xx');
+    
     return sortData;
 }
 
