@@ -37,17 +37,17 @@ const Award = () => {
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             1<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>ST</sup>
                                                         </h1>
-                                                        <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2'>
+                                                        <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2 2xl:my-0 xl:my-0 my-3'>
                                                             <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize1}</li>
                                                             {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize2}</li>}
                                                             {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
                                                         <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden items-center'>
-                                                            <img src={a.sponsors1} className='w-auto h-auto' alt='' />
-                                                            {a.sponsors2 && <img src={a.sponsors2} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors3 && <img src={a.sponsors3} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors4 && <img src={a.sponsors4} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors5 && <img src={a.sponsors5} className='w-auto h-auto' alt='' />}
+                                                            <img src={a.sponsors1} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />
+                                                            {a.sponsors2 && <img src={a.sponsors2} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors3 && <img src={a.sponsors3} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors4 && <img src={a.sponsors4} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors5 && <img src={a.sponsors5} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
                                                         </div>
                                                     </div>
                                                 )
@@ -58,17 +58,17 @@ const Award = () => {
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             2<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>2ND</sup>
                                                         </h1>
-                                                        <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2'>
+                                                        <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2 2xl:my-0 xl:my-0 my-3'>
                                                             <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize1}</li>
                                                             {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize2}</li>}
                                                             {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
-                                                        <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden 2xl:mt-0 xl:mt-0 mt-4 items-center'>
-                                                            <img src={a.sponsors1} className='w-auto h-auto' alt='' />
-                                                            {a.sponsors2 && <img src={a.sponsors2} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors3 && <img src={a.sponsors3} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors4 && <img src={a.sponsors4} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors5 && <img src={a.sponsors5} className='w-auto h-auto' alt='' />}
+                                                        <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden items-center'>
+                                                            <img src={a.sponsors1} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />
+                                                            {a.sponsors2 && <img src={a.sponsors2} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors3 && <img src={a.sponsors3} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors4 && <img src={a.sponsors4} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors5 && <img src={a.sponsors5} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
                                                         </div>
                                                     </div>
                                                 )
@@ -79,17 +79,17 @@ const Award = () => {
                                                         <h1 className='2xl:text-8xl xl:text-6xl text-4xl font-bold text-white'>
                                                             3<sup className='2xl:text-3xl xl:text-xl text-lg font-medium align-super'>RD</sup>
                                                         </h1>
-                                                        <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2'>
+                                                        <ul className='text-[#FFFFFF80] list-disc 2xl:pl-5 xl:pl-5 pl-2 2xl:my-0 xl:my-0 my-3'>
                                                             <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize1}</li>
                                                             {a.prize2 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize2}</li>}
                                                             {a.prize3 && <li className='2xl:text-2xl xl:text-lg text-base'>{a.prize3}</li>}
                                                         </ul>
-                                                        <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden 2xl:mt-0 xl:mt-0 mt-4 items-center'>
-                                                            <img src={a.sponsors1} className='w-auto h-auto' alt='' />
-                                                            {a.sponsors2 && <img src={a.sponsors2} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors3 && <img src={a.sponsors3} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors4 && <img src={a.sponsors4} className='w-auto h-auto' alt='' />}
-                                                            {a.sponsors5 && <img src={a.sponsors5} className='w-auto h-auto' alt='' />}
+                                                        <div className='flex flex-row flex-wrap 2xl:gap-5 xl:gap-5 gap-4 w-full overflow-hidden items-center'>
+                                                            <img src={a.sponsors1} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />
+                                                            {a.sponsors2 && <img src={a.sponsors2} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors3 && <img src={a.sponsors3} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors4 && <img src={a.sponsors4} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
+                                                            {a.sponsors5 && <img src={a.sponsors5} className='2xl:w-auto xl:w-auto w-[80%] h-auto' alt='' />}
                                                         </div>
                                                     </div>
                                                 )
