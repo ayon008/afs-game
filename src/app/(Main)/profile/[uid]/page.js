@@ -15,7 +15,7 @@ import uploadPdfToFirebase from '@/js/uploadPdf';
 
 const Page = () => {
     const { user, updatedProfile } = useAuth();
-    const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
+    const { isLoading, isError, error, userInfo, refetch } = GetUserData(user?.uid);
     const axiosSecure = useAxiosSecure();
 
     const { control, register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
@@ -31,6 +31,7 @@ const Page = () => {
     const router = useRouter();
 
     const onSubmit = async (data) => {
+        const photoURL = data.profilePic || user?.photoURL;
         const swal = Swal.fire({
             title: 'Submitting...',
             text: 'Please wait while we process your request.',
@@ -46,8 +47,8 @@ const Page = () => {
         const invoiceURL = invoice ? await uploadPdfToFirebase(invoice) : userInfo?.invoiceURL;
 
         try {
-            const response = await axiosSecure.patch(`/user/${userInfo?._id}`, { ...data, uid: userInfo?.uid, invoiceURL });
-            updatedProfile(data.displayName || user?.displayName, user?.photoURL);
+            const response = await axiosSecure.patch(`/user/${userInfo?._id}`, { ...data, photoURL, uid: userInfo?.uid, invoiceURL });
+            updatedProfile(data.displayName || user?.displayName, user?.photoURL || data.photoURL);
             swal.close();
             Swal.fire({
                 title: 'Success!',
@@ -55,6 +56,7 @@ const Page = () => {
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
+            refetch();
         } catch (error) {
             swal.close();
             Swal.fire({
@@ -90,14 +92,14 @@ const Page = () => {
                 <div className='2xl:mt-10 xl:mt-6 bg-[#F0F0F0] rounded-[10px] p-5'>
                     <div className='w-fit mx-auto'>
                         <Controller
-                            name="profilePicture"
+                            name="profilePic"
                             control={control}
                             render={({ field: { onChange, onBlur, value, ref } }) => (
                                 <PicUpload
                                     onChange={onChange}
                                     onBlur={onBlur}
                                     ref={ref}
-                                    name="profilePicture"
+                                    name="profilePic"
                                 />
                             )}
                         />

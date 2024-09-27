@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const GetUserData = uid => {
     const axiosSecure = useAxiosSecure();
-    const { isLoading, isError, error, data: userInfo } = useQuery({
+    const { isLoading, isError, error, data: userInfo, refetch } = useQuery({
         queryKey: ['userData', uid], // Include `uid` in queryKey to refetch if `uid` changes
         queryFn: async () => {
             try {
@@ -16,7 +16,7 @@ const GetUserData = uid => {
             }
         },
     });
-    return { isLoading, isError, error, userInfo };
+    return { isLoading, isError, error, userInfo, refetch };
 }
 
 export default GetUserData;

@@ -147,24 +147,24 @@ const UploadGPX = () => {
                 <div>
                     <div className={`2xl:w-[500px] xl:w-[500px] w-fit mx-auto ${getDropzoneStyle()} border-2 border-dashed p-6 rounded`}>
                         <div {...getRootProps({
-                            // onClick: (event) => {
-                            //     // Prevent file input dialog if before September 30, 2024
-                            //     if (currentDate < september30) {
-                            //         event.preventDefault();
-                            //         event.stopPropagation()
-                            //         showDateErrorAlert();
-                            //         return
-                            //     }
-                            // },
-                            // onDragEnter: (event) => {
-                            //     // Prevent drag and drop if before September 30, 2024
-                            //     if (currentDate < september30) {
-                            //         event.preventDefault();
-                            //         event.stopPropagation()
-                            //         showDateErrorAlert();
-                            //         return
-                            //     }
-                            // }
+                            onClick: (event) => {
+                                // Prevent file input dialog if before September 30, 2024
+                                if (currentDate < september30) {
+                                    event.preventDefault();
+                                    event.stopPropagation()
+                                    showDateErrorAlert();
+                                    return
+                                }
+                            },
+                            onDragEnter: (event) => {
+                                // Prevent drag and drop if before September 30, 2024
+                                if (currentDate < september30) {
+                                    event.preventDefault();
+                                    event.stopPropagation()
+                                    showDateErrorAlert();
+                                    return
+                                }
+                            }
                         })} className='flex flex-col items-center justify-center w-full'>
                             <input {...getInputProps()} />
                             <Cloud />
@@ -250,7 +250,7 @@ const UploadGPX = () => {
 
                         <option className={`${userInfo?.Surffoil ? 'block' : 'hidden'} uppercase text-white`} value={'surfFoil'}>surf foil</option>
 
-                        <option className={`${userInfo?.Downwind ? 'block' : 'hidden'} uppercase text-white`} value={'downwind'}>downwind</option>
+                        <option className={`${userInfo?.Downwind ? 'block' : 'hidden'} uppercase text-white`} value={'dw'}>downwind</option>
                     </select>
                 </div>
                 <div className='flex gap-2'>

@@ -31,7 +31,7 @@ const TableRow = ({ data, position, uid }) => {
                 {dw ? dw?.toFixed(2) + ' ' + 'hours' : '0 hours'}
             </td>
             <td className={` 2xl:text-lg xl:text-sm font-semibold text-[8px] text-white`}>
-                {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' ' + 'hours' : 'O hours'}
+                {WatermanCrown ? (parseFloat(Wingfoil || 0) + parseFloat(Windfoil || 0) + parseFloat(dw || 0)).toFixed(2) + ' ' + 'hours' : '0 hours'}
             </td>
             <td className={`2xl:text-lg xl:text-sm font-semibold text-right text-[8px] text-white`}>
                 {total?.toFixed(2) + ' ' + 'hours' || '0 hours'}

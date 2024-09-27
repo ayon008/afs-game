@@ -2,13 +2,14 @@
 'use client'
 import useAuth from '@/Hooks/useAuth';
 import FaArrowDown from '@/icons/FaArrowDown';
+import CountryFlagList from '@/js/GetFlags';
 import GetFlags from '@/js/GetFlags';
 
 import watermanCrown from '@/js/getWatermanCrown';
 import convertToFranceTime from '@/lib/convertTime';
 import sortDataByTime from '@/lib/getDataByCategory';
 import LeadBoard from '@/ui/LeadBoard';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 const SelectTab = ({ pointTable }) => {
@@ -26,11 +27,11 @@ const SelectTab = ({ pointTable }) => {
         setIndex(i + 1)
         setOpen(!open)
     }
-    console.log(sortedWatermanCrown,"ayon");
+    console.log(sortedWatermanCrown, "ayon");
     const { user } = useAuth();
     const uid = user?.uid;
-    const userData = pointTable.find(point => point.uid === uid);
-    const userPosition = pointTable.indexOf(userData) + 1;
+    const userData = pointTable?.find(point => point.uid === uid);
+    const watermanCrownPosition = sortedWatermanCrown?.indexOf(userData) + 1;
 
     return (
         <div>
@@ -65,6 +66,8 @@ const SelectTab = ({ pointTable }) => {
                                                 [...sortDataByTime(pointTable, category)].slice(0, itemsToShow)?.map((d, i) => {
                                                     const pos = i + 1;
                                                     const time = d.lastUploadedTime;
+                                                    const userPosition = [...sortDataByTime(pointTable, category)].indexOf(userData) + 1;
+                                                    console.log(userPosition);
                                                     return (
                                                         <>
                                                             <tr onClick={() => handleOpen(i, open)} key={i} className={`${pos === 1 && userPosition !== 1 ? 'first' : pos === 2 && userPosition !== 2 ? 'second' : pos === 3
@@ -72,7 +75,7 @@ const SelectTab = ({ pointTable }) => {
                                                                 <th>{pos}.</th>
                                                                 <td>
                                                                     <div className='flex items-center gap-2'>
-                                                                        <GetFlags params={{ country: d?.pays }} />
+                                                                        <CountryFlagList countries={[d?.pays]} />
                                                                         <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
                                                                         <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                                                     </div>
@@ -134,7 +137,7 @@ const SelectTab = ({ pointTable }) => {
                     })
                 }
                 <TabPanel className={'2xl:mt-20 xl:mt-12'}>
-                    <LeadBoard pointTable={sortedWatermanCrown} userPosition={userPosition} />
+                    <LeadBoard pointTable={sortedWatermanCrown} userPosition={watermanCrownPosition} />
                 </TabPanel>
             </Tabs>
         </div >

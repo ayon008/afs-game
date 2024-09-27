@@ -13,7 +13,7 @@ const Sponsor = async () => {
                 gradient={false}
             >
                 {data?.map((sponsor, index) => (
-                    <div key={index} className='flex items-center 2xl:mx-10 xl:mx-auto'>
+                    <div key={index} className='flex items-center 2xl:mx-10 xl:mx-10'>
                         <img
                             className='2xl:w-full xl:w-full w-1/2 h-auto'
                             src={sponsor.sponsorPicture}

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import TableHead from '@/Components/TableHead';
 import FaArrowDown from '@/icons/FaArrowDown';
 import convertToFranceTime from '@/lib/convertTime';
-import GetFlag from '@/lib/getFlag'; // Now a helper function to fetch the flag
+import CountryFlagList from '@/js/GetFlags';
 
 const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
     const [index, setIndex] = useState(0);
@@ -25,21 +25,6 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
         setShow((prevShow) => prevShow + 10);
     };
 
-    // Fetch flags when the component mounts or the pointTable changes
-    useEffect(() => {
-        const fetchFlags = async () => {
-            const newFlags = {};
-            for (const entry of pointTable) {
-                if (!flags[entry.pays]) {
-                    newFlags[entry.pays] = await GetFlag(entry.pays);
-                }
-            }
-            setFlags((prevFlags) => ({ ...prevFlags, ...newFlags }));
-        };
-
-        fetchFlags();
-    }, [pointTable, flags]);
-
     return (
         <div className="overflow-x-auto w-full 2xl:mt-10 xl:mt-6">
             <table className="table">
@@ -49,8 +34,8 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                         const { displayName, photoURL, Wingfoil, Windfoil, dw, dockstart, surfFoil, total, pays, WatermanCrown } = d;
                         const pos = pointTable.indexOf(d) + 1;
                         const time = d.lastUploadedTime;
-                        const flag = flags[pays]; // Use the fetched flag from the state
-
+                        console.log('ayon',userPosition);
+                        
                         return (
                             <React.Fragment key={i}>
                                 {/* First Row */}
@@ -62,7 +47,7 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                     <td className="font-semibold 2xl:text-lg xl:text-base z-20">{i + 1 < 10 ? `0${i + 1}` : i + 1}.</td>
                                     <td>
                                         <div className='flex items-center gap-2'>
-                                            <img alt='profile-image' className='2xl:w-[51px] 2xl:h-[31px] xl:w-[25px] xl:h-[15px] w-[20px] h-[14px]' src={flag} />
+                                            <CountryFlagList countries={[d?.pays]} />
                                             <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
                                             <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                         </div>

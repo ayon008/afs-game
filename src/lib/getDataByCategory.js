@@ -1,4 +1,6 @@
 const sortDataByTime = (data, category) => {
+    console.log(data,'data');
+    
     const filter = data?.filter(d => {
         if (d[`${category}`]) {
             return d;
