@@ -8,7 +8,22 @@ const CountdownTimer = () => {
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
         if (completed) {
             // What to render when the countdown completes
-            return <span className='2xl:text-[220px] xl:text-9xl text-5xl font-bold text-white'>The game has started!</span>;
+            return (
+                <div className=''>
+                    <div className='text-white'>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'>
+                            00 :
+                        </span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'> 00 : </span>
+                        <span className='2xl:text-[220px] xl:text-[170px] text-6xl font-bold'> 00</span>
+                    </div>
+                    <div className='flex justify-between'>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Days</p>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Hours</p>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Second</p>
+                    </div>
+                </div>
+            )
         } else {
             // Render the countdown
             return (

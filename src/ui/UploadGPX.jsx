@@ -28,6 +28,16 @@ const UploadGPX = () => {
     const axiosSecure = useAxiosSecure();
     const currentDate = new Date();
     const september30 = new Date('2024-09-30');
+    const resetTime = (date) => {
+        date.setHours(0, 0, 0, 0);
+        return date;
+    };
+    const currentDateWithoutTime = resetTime(new Date(currentDate));
+    const september30WithoutTime = resetTime(new Date(september30));
+
+    console.log(geojson);
+
+
 
     // Show the alert if it's before September 30, 2024
     const showDateErrorAlert = () => {
@@ -88,6 +98,8 @@ const UploadGPX = () => {
 
         if (geojson) {
             const { totalTime, totalDistance } = calculateTotalTimeAndDistance(geojson);
+            const createdTime = geojson?.features[0]?.properties?.time;
+
             // Loading state
             Swal.fire({
                 title: 'Saving...',
@@ -103,6 +115,7 @@ const UploadGPX = () => {
                     distance: totalDistance,
                     uid: user?.uid,
                     category,
+                    createdTime,
                     filename: uploadedFiles[0]?.name,
                     time: new Date(),
                     status: false,
@@ -149,7 +162,7 @@ const UploadGPX = () => {
                         <div {...getRootProps({
                             onClick: (event) => {
                                 // Prevent file input dialog if before September 30, 2024
-                                if (currentDate < september30) {
+                                if (currentDateWithoutTime.getTime() < september30WithoutTime.getTime()) {
                                     event.preventDefault();
                                     event.stopPropagation()
                                     showDateErrorAlert();
@@ -216,7 +229,7 @@ const UploadGPX = () => {
                                             <span className='text-white'>Complete</span>
                                             <FaCheck color='green' />                                        </p>
                                         <p className={`${f?.status === 'rejected' ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span className='text-white'>Loading error</span>
+                                            <span className='text-white'>Rejected</span>
                                             <FaTimes color='red' />                                       </p>
                                         <button onClick={() => handleDelete(f?._id)} className={`${f?.status && 'hidden'} btn`}>
                                             <FaTrashAlt />

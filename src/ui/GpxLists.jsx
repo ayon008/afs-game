@@ -115,6 +115,7 @@ const GpxLists = () => {
                             <th>Filename</th>
                             <th>Uploaded By</th>
                             <th>Email</th>
+                            <th>Created GPX</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -123,9 +124,21 @@ const GpxLists = () => {
                         {
                             gpx?.map((g, i) => {
                                 const { category, distance, totalTime, filename, status, uid,
-                                    lastUploadedTime, _id } = g;
+                                    lastUploadedTime, _id, createdTime } = g;
                                 const time = convertToFranceTime(lastUploadedTime).time;
                                 const date = convertToFranceTime(lastUploadedTime).date;
+                                const isoDateString = createdTime;
+                                const dateObject = new Date(isoDateString);
+                                // Options to format the date as "July 6, 2024"
+                                const options = {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    timeZone: 'Europe/Paris' // To ensure it's in France's time zone
+                                };
+
+                                const franceTime = dateObject.toLocaleDateString('en-US', options);
+
                                 return (
                                     <tr key={i}>
                                         <th>{i + 1}</th>
@@ -135,6 +148,7 @@ const GpxLists = () => {
                                         <td>{totalTime.toFixed(2)} hr</td>
                                         <td>{filename}</td>
                                         <UploadedUser uid={uid} />
+                                        <td>{franceTime}</td>
                                         {
                                             status === false &&
                                             <td className='flex items-center gap-1'>
