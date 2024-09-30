@@ -171,7 +171,7 @@ const UploadGPX = () => {
                             },
                             onDragEnter: (event) => {
                                 // Prevent drag and drop if before September 30, 2024
-                                if (currentDate < september30) {
+                                if (currentDateWithoutTime.getTime() < september30WithoutTime.getTime()) {
                                     event.preventDefault();
                                     event.stopPropagation()
                                     showDateErrorAlert();
