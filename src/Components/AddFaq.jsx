@@ -39,7 +39,7 @@ const AddFaq = () => {
                     title: 'Error!',
                     text: 'Failed to add FAQ. Please try again.',
                     icon: 'error',
-                    confirmButtonText: 'OK',
+                    confirmButtonText: false,
                 });
             });
     };
