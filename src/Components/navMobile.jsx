@@ -33,7 +33,7 @@ const NavMobile = () => {
                         return (
                             <li key={i}>
                                 <Link href={`/${n.toLowerCase()}`} >
-                                    <p className='uppercase 2xl:text-base xl:text-xs text-[16px] font-semibold text-white'>{n}</p>
+                                    <p className='uppercase 2xl:text-base xl:text-xs text-[16px] font-semibold text-white'>{n === 'Faq' ? 'GUIDES ⏐ FAQ' : n}</p>
                                 </Link>
                             </li>
                         )

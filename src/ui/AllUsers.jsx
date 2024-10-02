@@ -1,23 +1,163 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 import ApprovedBtn from '@/Components/ApprovedBtn';
+import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import GetAllUser from '@/lib/getAllUsers';
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const AllUsers = () => {
     const { isLoading, isError, error, allUsers, refetch } = GetAllUser();
+    const axiosSecure = useAxiosSecure();
     const categories = ['Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'Downwind', 'WatermanCrown'];
 
     const [type, setType] = useState('');
     const handleValue = e => {
         const type = e.target.value;
         setType(type);
-        console.log(type);
     }
 
     // Filter users based on the selected category
     const data = type ? allUsers?.filter(user => user[type] === true) : allUsers;
-    console.log(data);
+
+    const handleAdmin = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to make this user an admin?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, make admin!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Processing...',
+                    text: 'Please wait while the admin status is being updated',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                axiosSecure.patch(`/makeAdmin/${id}`, { admin: true })
+                    .then(response => {
+                        if (response.data.matchedCount > 0 && response.data.modifiedCount > 0) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'User has been made an admin successfully.',
+                            });
+                            refetch(); // Refetch the data after successful update
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'No Changes Made',
+                                text: 'The admin status was not updated. Please try again.',
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Failed to update admin status. Please try again.',
+                        });
+                        console.error(error);
+                    });
+            }
+        });
+    };
+
+    const handleRemoveAdmin = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to remove this user's admin rights?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove admin!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Processing...',
+                    text: 'Please wait while the admin status is being updated',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                axiosSecure.patch(`/removeAdmin/${id}`, { admin: false })
+                    .then(response => {
+                        if (response.data.matchedCount > 0 && response.data.modifiedCount > 0) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Success!',
+                                text: 'Admin rights have been removed successfully.',
+                            });
+                            refetch(); // Refetch the data after successful update
+                        } else {
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'No Changes Made',
+                                text: 'The admin status was not updated. Please try again.',
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Failed to remove admin rights. Please try again.',
+                        });
+                        console.error(error);
+                    });
+            }
+        });
+    };
+
+    const handleClick = (id, value) => {
+        const approved = { approved: value };
+        // Show a loading alert before making the request
+        Swal.fire({
+            title: 'Processing...',
+            text: 'Please wait while we update the status.',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading(); // Show the loading spinner
+            },
+        });
+
+        axiosSecure.patch(`/approved/${id}`, approved)
+            .then(async (response) => {
+                // Close the loading alert
+                Swal.close();
+                refetch();
+                // Show success alert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Approved!',
+                    text: 'The status has been successfully updated.',
+                    confirmButtonText: 'OK',
+                });
+            })
+            .catch((error) => {
+                // Close the loading alert
+                Swal.close();
+
+                // Show error alert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error!',
+                    text: 'There was a problem updating the status.',
+                    confirmButtonText: 'Try Again',
+                });
+            });
+    };
 
 
     return (
@@ -39,18 +179,22 @@ const AllUsers = () => {
                 <table className="table">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Invoice</th>
                             <th>Participated</th>
                             <th>Approve Account</th>
+                            <th>Admin</th>
+                            <th>Make admin</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {data?.map((user) => {
-                            const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, DockStart, Downwind, Surffoil, WatermanCrown, _id } = user;
+                        {data?.map((user, i) => {
+                            const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, DockStart, Downwind, Surffoil, WatermanCrown, _id, admin } = user;
                             return (
                                 <tr key={_id}>
+                                    <td>{i + 1}</td>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
@@ -73,8 +217,30 @@ const AllUsers = () => {
                                     <td className='font-bold'>
                                         {Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {DockStart && 'Dockstart'} {Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}
                                     </td>
+                                    <td className='flex items-center gap-3'>
+                                        {!approved ? <span>Disapproved</span> : <span>Approved</span>}
+                                        {
+                                            !approved ? <button onClick={() => handleClick(_id, true)} className='btn btn-outline text-green-500 hover:text-white hover:bg-green-500'>
+                                                Approve
+                                            </button>
+                                                :
+                                                <button onClick={() => handleClick(_id, false)} className='btn btn-outline text-red-500 hover:text-white hover:bg-red-500'>
+                                                    Disapprove
+                                                </button>
+                                        }
+                                    </td>
+                                    <td>{admin ? 'True' : 'False'}</td>
                                     <td>
-                                        {!approved ? <ApprovedBtn id={_id} refetch={refetch} /> : <span>Approved</span>}
+                                        {
+                                            !admin ?
+                                                <button onClick={() => handleAdmin(_id)} className='btn btn-outline text-green-500 hover:text-white hover:bg-green-500'>
+                                                    Make admin
+                                                </button>
+                                                :
+                                                <button onClick={() => handleRemoveAdmin(_id)} className='btn btn-outline text-red-500 hover:text-white hover:bg-red-500'>
+                                                    Remove Admin
+                                                </button>
+                                        }
                                     </td>
                                 </tr>
                             );

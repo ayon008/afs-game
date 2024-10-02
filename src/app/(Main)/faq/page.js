@@ -15,7 +15,7 @@ const FaqPage = async () => {
         <div className=''>
             <div className='max-h-[750px] min-h-[550px] flex flex-col'>
                 <div className='m-auto'>
-                    <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-5xl text-white uppercase`}>FAQ</h1>
+                    <h1 className={`${morgana.className} text-center 2xl:text-9xl xl:text-7xl text-5xl text-white uppercase`}>GUIDES ⏐ FAQ</h1>
                 </div>
             </div>
             <div className='bg-white 2xl:p-20 xl:p-20 p-6 rounded-t-[50px]'>

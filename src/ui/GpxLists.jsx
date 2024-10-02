@@ -10,7 +10,6 @@ import Swal from 'sweetalert2';
 const GpxLists = () => {
     const { isLoading, isError, error, gpx, refetch } = GetGpx();
     const axiosSecure = useAxiosSecure();
-
     const handleAccept = (id) => {
         // Show loading alert before making the request
         Swal.fire({
@@ -66,7 +65,7 @@ const GpxLists = () => {
         });
 
         // Make the API request to reject status
-        axiosSecure.patch(`/updateStatus/${id}`, { status: 'rejected' })
+        axiosSecure.patch(`/updateStatus/${id}`, { status: false })
             .then(() => {
                 // Close the loading alert after success
                 Swal.close();
@@ -116,6 +115,8 @@ const GpxLists = () => {
                             <th>Uploaded By</th>
                             <th>Email</th>
                             <th>Created GPX</th>
+                            <th>Download GPX</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -124,7 +125,7 @@ const GpxLists = () => {
                         {
                             gpx?.map((g, i) => {
                                 const { category, distance, totalTime, filename, status, uid,
-                                    lastUploadedTime, _id, createdTime } = g;
+                                    lastUploadedTime, _id, gpxURL, createdTime } = g;
                                 const time = convertToFranceTime(lastUploadedTime).time;
                                 const date = convertToFranceTime(lastUploadedTime).date;
                                 const isoDateString = createdTime;
@@ -149,17 +150,24 @@ const GpxLists = () => {
                                         <td>{filename}</td>
                                         <UploadedUser uid={uid} />
                                         <td>{franceTime}</td>
-                                        {
-                                            status === false &&
-                                            <td className='flex items-center gap-1'>
-                                                <button onClick={() => handleAccept(_id)} className='btn btn-outline text-green-600 hover:bg-green-600 hover:text-white'>Accept</button>
-                                                <button onClick={() => handleReject(_id)} className='btn btn-outline text-red-600 hover:bg-red-600 hover:text-white'>Reject</button>
-                                            </td>
-                                        }
+                                        <td>{
+                                            gpxURL &&
+                                            <a className='text-blue-500 underline cursor-pointer' target='_blank' href={gpxURL}>Download</a>
+                                        }</td>
                                         <td>
                                             {status === true && 'Approved'}
-                                            {status === 'rejected' && 'Rejected'}
+                                            {status === false && 'Not approved'}
                                         </td>
+                                        {
+                                            !status ?
+                                                <td className='flex items-center gap-1'>
+                                                    <button onClick={() => handleAccept(_id)} className='btn btn-outline text-green-600 hover:bg-green-600 hover:text-white'>Accept</button>
+                                                </td>
+                                                :
+                                                <td className='flex items-center gap-1'>
+                                                    <button onClick={() => handleReject(_id)} className='btn btn-outline text-red-600 hover:bg-red-600 hover:text-white'>Reject</button>
+                                                </td>
+                                        }
                                     </tr>
                                 )
                             })

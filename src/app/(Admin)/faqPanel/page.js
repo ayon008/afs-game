@@ -2,9 +2,11 @@
 import { morgana } from '@/app/(Main)/layout';
 import AddFaq from '@/Components/AddFaq';
 import DeleteFaq from '@/Components/DeleteFaq';
+import Description from '@/Components/FaqLink';
 import getFaq from '@/lib/getFaq';
 import React from 'react';
 import { FaTrash } from 'react-icons/fa';
+
 
 const page = async () => {
     const items = await getFaq();
@@ -45,9 +47,7 @@ const page = async () => {
                                                     </label>
 
                                                     <div className="collapse-content">
-                                                        <p className='2xl:text-[22px] xl:text-base text-xs mt-2 text-[#00000080]'>
-                                                            {item.description}
-                                                        </p>
+                                                        <Description description={item.description} />
                                                     </div>
                                                 </div>
                                             )

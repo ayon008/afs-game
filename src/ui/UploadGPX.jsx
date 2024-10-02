@@ -15,6 +15,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import GetUserData from '@/lib/getUserData';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
+import storeGPX from '@/js/storeGpx';
 
 const UploadGPX = () => {
     const [geojson, setGeojson] = useState(null);
@@ -35,10 +36,6 @@ const UploadGPX = () => {
     const currentDateWithoutTime = resetTime(new Date(currentDate));
     const september30WithoutTime = resetTime(new Date(september30));
 
-    console.log(geojson);
-
-
-
     // Show the alert if it's before September 30, 2024
     const showDateErrorAlert = () => {
         Swal.fire({
@@ -52,6 +49,7 @@ const UploadGPX = () => {
     };
 
     const router = useRouter();
+
     const { getRootProps, getInputProps, acceptedFiles, isDragActive, isDragAccept, isDragReject } = useDropzone({
         accept: '.gpx',
         multiple: false,
@@ -108,30 +106,50 @@ const UploadGPX = () => {
                     Swal.showLoading();
                 },
             });
-
             try {
-                await axiosPublic.post('/geoJson', {
-                    totalTime,
-                    distance: totalDistance,
-                    uid: user?.uid,
-                    category,
-                    createdTime,
-                    filename: uploadedFiles[0]?.name,
-                    time: new Date(),
-                    status: false,
-                });
-
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'Duration, distance, and filename have been successfully saved!',
-                });
-                refetch();
-                // Reset all states after successful save
-                router.push(`/profile?uid=${user?.uid}`);
-                setGeojson(null);
-                setCategory('');
-                setUploadedFiles([]);
+                const gpxURL = await storeGPX(uploadedFiles[0]);
+                if (gpxURL) {
+                    try {
+                        await axiosPublic.post('/geoJson', {
+                            totalTime,
+                            distance: totalDistance,
+                            uid: user?.uid,
+                            category,
+                            createdTime,
+                            filename: uploadedFiles[0]?.name,
+                            gpxURL,
+                            time: new Date(),
+                            status: true,
+                        });
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: 'Duration, distance, and filename have been successfully saved!',
+                        });
+                        refetch();
+                        // Reset all states after successful save
+                        router.push(`/profile?uid=${user?.uid}`);
+                        setGeojson(null);
+                        setCategory('');
+                        setUploadedFiles([]);
+                    }
+                    catch (error) {
+                        console.error('Error saving data:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: "Failed to save the data.",
+                        });
+                    }
+                }
+                else {
+                    console.error('Error storing file:', error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: "Failed to save the file.",
+                    });
+                }
             } catch (error) {
                 console.error('Error saving data:', error);
                 Swal.fire({
@@ -149,10 +167,48 @@ const UploadGPX = () => {
         }
     };
 
-    const handleDelete = (id) => {
-        axiosSecure.delete(`/fileName/${id}`);
-        refetch();
-    }
+    const handleDelete = id => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this action!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Deleting...',
+                    text: 'Please wait while the file is being deleted',
+                    allowOutsideClick: false,
+                    didOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+
+                axiosSecure.delete(`/fileName/${id}`)
+                    .then(response => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Deleted!',
+                            text: 'The file has been deleted successfully.',
+                        });
+                        refetch(); // Refetch the data after deletion
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Failed to delete the file. Please try again.',
+                        });
+                        console.error(error);
+                    });
+            }
+        });
+    };
+
 
     return (
         <>
@@ -212,7 +268,6 @@ const UploadGPX = () => {
             <div className='my-10'>
                 {
                     files?.map((f, i) => {
-                        console.log(f);
                         return (
                             <>
                                 <div className='my-4 w-3/4 mx-auto flex justify-between'>
@@ -221,14 +276,10 @@ const UploadGPX = () => {
                                         <p className='text-white'>{f.filename}</p>
                                     </div>
                                     <div className='flex items-center gap-6'>
-                                        <p className={`${f?.status === false ? 'block' : 'hidden'} flex items-center gap-2`}>
-                                            <span className='text-white'>Loading</span>
-                                            <span className="loading loading-spinner text-accent"></span>
-                                        </p>
                                         <p className={`${f?.status === true ? 'block' : 'hidden'} flex items-center gap-2`}>
                                             <span className='text-white'>Complete</span>
                                             <FaCheck color='green' />                                        </p>
-                                        <p className={`${f?.status === 'rejected' ? 'block' : 'hidden'} flex items-center gap-2`}>
+                                        <p className={`${f?.status === false ? 'block' : 'hidden'} flex items-center gap-2`}>
                                             <span className='text-white'>Rejected</span>
                                             <FaTimes color='red' />                                       </p>
                                         <button onClick={() => handleDelete(f?._id)} className={`${f?.status && 'hidden'} btn`}>

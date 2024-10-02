@@ -44,9 +44,6 @@ const AddFaq = () => {
             });
     };
 
-
-    
-
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -84,11 +81,12 @@ const AddFaq = () => {
                         <div className="label">
                             <span className="label-text">Description</span>
                         </div>
-                        <input
-                            type="text"
-                            placeholder="Type here"
-                            className={`input input-bordered w-full ${errors.description ? 'border-red-500' : ''}`}
+                        {/* Use textarea to allow multiline input and links */}
+                        <textarea
+                            placeholder="Type here and add links (e.g. <a href='https://example.com'>Link</a>)"
+                            className={`textarea textarea-bordered w-full ${errors.description ? 'border-red-500' : ''}`}
                             {...register('description', { required: 'Description is required' })}
+                            rows="5" // Set appropriate height for the textarea
                         />
                         {errors.description && <span className="text-red-500 text-sm">{errors.description.message}</span>}
                     </label>
