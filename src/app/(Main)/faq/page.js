@@ -2,6 +2,7 @@ import React from 'react';
 import { morgana } from '../layout';
 import Join from '@/Shared/Join';
 import getFaq from '@/lib/getFaq';
+import Description from '../../../Components/FaqLink';
 
 const FaqPage = async () => {
     const items = await getFaq();
@@ -49,9 +50,7 @@ const FaqPage = async () => {
                                                     </label>
 
                                                     <div className="collapse-content">
-                                                        <p className='2xl:text-[22px] xl:text-base text-xs mt-2 text-[#00000080]'>
-                                                            {item.description}
-                                                        </p>
+                                                        <Description description={item.description} />
                                                     </div>
                                                 </div>
                                             )
