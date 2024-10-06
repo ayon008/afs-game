@@ -38,7 +38,7 @@ const CountdownTimer = () => {
                     <div className='flex justify-between'>
                         <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Days</p>
                         <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Hours</p>
-                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Second</p>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Minutes</p>
                     </div>
                 </div>
             );
