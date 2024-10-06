@@ -34,7 +34,8 @@ const page = () => {
                 <div className='w-full'>
                     <Image className='w-fit mx-auto' src={step2} alt='' />
                     <p className='text-white text-center font-semibold 2xl:text-3xl xl:text-2xl mt-[2px]'>Once finished, <br /> export your <br /> GPX file</p>
-                    <p className='2xl:mt-6 xl:mt-4 mt-2 text-white text-center font-semibold 2xl:text-xl xl:text-base'>(tutorials will <br /> be available soon).</p>
+                    <p className='2xl:mt-6 xl:mt-4 mt-2 text-white text-center font-semibold 2xl:text-xl xl:text-base'>(Too see tutorial
+                        <br /> click <a target="_blank" href={"https://www.youtube.com/watch?si=qmSE-R7yfhAQ79Bh&v=jX7StWKJdt0&feature=youtu.be"} className={'text-[#FFE500] underline'}>here</a>).</p>
                 </div>
                 <div className='w-full'>
                     <Image className='w-fit mx-auto' src={step3} alt='' />

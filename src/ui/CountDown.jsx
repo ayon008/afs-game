@@ -2,7 +2,7 @@
 import Countdown from 'react-countdown';
 const CountdownTimer = () => {
     // Define the target date (September 30)
-    const targetDate = new Date('2024-09-30T00:00:00').getTime();
+    const targetDate = new Date('2024-11-04T08:00:00+01:00').getTime();
 
     // Renderer to customize the countdown display
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -20,7 +20,7 @@ const CountdownTimer = () => {
                     <div className='flex justify-between'>
                         <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Days</p>
                         <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Hours</p>
-                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Second</p>
+                        <p className='2xl:text-6xl xl:text-4xl text-xl text-white mt-10'>Minutes</p>
                     </div>
                 </div>
             )
