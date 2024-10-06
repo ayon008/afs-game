@@ -1,16 +1,16 @@
 const sortDataByTime = (data, category) => {
-    console.log(data,'data');
-    
+    console.log(data, 'data');
+
     const filter = data?.filter(d => {
         if (d[`${category}`]) {
             return d;
         }
     });
     const sortData = filter?.sort((a, b) => {
-        return a.category - b.category;
+        return b[`${category}`] - a[`${category}`];
     })
-    console.log(sortData,'xx');
-    
+    console.log(sortData, 'xx');
+
     return sortData;
 }
 
