@@ -1,5 +1,5 @@
 const getFaq = async () => {
-    const response = await fetch(`http://localhost:5000/faq`, {
+    const response = await fetch(`https://afs-backend-vhta.vercel.app//faq`, {
         cache: 'no-cache'
     });
     return response.json()
