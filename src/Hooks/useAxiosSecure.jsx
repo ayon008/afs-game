@@ -9,16 +9,13 @@ const useAxiosSecure = () => {
     const router = useRouter();
 
     const axiosSecure = axios.create({
-        baseURL: 'https://afs-backend-vhta.vercel.app/', // Adjust this to your actual base URL
+        baseURL: 'http://localhost:5000/', // Adjust this to your actual base URL
     });
 
     // Request interceptor
     axiosSecure.interceptors.request.use(
         (config) => {
             const token = Cookies.get('userToken');
-            console.log(token);
-            console.log('ccc');
-            console.log(`Bearer ${token}`);
             if (token) {
                 config.headers.authorization = `Bearer ${token}`;
             }
@@ -38,7 +35,7 @@ const useAxiosSecure = () => {
         },
         async (error) => {
             console.log(error.message);
-            
+
             const status = error.response?.status;
             if (status === 401 || status === 403) {
                 // Unauthorized or Forbidden, log out and redirect to login

@@ -4,13 +4,14 @@ import useAuth from '@/Hooks/useAuth';
 import FaArrowDown from '@/icons/FaArrowDown';
 import CountryFlagList from '@/js/GetFlags';
 import GetFlags from '@/js/GetFlags';
-
+import profileImage from '../../public/Profile_avatar_placeholder_large.png'
 import watermanCrown from '@/js/getWatermanCrown';
 import convertToFranceTime from '@/lib/convertTime';
 import sortDataByTime from '@/lib/getDataByCategory';
 import LeadBoard from '@/ui/LeadBoard';
 import React, { useState } from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import Image from 'next/image';
 
 const SelectTab = ({ pointTable }) => {
     const categories = ['Wingfoil', 'Windfoil', 'dockstart', 'surfFoil', 'dw'];
@@ -76,7 +77,12 @@ const SelectTab = ({ pointTable }) => {
                                                                 <td>
                                                                     <div className='flex items-center gap-2'>
                                                                         <CountryFlagList countries={[d?.pays]} />
-                                                                        <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
+                                                                        {
+                                                                            d?.photoURL ?
+                                                                                <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
+                                                                                :
+                                                                                <Image alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={profileImage} />
+                                                                        }
                                                                         <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                                                     </div>
                                                                 </td>

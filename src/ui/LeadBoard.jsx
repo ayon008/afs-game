@@ -4,6 +4,8 @@ import TableHead from '@/Components/TableHead';
 import FaArrowDown from '@/icons/FaArrowDown';
 import convertToFranceTime from '@/lib/convertTime';
 import CountryFlagList from '@/js/GetFlags';
+import profileImage from '../../public/Profile_avatar_placeholder_large.png'
+import Image from 'next/image';
 
 const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
     const [index, setIndex] = useState(0);
@@ -34,8 +36,8 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                         const { displayName, photoURL, Wingfoil, Windfoil, dw, dockstart, surfFoil, total, pays, WatermanCrown } = d;
                         const pos = pointTable.indexOf(d) + 1;
                         const time = d.lastUploadedTime;
-                        console.log('ayon',userPosition);
-                        
+                        console.log('ayon', userPosition);
+
                         return (
                             <React.Fragment key={i}>
                                 {/* First Row */}
@@ -48,7 +50,12 @@ const LeadBoard = ({ pointTable, userPosition, userData, LeadBoard }) => {
                                     <td>
                                         <div className='flex items-center gap-2'>
                                             <CountryFlagList countries={[d?.pays]} />
-                                            <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
+                                            {
+                                                d?.photoURL ?
+                                                    <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={d?.photoURL} />
+                                                    :
+                                                    <Image alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[24px] h-[24px] rounded-[50%]' src={profileImage} />
+                                            }
                                             <h3 className='2xl:text-lg xl:text-sm font-semibold'>{d?.displayName}</h3>
                                         </div>
                                     </td>

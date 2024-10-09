@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FaCheck, FaPlus, FaTimes, FaTrashAlt } from 'react-icons/fa';
 import Cloud from '@/icons/Cloud';
@@ -16,8 +16,9 @@ import { useRouter } from 'next/navigation';
 import GetUserData from '@/lib/getUserData';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import storeGPX from '@/js/storeGpx';
+import GetBlock from '@/lib/getBlock';
 
-const UploadGPX = () => {
+const UploadGPX = ({ data }) => {
     const [geojson, setGeojson] = useState(null);
     const [category, setCategory] = useState('');
     const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -27,8 +28,17 @@ const UploadGPX = () => {
     const { isLoading, isError, error, userInfo } = GetUserData(user?.uid);
     const isDisabled = userInfo?.approved;
     const axiosSecure = useAxiosSecure();
+
+    const { date } = GetBlock();
+    const [obj, setObj] = useState(null);
+
+    useEffect(() => {
+        setObj(date);
+    }, [date])
+
     const currentDate = new Date();
-    const september30 = new Date('2024-09-30');
+    const september30 = new Date(`${obj?.date}`);
+
     const resetTime = (date) => {
         date.setHours(0, 0, 0, 0);
         return date;
@@ -39,7 +49,7 @@ const UploadGPX = () => {
     // Show the alert if it's before September 30, 2024
     const showDateErrorAlert = () => {
         Swal.fire({
-            text: 'Challenge only starts on September 30',
+            text: `${obj?.message}`,
             heightAuto: false,
             confirmButtonColor: '#FFE500',
             customClass: {

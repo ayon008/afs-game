@@ -86,10 +86,10 @@ const Page = () => {
     }, [userInfo, reset]);
 
     return (
-        <div className='2xl:px-36 2xl:py-32 xl:px-20 xl:py-32 p-10 '>
+        <div className='2xl:px-36 2xl:py-32 xl:px-20 xl:py-32 px-6 py-20'>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className={`${antiHero.className}font-bold 2xl:text-7xl xl:text-5xl text-center text-white`}>Edit Account</h1>
-                <div className='2xl:mt-10 xl:mt-6 bg-[#F0F0F0] rounded-[10px] p-5'>
+                <h1 className={`${antiHero.className}font-bold 2xl:text-7xl xl:text-5xl text-3xl text-center text-white`}>Edit Account</h1>
+                <div className='2xl:mt-10 xl:mt-6 mt-4 bg-[#F0F0F0] rounded-[10px] p-5'>
                     <div className='w-fit mx-auto'>
                         <Controller
                             name="profilePic"

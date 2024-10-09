@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
+import profileImage from '@/../public/Profile_avatar_placeholder_large.png'
+import Image from 'next/image';
 
 const TableRow = ({ data, position, uid }) => {
     const { Wingfoil, Windfoil, dockstart, surfFoil, dw, WatermanCrown, displayName, photoURL, total } = data;
@@ -11,7 +13,12 @@ const TableRow = ({ data, position, uid }) => {
             <th className='text-white'>{position < 10 ? `0${position}` : position}</th>
             <td>
                 <div className='flex items-center gap-2'>
-                    <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[15px] rounded-[50%]' src={photoURL} />
+                    {
+                        photoURL ?
+                            <img alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[15px] rounded-[50%]' src={photoURL} />
+                            :
+                            <Image alt='profile-image' className='2xl:w-[40px] 2xl:h-[40px] xl:w-[25px] xl:h-[25px] w-[15px] h-[15px] rounded-[50%]' src={profileImage} />
+                    }
                     <h3 className='2xl:text-lg xl:text-sm text-[8px] font-semibold text-white'>{displayName}</h3>
                 </div>
             </td>

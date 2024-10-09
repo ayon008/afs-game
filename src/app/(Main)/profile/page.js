@@ -10,6 +10,7 @@ import EditProfile from '@/ui/EditProfile';
 import Link from 'next/link';
 import React from 'react';
 
+
 const CategoryTable = ({ title, data, find, categoryName }) => {
     const position = data.indexOf(find) + 1;
     const userIndex = position - 1;

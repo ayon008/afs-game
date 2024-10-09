@@ -2,13 +2,13 @@
 import useAxiosSecure from "@/Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
-const GetAllUser = () => {
+const GetBlock = () => {
     const axiosSecure = useAxiosSecure();
-    const { isLoading, isError, error, data: allUsers, refetch } = useQuery({
-        queryKey: ['allUsers'],
+    const { isLoading, isError, error, data: date, refetch } = useQuery({
+        queryKey: ['block'],
         queryFn: async () => {
             try {
-                const response = await axiosSecure.get(`/allUsers`);
+                const response = await axiosSecure.get(`/targetedDate/6706bdd4a8317f059a67151a`);
                 console.log(response.data);
                 return response.data;
             } catch (err) {
@@ -17,7 +17,7 @@ const GetAllUser = () => {
             }
         },
     });
-    return { isLoading, isError, error, allUsers, refetch };
+    return { isLoading, isError, error, date, refetch };
 }
 
-export default GetAllUser;
+export default GetBlock;

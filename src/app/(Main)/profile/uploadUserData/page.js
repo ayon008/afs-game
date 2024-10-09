@@ -2,7 +2,7 @@ import UploadGPX from '@/ui/UploadGPX';
 import React from 'react';
 import { antiHero } from '../../layout';
 
-const page = () => {
+const page = async () => {    
     return (
         <div className='2xl:px-36 2xl:pt-32 xl:px-20 xl:pt-32 px-6 pt-28'>
             <h1 className={`${antiHero.className} font-bold 2xl:text-7xl xl:text-5xl text-3xl text-center text-white`}>Upload Your Results</h1>

@@ -3,8 +3,10 @@
 import ApprovedBtn from '@/Components/ApprovedBtn';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import GetAllUser from '@/lib/getAllUsers';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
+import profileImage from '../../public/Profile_avatar_placeholder_large.png'
 
 const AllUsers = () => {
     const { isLoading, isError, error, allUsers, refetch } = GetAllUser();
@@ -18,7 +20,14 @@ const AllUsers = () => {
     }
 
     // Filter users based on the selected category
-    const data = type ? allUsers?.filter(user => user[type] === true) : allUsers;
+    const data = type ? allUsers?.filter(user => {
+        return user[type];
+    }) : allUsers;
+
+
+    console.log(data);
+
+
 
     const handleAdmin = id => {
         Swal.fire({
@@ -160,6 +169,11 @@ const AllUsers = () => {
     };
 
 
+    if(isLoading){
+        return <>Loading...</>
+    }
+
+
     return (
         <div className='p-10'>
             <div>
@@ -170,7 +184,7 @@ const AllUsers = () => {
                         <option disabled>Sort by category</option>
                         <option value={''}>All users</option>
                         {categories?.map((c, i) => (
-                            <option key={i} value={c}>{c}</option>
+                            <option key={i} value={c === 'Dockstart' ? 'Dockstart' : c}>{c}</option>
                         ))}
                     </select>
                 </div>
@@ -191,7 +205,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {data?.map((user, i) => {
-                            const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, DockStart, Downwind, Surffoil, WatermanCrown, _id, admin } = user;
+                            const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, Dockstart, Downwind, Surffoil, WatermanCrown, _id, admin } = user;
                             return (
                                 <tr key={_id}>
                                     <td>{i + 1}</td>
@@ -199,7 +213,15 @@ const AllUsers = () => {
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">
                                                 <div className="mask mask-squircle h-12 w-12">
-                                                    <img src={photoURL} alt="user-profile" />
+                                                    {
+                                                        photoURL ?
+                                                            <img src={photoURL} alt="user-profile" />
+                                                            :
+                                                            <Image src={profileImage}
+                                                                width={30}
+                                                                height={30}
+                                                                alt="user-profile" />
+                                                    }
                                                 </div>
                                             </div>
                                             <div>
@@ -215,7 +237,7 @@ const AllUsers = () => {
                                         )}
                                     </td>
                                     <td className='font-bold'>
-                                        {Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {DockStart && 'Dockstart'} {Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}
+                                        {Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {Dockstart && 'Dockstart'} {Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}
                                     </td>
                                     <td className='flex items-center gap-3'>
                                         {!approved ? <span>Disapproved</span> : <span>Approved</span>}

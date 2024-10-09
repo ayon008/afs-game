@@ -9,6 +9,7 @@ import axios from 'axios';
 import useAuth from '@/Hooks/useAuth';
 import image from '@/../public/image_wrap.png';
 
+
 const PicUpload = forwardRef(({ onChange, onBlur, name, ...props }, ref) => {
     const [error, setError] = useState('');
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];

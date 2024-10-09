@@ -5,6 +5,8 @@ import useAuth from '@/Hooks/useAuth';
 import Link from 'next/link';
 import React from 'react';
 import { FaPen } from 'react-icons/fa';
+import profileImage from '@/../public/Profile_avatar_placeholder_large.png'
+import Image from 'next/image';
 
 const EditProfile = () => {
     const { user } = useAuth();
@@ -17,7 +19,12 @@ const EditProfile = () => {
                         Hello
                     </span>, <span className='2xl:ml-3 xl:ml-3 ml-1'>{user?.displayName}</span>
                 </h1>
-                <img src={user?.photoURL} className='xl:w-[50px] xl:h-[50px] 2xl:w-[70px] 2xl:h-[70px] w-[40px] h-[40px] rounded-[10px] object-cover' alt='profile photo' />
+                {
+                    user?.photoURL ?
+                        <img src={user?.photoURL} className='xl:w-[50px] xl:h-[50px] 2xl:w-[70px] 2xl:h-[70px] w-[40px] h-[40px] rounded-[10px] object-cover' alt='profile photo' />
+                        :
+                        <Image src={profileImage} className='xl:w-[50px] xl:h-[50px] 2xl:w-[70px] 2xl:h-[70px] w-[40px] h-[40px] rounded-[10px] object-cover' alt='profile photo' />
+                }
             </div>
             <Link href={`/profile/${user?.uid}`}>
                 <div className='flex items-center gap-1'>

@@ -168,7 +168,6 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
             if (currentUser && !isRequestInProgress.current) {
-                setUser(currentUser);
                 localStorage.setItem('uid', JSON.stringify(currentUser?.uid));
                 setLoader(false);
                 setUid(currentUser?.uid);
@@ -178,6 +177,7 @@ const AuthProvider = ({ children }) => {
                     const tokenResponse = await axiosPublic.post('/userToken', { email: currentUser.email });
                     const { token } = tokenResponse.data;
                     Cookies.set('userToken', token, { expires: 1 / 24, sameSite: 'Lax' })
+                    setUser(currentUser);
                 } catch (error) {
                     console.log(error.message);
                 } finally {
