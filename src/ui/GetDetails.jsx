@@ -120,7 +120,7 @@ const GetDetails = ({ uid, user }) => {
                     icon: 'error',
                     title: 'Error!',
                     text: 'Failed to reject status. Please try again.',
-                    confirmButtonText: 'O',
+                    confirmButtonText: 'Ok',
                 });
             });
     };
