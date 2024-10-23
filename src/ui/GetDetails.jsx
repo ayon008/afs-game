@@ -1,5 +1,6 @@
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import convertToFranceTime from '@/lib/convertTime';
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 
@@ -25,15 +26,28 @@ function formatDateTime(isoDateString) {
 
 const GetDetails = ({ uid, user }) => {
     const axiosSecure = useAxiosSecure();
-    const [data, setData] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-        const fn = async () => {
-            const response = await axiosSecure.get(`getDetails/${uid}`)
-            setData(response.data);
+    const { data, isLoading, error, refetch } = useQuery(
+        {
+            queryKey: ['gpx'],
+            queryFn: async () => {
+                try {
+                    const response = await axiosSecure.get(`getDetails/${uid}`);
+                    return response.data;
+                } catch (err) {
+                    console.error("Error fetching user data:", err);
+                    throw err; // Rethrow the error to be caught by React Query
+                }
+            },
         }
-        return () => fn();
-    }, [axiosSecure, uid, isLoading])
+    );
+
+    if (isLoading) {
+        return <div>Loading...</div>; // Loading state
+    }
+
+    if (error) {
+        return <div>Error: {error.message}</div>; // Error handling
+    }
 
     const pointTable = data?.pointTable;
     const files = data?.files;
@@ -66,7 +80,7 @@ const GetDetails = ({ uid, user }) => {
                 });
 
                 // Refetch data after successful update
-                setIsLoading(!isLoading)
+                refetch()
             })
             .catch((error) => {
                 // Close the loading alert if there's an error
@@ -109,7 +123,7 @@ const GetDetails = ({ uid, user }) => {
                 });
 
                 // Optionally, you can refetch data here if needed
-                setIsLoading(!isLoading)
+                refetch()
             })
             .catch((error) => {
                 // Close the loading alert if there's an error
