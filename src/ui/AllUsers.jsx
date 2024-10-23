@@ -7,6 +7,8 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import Swal from 'sweetalert2';
 import profileImage from '../../public/Profile_avatar_placeholder_large.png'
+import CategoryForm from './CategoryForm';
+import GetDetails from './GetDetails';
 
 const AllUsers = () => {
     const { isLoading, isError, error, allUsers, refetch } = GetAllUser();
@@ -14,6 +16,7 @@ const AllUsers = () => {
     const categories = ['Wingfoil', 'Windfoil', 'Dockstart', 'Surffoil', 'Downwind', 'WatermanCrown'];
 
     const [type, setType] = useState('');
+    const [index, setIndex] = useState(0);
     const handleValue = e => {
         const type = e.target.value;
         setType(type);
@@ -23,9 +26,6 @@ const AllUsers = () => {
     const data = type ? allUsers?.filter(user => {
         return user[type];
     }) : allUsers;
-
-
-    console.log(data);
 
 
 
@@ -129,6 +129,12 @@ const AllUsers = () => {
         });
     };
 
+    const [open, setOpen] = useState(false);
+    const handleOpen = (i, open) => {
+        setIndex(i + 1)
+        setOpen(!open)
+    }
+
     const handleClick = (id, value) => {
         const approved = { approved: value };
         // Show a loading alert before making the request
@@ -169,7 +175,7 @@ const AllUsers = () => {
     };
 
 
-    if(isLoading){
+    if (isLoading) {
         return <>Loading...</>
     }
 
@@ -207,64 +213,77 @@ const AllUsers = () => {
                         {data?.map((user, i) => {
                             const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, Dockstart, Downwind, Surffoil, WatermanCrown, _id, admin } = user;
                             return (
-                                <tr key={_id}>
-                                    <td>{i + 1}</td>
-                                    <td>
-                                        <div className="flex items-center gap-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle h-12 w-12">
-                                                    {
-                                                        photoURL ?
-                                                            <img src={photoURL} alt="user-profile" />
-                                                            :
-                                                            <Image src={profileImage}
-                                                                width={30}
-                                                                height={30}
-                                                                alt="user-profile" />
-                                                    }
+                                <>
+                                    <tr onClick={() => handleOpen(i, open)} className='cursor-pointer' key={_id}>
+                                        <td>{i + 1}</td>
+                                        <td>
+                                            <div className="flex items-center gap-3">
+                                                <div className="avatar">
+                                                    <div className="mask mask-squircle h-12 w-12">
+                                                        {
+                                                            photoURL ?
+                                                                <img src={photoURL} alt="user-profile" />
+                                                                :
+                                                                <Image src={profileImage}
+                                                                    width={30}
+                                                                    height={30}
+                                                                    alt="user-profile" />
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div className="font-bold">{displayName}</div>
+                                                    <div className="text-sm opacity-50">{city}, {pays}</div>
                                                 </div>
                                             </div>
-                                            <div>
-                                                <div className="font-bold">{displayName}</div>
-                                                <div className="text-sm opacity-50">{city}, {pays}</div>
+                                        </td>
+                                        <td>{email}</td>
+                                        <td>
+                                            {invoiceURL && (
+                                                <a href={invoiceURL} target='_blank' className='text-[#FFE500] underline'>Invoice URL</a>
+                                            )}
+                                        </td>
+                                        <td className='font-bold'>
+                                            <div className="dropdown">
+                                                <div tabIndex={0} role="button" className="btn m-1 select select-bordered min-w-[500px]">
+                                                    <p>{Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {Dockstart && 'Dockstart'} {Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}</p>
+                                                </div>
+                                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 z-[1] w-full shadow p-0 border-black border-2 rounded-box">
+                                                    <li className='p-2 border-b-2 border-black'>Change the discipline </li>
+                                                    <CategoryForm refetch={refetch} user={user} />
+                                                </ul>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td>{email}</td>
-                                    <td>
-                                        {invoiceURL && (
-                                            <a href={invoiceURL} target='_blank' className='text-[#FFE500] underline'>Invoice URL</a>
-                                        )}
-                                    </td>
-                                    <td className='font-bold'>
-                                        {Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {Dockstart && 'Dockstart'} {Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}
-                                    </td>
-                                    <td className='flex items-center gap-3'>
-                                        {!approved ? <span>Disapproved</span> : <span>Approved</span>}
-                                        {
-                                            !approved ? <button onClick={() => handleClick(_id, true)} className='btn btn-outline text-green-500 hover:text-white hover:bg-green-500'>
-                                                Approve
-                                            </button>
-                                                :
-                                                <button onClick={() => handleClick(_id, false)} className='btn btn-outline text-red-500 hover:text-white hover:bg-red-500'>
-                                                    Disapprove
+                                        </td>
+                                        <td className='flex items-center gap-3'>
+                                            {!approved ? <span>Disapproved</span> : <span>Approved</span>}
+                                            {
+                                                !approved ? <button onClick={() => handleClick(_id, true)} className='btn btn-outline text-green-500 hover:text-white hover:bg-green-500'>
+                                                    Approve
                                                 </button>
-                                        }
-                                    </td>
-                                    <td>{admin ? 'True' : 'False'}</td>
-                                    <td>
-                                        {
-                                            !admin ?
-                                                <button onClick={() => handleAdmin(_id)} className='btn btn-outline text-green-500 hover:text-white hover:bg-green-500'>
-                                                    Make admin
-                                                </button>
-                                                :
-                                                <button onClick={() => handleRemoveAdmin(_id)} className='btn btn-outline text-red-500 hover:text-white hover:bg-red-500'>
-                                                    Remove Admin
-                                                </button>
-                                        }
-                                    </td>
-                                </tr>
+                                                    :
+                                                    <button onClick={() => handleClick(_id, false)} className='btn btn-outline text-red-500 hover:text-white hover:bg-red-500'>
+                                                        Disapprove
+                                                    </button>
+                                            }
+                                        </td>
+                                        <td>{admin ? 'True' : 'False'}</td>
+                                        <td>
+                                            {
+                                                !admin ?
+                                                    <button onClick={() => handleAdmin(_id)} className='btn btn-outline text-green-500 hover:text-white hover:bg-green-500'>
+                                                        Make admin
+                                                    </button>
+                                                    :
+                                                    <button onClick={() => handleRemoveAdmin(_id)} className='btn btn-outline text-red-500 hover:text-white hover:bg-red-500'>
+                                                        Remove Admin
+                                                    </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                    {index === i + 1 && open && (
+                                        <GetDetails user={user} uid={user?.uid} />
+                                    )}
+                                </>
                             );
                         })}
                     </tbody>
