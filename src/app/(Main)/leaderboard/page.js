@@ -23,7 +23,7 @@ const page = async () => {
             </div>
             <div className='2xl:mt-20 xl:mt-14 mt-8 bg-white 2xl:p-20 xl:p-20 py-12 rounded-tr-[50px] rounded-tl-[50px]'>
                 {
-                    (currentDate.getTime() < targetDate.getTime() && afterTargetDate.getTime() <= currentDate.getTime()) ?
+                    (currentDate.getTime() < targetDate.getTime() || afterTargetDate.getTime() <= currentDate.getTime()) ?
                         <SelectTab pointTable={pointTable} /> :
                         <div>
                             <h3 className={`${morgana.className} uppercase 2xl:text-6xl xl:text-4xl text-2xl text-center`}>*The leaderboard has disappeared!*</h3>
