@@ -88,6 +88,10 @@ input:not(:checked)~.collapse-title .icon-plus {
     background: #FFE500 !important;
 }
 
+.rounded-custom {
+    border-radius: 12px 0px 0px 12px;
+}
+
 .faq {
     padding-inline-end: 20px !important
 }

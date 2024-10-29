@@ -203,7 +203,7 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Invoice</th>
-                            <th>Participated</th>
+                            {/* <th>Participated</th> */}
                             <th>Approve Account</th>
                             <th>Admin</th>
                             <th>Make admin</th>
@@ -243,7 +243,7 @@ const AllUsers = () => {
                                                 <a href={invoiceURL} target='_blank' className='text-[#FFE500] underline'>Invoice URL</a>
                                             )}
                                         </td>
-                                        <td className='font-bold'>
+                                        {/* <td className='font-bold'>
                                             <div className="dropdown">
                                                 <div tabIndex={0} role="button" className="btn m-1 select select-bordered min-w-[500px]">
                                                     <p>{Windfoil && 'Windfoil'} {Wingfoil && 'Wingfoil'} {Dockstart && 'Dockstart'} {Downwind && 'Downwind'} {Surffoil && 'Surffoil'} {WatermanCrown && 'Waterman Crown'}</p>
@@ -253,7 +253,7 @@ const AllUsers = () => {
                                                     <CategoryForm refetch={refetch} user={user} />
                                                 </ul>
                                             </div>
-                                        </td>
+                                        </td> */}
                                         <td className='flex items-center gap-3'>
                                             {!approved ? <span>Disapproved</span> : <span>Approved</span>}
                                             {
