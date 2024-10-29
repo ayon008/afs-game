@@ -4,7 +4,7 @@ import ApprovedBtn from '@/Components/ApprovedBtn';
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
 import GetAllUser from '@/lib/getAllUsers';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Swal from 'sweetalert2';
 import profileImage from '../../public/Profile_avatar_placeholder_large.png'
 import CategoryForm from './CategoryForm';
@@ -26,6 +26,33 @@ const AllUsers = () => {
     const data = type ? allUsers?.filter(user => {
         return user[type];
     }) : allUsers;
+
+    const containerRef = useRef(null);
+    const [isDown, setIsDown] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+
+    const handleMouseDown = (e) => {
+        setIsDown(true);
+        setStartX(e.pageX - containerRef.current.offsetLeft);
+        setScrollLeft(containerRef.current.scrollLeft);
+    };
+
+    const handleMouseLeave = () => {
+        setIsDown(false);
+    };
+
+    const handleMouseUp = () => {
+        setIsDown(false);
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - containerRef.current.offsetLeft;
+        const walk = (x - startX) * 1; // Adjust the speed here
+        containerRef.current.scrollLeft = scrollLeft - walk;
+    };
 
 
 
@@ -195,7 +222,10 @@ const AllUsers = () => {
                     </select>
                 </div>
             </div>
-            <div className="overflow-x-auto mt-10">
+            <div className={`overflow-x-auto mt-10 ${isDown ? 'cursor-grabbing' : 'cursor-grab'}`} ref={containerRef} onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}>
                 <table className="table">
                     <thead>
                         <tr>
