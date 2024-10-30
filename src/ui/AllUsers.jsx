@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import profileImage from '../../public/Profile_avatar_placeholder_large.png'
 import CategoryForm from './CategoryForm';
 import GetDetails from './GetDetails';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 
 const AllUsers = () => {
     const { isLoading, isError, error, allUsers, refetch } = GetAllUser();
@@ -212,21 +213,81 @@ const AllUsers = () => {
             <div>
                 <h3 className='text-2xl font-bold text-center'>All Users</h3>
                 <p className='text-xs text-center font-bold mt-2'>Manage users</p>
-                <div>
-                    <select onChange={handleValue} className="select select-bordered w-full max-w-xs">
-                        <option disabled>Sort by category</option>
-                        <option value={''}>All users</option>
-                        {categories?.map((c, i) => (
-                            <option key={i} value={c === 'Dockstart' ? 'Dockstart' : c}>{c}</option>
-                        ))}
-                    </select>
+                <div className='flex justify-between items-center mt-10'>
+                    <div className=''>
+                        <select onChange={handleValue} className="select select-bordered w-full max-w-md">
+                            <option disabled>Sort by category</option>
+                            <option value={''}>All users</option>
+                            {categories?.map((c, i) => (
+                                <option key={i} value={c === 'Dockstart' ? 'Dockstart' : c}>{c}</option>
+                            ))}
+                        </select>
+                    </div>
+                    {/* <div>
+                        <button className=''>
+                            Export Data to Excel Sheet
+                        </button>
+                    </div> */}
                 </div>
             </div>
             <div className={`overflow-x-auto mt-10 ${isDown ? 'cursor-grabbing' : 'cursor-grab'}`} ref={containerRef} onMouseDown={handleMouseDown}
                 onMouseLeave={handleMouseLeave}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}>
-                <table className="table">
+                <ReactHTMLTableToExcel
+                    className="download-table-xls-button text-white bg-green-600 btn"
+                    table="table-to-xls"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Export Data to Excel Sheet"
+                />
+                <table id="table-to-xls" className='hidden'>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Invoice</th>
+                            <th>Wingfoil</th>
+                            <th>Windfoil</th>
+                            <th>Docstart</th>
+                            <th>Downwind</th>
+                            <th>Surffoil</th>
+                            <th>Waterman Crown</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data?.map((user, i) => {
+                            const { pays, city, email, displayName, photoURL, approved, invoiceURL, Windfoil, Wingfoil, Dockstart, Downwind, Surffoil, WatermanCrown, _id, admin } = user;
+                            return (
+                                <>
+                                    <tr onClick={() => handleOpen(i, open)} className='cursor-pointer' key={_id}>
+                                        <td>{i + 1}</td>
+                                        <td>
+                                            <div>
+                                                <div className="font-bold">{displayName}</div>
+                                                <div className="text-sm opacity-50">{city}, {pays}</div>
+                                            </div>
+                                        </td>
+                                        <td>{email}</td>
+                                        <td>
+                                            {invoiceURL ?
+                                                invoiceURL
+                                                : 'n/a'}
+                                        </td>
+                                        <td>{Wingfoil ? 'participated' : 'n/a'}</td>
+                                        <td>{Windfoil ? 'participated' : 'n/a'}</td>
+                                        <td>{Dockstart ? 'participated' : 'n/a'}</td>
+                                        <td>{Downwind ? 'participated' : 'n/a'}</td>
+                                        <td>{Surffoil ? 'participated' : 'n/a'}</td>
+                                        <td>{WatermanCrown ? 'participated' : 'n/a'}</td>
+                                    </tr>
+                                </>
+                            );
+                        })}
+                    </tbody>
+                </table>
+                <table className="table mt-10">
                     <thead>
                         <tr>
                             <th></th>
