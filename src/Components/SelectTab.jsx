@@ -131,7 +131,7 @@ const SelectTab = ({ pointTable }) => {
                                         </tbody>
                                     </table>
                                     {
-                                        sortDataByTime(pointTable, category).length > 10 && <div className='w-fit mx-auto mt-10'>
+                                        sortDataByTime(pointTable, category)?.length > 10 && <div className='w-fit mx-auto mt-10'>
                                             <button onClick={() => handleShowMore()} className="btn bg-white border-none flex items-center gap-0">
                                                 <span>See more</span> <span className="mt-1"><FaArrowDown /></span>
                                             </button>
