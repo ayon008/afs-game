@@ -1,4 +1,4 @@
-import React from 'react';
+toimport React from 'react';
 import { morgana } from '../layout';
 import getUserLeaderBoard from '@/lib/getUserLeaderBoard';
 import Join from '@/Shared/Join';
@@ -28,15 +28,21 @@ const page = async () => {
                         <div>
                             <h3 className={`${morgana.className} uppercase 2xl:text-6xl xl:text-4xl text-2xl text-center`}>*The leaderboard has disappeared!*</h3>
                             <p className='text-center mt-10 text-lg 2xl:px-0 xl:px-0 px-10'>
-                                Dear participants,
+                                
 
-                                The AFS Games leaderboard has disappeared! 😱
 
-                                Don't worry, this was planned by our team. As the challenge nears its end, we’re working on the closing ceremony and prize-giving event. The leaderboard will remain offline until the day after the ceremony!
+The AFS Games leaderboard has disappeared! 😱
 
-                                Nothing is decided yet! Keep uploading your sessions until the very end!
+Don't worry, this was planned by our team. As the challenge nears its end, we’re working on the closing ceremony and prize-giving event. The leaderboard will remain offline until the day after the ceremony!
 
-                                This little surprise is our way of keeping you on your toes and encouraging you to join the ceremony on November 1st , 2024
+Nothing is decided yet! Keep uploading your sessions until the very end!
+
+This little surprise is our way of keeping you on your toes and encouraging you to join the award ceremony.
+
+See you soon for the big reveal!
+
+
+                
                             </p>
                         </div>
                 
