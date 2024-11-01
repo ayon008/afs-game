@@ -1,4 +1,4 @@
-toimport React from 'react';
+import React from 'react';
 import { morgana } from '../layout';
 import getUserLeaderBoard from '@/lib/getUserLeaderBoard';
 import Join from '@/Shared/Join';
