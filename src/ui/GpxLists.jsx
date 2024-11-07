@@ -6,6 +6,7 @@ import convertToFranceTime from '@/lib/convertTime';
 import GetGpx from '@/lib/getGpx';
 import React from 'react';
 import Swal from 'sweetalert2';
+import ExportGPXData from './ExportGPXData';
 
 const GpxLists = () => {
     const { isLoading, isError, error, gpx, refetch } = GetGpx();
@@ -101,6 +102,7 @@ const GpxLists = () => {
                 <h3 className='text-2xl font-bold text-center'>All GPX files</h3>
                 <p className='text-xs text-center font-bold mt-2'>Manage gpx files</p>
             </div>
+            <ExportGPXData data={gpx} />
             <div className="overflow-x-auto mt-10">
                 <table className="table table-zebra">
                     {/* head */}
