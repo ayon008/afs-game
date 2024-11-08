@@ -1,36 +1,49 @@
 'use client'
 import useAxiosSecure from '@/Hooks/useAxiosSecure';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as XLSX from 'xlsx';
 
 
 const ExportGPXData = ({ data }) => {
     const axiosSecure = useAxiosSecure();
     const uid = data?.map(d => d?.uid);
-    console.log(uid);
 
     const [userInfo, setUserInfo] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
+    // Cache to store user data that has already been fetched
+    const cache = useRef({});
+
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true); // Start loading at the beginning
+            setLoading(true);
+
+            // Identify UIDs that need to be fetched (not present in cache)
+            const uidsToFetch = uid.filter(id => !cache.current[id]);
+
             try {
                 const data = await Promise.all(
-                    uid?.map(async (id) => {
-                        const user = await axiosSecure.get(`/user/${id}`);
-                        console.log(user.data);
-                        const userData = user?.data;
-                        const email = userData?.email;
-                        const name = userData?.name;
-                        return { email, name };
+                    uidsToFetch.map(async (id) => {
+                        const response = await axiosSecure.get(`/user/${id}`);
+                        const userData = response?.data;
+
+                        // Store the fetched data in the cache
+                        cache.current[id] = {
+                            email: userData?.email,
+                            name: userData?.name
+                        };
+                        return cache.current[id];
                     })
                 );
-                setUserInfo(data);
+
+                // Combine cached and newly fetched data
+                const updatedUserInfo = uid.map(id => cache.current[id]);
+                setUserInfo(updatedUserInfo);
+
             } catch (error) {
                 console.error("Error fetching user data:", error.message);
             } finally {
-                setLoading(false); // Stop loading after data is set or on error
+                setLoading(false);
             }
         };
 
