@@ -66,6 +66,7 @@ export default function RootLayout({ children }) {
                                         <li><Link href={'/faqPanel'}>Add FAQ</Link></li>
                                         <li><Link href={'/addAwards'}>Add Awards</Link></li>
                                         <li><Link href={'/manageEvent'}>Manage Event</Link></li>
+                                        <li><Link href={'/manageLeaderboard'}>Leaderboard</Link></li>
                                     </ul>
                                 </div>
                             </div>
