@@ -29,7 +29,7 @@ const ExportGPXData = () => {
             uploadedTime: user?.lastUploadedTime,
             email: user?.email,
             uploadedBy: user?.name,
-            spentTime:user?.totaltlTime,
+            spentTime:user?.totalTime,
             status: user.status,
         }));
 
