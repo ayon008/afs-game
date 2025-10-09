@@ -174,9 +174,9 @@ const AuthProvider = ({ children }) => {
                 isRequestInProgress.current = true;
                 console.log(currentUser);
                 try {
-                    const tokenResponse = await axiosPublic.post('/userToken', { email: currentUser.email });
-                    const { token } = tokenResponse.data;
-                    Cookies.set('userToken', token, { expires: 1 / 24, sameSite: 'Lax' })
+                    // const tokenResponse = await axiosPublic.post('/userToken', { email: currentUser.email });
+                    // const { token } = tokenResponse.data;
+                    // Cookies.set('userToken', token, { expires: 1 / 24, sameSite: 'Lax' })
                     setUser(currentUser);
                 } catch (error) {
                     console.log(error.message);

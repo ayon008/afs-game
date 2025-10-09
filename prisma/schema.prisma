@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  surName    String
+  city       String
+  pays       String
+  email      String
+  uid        String          @unique
+  createdAt  DateTime        @default(now())
+  invoiceURL String?
+  Wingfoil   Boolean
+  Windfoil   Boolean
+  Downwind   Boolean
+  Dockstart  Boolean
+  Surffoil   Boolean
+  Parawing   Boolean
+  approved   Boolean         @default(false)
+  mode       ParticipateMode
+  admin      Admin
+  gsonIds    String[]        @db.ObjectId
+  GsonData   GsonData[]
+  PointTable PointTable?
+  Invoice    Invoice?
+}
+
+model PointTable {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  uid              String?  @unique @db.ObjectId
+  user             User?    @relation(fields: [uid], references: [id])
+  Parawing         Boolean
+  Wingfoil         Float
+  WingfoilDistance Float
+  WingfoilSession  Int
+  city             String
+  displayName      String
+  distance         Float
+  lastUploadedTime DateTime
+  pays             String
+  photoURL         String
+  session          Int
+  total            Float
+  surName          String
+  createdAt        DateTime @default(now())
+}
+
+model GsonData {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  totalTime        Float
+  distance         Float
+  uid              String   @db.ObjectId
+  user             User     @relation(fields: [uid], references: [id])
+  category         Category
+  fileName         String
+  status           Boolean
+  time             DateTime
+  lastUploadedTime DateTime
+  createdAt        DateTime @default(now())
+}
+
+model Sponsor {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  showInHome     Boolean
+  sponsorPicture String
+  sponsorName    String
+  sponsorDetails String
+  createdAt      DateTime @default(now())
+}
+
+model Awards {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  category  Category
+  position  String
+  prize1    String?
+  prize2    String?
+  prize3    String?
+  sponsors  String[] // sponsors stored as an array of URLs
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model FAQ {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  category    String
+  title       String
+  description String // stored as HTML/Markdown string
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Invoice {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  uid        String   @unique @db.ObjectId
+  user       User     @relation(fields: [uid], references: [id])
+  invoiceURL String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum ParticipateMode {
+  SOLO
+  TEAM
+}
+
+enum Admin {
+  Admin
+  User
+}
+
+enum Category {
+  Wingfoil
+  Windfoil
+  Surffoil
+  Dockstart
+  Downwind
+  Parawing
+}

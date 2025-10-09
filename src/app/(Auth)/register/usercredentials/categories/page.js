@@ -11,14 +11,8 @@ const Categories = () => {
     const { register, handleSubmit, watch, setValue, resetField } = useForm();
     const router = useRouter();
 
-    // State to track whether Waterman Crown is selected
-    const [isWatermanSelected, setIsWatermanSelected] = useState(false);
-
-    // Watch the values of the checkboxes
-    const watchWatermanCrown = watch("WatermanCrown");
-
     const onSubmit = async (data) => {
-        if (!data.Wingfoil && !data.Windfoil && !data.Downwind && !data.Dockstart && !data.Surffoil && !data.WatermanCrown) {
+        if (!data.Wingfoil && !data.Windfoil && !data.Downwind && !data.Dockstart && !data.Surffoil && !data.Parawing) {
             Swal.fire({
                 title: 'Erreur',
                 text: 'Please select at least one category.',
@@ -32,20 +26,6 @@ const Categories = () => {
         router.push('createUser')
     };
 
-    // Function to handle checkbox toggle for Waterman Crown
-    const handleWatermanChange = (event) => {
-        const isChecked = event.target.checked;
-        setIsWatermanSelected(isChecked);
-
-        // If Waterman Crown is selected, reset other fields
-        if (isChecked) {
-            setValue("Wingfoil", true);
-            setValue("Windfoil", true);
-            setValue("Downwind", true);
-            setValue("Dockstart", false);
-            setValue("Surffoil", false);
-        }
-    };
 
     return (
         <div className='xl:w-1/3 2xl:w-1/2 w-[90%] mx-auto'>
@@ -71,7 +51,7 @@ const Categories = () => {
                             type="checkbox"
                             {...register('Wingfoil')}
                             className="checkbox checkbox-warning w-[12px] h-[12px]"
-                            disabled={isWatermanSelected}  // Disable if Waterman Crown is selected
+                        // Disable if Waterman Crown is selected
                         />
                     </label>
                 </div>
@@ -84,7 +64,7 @@ const Categories = () => {
                             type="checkbox"
                             {...register('Windfoil')}
                             className="checkbox checkbox-warning w-[12px] h-[12px]"
-                            disabled={isWatermanSelected}  // Disable if Waterman Crown is selected
+                        // Disable if Waterman Crown is selected
                         />
                     </label>
                 </div>
@@ -97,7 +77,7 @@ const Categories = () => {
                             type="checkbox"
                             {...register('Downwind')}
                             className="checkbox checkbox-warning w-[12px] h-[12px]"
-                            disabled={isWatermanSelected}  // Disable if Waterman Crown is selected
+                        // Disable if Waterman Crown is selected
                         />
                     </label>
                 </div>
@@ -110,7 +90,7 @@ const Categories = () => {
                             type="checkbox"
                             {...register('Dockstart')}
                             className="checkbox checkbox-warning w-[12px] h-[12px]"
-                            disabled={isWatermanSelected}  // Disable if Waterman Crown is selected
+                        // Disable if Waterman Crown is selected
                         />
                     </label>
                 </div>
@@ -123,22 +103,19 @@ const Categories = () => {
                             type="checkbox"
                             {...register('Surffoil')}
                             className="checkbox checkbox-warning w-[12px] h-[12px]"
-                            disabled={isWatermanSelected}  // Disable if Waterman Crown is selected
+                        // Disable if Waterman Crown is selected
                         />
                     </label>
                 </div>
-
-                {/* Waterman Crown */}
+                {/* Parawing */}
                 <div className="form-control">
                     <label className="cursor-pointer label justify-between">
-                        <span className="label-text text-white 2xl:text-lg xl:text-sm">
-                            Register only for the Waterman Crown (Wingfoil, Windfoil, Downwind)
-                        </span>
+                        <span className="label-text text-white 2xl:text-lg xl:text-sm">Parawing</span>
                         <input
                             type="checkbox"
-                            {...register('WatermanCrown')}
+                            {...register('Parawing')}
                             className="checkbox checkbox-warning w-[12px] h-[12px]"
-                            onChange={handleWatermanChange}  // Handle change for Waterman Crown
+                        // Disable if Waterman Crown is selected
                         />
                     </label>
                 </div>

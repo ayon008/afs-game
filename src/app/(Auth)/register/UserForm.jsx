@@ -8,16 +8,16 @@ import Swal from 'sweetalert2';
 import useAuth from '@/Hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import countries from '@/js/countries';
-import useAxiosPublic from '@/Hooks/useAxiosPublic';
 import uploadPdfToFirebase from '@/js/uploadPdf';
 import sendDataToWebhook from '@/js/kalviyoSubscribe';
+import { Admin, ParticipateMode } from '@prisma/client';
+import axios from 'axios';
 
 const UserForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const userInfo = useAuth();
-    const { createAccount, updatedProfile, reauthenticateAndDelete, logOut, user, deleteGoogleUser } = userInfo;
+    const { createAccount, updatedProfile, reauthenticateAndDelete, logOut, user } = userInfo;
     const router = useRouter();
-    const axiosPublic = useAxiosPublic();
     const onSubmit = async (data) => {
         // Show loading indicator
         Swal.fire({
@@ -41,41 +41,7 @@ const UserForm = () => {
             categories = JSON.parse(localStorage.getItem('categories'));
         }
 
-        if (user) {
-            try {
-                await sendDataToWebhook({ email, name, surName, pays })
-                await axiosPublic.post('/user', { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false });
 
-                Swal.fire({
-                    title: 'Account Created',
-                    text: 'Your account has been created successfully!',
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#FFE500',
-                }).then(() => {
-                    if (typeof window !== "undefined") {
-                        localStorage.removeItem('password');
-                        localStorage.removeItem('email');
-                        localStorage.removeItem('categories');
-                    }
-                    router.push('/');
-                });
-                return
-            }
-            catch (error) {
-                console.log(error.message);
-                axiosPublic.delete(`/user/${user.id}`);
-                deleteGoogleUser(user);
-                Swal.fire({
-                    title: 'Error',
-                    text: error.code?.split('auth/')[1],
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#FFE500',
-                });
-                return;
-            }
-        }
 
 
         if (!email || !password || !categories) {
@@ -91,18 +57,36 @@ const UserForm = () => {
 
         try {
             const result = await createAccount(email, password);
-            const user = result.user;
+            const newUser = result.user;
             // Update user profile
-            await updatedProfile(name, user?.photoURL);
+            await updatedProfile(name, newUser?.photoURL);
             try {
-                await sendDataToWebhook({ email, name, surName, pays });
-                const userData = { name, surName, city, pays, ...user, invoiceURL, ...categories, approved: false };
-                await axiosPublic.post('/user', userData);
+                // await sendDataToWebhook({ email, name, surName, pays });
+                const userData = {
+                    name: name,
+                    surName: surName,
+                    city: city,
+                    pays: pays,
+                    email: newUser?.email,
+                    uid: newUser.uid,
+                    invoiceURL: invoiceURL,
+                    Wingfoil: categories.Wingfoil,
+                    Windfoil: categories.Windfoil,
+                    Downwind: categories.Downwind,
+                    Surffoil: categories.Surffoil,
+                    Dockstart: categories.Dockstart,
+                    Parawing: categories.Parawing,
+                    approved: false,
+                    mode: ParticipateMode.SOLO,
+                    admin: Admin.User,
+                }
+                await axios.post('/api/postUser', userData);
 
             }
             catch (error) {
                 console.log(error.message);
-                axiosPublic.delete(`/user/${user.id}`);
+                // axiosPublic.delete(`/user/${user.id}`);
+                axios.delete(`/api/deleteUser?uid=${user.uid}`);
                 reauthenticateAndDelete(user, password);
                 Swal.fire({
                     title: 'Error',
@@ -157,40 +141,53 @@ const UserForm = () => {
                 <h5 className="2xl:text-base xl:text-xs tracking-wide text-[#FFFFFF99]">Your name will be seen in the leaderboard</h5>
             </div>
 
-            {/* Name Field */}
-            <div className="form-control relative">
-                <input
-                    type="text"
-                    {...register('name', { required: 'Name is required' })}
-                    placeholder="Name"
-                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
-                />
-                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
-            </div>
+            <div className='grid grid-cols-2 gap-2'>
+                {/* Name Field */}
+                <div className="form-control relative">
+                    <input
+                        type="text"
+                        {...register('name', { required: 'Name is required' })}
+                        placeholder="Name"
+                        className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
+                    />
+                    {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
+                </div>
 
-            {/* Surname Field */}
-            <div className="form-control relative">
-                <input
-                    type="text"
-                    {...register('surName', { required: 'Surname is required' })}
-                    placeholder="Surname"
-                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
-                />
-                {errors.surName && <p className="text-red-500 text-xs mt-1">{errors.surName.message}</p>}
-            </div>
+                {/* Surname Field */}
+                <div className="form-control relative">
+                    <input
+                        type="text"
+                        {...register('surName', { required: 'Surname is required' })}
+                        placeholder="Surname"
+                        className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
+                    />
+                    {errors.surName && <p className="text-red-500 text-xs mt-1">{errors.surName.message}</p>}
+                </div>
 
-            {/* City Field */}
-            <div className="form-control relative">
-                <input
-                    type="text"
-                    {...register('city', { required: 'city is required' })}
-                    placeholder="City"
-                    className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
-                />
-                {errors.City && <p className="text-red-500 text-xs mt-1">{errors.City.message}</p>}
-            </div>
+                {/* City Field */}
+                <div className="form-control relative">
+                    <input
+                        type="text"
+                        {...register('city', { required: 'city is required' })}
+                        placeholder="City"
+                        className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
+                    />
+                    {errors.City && <p className="text-red-500 text-xs mt-1">{errors.City.message}</p>}
+                </div>
 
-            {/* Pays Field */}
+                {/* Age */}
+                <div className="form-control relative">
+                    <input
+                        type="text"
+                        {...register('age', { required: 'city is required' })}
+                        placeholder="Age"
+                        className="input input-bordered border-2 border-[#666] bg-[#1F1F1F] text-white xl:h-[40px]"
+                    />
+                    {errors.age && <p className="text-red-500 text-xs mt-1">{errors.age.message}</p>}
+                </div>
+
+            </div>
+            {/* Country */}
             <div className="form-control relative xl:h-[40px]">
                 <select
                     {...register('pays', { required: 'Country is required' })}
@@ -205,7 +202,6 @@ const UserForm = () => {
                 </select>
                 {errors.Pays && <p className="text-red-500 text-xs mt-1">{errors.Pays.message}</p>}
             </div>
-
             {/* AfsGear Field */}
             <div className="form-control relative">
                 <label className="label text-white text-xs">Upload Your Afs gear (invoice)</label>
